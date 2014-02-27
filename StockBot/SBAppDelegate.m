@@ -7,14 +7,21 @@
 //
 
 #import "SBAppDelegate.h"
+#import "SBStocksViewController.h"
+#import "SBConstants.h"
 
 @implementation SBAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    // Override point for customization after application launch.
-    self.window.backgroundColor = [UIColor whiteColor];
+//    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:NO];
+    [[UINavigationBar appearance] setBarTintColor:BLUE_2];
+    SBStocksViewController *svc = [[SBStocksViewController alloc] initWithNibName:nil bundle:nil];
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:svc];
+    [[nav navigationBar] setBarStyle:UIBarStyleBlackTranslucent];
+    [self.window setRootViewController:nav];
     [self.window makeKeyAndVisible];
     return YES;
 }
