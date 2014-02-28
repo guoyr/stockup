@@ -9,6 +9,7 @@
 #import "SBStocksViewController.h"
 #import "SBStocksDetailViewController.h"
 #import "SBStocksListTableViewController.h"
+#import "SBAlgosViewController.h"
 #import "SBConstants.h"
 
 #define LIST_WIDTH 320
@@ -24,6 +25,8 @@
 
 @property (nonatomic, strong) UITextView *instructionView;
 @property (nonatomic, strong) UIButton *confirmButton;
+
+@property (nonatomic, strong)
 @end
 
 @implementation SBStocksViewController
