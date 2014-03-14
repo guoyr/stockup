@@ -7,10 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <CHCSVParser.h>
 
-@interface SBStocksDataManager : NSObject
+@interface SBStocksDataManager : NSObject<CHCSVParserDelegate>
 
-@property (nonatomic, strong) NSArray *stocksList;
+@property (nonatomic, strong) NSMutableArray *stocks;
 
 +(id)sharedManager;
 

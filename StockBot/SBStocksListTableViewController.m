@@ -8,6 +8,7 @@
 
 #import "SBStocksListTableViewController.h"
 #import "SBStocksDataManager.h"
+#import "SBStock.h"
 
 @interface SBStocksListTableViewController ()
 
@@ -55,7 +56,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return [_dataManager stocksList].count;
+    return [_dataManager stocks].count;
 }
 
 
@@ -68,14 +69,14 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     
-    [cell.textLabel setText:[_dataManager stocksList][indexPath.row]];
+    [cell.textLabel setText:[(SBStock *)[_dataManager.stocks objectAtIndex:indexPath.row] name]];
     
     return cell;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [self.delegate viewController:self didSelectStock:_dataManager.stocksList[indexPath.row]];
+    [self.delegate viewController:self didSelectStock:[(SBStock *)[_dataManager stocks][indexPath.row] name]];
 }
 
 

@@ -12,6 +12,7 @@
 #import "SBAlgosViewController.h"
 #import "SBConstants.h"
 #import "SBAlgosViewController.h"
+#import "SBStock.h"
 
 #define LIST_WIDTH 320
 #define CONFIRM_BUTTON_HEIGHT 48
@@ -112,7 +113,7 @@
 //    }];
 }
 
--(void)viewController:(SBStocksListTableViewController *)vc didSelectStock:(NSString *)stock
+-(void)viewController:(SBStocksListTableViewController *)vc didSelectStock:(SBStock *)stock
 {
     if (!_dvc.view.superview) {
         [self addChildViewController:_dvc];
