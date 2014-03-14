@@ -11,6 +11,7 @@
 #import "SBStocksListTableViewController.h"
 #import "SBAlgosViewController.h"
 #import "SBConstants.h"
+#import "SBAlgosViewController.h"
 
 #define LIST_WIDTH 320
 #define CONFIRM_BUTTON_HEIGHT 48
@@ -26,10 +27,21 @@
 @property (nonatomic, strong) UITextView *instructionView;
 @property (nonatomic, strong) UIButton *confirmButton;
 
-@property (nonatomic, strong)
+@property (nonatomic, strong) SBAlgosViewController *algoVC;
 @end
 
 @implementation SBStocksViewController
+
+#pragma mark getters and setters
+
+-(SBAlgosViewController *)algoVC{
+    if (!_algoVC) {
+        _algoVC = [[SBAlgosViewController alloc] initWithNibName:nil bundle:nil];
+    }
+    return _algoVC;
+}
+
+#pragma mark viewcontroller methods
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -83,7 +95,21 @@
 
 -(void)confirmButtonPressed:(id)sender
 {
-    
+    [self.navigationController pushViewController:self.algoVC animated:YES];
+//    [self willMoveToParentViewController:nil];
+//    [self.navigationController addChildViewController:self.algoVC];
+//    [self.algoVC.view setFrame:self.bottomFrame];
+//    
+//    NSLog(@"%@",self.parentViewController);
+//    NSLog(@"%@",self.algoVC.parentViewController);
+//    
+//    __weak __block SBStocksViewController *weakSelf = self;
+//    [self transitionFromViewController:self toViewController:self.algoVC duration:0.3 options:UIViewAnimationOptionTransitionNone animations:^{
+//        [self.algoVC.view setFrame:self.view.bounds];
+//    } completion:^(BOOL finished) {
+//        [self.algoVC didMoveToParentViewController:self.navigationController];
+//        [self removeFromParentViewController];
+//    }];
 }
 
 -(void)viewController:(SBStocksListTableViewController *)vc didSelectStock:(NSString *)stock

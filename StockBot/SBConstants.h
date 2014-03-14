@@ -25,7 +25,7 @@
 #define PURPLE_4 UIColorFromRGB(0x240672)
 
 #define GREEN_0 UIColorFromRGB(0x85EB6A)
-#define GREEN_0 UIColorFromRGB(0x5FEB3B)
-#define GREEN_0 UIColorFromRGB(0x2DD700)
-#define GREEN_0 UIColorFromRGB(0x41A128)
-#define GREEN_0 UIColorFromRGB(0x1D8B00)
+#define GREEN_1 UIColorFromRGB(0x5FEB3B)
+#define GREEN_2 UIColorFromRGB(0x2DD700)
+#define GREEN_3 UIColorFromRGB(0x41A128)
+#define GREEN_4 UIColorFromRGB(0x1D8B00)
