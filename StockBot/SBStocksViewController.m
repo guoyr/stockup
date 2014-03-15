@@ -70,7 +70,8 @@
     
 //    NSLog(@"%@, %@, %@", NSStringFromCGRect(_leftFrame), NSStringFromCGRect(_rightFrame), NSStringFromCGRect(_bottomFrame));
 
-    [[self navigationItem] setTitle:@"炒股机器人"];
+    [self setTitle:@"炒股机器人"];
+//    [[self navigationItem] setTitle:@"炒股机器人"];
     self.edgesForExtendedLayout = UIRectEdgeNone;
     self.extendedLayoutIncludesOpaqueBars = NO;
     
@@ -113,6 +114,8 @@
 //    }];
 }
 
+#pragma mark SBStocksListTableViewControllerDelegate
+
 -(void)viewController:(SBStocksListTableViewController *)vc didSelectStock:(SBStock *)stock
 {
     if (!_dvc.view.superview) {
@@ -125,6 +128,7 @@
     } else {
         NSLog(@"dvc already shown");
     }
+    [_dvc showStock:stock];
 }
 
 - (void)didReceiveMemoryWarning

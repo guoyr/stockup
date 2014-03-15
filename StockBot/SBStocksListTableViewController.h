@@ -7,12 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-
+@class SBStock;
 @class SBStocksListTableViewController;
 
 @protocol SBStocksListTableViewControllerDelegate <NSObject>
 
--(void)viewController:(SBStocksListTableViewController *)vc didSelectStock:(NSString *)stock;
+-(void)viewController:(SBStocksListTableViewController *)vc didSelectStock:(SBStock *)stock;
 
 @end
 

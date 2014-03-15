@@ -9,6 +9,7 @@
 #import "SBStocksListTableViewController.h"
 #import "SBStocksDataManager.h"
 #import "SBStock.h"
+#import "SBConstants.h"
 
 @interface SBStocksListTableViewController ()
 
@@ -68,7 +69,10 @@
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
-    
+    cell.backgroundColor = BLUE_4;
+    cell.selectionStyle = UITableViewCellSelectionStyleDefault;
+//    cell.selectedBackgroundView.backgroundColor = GREEN_4;
+    cell.textLabel.textColor = [UIColor whiteColor];
     [cell.textLabel setText:[(SBStock *)[_dataManager.stocks objectAtIndex:indexPath.row] name]];
     
     return cell;
@@ -76,7 +80,7 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [self.delegate viewController:self didSelectStock:[(SBStock *)[_dataManager stocks][indexPath.row] name]];
+    [self.delegate viewController:self didSelectStock:(SBStock *)[_dataManager stocks][indexPath.row]];
 }
 
 

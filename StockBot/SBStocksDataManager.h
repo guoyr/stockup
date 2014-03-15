@@ -8,11 +8,14 @@
 
 #import <Foundation/Foundation.h>
 #import <CHCSVParser.h>
+@class SBStock;
 
 @interface SBStocksDataManager : NSObject<CHCSVParserDelegate>
 
 @property (nonatomic, strong) NSMutableArray *stocks;
 
 +(id)sharedManager;
+-(NSURL *)getKChartImageURLForStock:(SBStock *)stock;
+-(NSURL *)getMACDImageURLForStock:(SBStock *)stock;
 
 @end

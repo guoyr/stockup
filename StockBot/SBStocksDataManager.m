@@ -9,6 +9,7 @@
 #import <FMDB/FMDatabase.h>
 #import "SBStocksDataManager.h"
 #import "SBStock.h"
+#import "SBConstants.h"
 
 @interface SBStocksDataManager()
 
@@ -66,6 +67,8 @@
     return self;
 }
 
+#pragma mark Getters and Setters
+
 -(NSMutableArray *)stocks
 {
     if (!_stocks) {
@@ -74,11 +77,24 @@
         while ([result next]) {
             SBStock *s = [[SBStock alloc] init];
             s.name = [result resultDictionary][@"name"];
-            s.stockID = (int)[result resultDictionary][@"stock_id"];
+            s.stockID = [result resultDictionary][@"stock_id"];
             [_stocks addObject:s];
         }
     }
     return _stocks;
+}
+
+#pragma mark Image methods
+-(NSURL *)getKChartImageURLForStock:(SBStock *)stock
+{
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@sh%d.gif",IMAGE_DAILY_K_URL,[stock.stockID integerValue]]];
+    return url;
+}
+
+-(NSURL *)getMACDImageURLForStock:(SBStock *)stock
+{
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@sh%d.gif",IMAGE_MACD_URL,[stock.stockID integerValue]]];
+    return url;
 }
 
 #pragma mark CHCSVParserDelegate methods

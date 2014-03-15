@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
+@class SBStock;
 @interface SBStocksDetailViewController : UIViewController
 
--(void)showStock:(NSString *)stock;
+-(void)showStock:(SBStock *)stock;
 
 @end

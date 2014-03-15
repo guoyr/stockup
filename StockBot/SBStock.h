@@ -11,6 +11,6 @@
 @interface SBStock : NSObject
 
 @property (nonatomic, strong) NSString *name;
-@property (nonatomic, assign) NSUInteger stockID;
+@property (nonatomic, strong) NSNumber *stockID;
 
 @end

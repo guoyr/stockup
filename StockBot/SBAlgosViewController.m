@@ -9,6 +9,8 @@
 #import "SBAlgosViewController.h"
 #import "SBConstants.h"
 
+#define LIST_WIDTH 384
+
 @interface SBAlgosViewController ()
 
 @end
