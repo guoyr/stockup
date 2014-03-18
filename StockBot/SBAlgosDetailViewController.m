@@ -7,6 +7,7 @@
 //
 
 #import "SBAlgosDetailViewController.h"
+#import "SBConstants.h"
 
 @interface SBAlgosDetailViewController ()
 
@@ -26,7 +27,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self.view setBackgroundColor:BLUE_0];
     // Do any additional setup after loading the view.
+
 }
 
 - (void)didReceiveMemoryWarning

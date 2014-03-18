@@ -7,6 +7,7 @@
 //
 
 #import "SBAlgosListTableViewController.h"
+#import "SBConstants.h"
 
 @interface SBAlgosListTableViewController ()
 
@@ -26,7 +27,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+    [self.view setBackgroundColor:BLUE_2];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -44,28 +45,36 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
     // Return the number of sections.
     return 0;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
     // Return the number of rows in the section.
     return 0;
 }
 
-/*
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
+    static NSString *CellIdentifier = @"AlgoCell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
-    // Configure the cell...
+    if (!cell) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+    }
+    cell.backgroundColor = BLUE_3;
+    cell.selectionStyle = UITableViewCellSelectionStyleDefault;
     
+//    cell.selectedBackgroundView.backgroundColor = GREEN_4;
+//    cell.textLabel.textColor = [UIColor whiteColor];
+//    [cell.textLabel setText:[(SBStock *)[_dataManager.stocks objectAtIndex:indexPath.row] name]];
+
+
     return cell;
 }
-*/
+
 
 /*
 // Override to support conditional editing of the table view.

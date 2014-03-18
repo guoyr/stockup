@@ -78,7 +78,7 @@
     [self.macdView setImageWithURL:macdImageURL placeholderImage:nil completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
         [weakSelf.macdView setBackgroundColor:[UIColor  whiteColor]];
     }];
-
+    
 }
 
 /*

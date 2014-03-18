@@ -6,6 +6,7 @@
 //  Copyright (c) 2014 Robert Guo. All rights reserved.
 //
 
+#import <SDImageCache.h>
 #import "SBAppDelegate.h"
 #import "SBStocksViewController.h"
 #import "SBConstants.h"
@@ -23,6 +24,7 @@
     [[nav navigationBar] setBarStyle:UIBarStyleBlackTranslucent];
     [self.window setRootViewController:nav];
     [self.window makeKeyAndVisible];
+    [[SDImageCache sharedImageCache] setMaxCacheAge:60];
     return YES;
 }
 
