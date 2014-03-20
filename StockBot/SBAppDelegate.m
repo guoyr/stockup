@@ -24,6 +24,8 @@
     [[nav navigationBar] setBarStyle:UIBarStyleBlackTranslucent];
     [self.window setRootViewController:nav];
     [self.window makeKeyAndVisible];
+    [[SDImageCache sharedImageCache] clearMemory];
+    [[SDImageCache sharedImageCache] clearDisk];
     [[SDImageCache sharedImageCache] setMaxCacheAge:60];
     return YES;
 }

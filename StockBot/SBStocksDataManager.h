@@ -13,6 +13,7 @@
 @interface SBStocksDataManager : NSObject<CHCSVParserDelegate>
 
 @property (nonatomic, strong) NSMutableArray *stocks;
+@property (nonatomic, strong) SBStock *selectedStock;
 
 +(id)sharedManager;
 -(NSURL *)getKChartImageURLForStock:(SBStock *)stock;

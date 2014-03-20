@@ -10,6 +10,8 @@
 #import "SBConstants.h"
 #import "SBAlgosDetailViewController.h"
 #import "SBAlgosListTableViewController.h"
+#import "SBStock.h"
+#import "SBStocksDataManager.h"
 
 #define LIST_WIDTH 384
 #define BUY_BUTTON_HEIGHT 48
@@ -66,6 +68,9 @@
     
     [self.view addSubview:_dvc.view];
     [self.view addSubview:_lvc.view];
+    
+    NSString *stockName = [[SBStocksDataManager sharedManager]selectedStock].name;
+    [self setTitle:[NSString stringWithFormat:@"%@股票的算法",stockName]];
     
 }
 

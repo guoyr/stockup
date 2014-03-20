@@ -13,6 +13,7 @@
 #import "SBConstants.h"
 #import "SBAlgosViewController.h"
 #import "SBStock.h"
+#import "SBStocksDataManager.h"
 
 #define LIST_WIDTH 320
 #define CONFIRM_BUTTON_HEIGHT 48
@@ -71,7 +72,6 @@
 //    NSLog(@"%@, %@, %@", NSStringFromCGRect(_leftFrame), NSStringFromCGRect(_rightFrame), NSStringFromCGRect(_bottomFrame));
 
     [self setTitle:@"炒股机器人"];
-//    [[self navigationItem] setTitle:@"炒股机器人"];
     self.edgesForExtendedLayout = UIRectEdgeNone;
     self.extendedLayoutIncludesOpaqueBars = NO;
     
@@ -92,6 +92,8 @@
     [self.instructionView setText:@"欢迎您使用股票买卖助手。请再左手栏里选择一只您想买卖的股票"];
     [self.instructionView setTextColor:[UIColor whiteColor]];
     [self.instructionView setScrollEnabled:NO];
+    [self.instructionView setEditable:NO];
+    [self.instructionView setSelectable:NO];
     [self.view addSubview:self.instructionView];
 }
 
@@ -123,12 +125,13 @@
         [_dvc.view setFrame:_rightFrame];
         [_dvc didMoveToParentViewController:self];
         [self.view addSubview:_dvc.view];
-    
         [self.view addSubview:self.confirmButton];
     } else {
-        NSLog(@"dvc already shown");
+        //dvc already shown
     }
     [_dvc showStock:stock];
+    [[SBStocksDataManager sharedManager] setSelectedStock:stock];
+    
 }
 
 - (void)didReceiveMemoryWarning

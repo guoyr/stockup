@@ -46,15 +46,14 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     // Return the number of sections.
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return 0;
+    return 1;
 }
-
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -66,7 +65,7 @@
     }
     cell.backgroundColor = BLUE_3;
     cell.selectionStyle = UITableViewCellSelectionStyleDefault;
-    
+//    cell.accessoryType = UITableViewCellAccessoryCheckmark;
 //    cell.selectedBackgroundView.backgroundColor = GREEN_4;
 //    cell.textLabel.textColor = [UIColor whiteColor];
 //    [cell.textLabel setText:[(SBStock *)[_dataManager.stocks objectAtIndex:indexPath.row] name]];

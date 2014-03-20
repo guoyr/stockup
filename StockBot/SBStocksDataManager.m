@@ -8,8 +8,8 @@
 
 #import <FMDB/FMDatabase.h>
 #import "SBStocksDataManager.h"
-#import "SBStock.h"
 #import "SBConstants.h"
+#import "SBStock.h"
 
 @interface SBStocksDataManager()
 
@@ -96,6 +96,9 @@
     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@sh%d.gif",IMAGE_MACD_URL,[stock.stockID integerValue]]];
     return url;
 }
+
+#pragma mark Stock Data methods
+
 
 #pragma mark CHCSVParserDelegate methods
 

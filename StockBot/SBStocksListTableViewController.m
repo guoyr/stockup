@@ -10,6 +10,7 @@
 #import "SBStocksDataManager.h"
 #import "SBStock.h"
 #import "SBConstants.h"
+#import "SBStocksTableViewCell.h"
 
 @interface SBStocksListTableViewController ()
 
@@ -35,7 +36,7 @@ static NSString *CellIdentifier = @"StockCell";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:CellIdentifier];
+    [self.tableView registerClass:[SBStocksTableViewCell class] forCellReuseIdentifier:CellIdentifier];
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -71,11 +72,10 @@ static NSString *CellIdentifier = @"StockCell";
 
     
     if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        cell = [[SBStocksTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     cell.backgroundColor = BLUE_4;
     cell.selectionStyle = UITableViewCellSelectionStyleDefault;
-//    cell.selectedBackgroundView.backgroundColor = GREEN_4;
     cell.textLabel.textColor = [UIColor whiteColor];
     [cell.textLabel setText:[(SBStock *)[_dataManager.stocks objectAtIndex:indexPath.row] name]];
     

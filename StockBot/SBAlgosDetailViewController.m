@@ -8,6 +8,8 @@
 
 #import "SBAlgosDetailViewController.h"
 #import "SBConstants.h"
+#import "SBStocksDataManager.h"
+#import "SBStock.h"
 
 @interface SBAlgosDetailViewController ()
 
@@ -29,6 +31,8 @@
     [super viewDidLoad];
     [self.view setBackgroundColor:BLUE_0];
     // Do any additional setup after loading the view.
+
+    
 
 }
 

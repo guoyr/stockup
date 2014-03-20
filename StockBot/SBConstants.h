@@ -32,5 +32,8 @@
 #define GREEN_3 UIColorFromRGB(0x41A128)
 #define GREEN_4 UIColorFromRGB(0x1D8B00)
 
+#define BLACK UIColorFromRGB(0x000000)
+#define WHITE UIColorFromRGB(0xFFFFFF)
+
 #define IMAGE_DAILY_K_URL @"http://image.sinajs.cn/newchart/daily/n/"
 #define IMAGE_MACD_URL @"http://image.sinajs.cn/newchart/macd/n/"
