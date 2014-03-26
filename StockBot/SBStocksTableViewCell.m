@@ -11,7 +11,6 @@
 
 @interface SBStocksTableViewCell()
 
-@property (nonatomic, strong) UIView *colorView;
 
 @end
 
@@ -22,11 +21,22 @@
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        // Initialization code
+
+        self.stockNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, 180, 44)];
+        self.stockIDLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 40, 180, 30)];
+        
+        [self.stockNameLabel setFont:[UIFont systemFontOfSize:20]];
+        
+        [self.stockIDLabel setTextColor:WHITE];
+        [self.stockNameLabel setTextColor:WHITE];
+        
+        [self addSubview:self.stockIDLabel];
+        [self addSubview:self.stockNameLabel];
         
     }
     return self;
 }
+
 
 - (void)awakeFromNib
 {

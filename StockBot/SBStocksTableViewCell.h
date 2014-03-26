@@ -10,4 +10,7 @@
 
 @interface SBStocksTableViewCell : UITableViewCell
 
+@property (nonatomic, strong) UILabel *stockNameLabel;
+@property (nonatomic, strong) UILabel *stockIDLabel;
+
 @end
