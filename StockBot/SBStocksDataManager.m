@@ -99,6 +99,11 @@
 
 #pragma mark Stock Data methods
 
+-(NSString *)getStockInfoURLStringForStock:(SBStock *)stock
+{
+    NSString *url = [NSString stringWithFormat:@"%@list=sh%d",CURRENT_INFO_URL,[stock.stockID integerValue]];
+    return url;
+}
 
 #pragma mark CHCSVParserDelegate methods
 

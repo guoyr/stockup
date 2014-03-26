@@ -10,21 +10,21 @@
 
 @interface SBStock : NSObject
 
-@property (nonatomic, strong) NSString *name;
+@property (nonatomic, strong) NSString *name; //0
 @property (nonatomic, strong) NSNumber *stockID;
 @property (nonatomic, strong) NSDate *fetchDate;
-@property (nonatomic, strong) NSNumber *todayOpeningPrice;
-@property (nonatomic, strong) NSNumber *yesterdayClosingPrice;
-@property (nonatomic, strong) NSNumber *todayHigh;
-@property (nonatomic, strong) NSNumber *todayLow;
+@property (nonatomic, strong) NSNumber *todayOpeningPrice; //1
+@property (nonatomic, strong) NSNumber *yesterdayClosingPrice; //2
+@property (nonatomic, strong) NSNumber *todayHigh; //4
+@property (nonatomic, strong) NSNumber *todayLow; //5
 // following fields represent time of data fetch
 // will probably need to separate this model into current stock info
 // and historic stock info
-@property (nonatomic, strong) NSNumber *currentPrice;
-@property (nonatomic, strong) NSNumber *buyPrice;
-@property (nonatomic, strong) NSNumber *sellPrice;
-@property (nonatomic, strong) NSNumber *volume;
+@property (nonatomic, strong) NSNumber *currentPrice; //3
+@property (nonatomic, strong) NSNumber *buyPrice; //6
+@property (nonatomic, strong) NSNumber *sellPrice; //7
+@property (nonatomic, strong) NSNumber *volume; //8
 
-
+-(void)updateInfoFromSinaData:(NSString *)rawData;
 
 @end

@@ -6,8 +6,8 @@
 //  Copyright (c) 2014 Robert Guo. All rights reserved.
 //
 
-#import <UIImageView+AFNetworking.h>
 #import <UIImageView+WebCache.h>
+#import <AFNetworking.h>
 #import "SBStocksDetailViewController.h"
 #import "SBConstants.h"
 #import "SBStock.h"
@@ -20,6 +20,20 @@
 @property (nonatomic, strong) SBStockGraphView *macdView;
 
 @property (nonatomic, strong) SBStock *stock;
+
+@property (nonatomic, strong) UILabel *nameLabel;
+@property (nonatomic, strong) UILabel *todayOpeningPriceLabel;
+@property (nonatomic, strong) UILabel *yesterdayClosingPriceLabel;
+@property (nonatomic, strong) UILabel *todayHighLabel;
+@property (nonatomic, strong) UILabel *todayLowLabel;
+@property (nonatomic, strong) UILabel *currentPriceLabel;
+@property (nonatomic, strong) UILabel *buyPriceLabel;
+@property (nonatomic, strong) UILabel *sellPriceLabel;
+@property (nonatomic, strong) UILabel *volumeLabel;
+
+@property (nonatomic, assign) NSInteger labelHeight;
+@property (nonatomic, assign) NSInteger labelWidth;
+
 @end
 
 @implementation SBStocksDetailViewController
@@ -43,8 +57,9 @@
 //    [self.view.layer setBorderWidth:5.0f];
     
     self.kChartView = [[SBStockGraphView alloc] initWithFrame:CGRectMake(20, 20, 400, 280)];
-
     self.macdView = [[SBStockGraphView alloc] initWithFrame:CGRectMake(20, 320, 400, 280)];
+    
+    
     
     [self.view addSubview:self.kChartView];
     [self.view addSubview:self.macdView];
@@ -61,9 +76,26 @@
     self.stock = stock;
     NSURL *kChartImageURL = [[SBStocksDataManager sharedManager] getKChartImageURLForStock:stock];
     NSURL *macdImageURL = [[SBStocksDataManager sharedManager] getMACDImageURLForStock:stock];
+    NSString *infoURL = [[SBStocksDataManager sharedManager] getStockInfoURLStringForStock:stock];
+    
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    // default serializer doesn't suppor this content type
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    [manager GET:infoURL parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [stock updateInfoFromSinaData:responseObject];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"fetching stock information failed %@", error);
+    }];
 
     [self.kChartView setImageWithURL:kChartImageURL placeholderImage:nil];
     [self.macdView setImageWithURL:macdImageURL placeholderImage:nil];
+}
+
+#pragma mark Private Methods
+
+-(void)formatLabel:(UILabel *)label
+{
+    
 }
 
 /*

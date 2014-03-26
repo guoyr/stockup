@@ -18,5 +18,6 @@
 +(id)sharedManager;
 -(NSURL *)getKChartImageURLForStock:(SBStock *)stock;
 -(NSURL *)getMACDImageURLForStock:(SBStock *)stock;
+-(NSString *)getStockInfoURLStringForStock:(SBStock *)stock;
 
 @end
