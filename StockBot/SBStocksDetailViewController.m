@@ -16,6 +16,8 @@
 
 @interface SBStocksDetailViewController ()
 
+@property (nonatomic, strong) UIScrollView *scrollView;
+
 @property (nonatomic, strong) SBStockGraphView *kChartView;
 @property (nonatomic, strong) SBStockGraphView *macdView;
 
@@ -30,6 +32,7 @@
 @property (nonatomic, strong) UILabel *buyPriceLabel;
 @property (nonatomic, strong) UILabel *sellPriceLabel;
 @property (nonatomic, strong) UILabel *volumeLabel;
+@property (nonatomic, strong) UILabel *dateLabel;
 
 @property (nonatomic, assign) NSInteger labelHeight;
 @property (nonatomic, assign) NSInteger labelWidth;
@@ -51,6 +54,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.scrollView = [[UIScrollView alloc] initWithFrame:CGRectNull];
+    self.scrollView.frame = self.view.bounds;
+    [self.scrollView setScrollEnabled:YES];
     // Do any additional setup after loading the view.
     [self.view setBackgroundColor:[UIColor blackColor]];
 //    [self.view.layer setBorderColor:[UIColor blueColor].CGColor];
@@ -59,10 +66,31 @@
     self.kChartView = [[SBStockGraphView alloc] initWithFrame:CGRectMake(20, 20, 400, 280)];
     self.macdView = [[SBStockGraphView alloc] initWithFrame:CGRectMake(20, 320, 400, 280)];
     
+    self.labelHeight = 620;
+    self.labelWidth = 20;
     
+    self.nameLabel = [self formatLabel:self.nameLabel];
+    self.todayOpeningPriceLabel = [self formatLabel:self.todayOpeningPriceLabel];
+    self.yesterdayClosingPriceLabel = [self formatLabel:self.yesterdayClosingPriceLabel];
+    self.todayHighLabel = [self formatLabel:self.todayHighLabel];
+    self.todayLowLabel = [self formatLabel:self.todayLowLabel];
+    self.currentPriceLabel = [self formatLabel:self.currentPriceLabel];
+    self.buyPriceLabel = [self formatLabel:self.buyPriceLabel];
+    self.sellPriceLabel = [self formatLabel:self.sellPriceLabel];
+    self.volumeLabel = [self formatLabel:self.volumeLabel];
+    self.dateLabel = [self formatLabel:self.dateLabel];
     
-    [self.view addSubview:self.kChartView];
-    [self.view addSubview:self.macdView];
+    // hack to make the date show up entirely
+    CGRect frame = self.dateLabel.frame;
+    frame.origin.x = 20;
+    frame.origin.y += 50;
+    frame.size.width += 200;
+    self.dateLabel.frame = frame;
+    
+    [self.scrollView addSubview:self.kChartView];
+    [self.scrollView addSubview:self.macdView];
+    
+    [self.view addSubview:self.scrollView];
 }
 
 - (void)didReceiveMemoryWarning
@@ -81,8 +109,31 @@
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     // default serializer doesn't suppor this content type
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    
+    [self.nameLabel setText:@"股票名称"];
+    [self.todayOpeningPriceLabel setText:@"今日开盘价"];
+    [self.yesterdayClosingPriceLabel setText:@"昨日开盘价"];
+    [self.todayHighLabel setText:@"今日最高价"];
+    [self.todayLowLabel setText:@"今日最低价"];
+    [self.currentPriceLabel setText:@"当前价"];
+    [self.buyPriceLabel setText:@"买入价"];
+    [self.sellPriceLabel setText:@"卖出价"];
+    [self.volumeLabel setText:@"成交量"];
+    [self.dateLabel setText:@"数据日期"];
+    
     [manager GET:infoURL parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         [stock updateInfoFromSinaData:responseObject];
+        [self.nameLabel setText:[NSString stringWithFormat:@"股票名称：%@",self.stock.name]];
+        [self.todayOpeningPriceLabel setText:[NSString stringWithFormat:@"今日开盘价：￥%@",[stock.todayOpeningPrice stringValue]]];
+        [self.yesterdayClosingPriceLabel setText:[NSString stringWithFormat:@"昨日开盘价：￥%@",[stock.yesterdayClosingPrice stringValue]]];
+        [self.todayHighLabel setText:[NSString stringWithFormat:@"今日最高价：￥%@",[stock.todayHigh stringValue]]];
+        [self.todayLowLabel setText:[NSString stringWithFormat:@"今日最低价：￥%@",[stock.todayLow stringValue]]];
+        [self.currentPriceLabel setText:[NSString stringWithFormat:@"当前价：￥%@",[stock.currentPrice stringValue]]];
+        [self.buyPriceLabel setText:[NSString stringWithFormat:@"买入价：￥%@",[stock.buyPrice stringValue]]];
+        [self.sellPriceLabel setText:[NSString stringWithFormat:@"卖出价：￥%@",[stock.sellPrice stringValue]]];
+        [self.volumeLabel setText:[NSString stringWithFormat:@"成交量：%@",[stock.volume stringValue]]];
+        [self.dateLabel setText:[NSString stringWithFormat:@"数据日期：%@",stock.fetchDate]];
+
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"fetching stock information failed %@", error);
     }];
@@ -93,8 +144,21 @@
 
 #pragma mark Private Methods
 
--(void)formatLabel:(UILabel *)label
+-(UILabel *)formatLabel:(UILabel *)label
 {
+    int labelWidth = 220;
+    label = [[UILabel alloc] initWithFrame:CGRectMake(self.labelWidth, self.labelHeight, labelWidth, 40)];
+    label.font = [UIFont systemFontOfSize:20];
+    label.backgroundColor = [UIColor blackColor];
+    label.textColor = [UIColor whiteColor];
+    if (self.labelWidth > 20) {
+        self.labelWidth = 20;
+        self.labelHeight += 50;
+    } else {
+        self.labelWidth = labelWidth + 20;
+    }
+    [self.scrollView addSubview:label];
+    return label;
     
 }
 

@@ -18,15 +18,24 @@
         NSString *s = [[NSString alloc] initWithData:rawData encoding:encoding];
         NSArray *dataStringArray = [s componentsSeparatedByString:@","];
         
+        NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
+        [numberFormatter setNumberStyle:NSNumberFormatterDecimalStyle];
         self.name = [dataStringArray[0] componentsSeparatedByString:@"=\""][1];
-        self.todayOpeningPrice = dataStringArray[1];
-        self.yesterdayClosingPrice = dataStringArray[2];
-        self.currentPrice = dataStringArray[3];
-        self.todayHigh = dataStringArray[4];
-        self.todayLow = dataStringArray[5];
-        self.buyPrice = dataStringArray[6];
-        self.sellPrice = dataStringArray[7];
-        self.volume = dataStringArray[8];
+        
+        NSLog(@"%@",dataStringArray);
+        self.todayOpeningPrice = [numberFormatter numberFromString:dataStringArray[2]];
+        self.yesterdayClosingPrice = [numberFormatter numberFromString:dataStringArray[3]];
+        self.currentPrice = [numberFormatter numberFromString:dataStringArray[4]];
+        self.todayHigh = [numberFormatter numberFromString:dataStringArray[5]];
+        self.todayLow = [numberFormatter numberFromString:dataStringArray[6]];
+        self.buyPrice = [numberFormatter numberFromString:dataStringArray[7]];
+        self.sellPrice = [numberFormatter numberFromString:dataStringArray[8]];
+        self.volume = [numberFormatter numberFromString:dataStringArray[9]];
+        
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+        self.fetchDate = [dateFormatter dateFromString:[NSString stringWithFormat:@"%@ %@",dataStringArray[30],dataStringArray[31]]];
+        
     }
     @catch (NSException *exception) {
         NSLog(@"%@",exception);
