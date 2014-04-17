@@ -22,7 +22,6 @@
         [numberFormatter setNumberStyle:NSNumberFormatterDecimalStyle];
         self.name = [dataStringArray[0] componentsSeparatedByString:@"=\""][1];
         
-        NSLog(@"%@",dataStringArray);
         self.todayOpeningPrice = [numberFormatter numberFromString:dataStringArray[2]];
         self.yesterdayClosingPrice = [numberFormatter numberFromString:dataStringArray[3]];
         self.currentPrice = [numberFormatter numberFromString:dataStringArray[4]];

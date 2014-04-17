@@ -10,4 +10,6 @@
 
 @interface SBAlgosDetailViewController : UIViewController
 
+-(void)addCondition:(NSString *)condition;
+
 @end

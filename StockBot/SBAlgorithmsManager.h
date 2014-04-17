@@ -8,8 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
+@class SBAlgoTableViewCell;
+
 @interface SBAlgorithmsManager : NSObject
 
 + (id)sharedManager;
-
+-(void)setupMACDCell:(SBAlgoTableViewCell *)cell;
+-(void)setupPriceCell:(SBAlgoTableViewCell *)cell;
 @end

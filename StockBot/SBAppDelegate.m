@@ -10,6 +10,8 @@
 #import "SBAppDelegate.h"
 #import "SBStocksViewController.h"
 #import "SBConstants.h"
+#import "SBLoginViewController.h"
+#import "SBUserViewController.h"
 
 @implementation SBAppDelegate
 
@@ -17,16 +19,27 @@
 {
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-//    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:NO];
     [[UINavigationBar appearance] setBarTintColor:BLUE_2];
-    SBStocksViewController *svc = [[SBStocksViewController alloc] initWithNibName:nil bundle:nil];
-    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:svc];
+    
+    BOOL loggedin = [[NSUserDefaults standardUserDefaults] boolForKey:@"loggedin"];
+    
+    UIViewController *vc;
+    if (loggedin) {
+        vc = [[SBUserViewController alloc] initWithNibName:nil bundle:nil];
+    } else {
+        vc = [[SBLoginViewController alloc] initWithNibName:nil bundle:nil];
+
+    }
+    
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
     [[nav navigationBar] setBarStyle:UIBarStyleBlackTranslucent];
     [self.window setRootViewController:nav];
     [self.window makeKeyAndVisible];
+    
     [[SDImageCache sharedImageCache] clearMemory];
     [[SDImageCache sharedImageCache] clearDisk];
     [[SDImageCache sharedImageCache] setMaxCacheAge:60];
+    
     return YES;
 }
 
@@ -40,6 +53,7 @@
 {
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application

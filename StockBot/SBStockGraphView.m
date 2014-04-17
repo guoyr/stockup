@@ -18,7 +18,6 @@
         // Initialization code
         self.activityView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
         self.activityView.hidesWhenStopped = YES;
-        [self addSubview:self.activityView];
         NSLog(@"%@",NSStringFromCGPoint(self.center));
         [self.activityView setCenter:CGPointMake(self.bounds.size.width/2, self.bounds.size.height/2)];
         self.layer.cornerRadius = 10.f;

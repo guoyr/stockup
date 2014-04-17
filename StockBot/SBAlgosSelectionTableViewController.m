@@ -6,33 +6,40 @@
 //  Copyright (c) 2014 Robert Guo. All rights reserved.
 //
 
-#import "SBAlgosListTableViewController.h"
+#import "SBAlgosSelectionTableViewController.h"
 #import "SBConstants.h"
+#import "SBAlgoTableViewCell.h"
+#import "SBAlgorithmsManager.h"
 
-@interface SBAlgosListTableViewController ()
+@interface SBAlgosSelectionTableViewController ()
+
+@property (nonatomic, strong) NSArray *algorithms;
+@property (nonatomic, strong) NSMutableIndexSet *expandedRows;
 
 @end
 
-@implementation SBAlgosListTableViewController
+@implementation SBAlgosSelectionTableViewController
 
-- (id)initWithStyle:(UITableViewStyle)style
-{
-    self = [super initWithStyle:style];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
+static NSString *CellIdentifier = @"AlgoCell";
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self.view setBackgroundColor:BLUE_2];
+    
+    self.algorithms = @[@"MACD", @"Price"];
+
+    [self.tableView registerClass:[SBAlgoTableViewCell class] forCellReuseIdentifier:CellIdentifier];
+
+    [self.view setBackgroundColor:BLACK];
+    [self.tableView setRowHeight:ALGO_ROW_HEIGHT];
+    
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
-    
+
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
+    //performSelector selectorfromstring
 }
 
 - (void)didReceiveMemoryWarning
@@ -52,26 +59,67 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return 1;
+    return [self.algorithms count];
+}
+
+-(void)setupCells:(UITableViewCell *)cell
+{
+    [self setupMACDCell:cell];
+    [self setupBuyCells:cell];
+    [self setupSellCells:cell];
+    [self setupPriceCell:cell];
+}
+
+-(void)setupBuyCells:(UITableViewCell *)cell
+{
+    
+}
+
+-(void)setupSellCells:(UITableViewCell *)cell
+{
+    
+}
+
+-(void)setupMACDCell:(UITableViewCell *)cell
+{
+    
+}
+
+-(void)setupPriceCell:(UITableViewCell *)cell
+{
+    
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"AlgoCell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    SBAlgoTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    [cell.confirmButton addTarget:self action:@selector(confirmedCondition:) forControlEvents:UIControlEventTouchUpInside];
+    cell.confirmButton.tag = indexPath.row;
+    NSString *algoString = [NSString stringWithFormat:@"setup%@Cell:",self.algorithms[indexPath.row]];
+    SEL selector = NSSelectorFromString(algoString);
     
-    if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-    }
-    cell.backgroundColor = BLUE_3;
-    cell.selectionStyle = UITableViewCellSelectionStyleDefault;
-//    cell.accessoryType = UITableViewCellAccessoryCheckmark;
-//    cell.selectedBackgroundView.backgroundColor = GREEN_4;
-//    cell.textLabel.textColor = [UIColor whiteColor];
-//    [cell.textLabel setText:[(SBStock *)[_dataManager.stocks objectAtIndex:indexPath.row] name]];
-
-
+    [[SBAlgorithmsManager sharedManager] performSelector:selector withObject:cell];
+    
     return cell;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [self.delegate viewController:self didViewAlgorithm:self.algorithms[indexPath.row]];
+}
+
+-(void)confirmedCondition:(UIButton *)button
+{
+    if ([button.titleLabel.text isEqualToString:@"添加条件"]) {
+        [button setTitle:@"删除条件" forState:UIControlStateNormal];
+    } else {
+        [button setTitle:@"添加条件" forState:UIControlStateNormal];
+    }
+    NSLog(@"confirmedCondition, %ld", (long)button.tag);
+    [self.delegate viewController:self didSelectAlgorithm:self.algorithms[button.tag]];
+    
 }
 
 

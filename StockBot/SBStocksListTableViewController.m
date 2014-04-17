@@ -38,7 +38,7 @@ static NSString *CellIdentifier = @"StockCell";
     [super viewDidLoad];
     [self.tableView registerClass:[SBStocksTableViewCell class] forCellReuseIdentifier:CellIdentifier];
     [self.tableView setRowHeight:STOCK_CELL_HEIGHT];
-    [self.tableView setBackgroundColor:BLUE_4];
+    [self.tableView setBackgroundColor:BLACK];
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -70,14 +70,8 @@ static NSString *CellIdentifier = @"StockCell";
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    SBStocksTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    SBStocksTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
 
-    
-    if (!cell) {
-        cell = [[SBStocksTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-    }
-    cell.backgroundColor = BLUE_4;
-    cell.textLabel.textColor = [UIColor whiteColor];
     SBStock *stock = [self.dataManager.stocks objectAtIndex:indexPath.row];
     cell.stockIDLabel.text = [stock.stockID stringValue];
     cell.stockNameLabel.text = stock.name;

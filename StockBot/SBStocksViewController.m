@@ -15,9 +15,6 @@
 #import "SBStock.h"
 #import "SBStocksDataManager.h"
 
-#define LIST_WIDTH 320
-#define CONFIRM_BUTTON_HEIGHT 48
-
 @interface SBStocksViewController () <SBStocksListTableViewControllerDelegate>
 
 @property (nonatomic, strong) SBStocksDetailViewController *dvc;
@@ -65,18 +62,16 @@
     int frameHeight = self.view.frame.size.height;
     int frameWidth = self.view.frame.size.width;
     
-    _bottomFrame = CGRectMake(LIST_WIDTH, frameHeight - CONFIRM_BUTTON_HEIGHT - navBarHeight, frameWidth - LIST_WIDTH, CONFIRM_BUTTON_HEIGHT);
-    _leftFrame = CGRectMake(0, 0, LIST_WIDTH, frameHeight);
-    _rightFrame = CGRectMake(LIST_WIDTH, 0, frameWidth - LIST_WIDTH, frameHeight - CONFIRM_BUTTON_HEIGHT - navBarHeight);
+    _bottomFrame = CGRectMake(STOCK_CELL_WIDTH, frameHeight - CONFIRM_BUTTON_HEIGHT - navBarHeight, frameWidth - STOCK_CELL_WIDTH, CONFIRM_BUTTON_HEIGHT);
+    _leftFrame = CGRectMake(0, 0, STOCK_CELL_WIDTH, frameHeight);
+    _rightFrame = CGRectMake(STOCK_CELL_WIDTH, 0, frameWidth - STOCK_CELL_WIDTH, frameHeight - CONFIRM_BUTTON_HEIGHT - navBarHeight);
     
-//    NSLog(@"%@, %@, %@", NSStringFromCGRect(_leftFrame), NSStringFromCGRect(_rightFrame), NSStringFromCGRect(_bottomFrame));
-
     [self setTitle:@"炒股机器人"];
     self.edgesForExtendedLayout = UIRectEdgeNone;
     self.extendedLayoutIncludesOpaqueBars = NO;
     
     self.confirmButton = [[UIButton alloc] initWithFrame:_bottomFrame];
-    [self.confirmButton setTitle:@"购买该股票" forState:UIControlStateNormal];
+    [self.confirmButton setTitle:@"选择该股票" forState:UIControlStateNormal];
     [self.confirmButton setBackgroundColor:BLUE_2];
     [self.confirmButton addTarget:self action:@selector(confirmButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
     
@@ -90,7 +85,7 @@
     [self.instructionView setBackgroundColor:[UIColor blackColor]];
     [self.instructionView setFont:[UIFont systemFontOfSize:32]];
     [self.instructionView setText:@"欢迎您使用股票买卖助手。请再左手栏里选择一只您想买卖的股票"];
-    [self.instructionView setTextColor:[UIColor whiteColor]];
+    [self.instructionView setTextColor:WHITE];
     [self.instructionView setScrollEnabled:NO];
     [self.instructionView setEditable:NO];
     [self.instructionView setSelectable:NO];
@@ -121,6 +116,7 @@
 -(void)viewController:(SBStocksListTableViewController *)vc didSelectStock:(SBStock *)stock
 {
     if (!_dvc.view.superview) {
+        [self.instructionView removeFromSuperview];
         [self addChildViewController:_dvc];
         [_dvc.view setFrame:_rightFrame];
         [_dvc didMoveToParentViewController:self];

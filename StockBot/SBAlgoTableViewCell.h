@@ -10,4 +10,9 @@
 
 @interface SBAlgoTableViewCell : UITableViewCell
 
+@property (nonatomic, strong) UIButton *confirmButton;
+@property (nonatomic, strong) UIView *descriptionView;
+@property (nonatomic, strong) UIView *detailView;
+@property (nonatomic, strong) UILabel *descriptionLabel;
+
 @end

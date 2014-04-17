@@ -40,7 +40,7 @@
         //TODO: convert this to use synced data from the server in the future.
         
         NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-        NSString *dbPath = [paths[0] stringByAppendingString:@"stocks.db"];
+        NSString *dbPath = [paths[0] stringByAppendingString:@"/stocks.db"];
         
         self.db = [[FMDatabase alloc] initWithPath:dbPath];
         [self.db open];
