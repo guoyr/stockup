@@ -10,11 +10,13 @@
 #import "SBConstants.h"
 #import "SBAlgoTableViewCell.h"
 #import "SBAlgorithmsManager.h"
+#import "SBAlgorithms.h"
 
 @interface SBAlgosSelectionTableViewController ()
 
 @property (nonatomic, strong) NSArray *algorithms;
-@property (nonatomic, strong) NSMutableIndexSet *expandedRows;
+@property (nonatomic, strong) NSMutableArray *expandedIndexPaths;
+@property (nonatomic, strong) NSIndexPath *selectedIndexPath;
 
 @end
 
@@ -26,12 +28,13 @@ static NSString *CellIdentifier = @"AlgoCell";
 {
     [super viewDidLoad];
     
-    self.algorithms = @[@"MACD", @"Price"];
-
-    [self.tableView registerClass:[SBAlgoTableViewCell class] forCellReuseIdentifier:CellIdentifier];
+    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:CellIdentifier];
 
     [self.view setBackgroundColor:BLACK];
     [self.tableView setRowHeight:ALGO_ROW_HEIGHT];
+    
+    self.expandedIndexPaths = [[NSMutableArray alloc] init];
+    [self setupAlgorithms];
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -59,55 +62,93 @@ static NSString *CellIdentifier = @"AlgoCell";
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
+    if (self.selectedIndexPath) {
+        return [self.algorithms count] + [self.expandedIndexPaths count];
+    }
     return [self.algorithms count];
 }
 
--(void)setupCells:(UITableViewCell *)cell
+-(void)setupAlgorithms
 {
-    [self setupMACDCell:cell];
-    [self setupBuyCells:cell];
-    [self setupSellCells:cell];
-    [self setupPriceCell:cell];
-}
-
--(void)setupBuyCells:(UITableViewCell *)cell
-{
+    SBMACDAlgorithm *a1 = [[SBMACDAlgorithm alloc] init];
+    SBKDJAlgorithm *a2 = [[SBKDJAlgorithm alloc] init];
     
-}
-
--(void)setupSellCells:(UITableViewCell *)cell
-{
-    
-}
-
--(void)setupMACDCell:(UITableViewCell *)cell
-{
-    
-}
-
--(void)setupPriceCell:(UITableViewCell *)cell
-{
-    
+    self.algorithms = @[a1,a2];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"AlgoCell";
-    SBAlgoTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    [cell.confirmButton addTarget:self action:@selector(confirmedCondition:) forControlEvents:UIControlEventTouchUpInside];
-    cell.confirmButton.tag = indexPath.row;
-    NSString *algoString = [NSString stringWithFormat:@"setup%@Cell:",self.algorithms[indexPath.row]];
-    SEL selector = NSSelectorFromString(algoString);
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    cell.backgroundColor = BLUE_4;
+    cell.accessoryType = UITableViewCellAccessoryCheckmark;
     
-    [[SBAlgorithmsManager sharedManager] performSelector:selector withObject:cell];
+    cell.textLabel.textColor = WHITE;
+    
+    NSInteger curAlgoIndex = indexPath.row;
+    if (self.selectedIndexPath && indexPath.row > self.selectedIndexPath.row) {
+        if (indexPath.row > self.selectedIndexPath.row + [self.expandedIndexPaths count]) {
+            // another algorithm after the expanded section
+            curAlgoIndex -= [self.expandedIndexPaths count];
+        } else {
+            // options for the current algorithm
+            SBAlgorithm *curAlgo = self.algorithms[self.selectedIndexPath.row];
+            NSInteger curAlgoOptionsIndex = indexPath.row - self.selectedIndexPath.row;
+            [curAlgo setupCell:cell AtIndex:curAlgoOptionsIndex];
+            return cell;
+        }
+    }
+    
+    SBAlgorithm *curAlgo = self.algorithms[curAlgoIndex];
+    cell.textLabel.text = curAlgo.description;
     
     return cell;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [self.delegate viewController:self didViewAlgorithm:self.algorithms[indexPath.row]];
+ 
+    if ([self.expandedIndexPaths containsObject:indexPath]) {
+        // algorithm customization cells are not selectable
+        return;
+    }
+//    [self.delegate viewController:self didViewAlgorithm:self.algorithms[indexPath.row]];
+    NSInteger curAlgoIndex = indexPath.row;
+    if (self.selectedIndexPath && indexPath.row > self.selectedIndexPath.row) {
+        curAlgoIndex -= [self.expandedIndexPaths count];
+    }
+    SBAlgorithm *curAlgo = self.algorithms[curAlgoIndex];
+    NSMutableArray *expandedIndexPaths = [[NSMutableArray alloc] init];
+    for (int i = 1; i < [curAlgo numExpandedRows]+1 ; i++) {
+        [expandedIndexPaths addObject:[NSIndexPath indexPathForRow:curAlgoIndex + i inSection:indexPath.section]];
+    }
+    NSLog(@"%@, %@, %ld",curAlgo.description, expandedIndexPaths, indexPath.length);
+
+    if (!self.selectedIndexPath) {
+        // no rows are selected
+        self.selectedIndexPath = indexPath;
+        self.expandedIndexPaths = expandedIndexPaths;
+        [self.tableView insertRowsAtIndexPaths:expandedIndexPaths withRowAnimation:UITableViewRowAnimationAutomatic];
+    } else if ([self.selectedIndexPath isEqual:indexPath]) {
+        // deselect indexpath
+        self.selectedIndexPath = nil;
+        [self.tableView deleteRowsAtIndexPaths:expandedIndexPaths withRowAnimation:UITableViewRowAnimationFade];
+    } else {
+        // selected new indexpath
+        self.selectedIndexPath = [NSIndexPath indexPathForRow:curAlgoIndex inSection:indexPath.section];;
+        [self.tableView beginUpdates];
+        [self.tableView deleteRowsAtIndexPaths:self.expandedIndexPaths withRowAnimation:UITableViewRowAnimationFade];
+        self.expandedIndexPaths = expandedIndexPaths;
+        [self.tableView insertRowsAtIndexPaths:expandedIndexPaths withRowAnimation:UITableViewRowAnimationAutomatic];
+        [self.tableView endUpdates];
+    }
+    
+}
+
+-(void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSLog(@"did deselect %ld",(long)indexPath.row);
+
 }
 
 -(void)confirmedCondition:(UIButton *)button
@@ -121,6 +162,8 @@ static NSString *CellIdentifier = @"AlgoCell";
     [self.delegate viewController:self didSelectAlgorithm:self.algorithms[button.tag]];
     
 }
+
+#pragma mark Private Helper Methods
 
 
 /*

@@ -29,7 +29,7 @@
     if (self) {
         self.currentConditions = [[NSMutableArray  alloc] init];
     }
-    return self;
+    return self;        
 }
 
 - (void)viewDidLoad

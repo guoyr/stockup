@@ -87,13 +87,13 @@
 #pragma mark Image methods
 -(NSURL *)getKChartImageURLForStock:(SBStock *)stock
 {
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@sh%d.gif",IMAGE_DAILY_K_URL,[stock.stockID integerValue]]];
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@sh%ld.gif",IMAGE_DAILY_K_URL,[stock.stockID longValue]]];
     return url;
 }
 
 -(NSURL *)getMACDImageURLForStock:(SBStock *)stock
 {
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@sh%d.gif",IMAGE_MACD_URL,[stock.stockID integerValue]]];
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@sh%ld.gif",IMAGE_MACD_URL,[stock.stockID longValue]]];
     return url;
 }
 
@@ -101,7 +101,7 @@
 
 -(NSString *)getStockInfoURLStringForStock:(SBStock *)stock
 {
-    NSString *url = [NSString stringWithFormat:@"%@list=sh%d",CURRENT_INFO_URL,[stock.stockID integerValue]];
+    NSString *url = [NSString stringWithFormat:@"%@list=sh%ld",CURRENT_INFO_URL,[stock.stockID longValue]];
     return url;
 }
 

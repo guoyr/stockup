@@ -11,13 +11,17 @@
 #import "SBStocksViewController.h"
 #import "SBConstants.h"
 #import "SBLoginViewController.h"
-#import "SBUserViewController.h"
+#import "SBUserAlgoTableViewController.h"
+#import "SBAlgosViewController.h"
 
 @implementation SBAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     
+    int debug_mode = DEBUG_MODE_ALGO;
+
+
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     [[UINavigationBar appearance] setBarTintColor:BLUE_2];
     
@@ -25,10 +29,19 @@
     
     UIViewController *vc;
     if (loggedin) {
-        vc = [[SBUserViewController alloc] initWithNibName:nil bundle:nil];
+        vc = [[SBUserAlgoTableViewController alloc] initWithNibName:nil bundle:nil];
     } else {
         vc = [[SBLoginViewController alloc] initWithNibName:nil bundle:nil];
 
+    }
+    
+    switch (debug_mode) {
+        case DEBUG_MODE_ALGO:
+            vc = [[SBAlgosViewController alloc] initWithNibName:nil bundle:nil];
+            break;
+            
+        default:
+            break;
     }
     
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];

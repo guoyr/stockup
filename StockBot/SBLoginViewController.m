@@ -8,6 +8,7 @@
 
 #import "SBLoginViewController.h"
 #import "SBConstants.h"
+#import "SBUserAlgoTableViewController.h"
 
 @interface SBLoginViewController ()
 
@@ -66,6 +67,10 @@
 -(void)loginButtonClicked:(id)sender
 {
     [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"loggedin"];
+    [[NSUserDefaults standardUserDefaults] setObject:self.usernameField.text forKey:@"username"];
+    [[NSUserDefaults standardUserDefaults] setObject:self.passwordField.text forKey:@"passoword"];
+    SBUserAlgoTableViewController *avc = [[SBUserAlgoTableViewController alloc] initWithStyle:UITableViewStylePlain];
+    [self.navigationController pushViewController:avc animated:YES];
 }
 
 - (void)didReceiveMemoryWarning

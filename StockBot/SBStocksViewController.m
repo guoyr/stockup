@@ -57,6 +57,7 @@
 {
     [super viewDidLoad];
     
+    self.view.backgroundColor = BLACK;
     CGRect navBarFrame = self.navigationController.navigationBar.frame;
     int navBarHeight = navBarFrame.origin.y + navBarFrame.size.height;
     int frameHeight = self.view.frame.size.height;
