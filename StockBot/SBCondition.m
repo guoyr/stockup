@@ -6,10 +6,10 @@
 //  Copyright (c) 2014 Robert Guo. All rights reserved.
 //
 
-#import "SBAlgorithm.h"
+#import "SBCondition.h"
 #import "SBAlgouCustomizeTableViewCell.h"
 #import "SBConstants.h"
-@implementation SBAlgorithm
+@implementation SBCondition
 
 -(void)setupCell:(SBAlgouCustomizeTableViewCell *)cell AtIndex:(NSInteger)index
 {
@@ -19,6 +19,16 @@
 -(int)numExpandedRows
 {   
     return 0;
+}
+
+-(void)archive
+{
+    
+}
+
+-(void)unarchive
+{
+    
 }
 
 @end

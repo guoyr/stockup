@@ -6,17 +6,29 @@
 //  Copyright (c) 2014 Robert Guo. All rights reserved.
 //
 
-#import "SBMACDAlgorithm.h"
+#import "SBMACDCondition.h"
 #import "SBAlgouCustomizeTableViewCell.h"
 #import "SBConstants.h"
 
-@interface SBMACDAlgorithm()
+@interface SBMACDCondition()
 
 @property (nonatomic, assign) NSInteger macdDirection;
 
 @end
 
-@implementation SBMACDAlgorithm
+@implementation SBMACDCondition
+
+-(NSString *)expandedDescription
+{
+    NSString *macdDirectionString;
+    
+    if (self.macdDirection == MACD_DIRECTION_NEG) {
+        macdDirectionString = @"正交";
+    } else {
+        macdDirectionString = @"反交";
+    }
+    return [NSString stringWithFormat:@"MACD%@时购买", macdDirectionString];
+}
 
 -(id)init
 {

@@ -33,13 +33,15 @@
 		BC9A08A618BE54F9000E16C3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC9A088E18BE54F9000E16C3 /* UIKit.framework */; };
 		BC9A08AE18BE54F9000E16C3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = BC9A08AC18BE54F9000E16C3 /* InfoPlist.strings */; };
 		BC9A08B018BE54F9000E16C3 /* StockBotTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BC9A08AF18BE54F9000E16C3 /* StockBotTests.m */; };
-		BCA6F0F719108AFE00D4A34D /* SBMACDAlgorithm.m in Sources */ = {isa = PBXBuildFile; fileRef = BCA6F0F619108AFE00D4A34D /* SBMACDAlgorithm.m */; };
-		BCA6F0FA1911659100D4A34D /* SBAlgorithm.m in Sources */ = {isa = PBXBuildFile; fileRef = BCA6F0F91911659100D4A34D /* SBAlgorithm.m */; };
-		BCA6F0FD191166E900D4A34D /* SBKDJAlgorithm.m in Sources */ = {isa = PBXBuildFile; fileRef = BCA6F0FC191166E900D4A34D /* SBKDJAlgorithm.m */; };
+		BCA6F0F719108AFE00D4A34D /* SBMACDCondition.m in Sources */ = {isa = PBXBuildFile; fileRef = BCA6F0F619108AFE00D4A34D /* SBMACDCondition.m */; };
+		BCA6F0FA1911659100D4A34D /* SBCondition.m in Sources */ = {isa = PBXBuildFile; fileRef = BCA6F0F91911659100D4A34D /* SBCondition.m */; };
+		BCA6F0FD191166E900D4A34D /* SBKDJCondition.m in Sources */ = {isa = PBXBuildFile; fileRef = BCA6F0FC191166E900D4A34D /* SBKDJCondition.m */; };
 		BCBB200918E48FDE0085FFD3 /* SBTransactionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BCBB200818E48FDE0085FFD3 /* SBTransactionViewController.m */; };
 		BCDB2BC218D2CB4500CBF07E /* stockList.csv in Resources */ = {isa = PBXBuildFile; fileRef = BCDB2BC118D2CB4500CBF07E /* stockList.csv */; };
 		BCDB2BC618D30AE300CBF07E /* SBStock.m in Sources */ = {isa = PBXBuildFile; fileRef = BCDB2BC518D30AE300CBF07E /* SBStock.m */; };
 		BCEB9C29192DD393001D042D /* SBAlgoSelectTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BCEB9C28192DD393001D042D /* SBAlgoSelectTableViewCell.m */; };
+		BCEB9C2C192E7699001D042D /* SBBuyCondition.m in Sources */ = {isa = PBXBuildFile; fileRef = BCEB9C2B192E7699001D042D /* SBBuyCondition.m */; };
+		BCEB9C2F192E76A2001D042D /* SBSellCondition.m in Sources */ = {isa = PBXBuildFile; fileRef = BCEB9C2E192E76A2001D042D /* SBSellCondition.m */; };
 		D0DC0CD389534F0CAABB39BD /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 12C8621A9D524040AEBF887E /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -57,7 +59,7 @@
 		12C8621A9D524040AEBF887E /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC1DD2F518BFA155006CA542 /* SBStocksDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBStocksDataManager.h; sourceTree = "<group>"; };
 		BC1DD2F618BFA155006CA542 /* SBStocksDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBStocksDataManager.m; sourceTree = "<group>"; };
-		BC33F3641914A1A500C80E6C /* SBAlgorithms.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBAlgorithms.h; sourceTree = "<group>"; };
+		BC33F3641914A1A500C80E6C /* SBConditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBConditions.h; sourceTree = "<group>"; };
 		BC4AFC7C18DA0C2500C888D9 /* SBAlgorithmsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBAlgorithmsManager.h; sourceTree = "<group>"; };
 		BC4AFC7D18DA0C2500C888D9 /* SBAlgorithmsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBAlgorithmsManager.m; sourceTree = "<group>"; };
 		BC4AFC7F18DA777D00C888D9 /* SBStockGraphView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBStockGraphView.h; sourceTree = "<group>"; };
@@ -101,12 +103,12 @@
 		BC9A08AB18BE54F9000E16C3 /* StockBotTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "StockBotTests-Info.plist"; sourceTree = "<group>"; };
 		BC9A08AD18BE54F9000E16C3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		BC9A08AF18BE54F9000E16C3 /* StockBotTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StockBotTests.m; sourceTree = "<group>"; };
-		BCA6F0F519108AFE00D4A34D /* SBMACDAlgorithm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBMACDAlgorithm.h; sourceTree = "<group>"; };
-		BCA6F0F619108AFE00D4A34D /* SBMACDAlgorithm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBMACDAlgorithm.m; sourceTree = "<group>"; };
-		BCA6F0F81911659100D4A34D /* SBAlgorithm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBAlgorithm.h; sourceTree = "<group>"; };
-		BCA6F0F91911659100D4A34D /* SBAlgorithm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBAlgorithm.m; sourceTree = "<group>"; };
-		BCA6F0FB191166E900D4A34D /* SBKDJAlgorithm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBKDJAlgorithm.h; sourceTree = "<group>"; };
-		BCA6F0FC191166E900D4A34D /* SBKDJAlgorithm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBKDJAlgorithm.m; sourceTree = "<group>"; };
+		BCA6F0F519108AFE00D4A34D /* SBMACDCondition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBMACDCondition.h; sourceTree = "<group>"; };
+		BCA6F0F619108AFE00D4A34D /* SBMACDCondition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBMACDCondition.m; sourceTree = "<group>"; };
+		BCA6F0F81911659100D4A34D /* SBCondition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBCondition.h; sourceTree = "<group>"; };
+		BCA6F0F91911659100D4A34D /* SBCondition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBCondition.m; sourceTree = "<group>"; };
+		BCA6F0FB191166E900D4A34D /* SBKDJCondition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBKDJCondition.h; sourceTree = "<group>"; };
+		BCA6F0FC191166E900D4A34D /* SBKDJCondition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBKDJCondition.m; sourceTree = "<group>"; };
 		BCBB200718E48FDE0085FFD3 /* SBTransactionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBTransactionViewController.h; sourceTree = "<group>"; };
 		BCBB200818E48FDE0085FFD3 /* SBTransactionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBTransactionViewController.m; sourceTree = "<group>"; };
 		BCDB2BC118D2CB4500CBF07E /* stockList.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = stockList.csv; sourceTree = "<group>"; };
@@ -114,6 +116,10 @@
 		BCDB2BC518D30AE300CBF07E /* SBStock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBStock.m; sourceTree = "<group>"; };
 		BCEB9C27192DD393001D042D /* SBAlgoSelectTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBAlgoSelectTableViewCell.h; sourceTree = "<group>"; };
 		BCEB9C28192DD393001D042D /* SBAlgoSelectTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBAlgoSelectTableViewCell.m; sourceTree = "<group>"; };
+		BCEB9C2A192E7699001D042D /* SBBuyCondition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBBuyCondition.h; sourceTree = "<group>"; };
+		BCEB9C2B192E7699001D042D /* SBBuyCondition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBBuyCondition.m; sourceTree = "<group>"; };
+		BCEB9C2D192E76A2001D042D /* SBSellCondition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBSellCondition.h; sourceTree = "<group>"; };
+		BCEB9C2E192E76A2001D042D /* SBSellCondition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBSellCondition.m; sourceTree = "<group>"; };
 		ECAC7AB669494C0488A17B74 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -256,13 +262,17 @@
 		BCA6F0F419102F9C00D4A34D /* Algorithms */ = {
 			isa = PBXGroup;
 			children = (
-				BCA6F0F519108AFE00D4A34D /* SBMACDAlgorithm.h */,
-				BCA6F0F619108AFE00D4A34D /* SBMACDAlgorithm.m */,
-				BCA6F0FB191166E900D4A34D /* SBKDJAlgorithm.h */,
-				BCA6F0FC191166E900D4A34D /* SBKDJAlgorithm.m */,
-				BCA6F0F81911659100D4A34D /* SBAlgorithm.h */,
-				BCA6F0F91911659100D4A34D /* SBAlgorithm.m */,
-				BC33F3641914A1A500C80E6C /* SBAlgorithms.h */,
+				BCA6F0F519108AFE00D4A34D /* SBMACDCondition.h */,
+				BCA6F0F619108AFE00D4A34D /* SBMACDCondition.m */,
+				BCA6F0FB191166E900D4A34D /* SBKDJCondition.h */,
+				BCA6F0FC191166E900D4A34D /* SBKDJCondition.m */,
+				BCA6F0F81911659100D4A34D /* SBCondition.h */,
+				BCA6F0F91911659100D4A34D /* SBCondition.m */,
+				BC33F3641914A1A500C80E6C /* SBConditions.h */,
+				BCEB9C2A192E7699001D042D /* SBBuyCondition.h */,
+				BCEB9C2B192E7699001D042D /* SBBuyCondition.m */,
+				BCEB9C2D192E76A2001D042D /* SBSellCondition.h */,
+				BCEB9C2E192E76A2001D042D /* SBSellCondition.m */,
 			);
 			name = Algorithms;
 			sourceTree = "<group>";
@@ -415,11 +425,13 @@
 			files = (
 				BC4AFC7E18DA0C2500C888D9 /* SBAlgorithmsManager.m in Sources */,
 				BC9A089718BE54F9000E16C3 /* main.m in Sources */,
-				BCA6F0F719108AFE00D4A34D /* SBMACDAlgorithm.m in Sources */,
+				BCEB9C2C192E7699001D042D /* SBBuyCondition.m in Sources */,
+				BCA6F0F719108AFE00D4A34D /* SBMACDCondition.m in Sources */,
 				BCBB200918E48FDE0085FFD3 /* SBTransactionViewController.m in Sources */,
-				BCA6F0FA1911659100D4A34D /* SBAlgorithm.m in Sources */,
+				BCA6F0FA1911659100D4A34D /* SBCondition.m in Sources */,
 				BC809FE718BE96990014C48B /* SBAlgosDetailViewController.m in Sources */,
 				BCDB2BC618D30AE300CBF07E /* SBStock.m in Sources */,
+				BCEB9C2F192E76A2001D042D /* SBSellCondition.m in Sources */,
 				BC7D247618D805A400CCF8A9 /* SBStocksTableViewCell.m in Sources */,
 				BC64F39219005D0D00641E14 /* SBUserAlgoTableViewController.m in Sources */,
 				BC809FE918BE96990014C48B /* SBAlgosViewController.m in Sources */,
@@ -428,7 +440,7 @@
 				BC9A089B18BE54F9000E16C3 /* SBAppDelegate.m in Sources */,
 				BC1DD2F718BFA155006CA542 /* SBStocksDataManager.m in Sources */,
 				BC7D247218D8051700CCF8A9 /* SBAlgouCustomizeTableViewCell.m in Sources */,
-				BCA6F0FD191166E900D4A34D /* SBKDJAlgorithm.m in Sources */,
+				BCA6F0FD191166E900D4A34D /* SBKDJCondition.m in Sources */,
 				BC809FEA18BE96990014C48B /* SBStocksDetailViewController.m in Sources */,
 				BCEB9C29192DD393001D042D /* SBAlgoSelectTableViewCell.m in Sources */,
 				BC809FEC18BE96990014C48B /* SBStocksViewController.m in Sources */,

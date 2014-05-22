@@ -6,5 +6,7 @@
 //  Copyright (c) 2014 Robert Guo. All rights reserved.
 //
 
-#import "SBMACDAlgorithm.h"
-#import "SBKDJAlgorithm.h"
+#import "SBMACDCondition.h"
+#import "SBKDJCondition.h"
+#import "SBBuyCondition.h"
+#import "SBSellCondition.h"

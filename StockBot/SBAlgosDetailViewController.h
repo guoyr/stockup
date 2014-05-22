@@ -7,9 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SBCondition.h"
 
 @interface SBAlgosDetailViewController : UIViewController
 
--(void)addCondition:(NSString *)condition;
+-(void)addCondition:(SBCondition *)condition;
 
 @end

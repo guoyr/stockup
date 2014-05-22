@@ -8,8 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
-#import "SBAlgorithm.h"
+#import "SBCondition.h"
 
-@interface SBMACDAlgorithm : SBAlgorithm
+@interface SBMACDCondition : SBCondition
 
 @end

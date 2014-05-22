@@ -6,10 +6,10 @@
 //  Copyright (c) 2014 Robert Guo. All rights reserved.
 //
 
-#import "SBKDJAlgorithm.h"
+#import "SBKDJCondition.h"
 #import "SBAlgouCustomizeTableViewCell.h"
 
-@implementation SBKDJAlgorithm
+@implementation SBKDJCondition
 
 -(id)init
 {

@@ -12,7 +12,6 @@
 #import "SBStocksDataManager.h"
 #import "SBStock.h"
 #import "SBStockGraphView.h"
-#import "SBAlgorithm.h"
 
 @interface SBAlgosDetailViewController ()
 
@@ -46,7 +45,7 @@
     NSURL *imageURL = [[SBStocksDataManager sharedManager] getKChartImageURLForStock:stock];
     [self.stockGraphView setImageWithURL:imageURL placeholderImage:nil];
     
-    self.algoSummaryView = [[UITextView alloc] initWithFrame:CGRectMake(20, 320, 320, 640)];
+    self.algoSummaryView = [[UITextView alloc] initWithFrame:CGRectMake(20, 320, 320, 480)];
     [self.algoSummaryView setBackgroundColor:BLACK];
     [self.algoSummaryView setFont:[UIFont systemFontOfSize:24]];
     [self.algoSummaryView setTextColor:WHITE];
@@ -62,7 +61,7 @@
     // Dispose of any resources that can be recreated.
 }
 
--(void)addCondition:(SBAlgorithm *)condition
+-(void)addCondition:(SBCondition *)condition
 {
     NSLog(@"condition: %@",condition);
 //    if ([condition isEqualToString:@"MACD"]) {
@@ -88,16 +87,5 @@
 //        }
 //    }
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

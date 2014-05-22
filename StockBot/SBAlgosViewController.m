@@ -12,6 +12,8 @@
 #import "SBAlgosSelectionTableViewController.h"
 #import "SBStock.h"
 #import "SBStocksDataManager.h"
+#import "SBTransactionViewController.h"
+#import "SBCondition.h"
 
 @interface SBAlgosViewController () <SBAlgosListTableViewControllerDelegate>
 
@@ -22,8 +24,7 @@
 @property (nonatomic, assign) CGRect leftFrame;
 @property (nonatomic, assign) CGRect rightFrame;
 
-@property (nonatomic, strong) UIButton *buyButton;
-@property (nonatomic, strong) UIButton *sellButton;
+@property (nonatomic, strong) UIButton *confirmButton;
 
 @property (nonatomic, strong) UITextView *instructionView;
 
@@ -55,9 +56,9 @@
     int frameHeight = self.view.frame.size.height;
     int frameWidth = self.view.frame.size.width;
     
-    _bottomFrame = CGRectMake(ALGO_LIST_WIDTH, frameHeight - BUY_BUTTON_HEIGHT -SELL_BUTTON_HEIGHT - navBarHeight, frameWidth - ALGO_LIST_WIDTH, BUY_BUTTON_HEIGHT+SELL_BUTTON_HEIGHT);
+    _bottomFrame = CGRectMake(ALGO_LIST_WIDTH, frameHeight - CONFIRM_BUTTON_HEIGHT - navBarHeight, frameWidth - ALGO_LIST_WIDTH, CONFIRM_BUTTON_HEIGHT);
     _leftFrame = CGRectMake(0, 0, ALGO_LIST_WIDTH, frameHeight);
-    _rightFrame = CGRectMake(ALGO_LIST_WIDTH, 0, frameWidth - ALGO_LIST_WIDTH, frameHeight - BUY_BUTTON_HEIGHT-SELL_BUTTON_HEIGHT);
+    _rightFrame = CGRectMake(ALGO_LIST_WIDTH, 0, frameWidth - ALGO_LIST_WIDTH, frameHeight - CONFIRM_BUTTON_HEIGHT - navBarHeight);
     // Do any additional setup after loading the view.
     
     [self setTitle:[NSString stringWithFormat:@"%@股票的算法",stockName]];
@@ -68,25 +69,9 @@
     [self addChildViewController:_lvc];
     [_lvc.view setFrame:_leftFrame];
     [_lvc didMoveToParentViewController:self];
-    
     [self.view addSubview:_lvc.view];
     
-    CGRect buttonFrame = _bottomFrame;
-    buttonFrame.size.height = BUY_BUTTON_HEIGHT;
-    self.buyButton = [[UIButton alloc] initWithFrame:buttonFrame];
-    buttonFrame.origin.y += BUY_BUTTON_HEIGHT;
-    self.sellButton = [[UIButton alloc] initWithFrame:buttonFrame];
     
-    [self.buyButton setTitle:@"买入" forState:UIControlStateNormal];
-    [self.buyButton setBackgroundColor:BLUE_2];
-    
-    [self.sellButton setTitle:@"卖出" forState:UIControlStateNormal];
-    [self.sellButton setBackgroundColor:BLUE_2];
-    
-    [self.buyButton addTarget:self action:@selector(buyButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
-    
-    [self.buyButton addTarget:self action:@selector(sellButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
-
     
     self.instructionView = [[UITextView alloc] initWithFrame:CGRectMake(420, 200, 300, 500)];
     [self.instructionView setBackgroundColor:[UIColor blackColor]];
@@ -98,7 +83,12 @@
     [self.instructionView setSelectable:NO];
     [self.view addSubview:self.instructionView];
     
-    
+    self.confirmButton = [[UIButton alloc] initWithFrame:_bottomFrame];
+    [self.confirmButton setTitle:@"确认算法" forState:UIControlStateNormal];
+    [self.confirmButton setBackgroundColor:BLUE_2];
+    [self.confirmButton addTarget:self action:@selector(confirmButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:self.confirmButton];
+    self.confirmButton.hidden = YES;
     
 }
 
@@ -110,7 +100,8 @@
 
 #pragma mark SBAlgosListTableViewControllerDelegate
 
--(void)viewController:(SBAlgosSelectionTableViewController *)vc didViewAlgorithm:(NSString *)algorithm
+
+-(void)viewController:(SBAlgosSelectionTableViewController *)vc didViewAlgorithm:(SBCondition *)algorithm
 {
     if (!_dvc.view.superview) {
         [self.instructionView removeFromSuperview];
@@ -118,33 +109,26 @@
         [_dvc.view setFrame:_rightFrame];
         [_dvc didMoveToParentViewController:self];
         [self.view addSubview:_dvc.view];
-        [self.view addSubview:self.buyButton];
-        [self.view addSubview:self.sellButton];
-
     } else {
-        //dvc already shown
+        // dvc already shown
     }
-    
 }
 
--(void)viewController:(SBAlgosSelectionTableViewController *)vc didSelectAlgorithm:(NSString *)algorithm
+-(void)viewController:(SBAlgosSelectionTableViewController *)vc didSelectAlgorithm:(SBCondition *)algorithm
 {
-    if (!_dvc.view.superview) {
-        [self viewController:vc didViewAlgorithm:algorithm];
-    }
+    [self viewController:vc didViewAlgorithm:algorithm];
+    self.confirmButton.hidden = NO;
     [_dvc addCondition:algorithm];
-
-}
-
--(void)buyButtonPressed:(UIButton *)sender
-{
     
 }
 
--(void)sellButtonPressed:(UIButton *)sender
+-(void)confirmButtonPressed:(UIButton *)sender
 {
-    
+    NSLog(@"confirm button pressed");
+    SBTransactionViewController *tvc = [[SBTransactionViewController alloc] initWithNibName:nil bundle:nil];
+    [self.navigationController pushViewController:tvc animated:YES];
 }
+
 
 /*
 #pragma mark - Navigation

@@ -7,13 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SBCondition.h"
 
 @class SBAlgosSelectionTableViewController;
 
 @protocol SBAlgosListTableViewControllerDelegate <NSObject>
 
--(void)viewController:(SBAlgosSelectionTableViewController *)vc didSelectAlgorithm:(NSString *)algorithm;
--(void)viewController:(SBAlgosSelectionTableViewController *)vc didViewAlgorithm:(NSString *)algorithm;
+-(void)viewController:(SBAlgosSelectionTableViewController *)vc didSelectAlgorithm:(SBCondition *)algorithm;
+-(void)viewController:(SBAlgosSelectionTableViewController *)vc didViewAlgorithm:(SBCondition *)algorithm;
 
 @end
 

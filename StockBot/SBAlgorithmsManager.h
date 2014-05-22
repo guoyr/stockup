@@ -13,6 +13,5 @@
 @interface SBAlgorithmsManager : NSObject
 
 + (id)sharedManager;
--(void)setupMACDCell:(SBAlgouCustomizeTableViewCell *)cell;
--(void)setupPriceCell:(SBAlgouCustomizeTableViewCell *)cell;
+
 @end
