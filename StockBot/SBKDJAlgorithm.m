@@ -7,6 +7,7 @@
 //
 
 #import "SBKDJAlgorithm.h"
+#import "SBAlgouCustomizeTableViewCell.h"
 
 @implementation SBKDJAlgorithm
 
@@ -19,16 +20,17 @@
     return self;
 }
 
--(void)setupCell:(UITableViewCell *)cell AtIndex:(NSInteger)index
+-(void)setupCell:(SBAlgouCustomizeTableViewCell *)cell AtIndex:(NSInteger)index
 {
+    [super setupCell:cell AtIndex:index];
     switch (index) {
         case 1:
             // time period: hour, day, month
-            cell.textLabel.text = @"KDJ时间设置";
+            cell.descriptionLabel.text = @"KDJ时间设置";
             break;
         case 2:
             // direction
-            cell.textLabel.text = @"KDJ方向设置";
+            cell.descriptionLabel.text = @"KDJ方向设置";
             break;
         default:
             break;

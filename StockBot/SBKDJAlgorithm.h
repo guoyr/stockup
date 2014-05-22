@@ -7,7 +7,6 @@
 //
 
 #import "SBAlgorithm.h"
-#import "SBAlgoTableViewCell.h"
 
 @interface SBKDJAlgorithm : SBAlgorithm
 

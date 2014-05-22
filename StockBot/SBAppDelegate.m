@@ -19,11 +19,13 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     
+//    int debug_mode = DEBUG_MODE_NONE;
     int debug_mode = DEBUG_MODE_ALGO;
 
 
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    [[UINavigationBar appearance] setBarTintColor:BLUE_2];
+    self.window.tintColor = GREEN_0;
+    [[UINavigationBar appearance] setBarTintColor:BLUE_4];
     
     BOOL loggedin = [[NSUserDefaults standardUserDefaults] boolForKey:@"loggedin"];
     

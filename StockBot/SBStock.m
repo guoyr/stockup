@@ -20,16 +20,19 @@
         
         NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
         [numberFormatter setNumberStyle:NSNumberFormatterDecimalStyle];
+//        [numberFormatter setMaximumFractionDigits:2];
+//        [numberFormatter setPositiveFormat:@"###0.00"];
+        NSLog(@"Sina Stock INFO: %@", dataStringArray);
         self.name = [dataStringArray[0] componentsSeparatedByString:@"=\""][1];
         
-        self.todayOpeningPrice = [numberFormatter numberFromString:dataStringArray[2]];
-        self.yesterdayClosingPrice = [numberFormatter numberFromString:dataStringArray[3]];
-        self.currentPrice = [numberFormatter numberFromString:dataStringArray[4]];
-        self.todayHigh = [numberFormatter numberFromString:dataStringArray[5]];
-        self.todayLow = [numberFormatter numberFromString:dataStringArray[6]];
-        self.buyPrice = [numberFormatter numberFromString:dataStringArray[7]];
-        self.sellPrice = [numberFormatter numberFromString:dataStringArray[8]];
-        self.volume = [numberFormatter numberFromString:dataStringArray[9]];
+        self.todayOpeningPrice = [numberFormatter numberFromString:dataStringArray[1]];
+        self.yesterdayClosingPrice = [numberFormatter numberFromString:dataStringArray[2]];
+        self.currentPrice = [numberFormatter numberFromString:dataStringArray[3]];
+        self.todayHigh = [numberFormatter numberFromString:dataStringArray[4]];
+        self.todayLow = [numberFormatter numberFromString:dataStringArray[5]];
+        self.buyPrice = [numberFormatter numberFromString:dataStringArray[6]];
+        self.sellPrice = [numberFormatter numberFromString:dataStringArray[7]];
+        self.volume = [numberFormatter numberFromString:dataStringArray[8]];
         
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
         [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];

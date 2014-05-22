@@ -6,8 +6,9 @@
 //  Copyright (c) 2014 Robert Guo. All rights reserved.
 //
 
-#import "SBAlgorithm.h"
 #import <Foundation/Foundation.h>
+
+#import "SBAlgorithm.h"
 
 @interface SBMACDAlgorithm : SBAlgorithm
 

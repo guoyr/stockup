@@ -7,6 +7,14 @@
 //
 
 #import "SBMACDAlgorithm.h"
+#import "SBAlgouCustomizeTableViewCell.h"
+#import "SBConstants.h"
+
+@interface SBMACDAlgorithm()
+
+@property (nonatomic, assign) NSInteger macdDirection;
+
+@end
 
 @implementation SBMACDAlgorithm
 
@@ -19,20 +27,31 @@
     return self;
 }
 
--(void)setupCell:(UITableViewCell *)cell AtIndex:(NSInteger)index
+-(void)setupCell:(SBAlgouCustomizeTableViewCell *)cell AtIndex:(NSInteger)index
 {
+    [super setupCell:cell AtIndex:index];
     switch (index) {
         case 1:
             // diff: bigger -> smaller, smaller -> bigger
             // 正差离值，负差离值
-            cell.textLabel.text = @"MACD方向设置";
+            cell.descriptionLabel.text = @"MACD方向设置";
+            [cell.algoSegmentedControl setHidden:NO];
+            [cell.algoSegmentedControl insertSegmentWithTitle:@"正交" atIndex:MACD_DIRECTION_POS animated:NO];
+            [cell.algoSegmentedControl insertSegmentWithTitle:@"负交" atIndex:MACD_DIRECTION_NEG animated:NO];
+            [cell.algoSegmentedControl addTarget:self action:@selector(macdDirectionChanged:) forControlEvents:UIControlEventValueChanged];
+            [cell.algoSegmentedControl setSelectedSegmentIndex:0];
             break;
         case 2:
-            cell.textLabel.text = @"MACD时间设置";
+            cell.descriptionLabel.text = @"MACD时间设置";
             break;
         default:
             break;
     }
+}
+
+-(void)macdDirectionChanged:(UISegmentedControl *)sender
+{
+    self.macdDirection = sender.selectedSegmentIndex;
 }
 
 -(int)numExpandedRows

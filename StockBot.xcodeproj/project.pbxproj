@@ -12,7 +12,7 @@
 		BC4AFC8118DA777D00C888D9 /* SBStockGraphView.m in Sources */ = {isa = PBXBuildFile; fileRef = BC4AFC8018DA777D00C888D9 /* SBStockGraphView.m */; };
 		BC64F38F18FF305300641E14 /* SBLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BC64F38E18FF305300641E14 /* SBLoginViewController.m */; };
 		BC64F39219005D0D00641E14 /* SBUserAlgoTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BC64F39119005D0D00641E14 /* SBUserAlgoTableViewController.m */; };
-		BC7D247218D8051700CCF8A9 /* SBAlgoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BC7D247118D8051700CCF8A9 /* SBAlgoTableViewCell.m */; };
+		BC7D247218D8051700CCF8A9 /* SBAlgouCustomizeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BC7D247118D8051700CCF8A9 /* SBAlgouCustomizeTableViewCell.m */; };
 		BC7D247618D805A400CCF8A9 /* SBStocksTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BC7D247518D805A400CCF8A9 /* SBStocksTableViewCell.m */; };
 		BC809FE718BE96990014C48B /* SBAlgosDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BC809FD918BE96990014C48B /* SBAlgosDetailViewController.m */; };
 		BC809FE818BE96990014C48B /* SBAlgosSelectionTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BC809FDB18BE96990014C48B /* SBAlgosSelectionTableViewController.m */; };
@@ -39,6 +39,7 @@
 		BCBB200918E48FDE0085FFD3 /* SBTransactionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BCBB200818E48FDE0085FFD3 /* SBTransactionViewController.m */; };
 		BCDB2BC218D2CB4500CBF07E /* stockList.csv in Resources */ = {isa = PBXBuildFile; fileRef = BCDB2BC118D2CB4500CBF07E /* stockList.csv */; };
 		BCDB2BC618D30AE300CBF07E /* SBStock.m in Sources */ = {isa = PBXBuildFile; fileRef = BCDB2BC518D30AE300CBF07E /* SBStock.m */; };
+		BCEB9C29192DD393001D042D /* SBAlgoSelectTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BCEB9C28192DD393001D042D /* SBAlgoSelectTableViewCell.m */; };
 		D0DC0CD389534F0CAABB39BD /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 12C8621A9D524040AEBF887E /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -65,8 +66,8 @@
 		BC64F38E18FF305300641E14 /* SBLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBLoginViewController.m; sourceTree = "<group>"; };
 		BC64F39019005D0D00641E14 /* SBUserAlgoTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBUserAlgoTableViewController.h; sourceTree = "<group>"; };
 		BC64F39119005D0D00641E14 /* SBUserAlgoTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBUserAlgoTableViewController.m; sourceTree = "<group>"; };
-		BC7D247018D8051700CCF8A9 /* SBAlgoTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBAlgoTableViewCell.h; sourceTree = "<group>"; };
-		BC7D247118D8051700CCF8A9 /* SBAlgoTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBAlgoTableViewCell.m; sourceTree = "<group>"; };
+		BC7D247018D8051700CCF8A9 /* SBAlgouCustomizeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBAlgouCustomizeTableViewCell.h; sourceTree = "<group>"; };
+		BC7D247118D8051700CCF8A9 /* SBAlgouCustomizeTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBAlgouCustomizeTableViewCell.m; sourceTree = "<group>"; };
 		BC7D247418D805A400CCF8A9 /* SBStocksTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBStocksTableViewCell.h; sourceTree = "<group>"; };
 		BC7D247518D805A400CCF8A9 /* SBStocksTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBStocksTableViewCell.m; sourceTree = "<group>"; };
 		BC809FD818BE96990014C48B /* SBAlgosDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBAlgosDetailViewController.h; sourceTree = "<group>"; };
@@ -111,6 +112,8 @@
 		BCDB2BC118D2CB4500CBF07E /* stockList.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = stockList.csv; sourceTree = "<group>"; };
 		BCDB2BC418D30AE300CBF07E /* SBStock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBStock.h; sourceTree = "<group>"; };
 		BCDB2BC518D30AE300CBF07E /* SBStock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBStock.m; sourceTree = "<group>"; };
+		BCEB9C27192DD393001D042D /* SBAlgoSelectTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBAlgoSelectTableViewCell.h; sourceTree = "<group>"; };
+		BCEB9C28192DD393001D042D /* SBAlgoSelectTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBAlgoSelectTableViewCell.m; sourceTree = "<group>"; };
 		ECAC7AB669494C0488A17B74 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -142,8 +145,10 @@
 		BC7D247318D8051D00CCF8A9 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				BC7D247018D8051700CCF8A9 /* SBAlgoTableViewCell.h */,
-				BC7D247118D8051700CCF8A9 /* SBAlgoTableViewCell.m */,
+				BC7D247018D8051700CCF8A9 /* SBAlgouCustomizeTableViewCell.h */,
+				BC7D247118D8051700CCF8A9 /* SBAlgouCustomizeTableViewCell.m */,
+				BCEB9C27192DD393001D042D /* SBAlgoSelectTableViewCell.h */,
+				BCEB9C28192DD393001D042D /* SBAlgoSelectTableViewCell.m */,
 				BC7D247418D805A400CCF8A9 /* SBStocksTableViewCell.h */,
 				BC7D247518D805A400CCF8A9 /* SBStocksTableViewCell.m */,
 				BC4AFC7F18DA777D00C888D9 /* SBStockGraphView.h */,
@@ -422,9 +427,10 @@
 				BC809FE818BE96990014C48B /* SBAlgosSelectionTableViewController.m in Sources */,
 				BC9A089B18BE54F9000E16C3 /* SBAppDelegate.m in Sources */,
 				BC1DD2F718BFA155006CA542 /* SBStocksDataManager.m in Sources */,
-				BC7D247218D8051700CCF8A9 /* SBAlgoTableViewCell.m in Sources */,
+				BC7D247218D8051700CCF8A9 /* SBAlgouCustomizeTableViewCell.m in Sources */,
 				BCA6F0FD191166E900D4A34D /* SBKDJAlgorithm.m in Sources */,
 				BC809FEA18BE96990014C48B /* SBStocksDetailViewController.m in Sources */,
+				BCEB9C29192DD393001D042D /* SBAlgoSelectTableViewCell.m in Sources */,
 				BC809FEC18BE96990014C48B /* SBStocksViewController.m in Sources */,
 				BC809FED18BE96990014C48B /* SBViewController.m in Sources */,
 				BC809FEB18BE96990014C48B /* SBStocksListTableViewController.m in Sources */,

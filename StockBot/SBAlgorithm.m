@@ -7,12 +7,13 @@
 //
 
 #import "SBAlgorithm.h"
-
+#import "SBAlgouCustomizeTableViewCell.h"
+#import "SBConstants.h"
 @implementation SBAlgorithm
 
--(void)setupCell:(UITableViewCell *)cell AtIndex:(NSInteger)index
+-(void)setupCell:(SBAlgouCustomizeTableViewCell *)cell AtIndex:(NSInteger)index
 {
-    
+    cell.descriptionLabel.hidden = NO;
 }
 
 -(int)numExpandedRows

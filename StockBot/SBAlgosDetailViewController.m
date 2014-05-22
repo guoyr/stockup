@@ -12,6 +12,7 @@
 #import "SBStocksDataManager.h"
 #import "SBStock.h"
 #import "SBStockGraphView.h"
+#import "SBAlgorithm.h"
 
 @interface SBAlgosDetailViewController ()
 
@@ -61,31 +62,31 @@
     // Dispose of any resources that can be recreated.
 }
 
--(void)addCondition:(NSString *)condition
+-(void)addCondition:(SBAlgorithm *)condition
 {
     NSLog(@"condition: %@",condition);
-    if ([condition isEqualToString:@"MACD"]) {
-        if ([self.currentConditions containsObject:condition]) {
-            //remove MACD
-            [self.currentConditions removeObject:condition];
-            self.algoSummaryView.text = @"";
-        } else {
-            //add MACD
-            self.algoSummaryView.text = @"您选择在MACD相交时对该股票进行操作";
-            [self.currentConditions addObject:condition];
-        }
-    } else {
-        if ([self.currentConditions containsObject:@"MACD"]) {
-            // add price with existing MACD
-            if ([self.currentConditions containsObject:condition]) {
-                self.algoSummaryView.text = @"您选择在MACD相交时对该股票进行操作";
-                [self.currentConditions removeObject:condition];
-            } else {
-                self.algoSummaryView.text = @"您选择在MACD相交，并且股价大于20元时时对该股票进行交易";
-                [self.currentConditions addObject:condition];
-            }
-        }
-    }
+//    if ([condition isEqualToString:@"MACD"]) {
+//        if ([self.currentConditions containsObject:condition]) {
+//            //remove MACD
+//            [self.currentConditions removeObject:condition];
+//            self.algoSummaryView.text = @"";
+//        } else {
+//            //add MACD
+//            self.algoSummaryView.text = @"您选择在MACD相交时对该股票进行操作";
+//            [self.currentConditions addObject:condition];
+//        }
+//    } else {
+//        if ([self.currentConditions containsObject:@"MACD"]) {
+//            // add price with existing MACD
+//            if ([self.currentConditions containsObject:condition]) {
+//                self.algoSummaryView.text = @"您选择在MACD相交时对该股票进行操作";
+//                [self.currentConditions removeObject:condition];
+//            } else {
+//                self.algoSummaryView.text = @"您选择在MACD相交，并且股价大于20元时时对该股票进行交易";
+//                [self.currentConditions addObject:condition];
+//            }
+//        }
+//    }
 }
 
 /*

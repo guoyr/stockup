@@ -26,19 +26,9 @@
 @property (nonatomic, strong) UITextView *instructionView;
 @property (nonatomic, strong) UIButton *confirmButton;
 
-@property (nonatomic, strong) SBAlgosViewController *algoVC;
 @end
 
 @implementation SBStocksViewController
-
-#pragma mark getters and setters
-
--(SBAlgosViewController *)algoVC{
-    if (!_algoVC) {
-        _algoVC = [[SBAlgosViewController alloc] initWithNibName:nil bundle:nil];
-    }
-    return _algoVC;
-}
 
 #pragma mark viewcontroller methods
 
@@ -95,7 +85,8 @@
 
 -(void)confirmButtonPressed:(id)sender
 {
-    [self.navigationController pushViewController:self.algoVC animated:YES];
+    SBAlgosViewController* algoVC = [[SBAlgosViewController alloc] initWithNibName:nil bundle:nil];
+    [self.navigationController pushViewController:algoVC animated:YES];
 //    [self willMoveToParentViewController:nil];
 //    [self.navigationController addChildViewController:self.algoVC];
 //    [self.algoVC.view setFrame:self.bottomFrame];

@@ -57,7 +57,8 @@
 #define DEBUG_MODE_ALGO 1
 #define DEBUG_MODE_NONE 0
 
-
+#define MACD_DIRECTION_POS 0
+#define MACD_DIRECTION_NEG 1
 
 
 
