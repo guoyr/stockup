@@ -6,15 +6,15 @@
 //  Copyright (c) 2014 Robert Guo. All rights reserved.
 //
 
-#import "SBAlgouCustomizeTableViewCell.h"
+#import "SBAlgoConditionTableViewCell.h"
 #import "SBConstants.h"
 
-@interface SBAlgouCustomizeTableViewCell()
+@interface SBAlgoConditionTableViewCell()
 
 @end
 
 
-@implementation SBAlgouCustomizeTableViewCell
+@implementation SBAlgoConditionTableViewCell
 
 -(id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {

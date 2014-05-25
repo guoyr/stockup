@@ -7,7 +7,7 @@
 //
 
 #import "SBKDJCondition.h"
-#import "SBAlgouCustomizeTableViewCell.h"
+#import "SBAlgoConditionTableViewCell.h"
 
 @implementation SBKDJCondition
 
@@ -20,7 +20,7 @@
     return self;
 }
 
--(void)setupCell:(SBAlgouCustomizeTableViewCell *)cell AtIndex:(NSInteger)index
+-(void)setupCell:(SBAlgoConditionTableViewCell *)cell AtIndex:(NSInteger)index
 {
     [super setupCell:cell AtIndex:index];
     switch (index) {

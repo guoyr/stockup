@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SBAlgouCustomizeTableViewCell : UITableViewCell
+@interface SBAlgoConditionTableViewCell : UITableViewCell
 
 @property (nonatomic, strong) UIView *bgView;
 @property (nonatomic, strong) UILabel *descriptionLabel;

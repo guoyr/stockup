@@ -7,13 +7,17 @@
 //
 // shows details of the recently completed transaction
 
-#import "SBTransactionViewController.h"
+#import "SBAlgoConfirmationViewController.h"
 
-@interface SBTransactionViewController ()
+@interface SBAlgoConfirmationViewController ()
+
+@property (nonatomic, strong) SBCondition *curAlgorithm;
+@property (nonatomic, strong) UITextField *algoNameTextField;
+@property (nonatomic, strong) UILabel *descriptionLabel;
 
 @end
 
-@implementation SBTransactionViewController
+@implementation SBAlgoConfirmationViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -28,6 +32,25 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.edgesForExtendedLayout = UIRectEdgeNone;
+    
+    self.algoNameTextField = [[UITextField alloc] initWithFrame:CGRectMake(324, 40, 120, 48)];
+    self.algoNameTextField.backgroundColor = YELLOW;
+    [self.algoNameTextField becomeFirstResponder];
+    [self.view addSubview:self.algoNameTextField];
+    
+    self.descriptionLabel = [[UILabel alloc] initWithFrame:CGRectMake(192, 106, 384, 428)];
+    self.descriptionLabel.backgroundColor = YELLOW;
+    [self.view addSubview:self.descriptionLabel];
+    
+    UILabel *namePrompt = [[UILabel alloc] initWithFrame:CGRectMake(324, 20, 60, 48)];
+    namePrompt.backgroundColor = YELLOW;
+    [self.view addSubview:namePrompt];
+}
+
+-(void)textFieldChanged
+{
+    
 }
 
 - (void)didReceiveMemoryWarning

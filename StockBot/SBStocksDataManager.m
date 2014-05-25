@@ -67,6 +67,16 @@
     return self;
 }
 
+-(void)getAllAlgorithmsForUser:(SBUser *)user
+{
+    
+}
+
+-(void)saveAlgorithm:(SBAlgorithm *)algorithm withName:(NSString *)name
+{
+    
+}
+
 #pragma mark Getters and Setters
 
 -(NSMutableArray *)stocks

@@ -8,14 +8,16 @@
 
 #import <Foundation/Foundation.h>
 
-@interface SBCondition : NSObject
+@class SBAlgoConditionTableViewCell;
+
+@interface SBCondition : NSObject <NSCoding>
 
 @property (nonatomic, strong) NSString *description;
 @property (nonatomic, strong) NSString *expandedDescription;
 
--(void)setupCell:(UITableViewCell *)cell AtIndex:(NSInteger)index;
+-(void)setupCell:(SBAlgoConditionTableViewCell *)cell AtIndex:(NSInteger)index;
 -(int)numExpandedRows;
--(void)archive;
--(void)unarchive;
+-(NSDictionary *)archiveToDict;
+-(void)unarchiveFromDict:(NSDictionary *)dict;
 
 @end

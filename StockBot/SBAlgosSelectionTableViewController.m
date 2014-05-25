@@ -7,15 +7,13 @@
 //
 
 #import "SBAlgosSelectionTableViewController.h"
-#import "SBConstants.h"
-#import "SBAlgouCustomizeTableViewCell.h"
-#import "SBAlgorithmsManager.h"
-#import "SBConditions.h"
+#import "SBAlgoConditionTableViewCell.h"
+#import "SBAlgorithm.h"
 #import "SBAlgoSelectTableViewCell.h"
 
 @interface SBAlgosSelectionTableViewController ()
 
-@property (nonatomic, strong) NSArray *algorithms;
+@property (nonatomic, strong) SBAlgorithm *algorithm;
 @property (nonatomic, strong) NSMutableArray *expandedIndexPaths;
 @property (nonatomic, strong) NSIndexPath *selectedIndexPath;
 @property (nonatomic, strong) NSMutableArray *selectedAlgorithmIndices;
@@ -31,7 +29,7 @@ static NSString *AlgoNameCellIdentifier = @"ACell";
 {
     [super viewDidLoad];
     
-    [self.tableView registerClass:[SBAlgouCustomizeTableViewCell class] forCellReuseIdentifier:CustomizeCellIdentifier];
+    [self.tableView registerClass:[SBAlgoConditionTableViewCell class] forCellReuseIdentifier:CustomizeCellIdentifier];
     [self.tableView registerClass:[SBAlgoSelectTableViewCell class] forCellReuseIdentifier:AlgoNameCellIdentifier];
 
     self.tableView.separatorColor = GREEN_0;
@@ -41,7 +39,7 @@ static NSString *AlgoNameCellIdentifier = @"ACell";
     self.expandedIndexPaths = [[NSMutableArray alloc] init];
     self.selectedAlgorithmIndices = [[NSMutableArray alloc] init];
 
-    [self setupAlgorithms];
+    self.algorithm = [[SBAlgorithm alloc] init];
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -70,20 +68,9 @@ static NSString *AlgoNameCellIdentifier = @"ACell";
 {
     // Return the number of rows in the section.
     if (self.selectedIndexPath) {
-        return [self.algorithms count] + [self.expandedIndexPaths count];
+        return self.algorithm.numConditions + [self.expandedIndexPaths count];
     }
-    return [self.algorithms count];
-}
-
--(void)setupAlgorithms
-{
-    // GET THIS FROM THE USER LIST INSTSEAD OF INITING IT
-    SBMACDCondition *a1 = [[SBMACDCondition alloc] init];
-    SBKDJCondition *a2 = [[SBKDJCondition alloc] init];
-    SBBuyCondition *a3 = [[SBBuyCondition alloc] init];
-    SBSellCondition *a4 = [[SBSellCondition alloc] init];
-    
-    self.algorithms = @[a1,a2, a3, a4];
+    return self.algorithm.numConditions;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -100,16 +87,16 @@ static NSString *AlgoNameCellIdentifier = @"ACell";
             curAlgoIndex -= [self.expandedIndexPaths count];
         } else {
             // options for the current algorithm
-            SBAlgouCustomizeTableViewCell *customizeCell = [tableView dequeueReusableCellWithIdentifier:CustomizeCellIdentifier];
+            SBAlgoConditionTableViewCell *customizeCell = [tableView dequeueReusableCellWithIdentifier:CustomizeCellIdentifier];
             [customizeCell resetCell];
-            SBCondition *curAlgo = self.algorithms[self.selectedIndexPath.row];
+            SBCondition *curAlgo = [self.algorithm conditionAtIndex:self.selectedIndexPath.row];
             NSInteger curAlgoOptionsIndex = indexPath.row - self.selectedIndexPath.row;
             [curAlgo setupCell:customizeCell AtIndex:curAlgoOptionsIndex];
             return customizeCell;
         }
     }
     
-    SBCondition *curAlgo = self.algorithms[curAlgoIndex];
+    SBCondition *curAlgo = [self.algorithm conditionAtIndex:curAlgoIndex];
     
     // already selected the algorithm
     if ([self.selectedAlgorithmIndices containsObject:[NSNumber numberWithLong:curAlgoIndex]]) {
@@ -137,7 +124,7 @@ static NSString *AlgoNameCellIdentifier = @"ACell";
     if (self.selectedIndexPath && indexPath.row > self.selectedIndexPath.row) {
         curAlgoIndex -= [self.expandedIndexPaths count];
     }
-    SBCondition *curAlgo = self.algorithms[curAlgoIndex];
+    SBCondition *curAlgo = [self.algorithm conditionAtIndex:curAlgoIndex];
     NSMutableArray *expandedIndexPaths = [[NSMutableArray alloc] init];
     for (int i = 1; i < [curAlgo numExpandedRows]+1 ; i++) {
         [expandedIndexPaths addObject:[NSIndexPath indexPathForRow:curAlgoIndex + i inSection:indexPath.section]];
@@ -177,7 +164,7 @@ static NSString *AlgoNameCellIdentifier = @"ACell";
     if (![self.selectedAlgorithmIndices containsObject:index]) {
         [button setTitle:@"删除条件" forState:UIControlStateNormal];
         [self.selectedAlgorithmIndices addObject:[NSNumber numberWithLong:button.tag]];
-        [self.delegate viewController:self didSelectAlgorithm:self.algorithms[button.tag]];
+        [self.delegate viewController:self didSelectAlgorithm:[self.algorithm conditionAtIndex:button.tag]];
 
     } else {
         [button setTitle:@"添加条件" forState:UIControlStateNormal];

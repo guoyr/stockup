@@ -34,6 +34,7 @@
 
 #define BLACK UIColorFromRGB(0x000000)
 #define WHITE UIColorFromRGB(0xFFFFFF)
+#define YELLOW UIColorFromRGB(0xFFFF00)
 
 #define IMAGE_DAILY_K_URL @"http://image.sinajs.cn/newchart/daily/n/"
 #define IMAGE_MACD_URL @"http://image.sinajs.cn/newchart/macd/n/"
@@ -59,6 +60,10 @@
 #define MACD_DIRECTION_POS 0
 #define MACD_DIRECTION_NEG 1
 
+#define MACD_TIME_5MIN 0
+#define MACD_TIME_1HOUR 1
+#define MACD_TIME_1DAY 2
 
-
+#define BUY_CONDITION 0
+#define SELL_CONDITION 1
 

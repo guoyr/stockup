@@ -12,7 +12,7 @@
 #import "SBAlgosSelectionTableViewController.h"
 #import "SBStock.h"
 #import "SBStocksDataManager.h"
-#import "SBTransactionViewController.h"
+#import "SBAlgoConfirmationViewController.h"
 #import "SBCondition.h"
 
 @interface SBAlgosViewController () <SBAlgosListTableViewControllerDelegate>
@@ -47,8 +47,11 @@
 {
     [super viewDidLoad];
     
-    NSString *stockName = [[SBStocksDataManager sharedManager]selectedStock].name;
+    NSString *stockName = [[SBStocksDataManager sharedManager] selectedStock].name;
 
+    if (!stockName) {
+        stockName = @"股红测试";
+    }
     self.view.backgroundColor = BLACK;
     
     CGRect navBarFrame = self.navigationController.navigationBar.frame;
@@ -61,7 +64,7 @@
     _rightFrame = CGRectMake(ALGO_LIST_WIDTH, 0, frameWidth - ALGO_LIST_WIDTH, frameHeight - CONFIRM_BUTTON_HEIGHT - navBarHeight);
     // Do any additional setup after loading the view.
     
-    [self setTitle:[NSString stringWithFormat:@"%@股票的算法",stockName]];
+    [self setTitle:[NSString stringWithFormat:@"\"%@\"股票的算法",stockName]];
 
     self.edgesForExtendedLayout = UIRectEdgeNone;
     self.extendedLayoutIncludesOpaqueBars = NO;
@@ -125,7 +128,7 @@
 -(void)confirmButtonPressed:(UIButton *)sender
 {
     NSLog(@"confirm button pressed");
-    SBTransactionViewController *tvc = [[SBTransactionViewController alloc] initWithNibName:nil bundle:nil];
+    SBAlgoConfirmationViewController *tvc = [[SBAlgoConfirmationViewController alloc] initWithNibName:nil bundle:nil];
     [self.navigationController pushViewController:tvc animated:YES];
 }
 

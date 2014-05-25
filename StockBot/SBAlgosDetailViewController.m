@@ -18,6 +18,7 @@
 @property (nonatomic, strong) SBStockGraphView *stockGraphView;
 @property (nonatomic, strong) UITextView *algoSummaryView;
 @property (nonatomic, strong) NSMutableArray *currentConditions;
+@property (nonatomic, strong) UIView *conditionSummaryView;
 
 @end
 

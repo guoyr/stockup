@@ -9,6 +9,6 @@
 #import <Foundation/Foundation.h>
 #import "SBCondition.h"
 
-@interface SBBuyCondition : SBCondition
+@interface SBTransactionCondition : SBCondition
 
 @end

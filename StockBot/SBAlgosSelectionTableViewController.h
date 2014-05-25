@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "SBCondition.h"
 
+@class SBCondition;
 @class SBAlgosSelectionTableViewController;
 
 @protocol SBAlgosListTableViewControllerDelegate <NSObject>

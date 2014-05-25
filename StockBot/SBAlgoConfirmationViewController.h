@@ -12,8 +12,6 @@
 #import "SBCondition.h"
 
 
-@interface SBTransactionViewController : UIViewController
-
-@property (nonatomic, strong) SBCondition *curAlgorithm;
+@interface SBAlgoConfirmationViewController : UIViewController
 
 @end

@@ -7,11 +7,25 @@
 //
 
 #import "SBCondition.h"
-#import "SBAlgouCustomizeTableViewCell.h"
+#import "SBAlgoConditionTableViewCell.h"
 #import "SBConstants.h"
 @implementation SBCondition
 
--(void)setupCell:(SBAlgouCustomizeTableViewCell *)cell AtIndex:(NSInteger)index
+-(id)initWithCoder:(NSCoder *)aDecoder
+{
+    self = [super init];
+    if (self) {
+        //
+    }
+    return self;
+}
+
+-(void)encodeWithCoder:(NSCoder *)aCoder
+{
+    
+}
+
+-(void)setupCell:(SBAlgoConditionTableViewCell *)cell AtIndex:(NSInteger)index
 {
     cell.descriptionLabel.hidden = NO;
 }
@@ -21,12 +35,12 @@
     return 0;
 }
 
--(void)archive
+-(NSDictionary *)archiveToDict
 {
-    
+    return nil;
 }
 
--(void)unarchive
+-(void)unarchiveFromDict:(NSDictionary *)dict
 {
     
 }

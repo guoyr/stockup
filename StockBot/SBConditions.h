@@ -8,5 +8,4 @@
 
 #import "SBMACDCondition.h"
 #import "SBKDJCondition.h"
-#import "SBBuyCondition.h"
-#import "SBSellCondition.h"
+#import "SBTransactionCondition.h"
