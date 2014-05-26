@@ -11,11 +11,11 @@
 #import "SBAlgosDetailViewController.h"
 #import "SBAlgosSelectionTableViewController.h"
 #import "SBStock.h"
-#import "SBStocksDataManager.h"
+#import "SBDataManager.h"
 #import "SBAlgoConfirmationViewController.h"
 #import "SBCondition.h"
 
-@interface SBAlgosViewController () <SBAlgosListTableViewControllerDelegate>
+@interface SBAlgosViewController () <SBAlgosSelectionTableViewControllerDelegate>
 
 @property (nonatomic, strong) SBAlgosDetailViewController *dvc;
 @property (nonatomic, strong) SBAlgosSelectionTableViewController *lvc;
@@ -47,7 +47,7 @@
 {
     [super viewDidLoad];
     
-    NSString *stockName = [[SBStocksDataManager sharedManager] selectedStock].name;
+    NSString *stockName = [[SBDataManager sharedManager] selectedStock].name;
 
     if (!stockName) {
         stockName = @"股红测试";
@@ -104,7 +104,7 @@
 #pragma mark SBAlgosListTableViewControllerDelegate
 
 
--(void)viewController:(SBAlgosSelectionTableViewController *)vc didViewAlgorithm:(SBCondition *)algorithm
+-(void)viewController:(SBAlgosSelectionTableViewController *)vc didViewCondition:(SBCondition *)condition
 {
     if (!_dvc.view.superview) {
         [self.instructionView removeFromSuperview];
@@ -117,11 +117,12 @@
     }
 }
 
--(void)viewController:(SBAlgosSelectionTableViewController *)vc didSelectAlgorithm:(SBCondition *)algorithm
+-(void)viewController:(SBAlgosSelectionTableViewController *)vc didSelectCondition:(SBCondition *)condition
 {
-    [self viewController:vc didViewAlgorithm:algorithm];
+    // have to have viewed the algorithm before selecting it
+    [self viewController:vc didViewCondition:condition];
     self.confirmButton.hidden = NO;
-    [_dvc addCondition:algorithm];
+    [_dvc addCondition:condition];
     
 }
 

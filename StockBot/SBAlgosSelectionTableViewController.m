@@ -10,6 +10,7 @@
 #import "SBAlgoConditionTableViewCell.h"
 #import "SBAlgorithm.h"
 #import "SBAlgoSelectTableViewCell.h"
+#import "SBDataManager.h"
 
 @interface SBAlgosSelectionTableViewController ()
 
@@ -39,7 +40,8 @@ static NSString *AlgoNameCellIdentifier = @"ACell";
     self.expandedIndexPaths = [[NSMutableArray alloc] init];
     self.selectedAlgorithmIndices = [[NSMutableArray alloc] init];
 
-    self.algorithm = [[SBAlgorithm alloc] init];
+    // get this from the manager
+    self.algorithm = [[SBDataManager sharedManager] selectedAlgorithm];
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -164,12 +166,13 @@ static NSString *AlgoNameCellIdentifier = @"ACell";
     if (![self.selectedAlgorithmIndices containsObject:index]) {
         [button setTitle:@"删除条件" forState:UIControlStateNormal];
         [self.selectedAlgorithmIndices addObject:[NSNumber numberWithLong:button.tag]];
-        [self.delegate viewController:self didSelectAlgorithm:[self.algorithm conditionAtIndex:button.tag]];
+        [self.algorithm conditionAtIndex:button.tag].isSelected = YES;
+        [self.delegate viewController:self didSelectCondition:[self.algorithm conditionAtIndex:button.tag]];
 
     } else {
         [button setTitle:@"添加条件" forState:UIControlStateNormal];
+        [self.algorithm conditionAtIndex:button.tag].isSelected = NO;
         [self.selectedAlgorithmIndices removeObject:[NSNumber numberWithLong:button.tag]];
-
     }
     
 }

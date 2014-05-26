@@ -7,22 +7,30 @@
 //
 
 #import <FMDB/FMDatabase.h>
-#import "SBStocksDataManager.h"
+#import "SBDataManager.h"
 #import "SBConstants.h"
 #import "SBStock.h"
+#import "SBAlgorithm.h"
 
-@interface SBStocksDataManager()
+@interface SBDataManager()
 
-@property (nonatomic, assign) NSUInteger curLine;
 @property (nonatomic, strong) FMDatabase *db;
 @property (nonatomic, strong) NSMutableArray *rowCache; //caching csv data as we transfer it to fmdb
 
 @end
 
-@implementation SBStocksDataManager
+@implementation SBDataManager
+
+-(SBAlgorithm *)selectedAlgorithm
+{
+    if (!_selectedAlgorithm) {
+        _selectedAlgorithm = [[SBAlgorithm alloc] init];
+    }
+    return _selectedAlgorithm;
+}
 
 + (id)sharedManager {
-    static SBStocksDataManager *sharedMyManager = nil;
+    static SBDataManager *sharedMyManager = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         sharedMyManager = [[self alloc] init];
@@ -72,7 +80,7 @@
     
 }
 
--(void)saveAlgorithm:(SBAlgorithm *)algorithm withName:(NSString *)name
+-(void)saveAlgorithm:(SBAlgorithm *)algorithm
 {
     
 }

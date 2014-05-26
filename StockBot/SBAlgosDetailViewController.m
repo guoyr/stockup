@@ -9,7 +9,7 @@
 #import <UIImageView+WebCache.h>
 #import "SBAlgosDetailViewController.h"
 #import "SBConstants.h"
-#import "SBStocksDataManager.h"
+#import "SBDataManager.h"
 #import "SBStock.h"
 #import "SBStockGraphView.h"
 
@@ -42,8 +42,8 @@
     self.stockGraphView = [[SBStockGraphView alloc] initWithFrame:CGRectMake(20, 20, 320, 240)];
     [self.view addSubview:self.stockGraphView];
     
-    SBStock *stock = [[SBStocksDataManager sharedManager] selectedStock];
-    NSURL *imageURL = [[SBStocksDataManager sharedManager] getKChartImageURLForStock:stock];
+    SBStock *stock = [[SBDataManager sharedManager] selectedStock];
+    NSURL *imageURL = [[SBDataManager sharedManager] getKChartImageURLForStock:stock];
     [self.stockGraphView setImageWithURL:imageURL placeholderImage:nil];
     
     self.algoSummaryView = [[UITextView alloc] initWithFrame:CGRectMake(20, 320, 320, 480)];

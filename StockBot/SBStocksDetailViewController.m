@@ -11,7 +11,7 @@
 #import "SBStocksDetailViewController.h"
 #import "SBConstants.h"
 #import "SBStock.h"
-#import "SBStocksDataManager.h"
+#import "SBDataManager.h"
 #import "SBStockGraphView.h"
 
 @interface SBStocksDetailViewController ()
@@ -102,9 +102,9 @@
 -(void)showStock:(SBStock *)stock
 {
     self.stock = stock;
-    NSURL *kChartImageURL = [[SBStocksDataManager sharedManager] getKChartImageURLForStock:stock];
-    NSURL *macdImageURL = [[SBStocksDataManager sharedManager] getMACDImageURLForStock:stock];
-    NSString *infoURL = [[SBStocksDataManager sharedManager] getStockInfoURLStringForStock:stock];
+    NSURL *kChartImageURL = [[SBDataManager sharedManager] getKChartImageURLForStock:stock];
+    NSURL *macdImageURL = [[SBDataManager sharedManager] getMACDImageURLForStock:stock];
+    NSString *infoURL = [[SBDataManager sharedManager] getStockInfoURLStringForStock:stock];
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     // default serializer doesn't suppor this content type

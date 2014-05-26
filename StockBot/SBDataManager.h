@@ -11,10 +11,12 @@
 @class SBStock;
 @class SBUser;
 @class SBAlgorithm;
-@interface SBStocksDataManager : NSObject<CHCSVParserDelegate>
+
+@interface SBDataManager : NSObject<CHCSVParserDelegate>
 
 @property (nonatomic, strong) NSMutableArray *stocks;
 @property (nonatomic, strong) SBStock *selectedStock;
+@property (nonatomic, strong) SBAlgorithm *selectedAlgorithm;
 
 +(id)sharedManager;
 -(NSURL *)getKChartImageURLForStock:(SBStock *)stock;
@@ -22,6 +24,6 @@
 -(NSString *)getStockInfoURLStringForStock:(SBStock *)stock;
 
 -(void)getAllAlgorithmsForUser:(SBUser *)user;
--(void)saveAlgorithm:(SBAlgorithm *)algorithm withName:(NSString *)name;
+-(void)saveAlgorithm:(SBAlgorithm *)algorithm
 
 @end

@@ -13,7 +13,7 @@
 #import "SBConstants.h"
 #import "SBAlgosViewController.h"
 #import "SBStock.h"
-#import "SBStocksDataManager.h"
+#import "SBDataManager.h"
 
 @interface SBStocksViewController () <SBStocksListTableViewControllerDelegate>
 
@@ -118,7 +118,7 @@
         //dvc already shown
     }
     [_dvc showStock:stock];
-    [[SBStocksDataManager sharedManager] setSelectedStock:stock];
+    [[SBDataManager sharedManager] setSelectedStock:stock];
     
 }
 

@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		BC1DD2F718BFA155006CA542 /* SBStocksDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BC1DD2F618BFA155006CA542 /* SBStocksDataManager.m */; };
+		BC1DD2F718BFA155006CA542 /* SBDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BC1DD2F618BFA155006CA542 /* SBDataManager.m */; };
 		BC4AFC8118DA777D00C888D9 /* SBStockGraphView.m in Sources */ = {isa = PBXBuildFile; fileRef = BC4AFC8018DA777D00C888D9 /* SBStockGraphView.m */; };
 		BC64F38F18FF305300641E14 /* SBLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BC64F38E18FF305300641E14 /* SBLoginViewController.m */; };
 		BC64F39219005D0D00641E14 /* SBUserAlgoTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BC64F39119005D0D00641E14 /* SBUserAlgoTableViewController.m */; };
@@ -57,8 +57,8 @@
 
 /* Begin PBXFileReference section */
 		12C8621A9D524040AEBF887E /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		BC1DD2F518BFA155006CA542 /* SBStocksDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBStocksDataManager.h; sourceTree = "<group>"; };
-		BC1DD2F618BFA155006CA542 /* SBStocksDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBStocksDataManager.m; sourceTree = "<group>"; };
+		BC1DD2F518BFA155006CA542 /* SBDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBDataManager.h; sourceTree = "<group>"; };
+		BC1DD2F618BFA155006CA542 /* SBDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBDataManager.m; sourceTree = "<group>"; };
 		BC33F3641914A1A500C80E6C /* SBConditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBConditions.h; sourceTree = "<group>"; };
 		BC4AFC7F18DA777D00C888D9 /* SBStockGraphView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBStockGraphView.h; sourceTree = "<group>"; };
 		BC4AFC8018DA777D00C888D9 /* SBStockGraphView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBStockGraphView.m; sourceTree = "<group>"; };
@@ -200,6 +200,8 @@
 			children = (
 				BC7D247318D8051D00CCF8A9 /* View */,
 				BCDB2BC318D30ACE00CBF07E /* Model */,
+				BCBB200718E48FDE0085FFD3 /* SBAlgoConfirmationViewController.h */,
+				BCBB200818E48FDE0085FFD3 /* SBAlgoConfirmationViewController.m */,
 				BC809FD818BE96990014C48B /* SBAlgosDetailViewController.h */,
 				BC809FD918BE96990014C48B /* SBAlgosDetailViewController.m */,
 				BC809FDA18BE96990014C48B /* SBAlgosSelectionTableViewController.h */,
@@ -210,8 +212,6 @@
 				BC64F39119005D0D00641E14 /* SBUserAlgoTableViewController.m */,
 				BC64F38D18FF305300641E14 /* SBLoginViewController.h */,
 				BC64F38E18FF305300641E14 /* SBLoginViewController.m */,
-				BCBB200718E48FDE0085FFD3 /* SBAlgoConfirmationViewController.h */,
-				BCBB200818E48FDE0085FFD3 /* SBAlgoConfirmationViewController.m */,
 				BC809FDF18BE96990014C48B /* SBStocksDetailViewController.h */,
 				BC809FE018BE96990014C48B /* SBStocksDetailViewController.m */,
 				BC809FE118BE96990014C48B /* SBStocksListTableViewController.h */,
@@ -281,8 +281,8 @@
 			isa = PBXGroup;
 			children = (
 				BCA6F0F419102F9C00D4A34D /* Conditions */,
-				BC1DD2F518BFA155006CA542 /* SBStocksDataManager.h */,
-				BC1DD2F618BFA155006CA542 /* SBStocksDataManager.m */,
+				BC1DD2F518BFA155006CA542 /* SBDataManager.h */,
+				BC1DD2F618BFA155006CA542 /* SBDataManager.m */,
 				BCDB2BC418D30AE300CBF07E /* SBStock.h */,
 				BCDB2BC518D30AE300CBF07E /* SBStock.m */,
 				BCB4128D192EAA7F00A6706E /* SBUser.h */,
@@ -438,7 +438,7 @@
 				BC4AFC8118DA777D00C888D9 /* SBStockGraphView.m in Sources */,
 				BC809FE818BE96990014C48B /* SBAlgosSelectionTableViewController.m in Sources */,
 				BC9A089B18BE54F9000E16C3 /* SBAppDelegate.m in Sources */,
-				BC1DD2F718BFA155006CA542 /* SBStocksDataManager.m in Sources */,
+				BC1DD2F718BFA155006CA542 /* SBDataManager.m in Sources */,
 				BC7D247218D8051700CCF8A9 /* SBAlgoConditionTableViewCell.m in Sources */,
 				BCA6F0FD191166E900D4A34D /* SBKDJCondition.m in Sources */,
 				BC809FEA18BE96990014C48B /* SBStocksDetailViewController.m in Sources */,

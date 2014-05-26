@@ -8,12 +8,13 @@
 // shows details of the recently completed transaction
 
 #import "SBAlgoConfirmationViewController.h"
+#import "SBAlgorithm.h"
+#import "SBDataManager.h"
 
 @interface SBAlgoConfirmationViewController ()
 
-@property (nonatomic, strong) SBCondition *curAlgorithm;
 @property (nonatomic, strong) UITextField *algoNameTextField;
-@property (nonatomic, strong) UILabel *descriptionLabel;
+@property (nonatomic, strong) UITextView *descriptionLabel;
 
 @end
 
@@ -34,23 +35,46 @@
     // Do any additional setup after loading the view.
     self.edgesForExtendedLayout = UIRectEdgeNone;
     
-    self.algoNameTextField = [[UITextField alloc] initWithFrame:CGRectMake(324, 40, 120, 48)];
-    self.algoNameTextField.backgroundColor = YELLOW;
+    self.algoNameTextField = [[UITextField alloc] initWithFrame:CGRectMake(324, 60, 120, 48)];
+    self.algoNameTextField.textColor = WHITE;
     [self.algoNameTextField becomeFirstResponder];
+    [self.algoNameTextField setDelegate:self];
+    [self.algoNameTextField addTarget:self action:@selector(textFieldChanged:) forControlEvents:UIControlEventEditingChanged];
     [self.view addSubview:self.algoNameTextField];
     
-    self.descriptionLabel = [[UILabel alloc] initWithFrame:CGRectMake(192, 106, 384, 428)];
-    self.descriptionLabel.backgroundColor = YELLOW;
+    self.descriptionLabel = [[UITextView alloc] initWithFrame:CGRectMake(192, 116, 384, 428)];
+    self.descriptionLabel.textColor = WHITE;
+    self.descriptionLabel.backgroundColor = BLACK;
+    [self.descriptionLabel setUserInteractionEnabled:NO];
+    [self.descriptionLabel setFont:[UIFont systemFontOfSize:18]];
     [self.view addSubview:self.descriptionLabel];
+    self.descriptionLabel.text = @"placeholder\nanother line";
     
     UILabel *namePrompt = [[UILabel alloc] initWithFrame:CGRectMake(324, 20, 60, 48)];
     namePrompt.backgroundColor = YELLOW;
     [self.view addSubview:namePrompt];
+    
+    UIBarButtonItem *doneButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(done:)];
+    self.navigationItem.rightBarButtonItem = doneButtonItem;
+    
+    self.curAlgorithm = [[SBDataManager sharedManager] selectedAlgorithm];
 }
 
--(void)textFieldChanged
+-(BOOL)textFieldShouldReturn:(UITextField *)textField
 {
-    
+    [textField resignFirstResponder];
+    [[SBDataManager sharedManager] saveAlgorithm:self.curAlgorithm];
+    return YES;
+}
+
+-(void)done:(UIBarButtonItem *)sender
+{
+    [self.navigationController popToRootViewControllerAnimated:YES];
+}
+
+-(void)textFieldChanged:(UITextField *)sender
+{
+    self.curAlgorithm.name = sender.text;
 }
 
 - (void)didReceiveMemoryWarning

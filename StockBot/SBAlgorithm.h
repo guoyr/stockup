@@ -20,4 +20,7 @@
 
 -(SBCondition *)conditionAtIndex:(NSInteger)index;
 
+-(NSDictionary *)archiveToDict;
+-(void)unarchiveFromDict:(NSDictionary *)dict;
+
 @end

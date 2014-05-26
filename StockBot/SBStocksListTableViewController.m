@@ -7,14 +7,14 @@
 //
 
 #import "SBStocksListTableViewController.h"
-#import "SBStocksDataManager.h"
+#import "SBDataManager.h"
 #import "SBStock.h"
 #import "SBConstants.h"
 #import "SBStocksTableViewCell.h"
 
 @interface SBStocksListTableViewController ()
 
-@property (nonatomic, strong) SBStocksDataManager *dataManager;
+@property (nonatomic, strong) SBDataManager *dataManager;
 
 @end
 
@@ -28,7 +28,7 @@ static NSString *CellIdentifier = @"StockCell";
     self = [super initWithStyle:style];
     if (self) {
         // Custom initialization
-        [self setDataManager:[SBStocksDataManager sharedManager]];
+        [self setDataManager:[SBDataManager sharedManager]];
     }
     return self;
 }

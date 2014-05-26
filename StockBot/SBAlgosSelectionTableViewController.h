@@ -11,16 +11,16 @@
 @class SBCondition;
 @class SBAlgosSelectionTableViewController;
 
-@protocol SBAlgosListTableViewControllerDelegate <NSObject>
+@protocol SBAlgosSelectionTableViewControllerDelegate <NSObject>
 
--(void)viewController:(SBAlgosSelectionTableViewController *)vc didSelectAlgorithm:(SBCondition *)algorithm;
--(void)viewController:(SBAlgosSelectionTableViewController *)vc didViewAlgorithm:(SBCondition *)algorithm;
+-(void)viewController:(SBAlgosSelectionTableViewController *)vc didSelectCondition:(SBCondition *)condition;
+-(void)viewController:(SBAlgosSelectionTableViewController *)vc didViewCondition:(SBCondition *)condition;
 
 @end
 
 @interface SBAlgosSelectionTableViewController : UITableViewController
 
-@property (nonatomic, weak) NSObject<SBAlgosListTableViewControllerDelegate> *delegate;
+@property (nonatomic, weak) NSObject<SBAlgosSelectionTableViewControllerDelegate> *delegate;
 
 
 @end
