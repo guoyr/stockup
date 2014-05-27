@@ -50,6 +50,9 @@
         NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
         NSString *dbPath = [paths[0] stringByAppendingString:@"/stocks.db"];
         
+        self.brokerList = @[@"中信证券", @"民族证券", @"民生证券"];
+
+        
         self.db = [[FMDatabase alloc] initWithPath:dbPath];
         [self.db open];
         BOOL success = [self.db executeUpdate:@"create table if not exists sse_stocks(name nvarchar(256), stock_id integer)"];
@@ -85,7 +88,10 @@
 -(void)saveAlgorithm:(SBAlgorithm *)algorithm
 {
     [self.allAlgorithms setObject:algorithm forKey:algorithm.name];
+    algorithm.stockID = self.selectedStock.stockID;
+    algorithm.stockName = self.selectedStock.name;
     self.allAlgoName = [self.allAlgorithms allKeys];
+    NSLog(@"all algos %@",self.allAlgoName);
     NSDictionary *archiveDict = [algorithm archiveToDict];
 }
 

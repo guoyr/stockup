@@ -18,6 +18,7 @@
 @property (nonatomic, strong) NSMutableArray *stocks;
 @property (nonatomic, strong) SBStock *selectedStock;
 @property (nonatomic, strong) SBAlgorithm *selectedAlgorithm;
+@property (nonatomic, strong) NSArray *brokerList;
 
 +(id)sharedManager;
 -(NSURL *)getKChartImageURLForStock:(SBStock *)stock;

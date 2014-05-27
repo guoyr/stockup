@@ -10,11 +10,13 @@
 #import "SBAlgoConfirmationViewController.h"
 #import "SBAlgorithm.h"
 #import "SBDataManager.h"
+#import "SBStock.h"
 
 @interface SBAlgoConfirmationViewController ()
 
 @property (nonatomic, strong) UITextField *algoNameTextField;
 @property (nonatomic, strong) UITextView *descriptionLabel;
+@property (nonatomic, strong) UIBarButtonItem *doneButtonItem;
 
 @end
 
@@ -32,6 +34,14 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.curAlgorithm = [[SBDataManager sharedManager] selectedAlgorithm];
+
+    
+    NSString *stockName = [[SBDataManager sharedManager] selectedStock].name;
+    
+    self.title = [NSString stringWithFormat:@"\"%@\"算法确认页面",stockName];
+    
     // Do any additional setup after loading the view.
     self.edgesForExtendedLayout = UIRectEdgeNone;
     
@@ -55,27 +65,31 @@
     namePrompt.text = @"请输入算法名字";
     [self.view addSubview:namePrompt];
     
-    UIBarButtonItem *doneButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(done:)];
-    self.navigationItem.rightBarButtonItem = doneButtonItem;
+    self.doneButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(done:)];
+    self.navigationItem.rightBarButtonItem = self.doneButtonItem;
     
-    self.curAlgorithm = [[SBDataManager sharedManager] selectedAlgorithm];
 }
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField
 {
     [textField resignFirstResponder];
-    [[SBDataManager sharedManager] saveAlgorithm:self.curAlgorithm];
     return YES;
 }
 
 -(void)done:(UIBarButtonItem *)sender
 {
+    [[SBDataManager sharedManager] saveAlgorithm:self.curAlgorithm];
     [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 -(void)textFieldChanged:(UITextField *)sender
 {
     self.curAlgorithm.name = sender.text;
+    if ([sender.text length]) {
+        self.doneButtonItem.enabled = YES;
+    } else {
+        self.doneButtonItem.enabled = NO;
+    }
 }
 
 - (void)didReceiveMemoryWarning

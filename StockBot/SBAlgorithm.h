@@ -13,6 +13,8 @@
 @interface SBAlgorithm : NSObject
 
 @property (nonatomic, strong) NSString *name;
+@property (nonatomic, strong) NSString *stockName;
+@property (nonatomic, strong) NSNumber *stockID;
 @property (nonatomic, strong) SBMACDCondition *macdCondition;
 @property (nonatomic, strong) SBKDJCondition *kdjCondition;
 @property (nonatomic, strong) SBTransactionCondition *transactionCondition;
