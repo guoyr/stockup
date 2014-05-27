@@ -70,7 +70,7 @@
     [[NSUserDefaults standardUserDefaults] setObject:self.usernameField.text forKey:@"username"];
     [[NSUserDefaults standardUserDefaults] setObject:self.passwordField.text forKey:@"passoword"];
     SBUserAlgoTableViewController *avc = [[SBUserAlgoTableViewController alloc] initWithStyle:UITableViewStylePlain];
-    [self.navigationController pushViewController:avc animated:YES];
+    [self.navigationController setViewControllers:@[avc] animated:YES];
 }
 
 - (void)didReceiveMemoryWarning

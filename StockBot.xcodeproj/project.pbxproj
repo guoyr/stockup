@@ -266,11 +266,11 @@
 				BCA6F0F619108AFE00D4A34D /* SBMACDCondition.m */,
 				BCA6F0FB191166E900D4A34D /* SBKDJCondition.h */,
 				BCA6F0FC191166E900D4A34D /* SBKDJCondition.m */,
+				BCEB9C2A192E7699001D042D /* SBTransactionCondition.h */,
+				BCEB9C2B192E7699001D042D /* SBTransactionCondition.m */,
 				BCA6F0F81911659100D4A34D /* SBCondition.h */,
 				BCA6F0F91911659100D4A34D /* SBCondition.m */,
 				BC33F3641914A1A500C80E6C /* SBConditions.h */,
-				BCEB9C2A192E7699001D042D /* SBTransactionCondition.h */,
-				BCEB9C2B192E7699001D042D /* SBTransactionCondition.m */,
 				BCBFA1FC192E8B5000A6D17E /* SBAlgorithm.h */,
 				BCBFA1FD192E8B5000A6D17E /* SBAlgorithm.m */,
 			);

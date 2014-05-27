@@ -16,7 +16,7 @@
 
 @property (nonatomic, strong) FMDatabase *db;
 @property (nonatomic, strong) NSMutableArray *rowCache; //caching csv data as we transfer it to fmdb
-
+@property (nonatomic, strong) NSMutableDictionary *allAlgorithms;
 @end
 
 @implementation SBDataManager
@@ -70,19 +70,38 @@
                 NSLog(@"DB already exists");
             }
         }
+        
+        self.allAlgorithms = [[NSMutableDictionary alloc] init];
     }
     
     return self;
 }
 
--(void)getAllAlgorithmsForUser:(SBUser *)user
+-(NSDictionary *)getAllAlgorithmsForUser:(SBUser *)user
 {
-    
+    return [NSDictionary dictionaryWithDictionary:self.allAlgorithms];
 }
 
 -(void)saveAlgorithm:(SBAlgorithm *)algorithm
 {
+    [self.allAlgorithms setObject:algorithm forKey:algorithm.name];
+    self.allAlgoName = [self.allAlgorithms allKeys];
+    NSDictionary *archiveDict = [algorithm archiveToDict];
+}
+
+-(void)modifyAlgorithm:(SBAlgorithm *)algorithm forKey:(NSString *)key
+{
     
+}
+
+-(void)removeAlgorithm:(NSString *)algorithmName
+{
+    
+}
+
+-(BOOL)algoNameExists:(NSString *)algoName
+{
+    return [self.allAlgoName containsObject:algoName];
 }
 
 #pragma mark Getters and Setters

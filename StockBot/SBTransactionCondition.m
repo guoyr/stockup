@@ -9,6 +9,8 @@
 #import "SBTransactionCondition.h"
 #import "SBAlgoConditionTableViewCell.h"
 
+#define CONDITION @"condition"
+
 @interface SBTransactionCondition()
 
 @property (nonatomic, assign) NSInteger transactionCondition;
@@ -16,6 +18,18 @@
 @end
 
 @implementation SBTransactionCondition
+
++(id)conditionWithDict:(NSDictionary *)dict
+{
+    SBTransactionCondition *condition = [[SBTransactionCondition alloc] init];
+    condition.transactionCondition = [(NSNumber *)dict[CONDITION] integerValue];
+    return condition;
+}
+
+-(NSDictionary *)archiveToDict
+{
+    return @{CONDITION:[NSNumber numberWithInteger:_transactionCondition]};
+}
 
 -(id)init
 {

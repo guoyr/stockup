@@ -20,7 +20,7 @@
 {
     
 //    int debug_mode = DEBUG_MODE_NONE;
-    int debug_mode = DEBUG_MODE_ALGO;
+    int debug_mode = DEBUG_MODE_NONE;
 
 
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];

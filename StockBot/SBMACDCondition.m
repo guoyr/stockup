@@ -10,6 +10,9 @@
 #import "SBAlgoConditionTableViewCell.h"
 #import "SBConstants.h"
 
+#define DIRECTION @"direction"
+#define TIME @"time"
+
 @interface SBMACDCondition()
 
 @property (nonatomic, assign) NSInteger macdDirection;
@@ -18,6 +21,19 @@
 @end
 
 @implementation SBMACDCondition
+
++(id)conditionWithDict:(NSDictionary *)dict
+{
+    SBMACDCondition *condition = [[SBMACDCondition alloc] init];
+    condition.macdDirection = [(NSNumber *)dict[DIRECTION] integerValue];
+    condition.macdTime = [(NSNumber *)dict[TIME] integerValue];
+    return condition;
+}
+
+-(NSDictionary *)archiveToDict
+{
+    return @{DIRECTION:[NSNumber numberWithInteger:_macdDirection], TIME:[NSNumber numberWithInteger:_macdTime]};
+}
 
 -(NSString *)expandedDescription
 {

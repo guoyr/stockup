@@ -8,10 +8,14 @@
 
 #import "SBUserAlgoTableViewController.h"
 #import "SBLoginViewController.h"
-#import "SBConstants.h"
 #import "SBStocksViewController.h"
+#import "SBAlgorithm.h"
+#import "SBDataManager.h"
 
 @interface SBUserAlgoTableViewController ()
+
+@property (nonatomic, strong) NSDictionary *algoList;
+@property (nonatomic, strong) NSArray *algoNames;
 
 @end
 
@@ -37,6 +41,8 @@
     self.navigationItem.rightBarButtonItem = addAlgo;
     self.title = @"自动炒股软件";
     self.tableView.rowHeight = USER_ALGO_LIST_HEIGHT;
+    
+    
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -46,6 +52,8 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
+    self.algoList = [[SBDataManager sharedManager] getAllAlgorithmsForUser:nil];
+    self.algoNames = [[SBDataManager sharedManager] allAlgoName];
     [self.tableView reloadData];
 }
 
@@ -69,6 +77,14 @@
     // Dispose of any resources that can be recreated.
 }
 
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *UserCell = @"UserCell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:UserCell];
+    cell.textLabel.text = self.algoNames[indexPath.row];
+    return cell;
+}
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -80,27 +96,29 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return 0;
+    return [self.algoList allKeys].count;
 }
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Return NO if you do not want the specified item to be editable.
-    return YES;
+    return NO;
 }
 
-/*
+
 // Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         // Delete the row from the data source
+        
+        [[SBDataManager sharedManager] removeAlgorithm:self.algoNames[indexPath.row]];
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     } else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
     }   
 }
-*/
+
 
 /*
 // Override to support rearranging the table view.

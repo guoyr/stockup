@@ -9,6 +9,12 @@
 #import "SBKDJCondition.h"
 #import "SBAlgoConditionTableViewCell.h"
 
+@interface SBKDJCondition()
+
+
+
+@end
+
 @implementation SBKDJCondition
 
 -(id)init
@@ -18,6 +24,17 @@
         self.description = @"KDJ";
     }
     return self;
+}
+
++(id)conditionWithDict:(NSDictionary *)dict
+{
+    SBKDJCondition *condition = [[SBKDJCondition alloc] init];
+    return condition;
+}
+
+-(NSDictionary *)archiveToDict
+{
+    return @{};
 }
 
 -(void)setupCell:(SBAlgoConditionTableViewCell *)cell AtIndex:(NSInteger)index
@@ -41,5 +58,6 @@
 {
     return 2;
 }
+
 
 @end

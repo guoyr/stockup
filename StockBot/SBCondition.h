@@ -18,8 +18,8 @@
 
 -(void)setupCell:(SBAlgoConditionTableViewCell *)cell AtIndex:(NSInteger)index;
 -(int)numExpandedRows;
-`
+
++(id)conditionWithDict:(NSDictionary *)dict;
 -(NSDictionary *)archiveToDict;
--(void)unarchiveFromDict:(NSDictionary *)dict;
 
 @end

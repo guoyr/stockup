@@ -48,10 +48,11 @@
     [self.descriptionLabel setUserInteractionEnabled:NO];
     [self.descriptionLabel setFont:[UIFont systemFontOfSize:18]];
     [self.view addSubview:self.descriptionLabel];
-    self.descriptionLabel.text = @"placeholder\nanother line";
+    self.descriptionLabel.text = @"算法简介";
     
-    UILabel *namePrompt = [[UILabel alloc] initWithFrame:CGRectMake(324, 20, 60, 48)];
-    namePrompt.backgroundColor = YELLOW;
+    UILabel *namePrompt = [[UILabel alloc] initWithFrame:CGRectMake(324, 20, 120, 48)];
+    namePrompt.textColor = WHITE;
+    namePrompt.text = @"请输入算法名字";
     [self.view addSubview:namePrompt];
     
     UIBarButtonItem *doneButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(done:)];

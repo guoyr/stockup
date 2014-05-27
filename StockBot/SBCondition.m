@@ -9,7 +9,14 @@
 #import "SBCondition.h"
 #import "SBAlgoConditionTableViewCell.h"
 #import "SBConstants.h"
+
 @implementation SBCondition
+
+
++(id)conditionWithDict:(NSDictionary *)dict
+{
+    return nil;
+}
 
 -(id)initWithCoder:(NSCoder *)aDecoder
 {
@@ -38,11 +45,6 @@
 -(NSDictionary *)archiveToDict
 {
     return nil;
-}
-
--(void)unarchiveFromDict:(NSDictionary *)dict
-{
-    
 }
 
 @end
