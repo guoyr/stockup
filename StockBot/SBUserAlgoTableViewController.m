@@ -14,7 +14,7 @@
 
 @interface SBUserAlgoTableViewController ()
 
-@property (nonatomic, strong) NSDictionary *algoList;
+@property (nonatomic, strong) NSDictionary *algoDict;
 @property (nonatomic, strong) NSArray *algoNames;
 
 @end
@@ -56,7 +56,7 @@ static NSString *UserCellIdentifier = @"UserCell";
 
 -(void)viewWillAppear:(BOOL)animated
 {
-    self.algoList = [[SBDataManager sharedManager] getAllAlgorithmsForUser:nil];
+    self.algoDict = [[SBDataManager sharedManager] getAllAlgorithmsForUser:nil];
     self.algoNames = [[SBDataManager sharedManager] allAlgoName];
     [self.tableView reloadData];
 }
@@ -70,7 +70,8 @@ static NSString *UserCellIdentifier = @"UserCell";
 -(void)logout:(id)sender
 {
     [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"loggedin"];
-    SBLoginViewController *loginVC = [[SBLoginViewController alloc] initWithNibName:nil bundle:nil];
+    SBLoginViewController *loginVC = [[UIStoryboard storyboardWithName:@"Login" bundle:nil] instantiateViewControllerWithIdentifier:@"LoginViewController"];
+
     [self.navigationController setViewControllers:@[loginVC,self]];
     [self.navigationController popToRootViewControllerAnimated:YES];
 }
@@ -88,6 +89,18 @@ static NSString *UserCellIdentifier = @"UserCell";
     return cell;
 }
 
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSString *algoName = self.algoNames[indexPath.row];
+    SBAlgorithm *algo = self.algoDict[algoName];
+    SBDataManager *manager = [SBDataManager sharedManager];
+    [manager setSelectedAlgorithm:algo];
+    SBStock *stock = [manager stocks][indexPath.row];
+    [manager setSelectedStock:stock];
+    SBStocksViewController *svc = [[SBStocksViewController alloc] initWithNibName:nil bundle:nil];
+    [self.navigationController pushViewController:svc animated:YES];
+}
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -99,7 +112,7 @@ static NSString *UserCellIdentifier = @"UserCell";
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return [self.algoList allKeys].count;
+    return [self.algoDict allKeys].count;
 }
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
@@ -121,12 +134,6 @@ static NSString *UserCellIdentifier = @"UserCell";
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
     }   
 }
-
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    
-}
-
 
 /*
 // Override to support rearranging the table view.

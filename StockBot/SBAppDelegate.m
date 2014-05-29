@@ -33,7 +33,7 @@
     if (loggedin) {
         vc = [[SBUserAlgoTableViewController alloc] initWithNibName:nil bundle:nil];
     } else {
-        vc = [[SBLoginViewController alloc] initWithNibName:nil bundle:nil];
+        vc = [[UIStoryboard storyboardWithName:@"Login" bundle:nil] instantiateViewControllerWithIdentifier:@"LoginViewController"];
 
     }
     

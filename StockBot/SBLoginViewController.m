@@ -6,6 +6,7 @@
 //  Copyright (c) 2014 Robert Guo. All rights reserved.
 //
 
+#import <QuartzCore/QuartzCore.h>
 #import "SBLoginViewController.h"
 #import "SBConstants.h"
 #import "SBUserAlgoTableViewController.h"
@@ -14,10 +15,7 @@
 
 @interface SBLoginViewController ()
 
-@property (nonatomic, strong) UIButton *brokerSelectionButton;
-@property (nonatomic, strong) UITextField *usernameField;
-@property (nonatomic, strong) UITextField *passwordField;
-@property (nonatomic, strong) UIButton *loginButton;
+
 @property (nonatomic, strong) UIPopoverController *brokerListPopover;
 @property (nonatomic, strong) NSString *selectedBroker;
 
@@ -37,60 +35,94 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.title = @"股票自动交易系统";
+    self.title = @"股红";
     self.view.backgroundColor = BLUE_4;
     // Do any additional setup after loading the view.
     
-    self.brokerSelectionButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [self.brokerSelectionButton setFrame:CGRectMake(320, 260, 128, 48)];
-    [self.brokerSelectionButton setTitle:@"选择券商" forState:UIControlStateNormal];
-    [self.brokerSelectionButton addTarget:self action:@selector(selectBroker:) forControlEvents:UIControlEventTouchUpInside];
     
     SBBrokersTableViewController *cvc = [[SBBrokersTableViewController alloc] initWithStyle:UITableViewStylePlain];
     [cvc.tableView setDelegate:self];
     self.brokerListPopover = [[UIPopoverController alloc] initWithContentViewController:cvc];
-    [self.brokerListPopover setPopoverContentSize:CGSizeMake(320, 240)];
+    [self.brokerListPopover setPopoverContentSize:CGSizeMake(240, 240)];
+    self.inputBackground.layer.cornerRadius = 10;
     
-    self.usernameField = [[UITextField alloc] initWithFrame:CGRectMake(320, 320, 128, 48)];
-    self.usernameField.backgroundColor = WHITE;
-    self.usernameField.autocorrectionType = UITextAutocorrectionTypeNo;
-    
-    self.passwordField = [[UITextField alloc] initWithFrame:CGRectMake(320, 380, 128, 48)];
-    self.passwordField.backgroundColor = WHITE;
-    self.passwordField.autocorrectionType = UITextAutocorrectionTypeNo;
-    
-    self.loginButton = [[UIButton alloc] initWithFrame:CGRectMake(340, 440, 88, 48)];
-    
-    UILabel *usernameLabel = [[UILabel alloc] initWithFrame:CGRectMake(240, 320, 96, 48)];
-    [usernameLabel setText:@"账号名"];
-    [usernameLabel setTextColor:WHITE];
-    
-    UILabel *passwordLabel = [[UILabel alloc] initWithFrame:CGRectMake(240, 380, 96, 48)];
-    [passwordLabel setText:@"密码"];
-    [passwordLabel setTextColor:WHITE];
-    
-    
-    [self.loginButton setTitle:@"登陆" forState:UIControlStateNormal];
-
     [self.usernameField setDelegate:self];
     [self.passwordField setDelegate:self];
+    
+    [self.brokerSelectionButton addTarget:self action:@selector(selectBroker:) forControlEvents:UIControlEventTouchUpInside];
     [self.loginButton addTarget:self action:@selector(loginButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
     
-    [self.view addSubview:self.brokerSelectionButton];
-    [self.view addSubview:self.usernameField];
+    self.loginButton.layer.borderColor = [GREEN_0 CGColor];
+    self.brokerSelectionButton.layer.borderColor = [GREEN_0 CGColor];
+
+    self.loginButton.layer.borderWidth = 1.0f;
+    self.brokerSelectionButton.layer.borderWidth = 1.0f;
     
-    [self.view addSubview:self.passwordField];
-    [self.view addSubview:self.loginButton];
+    self.loginButton.layer.cornerRadius = 5.0f;
+    self.loginButton.layer.cornerRadius = 5.0f;
+
+
     
-    [self.view addSubview:usernameLabel];
-    [self.view addSubview:passwordLabel];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillShow:)
+                                                 name:UIKeyboardWillShowNotification object:nil];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillHide:)
+                                                 name:UIKeyboardWillHideNotification object:nil];
+
+    
+    
+    
+}
+
+-(void)keyboardWillHide:(NSNotification *)notification
+{
+    NSDictionary *userInfo = [notification userInfo];
+    NSNumber *animationDuration = userInfo[UIKeyboardAnimationDurationUserInfoKey];
+    CGRect keyboardFrame = [userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
+    
+    CGRect frame1 = self.logoImageView.frame;
+    
+    frame1.origin.y += keyboardFrame.size.height/4;
+    CGRect frame2 = self.inputBackground.frame;
+    frame2.origin.y += keyboardFrame.size.height/2;
+    CGRect frame3 = self.loginButton.frame;
+    frame3.origin.y += keyboardFrame.size.height/2 + 10;
+
+    [UIView animateWithDuration:[animationDuration doubleValue] animations:^{
+        self.logoImageView.frame = frame1;
+        self.inputBackground.frame = frame2;
+        self.loginButton.frame = frame3;
+    }];
+}
+
+-(void)keyboardWillShow:(NSNotification *)notification
+{
+    NSDictionary *userInfo = [notification userInfo];
+    NSNumber *animationDuration = userInfo[UIKeyboardAnimationDurationUserInfoKey];
+    CGRect keyboardFrame = [userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
+    
+    CGRect frame1 = self.logoImageView.frame;
+    
+    frame1.origin.y -= keyboardFrame.size.height/4;
+    CGRect frame2 = self.inputBackground.frame;
+    frame2.origin.y -= keyboardFrame.size.height/2;
+    CGRect frame3 = self.loginButton.frame;
+    frame3.origin.y -= keyboardFrame.size.height/2 + 10;
+    [UIView animateWithDuration:[animationDuration doubleValue] animations:^{
+        self.logoImageView.frame = frame1;
+        self.inputBackground.frame = frame2;
+        self.loginButton.frame = frame3;
+
+    }];
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [self.brokerListPopover dismissPopoverAnimated:YES];
     self.selectedBroker = [[SBDataManager sharedManager] brokerList][indexPath.row];
+    self.brokerSelectionButton.titleLabel.text = self.selectedBroker;
 }
 
 -(void)selectBroker:(UIButton *)sender
@@ -98,7 +130,7 @@
     if ([self.brokerListPopover isPopoverVisible]) {
         [self.brokerListPopover dismissPopoverAnimated:YES];
     } else {
-        [self.brokerListPopover presentPopoverFromRect:self.brokerSelectionButton.frame inView:self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+        [self.brokerListPopover presentPopoverFromRect:self.brokerSelectionButton.frame inView:self.inputBackground permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
     }
 }
 
@@ -118,14 +150,14 @@
 }
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+ {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 @end

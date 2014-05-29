@@ -19,6 +19,7 @@
 @property (nonatomic, strong) SBKDJCondition *kdjCondition;
 @property (nonatomic, strong) SBTransactionCondition *transactionCondition;
 @property (nonatomic, assign) NSInteger numConditions;
+@property (nonatomic, strong) NSString *uid;
 
 -(SBCondition *)conditionAtIndex:(NSInteger)index;
 

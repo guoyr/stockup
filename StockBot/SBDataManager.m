@@ -11,12 +11,13 @@
 #import "SBConstants.h"
 #import "SBStock.h"
 #import "SBAlgorithm.h"
-
+#import "NSString+SBAdditions.h"
 @interface SBDataManager()
 
 @property (nonatomic, strong) FMDatabase *db;
 @property (nonatomic, strong) NSMutableArray *rowCache; //caching csv data as we transfer it to fmdb
 @property (nonatomic, strong) NSMutableDictionary *allAlgorithms;
+@property (nonatomic, strong) NSDateFormatter *dateFormatter;
 @end
 
 @implementation SBDataManager
@@ -52,6 +53,8 @@
         
         self.brokerList = @[@"中信证券", @"民族证券", @"民生证券"];
 
+        self.dateFormatter = [[NSDateFormatter alloc] init];
+        [self.dateFormatter setDateFormat:@"yy-MM-dd_HH:mm:ss"];
         
         self.db = [[FMDatabase alloc] initWithPath:dbPath];
         [self.db open];
@@ -87,10 +90,18 @@
 
 -(void)saveAlgorithm:(SBAlgorithm *)algorithm
 {
-    [self.allAlgorithms setObject:algorithm forKey:algorithm.name];
+    if (!algorithm.uid) {
+        NSString *uid = [self.dateFormatter stringFromDate:[NSDate date]];
+        algorithm.uid = [uid stringByAppendingString:[NSString randomStringOfLength:5]];
+    }
+    [self.allAlgorithms setObject:algorithm forKey:algorithm.uid];
     algorithm.stockID = self.selectedStock.stockID;
     algorithm.stockName = self.selectedStock.name;
-    self.allAlgoName = [self.allAlgorithms allKeys];
+    NSMutableArray *names = [[NSMutableArray alloc] initWithCapacity:self.allAlgorithms.count];
+    for (SBAlgorithm *a in [self.allAlgorithms allValues]) {
+        [names addObject:a.name];
+    }
+    self.allAlgoName = [NSArray arrayWithArray:names];
     NSLog(@"all algos %@",self.allAlgoName);
     NSDictionary *archiveDict = [algorithm archiveToDict];
 }

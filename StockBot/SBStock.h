@@ -25,6 +25,8 @@
 @property (nonatomic, strong) NSNumber *sellPrice; //7
 @property (nonatomic, strong) NSNumber *volume; //8
 
+@property (nonatomic, strong) NSIndexPath *tableViewIndex;
+
 -(void)updateInfoFromSinaData:(NSString *)rawData;
 
 @end

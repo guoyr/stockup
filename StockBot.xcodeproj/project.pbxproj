@@ -10,6 +10,8 @@
 		BC1DD2F718BFA155006CA542 /* SBDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BC1DD2F618BFA155006CA542 /* SBDataManager.m */; };
 		BC4AFC8118DA777D00C888D9 /* SBStockGraphView.m in Sources */ = {isa = PBXBuildFile; fileRef = BC4AFC8018DA777D00C888D9 /* SBStockGraphView.m */; };
 		BC60A9E319350C46007FDEE0 /* SBBrokersTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BC60A9E219350C46007FDEE0 /* SBBrokersTableViewController.m */; };
+		BC60A9E719352A11007FDEE0 /* NSString+SBAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = BC60A9E619352A11007FDEE0 /* NSString+SBAdditions.m */; };
+		BC60A9E91937B903007FDEE0 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BC60A9E81937B903007FDEE0 /* Login.storyboard */; };
 		BC64F38F18FF305300641E14 /* SBLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BC64F38E18FF305300641E14 /* SBLoginViewController.m */; };
 		BC64F39219005D0D00641E14 /* SBUserAlgoTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BC64F39119005D0D00641E14 /* SBUserAlgoTableViewController.m */; };
 		BC7D247218D8051700CCF8A9 /* SBAlgoConditionTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BC7D247118D8051700CCF8A9 /* SBAlgoConditionTableViewCell.m */; };
@@ -65,6 +67,9 @@
 		BC4AFC8018DA777D00C888D9 /* SBStockGraphView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBStockGraphView.m; sourceTree = "<group>"; };
 		BC60A9E119350C46007FDEE0 /* SBBrokersTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBBrokersTableViewController.h; sourceTree = "<group>"; };
 		BC60A9E219350C46007FDEE0 /* SBBrokersTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBBrokersTableViewController.m; sourceTree = "<group>"; };
+		BC60A9E5193529EF007FDEE0 /* NSString+SBAdditions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+SBAdditions.h"; sourceTree = "<group>"; };
+		BC60A9E619352A11007FDEE0 /* NSString+SBAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+SBAdditions.m"; sourceTree = "<group>"; };
+		BC60A9E81937B903007FDEE0 /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		BC64F38D18FF305300641E14 /* SBLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBLoginViewController.h; sourceTree = "<group>"; };
 		BC64F38E18FF305300641E14 /* SBLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBLoginViewController.m; sourceTree = "<group>"; };
 		BC64F39019005D0D00641E14 /* SBUserAlgoTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBUserAlgoTableViewController.h; sourceTree = "<group>"; };
@@ -151,6 +156,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BC60A9E4193529CB007FDEE0 /* Class Additions */ = {
+			isa = PBXGroup;
+			children = (
+				BC60A9E5193529EF007FDEE0 /* NSString+SBAdditions.h */,
+				BC60A9E619352A11007FDEE0 /* NSString+SBAdditions.m */,
+			);
+			name = "Class Additions";
+			sourceTree = "<group>";
+		};
 		BC7D247318D8051D00CCF8A9 /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -162,6 +176,7 @@
 				BC7D247518D805A400CCF8A9 /* SBStocksTableViewCell.m */,
 				BC4AFC7F18DA777D00C888D9 /* SBStockGraphView.h */,
 				BC4AFC8018DA777D00C888D9 /* SBStockGraphView.m */,
+				BC60A9E81937B903007FDEE0 /* Login.storyboard */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -201,6 +216,7 @@
 		BC9A089018BE54F9000E16C3 /* StockBot */ = {
 			isa = PBXGroup;
 			children = (
+				BC60A9E4193529CB007FDEE0 /* Class Additions */,
 				BC7D247318D8051D00CCF8A9 /* View */,
 				BCDB2BC318D30ACE00CBF07E /* Model */,
 				BCBB200718E48FDE0085FFD3 /* SBAlgoConfirmationViewController.h */,
@@ -374,6 +390,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BC60A9E91937B903007FDEE0 /* Login.storyboard in Resources */,
 				BC9A089518BE54F9000E16C3 /* InfoPlist.strings in Resources */,
 				BCDB2BC218D2CB4500CBF07E /* stockList.csv in Resources */,
 				BC9A089D18BE54F9000E16C3 /* Images.xcassets in Resources */,
@@ -432,6 +449,7 @@
 				BCEB9C2C192E7699001D042D /* SBTransactionCondition.m in Sources */,
 				BCB4128F192EAA7F00A6706E /* SBUser.m in Sources */,
 				BCA6F0F719108AFE00D4A34D /* SBMACDCondition.m in Sources */,
+				BC60A9E719352A11007FDEE0 /* NSString+SBAdditions.m in Sources */,
 				BC60A9E319350C46007FDEE0 /* SBBrokersTableViewController.m in Sources */,
 				BCBB200918E48FDE0085FFD3 /* SBAlgoConfirmationViewController.m in Sources */,
 				BCA6F0FA1911659100D4A34D /* SBCondition.m in Sources */,

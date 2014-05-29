@@ -10,4 +10,10 @@
 
 @interface SBLoginViewController : UIViewController <UITextFieldDelegate, UITableViewDelegate>
 
+@property (nonatomic, strong) IBOutlet UIView *inputBackground;
+@property (nonatomic, strong) IBOutlet UITextField *usernameField;
+@property (nonatomic, strong) IBOutlet UITextField *passwordField;
+@property (nonatomic, strong) IBOutlet UIImageView *logoImageView;
+@property (nonatomic, strong) IBOutlet UIButton *brokerSelectionButton;
+@property (nonatomic, strong) IBOutlet UIButton *loginButton;
 @end

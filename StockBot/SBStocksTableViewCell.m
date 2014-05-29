@@ -33,7 +33,7 @@
         [self addSubview:self.stockIDLabel];
         [self addSubview:self.stockNameLabel];
         
-        self.backgroundColor = BLUE_4;
+        self.backgroundColor = BLUE_1;
         self.textLabel.textColor = [UIColor whiteColor];
         
         self.selectedBackgroundView = [[UIView alloc] initWithFrame:self.bounds];

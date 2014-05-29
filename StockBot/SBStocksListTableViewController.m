@@ -28,7 +28,6 @@ static NSString *CellIdentifier = @"StockCell";
     self = [super initWithStyle:style];
     if (self) {
         // Custom initialization
-        [self setDataManager:[SBDataManager sharedManager]];
     }
     return self;
 }
@@ -36,9 +35,15 @@ static NSString *CellIdentifier = @"StockCell";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
+    [self setDataManager:[SBDataManager sharedManager]];
     [self.tableView registerClass:[SBStocksTableViewCell class] forCellReuseIdentifier:CellIdentifier];
     [self.tableView setRowHeight:STOCK_CELL_HEIGHT];
     [self.tableView setBackgroundColor:BLACK];
+    
+    if (self.dataManager.selectedStock) {
+        [self.tableView selectRowAtIndexPath:self.dataManager.selectedStock.tableViewIndex animated:NO scrollPosition:UITableViewScrollPositionMiddle];
+    }
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -73,6 +78,7 @@ static NSString *CellIdentifier = @"StockCell";
     SBStocksTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
 
     SBStock *stock = [self.dataManager.stocks objectAtIndex:indexPath.row];
+    stock.tableViewIndex = indexPath;
     cell.stockIDLabel.text = [stock.stockID stringValue];
     cell.stockNameLabel.text = stock.name;
     return cell;
