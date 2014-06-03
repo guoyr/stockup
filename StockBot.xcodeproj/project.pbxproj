@@ -324,6 +324,7 @@
 				BC9A088418BE54F9000E16C3 /* Frameworks */,
 				BC9A088518BE54F9000E16C3 /* Resources */,
 				4FBC044ABBEA4A23879F7DBE /* Copy Pods Resources */,
+				BC9FBF7F193E5215000B1942 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -362,6 +363,9 @@
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = "Robert Guo";
 				TargetAttributes = {
+					BC9A088618BE54F9000E16C3 = {
+						DevelopmentTeam = 7J555P3K78;
+					};
 					BC9A08A118BE54F9000E16C3 = {
 						TestTargetID = BC9A088618BE54F9000E16C3;
 					};
@@ -437,6 +441,19 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		BC9FBF7F193E5215000B1942 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/bash;
+			shellScript = "#!/bin/bash\nbuildNumber=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" \"$INFOPLIST_FILE\")\nbuildNumber=$(($buildNumber + 1))\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"$INFOPLIST_FILE\"";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -590,9 +607,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "StockBot/StockBot-Prefix.pch";
 				INFOPLIST_FILE = "StockBot/StockBot-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/StockBot/TestFlightSDK3.0.2",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -604,9 +626,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "StockBot/StockBot-Prefix.pch";
 				INFOPLIST_FILE = "StockBot/StockBot-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/StockBot/TestFlightSDK3.0.2",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

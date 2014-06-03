@@ -94,6 +94,7 @@
         self.logoImageView.frame = frame1;
         self.inputBackground.frame = frame2;
         self.loginButton.frame = frame3;
+        
     }];
 }
 
