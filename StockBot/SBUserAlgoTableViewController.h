@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SBUserAlgoTableViewController : UITableViewController
+@interface SBUserAlgoTableViewController : UITableViewController <UIAlertViewDelegate>
 
 @end

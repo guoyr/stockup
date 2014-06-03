@@ -35,6 +35,9 @@
 		BC9A08A618BE54F9000E16C3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC9A088E18BE54F9000E16C3 /* UIKit.framework */; };
 		BC9A08AE18BE54F9000E16C3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = BC9A08AC18BE54F9000E16C3 /* InfoPlist.strings */; };
 		BC9A08B018BE54F9000E16C3 /* StockBotTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BC9A08AF18BE54F9000E16C3 /* StockBotTests.m */; };
+		BC9FBF82193E539D000B1942 /* UIView+SBAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = BC9FBF81193E539D000B1942 /* UIView+SBAdditions.m */; };
+		BC9FBF85193E5F81000B1942 /* SBLoginAnimatedTransitioning.m in Sources */ = {isa = PBXBuildFile; fileRef = BC9FBF84193E5F81000B1942 /* SBLoginAnimatedTransitioning.m */; };
+		BC9FBF88193E65EE000B1942 /* SBLoginAnimatedTransitioningDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BC9FBF87193E65EE000B1942 /* SBLoginAnimatedTransitioningDelegate.m */; };
 		BCA6F0F719108AFE00D4A34D /* SBMACDCondition.m in Sources */ = {isa = PBXBuildFile; fileRef = BCA6F0F619108AFE00D4A34D /* SBMACDCondition.m */; };
 		BCA6F0FA1911659100D4A34D /* SBCondition.m in Sources */ = {isa = PBXBuildFile; fileRef = BCA6F0F91911659100D4A34D /* SBCondition.m */; };
 		BCA6F0FD191166E900D4A34D /* SBKDJCondition.m in Sources */ = {isa = PBXBuildFile; fileRef = BCA6F0FC191166E900D4A34D /* SBKDJCondition.m */; };
@@ -109,6 +112,12 @@
 		BC9A08AB18BE54F9000E16C3 /* StockBotTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "StockBotTests-Info.plist"; sourceTree = "<group>"; };
 		BC9A08AD18BE54F9000E16C3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		BC9A08AF18BE54F9000E16C3 /* StockBotTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StockBotTests.m; sourceTree = "<group>"; };
+		BC9FBF80193E539D000B1942 /* UIView+SBAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+SBAdditions.h"; sourceTree = "<group>"; };
+		BC9FBF81193E539D000B1942 /* UIView+SBAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+SBAdditions.m"; sourceTree = "<group>"; };
+		BC9FBF83193E5F81000B1942 /* SBLoginAnimatedTransitioning.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBLoginAnimatedTransitioning.h; sourceTree = "<group>"; };
+		BC9FBF84193E5F81000B1942 /* SBLoginAnimatedTransitioning.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBLoginAnimatedTransitioning.m; sourceTree = "<group>"; };
+		BC9FBF86193E65EE000B1942 /* SBLoginAnimatedTransitioningDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBLoginAnimatedTransitioningDelegate.h; sourceTree = "<group>"; };
+		BC9FBF87193E65EE000B1942 /* SBLoginAnimatedTransitioningDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBLoginAnimatedTransitioningDelegate.m; sourceTree = "<group>"; };
 		BCA6F0F519108AFE00D4A34D /* SBMACDCondition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBMACDCondition.h; sourceTree = "<group>"; };
 		BCA6F0F619108AFE00D4A34D /* SBMACDCondition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBMACDCondition.m; sourceTree = "<group>"; };
 		BCA6F0F81911659100D4A34D /* SBCondition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBCondition.h; sourceTree = "<group>"; };
@@ -161,6 +170,8 @@
 			children = (
 				BC60A9E5193529EF007FDEE0 /* NSString+SBAdditions.h */,
 				BC60A9E619352A11007FDEE0 /* NSString+SBAdditions.m */,
+				BC9FBF80193E539D000B1942 /* UIView+SBAdditions.h */,
+				BC9FBF81193E539D000B1942 /* UIView+SBAdditions.m */,
 			);
 			name = "Class Additions";
 			sourceTree = "<group>";
@@ -177,6 +188,10 @@
 				BC4AFC7F18DA777D00C888D9 /* SBStockGraphView.h */,
 				BC4AFC8018DA777D00C888D9 /* SBStockGraphView.m */,
 				BC60A9E81937B903007FDEE0 /* Login.storyboard */,
+				BC9FBF83193E5F81000B1942 /* SBLoginAnimatedTransitioning.h */,
+				BC9FBF84193E5F81000B1942 /* SBLoginAnimatedTransitioning.m */,
+				BC9FBF86193E65EE000B1942 /* SBLoginAnimatedTransitioningDelegate.h */,
+				BC9FBF87193E65EE000B1942 /* SBLoginAnimatedTransitioningDelegate.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -477,11 +492,14 @@
 				BC64F39219005D0D00641E14 /* SBUserAlgoTableViewController.m in Sources */,
 				BC809FE918BE96990014C48B /* SBAlgosViewController.m in Sources */,
 				BC4AFC8118DA777D00C888D9 /* SBStockGraphView.m in Sources */,
+				BC9FBF85193E5F81000B1942 /* SBLoginAnimatedTransitioning.m in Sources */,
+				BC9FBF88193E65EE000B1942 /* SBLoginAnimatedTransitioningDelegate.m in Sources */,
 				BC809FE818BE96990014C48B /* SBAlgosSelectionTableViewController.m in Sources */,
 				BC9A089B18BE54F9000E16C3 /* SBAppDelegate.m in Sources */,
 				BC1DD2F718BFA155006CA542 /* SBDataManager.m in Sources */,
 				BC7D247218D8051700CCF8A9 /* SBAlgoConditionTableViewCell.m in Sources */,
 				BCA6F0FD191166E900D4A34D /* SBKDJCondition.m in Sources */,
+				BC9FBF82193E539D000B1942 /* UIView+SBAdditions.m in Sources */,
 				BC809FEA18BE96990014C48B /* SBStocksDetailViewController.m in Sources */,
 				BCEB9C29192DD393001D042D /* SBAlgoSelectTableViewCell.m in Sources */,
 				BC809FEC18BE96990014C48B /* SBStocksViewController.m in Sources */,

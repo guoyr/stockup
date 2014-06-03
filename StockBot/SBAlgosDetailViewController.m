@@ -28,7 +28,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        self.currentConditions = [[NSMutableArray  alloc] init];
+        self.currentConditions = [NSMutableArray new];
     }
     return self;        
 }

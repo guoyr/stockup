@@ -11,6 +11,7 @@
 #import "SBStocksViewController.h"
 #import "SBAlgorithm.h"
 #import "SBDataManager.h"
+#import "SBLoginAnimatedTransitioningDelegate.h"
 
 @interface SBUserAlgoTableViewController ()
 
@@ -69,11 +70,33 @@ static NSString *UserCellIdentifier = @"UserCell";
 
 -(void)logout:(id)sender
 {
-    [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"loggedin"];
-    SBLoginViewController *loginVC = [[UIStoryboard storyboardWithName:@"Login" bundle:nil] instantiateViewControllerWithIdentifier:@"LoginViewController"];
+    
+    UIAlertView *logoutConfirmation = [[UIAlertView alloc] initWithTitle:@"确认注销" message:nil delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确认", nil];
+    
+    [logoutConfirmation show];
+    
+    
+}
 
-    [self.navigationController setViewControllers:@[loginVC,self]];
-    [self.navigationController popToRootViewControllerAnimated:YES];
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    SBLoginViewController *loginVC;
+
+    switch (buttonIndex) {
+        case 0:
+            [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"loggedin"];
+            //    id<UIViewControllerTransitioningDelegate> d = [SBLoginAnimatedTransitioningDelegate new];
+            //    loginVC.transitioningDelegate = d;
+            loginVC = [[UIStoryboard storyboardWithName:@"Login" bundle:nil] instantiateViewControllerWithIdentifier:@"LoginViewController"];
+            [self.navigationController setViewControllers:@[loginVC, self] animated:NO];
+            [self.navigationController popToRootViewControllerAnimated:YES];
+            break;
+        case 1:
+            ;
+            break;
+        default:
+            break;
+    }
 }
 
 - (void)didReceiveMemoryWarning

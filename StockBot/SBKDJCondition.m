@@ -28,7 +28,7 @@
 
 +(id)conditionWithDict:(NSDictionary *)dict
 {
-    SBKDJCondition *condition = [[SBKDJCondition alloc] init];
+    SBKDJCondition *condition = [SBKDJCondition new];
     return condition;
 }
 

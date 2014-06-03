@@ -25,7 +25,7 @@
 -(SBAlgorithm *)selectedAlgorithm
 {
     if (!_selectedAlgorithm) {
-        _selectedAlgorithm = [[SBAlgorithm alloc] init];
+        _selectedAlgorithm = [SBAlgorithm new];
     }
     return _selectedAlgorithm;
 }
@@ -34,7 +34,7 @@
     static SBDataManager *sharedMyManager = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        sharedMyManager = [[self alloc] init];
+        sharedMyManager = [self new];
     });
     return sharedMyManager;
 }
@@ -53,7 +53,7 @@
         
         self.brokerList = @[@"中信证券", @"民族证券", @"民生证券"];
 
-        self.dateFormatter = [[NSDateFormatter alloc] init];
+        self.dateFormatter = [NSDateFormatter new];
         [self.dateFormatter setDateFormat:@"yy-MM-dd_HH:mm:ss"];
         
         self.db = [[FMDatabase alloc] initWithPath:dbPath];
@@ -77,7 +77,7 @@
             }
         }
         
-        self.allAlgorithms = [[NSMutableDictionary alloc] init];
+        self.allAlgorithms = [NSMutableDictionary new];
     }
     
     return self;
@@ -129,7 +129,7 @@
         FMResultSet *result = [self.db executeQuery:@"select * from sse_stocks"];
         _stocks = [NSMutableArray arrayWithCapacity:400];
         while ([result next]) {
-            SBStock *s = [[SBStock alloc] init];
+            SBStock *s = [SBStock new];
             s.name = [result resultDictionary][@"name"];
             s.stockID = [result resultDictionary][@"stock_id"];
             [_stocks addObject:s];

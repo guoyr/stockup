@@ -37,8 +37,8 @@ static NSString *AlgoNameCellIdentifier = @"ACell";
     [self.view setBackgroundColor:BLACK];
     [self.tableView setRowHeight:ALGO_ROW_HEIGHT];
     
-    self.expandedIndexPaths = [[NSMutableArray alloc] init];
-    self.selectedAlgorithmIndices = [[NSMutableArray alloc] init];
+    self.expandedIndexPaths = [NSMutableArray new];
+    self.selectedAlgorithmIndices = [NSMutableArray new];
 
     // get this from the manager
     self.algorithm = [[SBDataManager sharedManager] selectedAlgorithm];
@@ -127,7 +127,7 @@ static NSString *AlgoNameCellIdentifier = @"ACell";
         curAlgoIndex -= [self.expandedIndexPaths count];
     }
     SBCondition *curAlgo = [self.algorithm conditionAtIndex:curAlgoIndex];
-    NSMutableArray *expandedIndexPaths = [[NSMutableArray alloc] init];
+    NSMutableArray *expandedIndexPaths = [NSMutableArray new];
     for (int i = 1; i < [curAlgo numExpandedRows]+1 ; i++) {
         [expandedIndexPaths addObject:[NSIndexPath indexPathForRow:curAlgoIndex + i inSection:indexPath.section]];
     }

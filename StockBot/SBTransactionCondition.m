@@ -21,7 +21,7 @@
 
 +(id)conditionWithDict:(NSDictionary *)dict
 {
-    SBTransactionCondition *condition = [[SBTransactionCondition alloc] init];
+    SBTransactionCondition *condition = [SBTransactionCondition new];
     condition.transactionCondition = [(NSNumber *)dict[CONDITION] integerValue];
     return condition;
 }

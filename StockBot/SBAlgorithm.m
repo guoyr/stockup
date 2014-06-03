@@ -18,9 +18,9 @@
 {
     self = [super init];
     if (self) {
-        self.macdCondition = [[SBMACDCondition alloc] init];
-        self.kdjCondition = [[SBKDJCondition alloc] init];
-        self.transactionCondition = [[SBTransactionCondition alloc] init];
+        self.macdCondition = [SBMACDCondition new];
+        self.kdjCondition = [SBKDJCondition new];
+        self.transactionCondition = [SBTransactionCondition new];
         self.numConditions = 3;
     }
     

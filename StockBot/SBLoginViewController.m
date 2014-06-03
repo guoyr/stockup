@@ -7,11 +7,14 @@
 //
 
 #import <QuartzCore/QuartzCore.h>
+#import "UIView+SBAdditions.h"
+
 #import "SBLoginViewController.h"
 #import "SBConstants.h"
 #import "SBUserAlgoTableViewController.h"
 #import "SBBrokersTableViewController.h"
 #import "SBDataManager.h"
+#import "SBLoginAnimatedTransitioningDelegate.h"
 
 @interface SBLoginViewController ()
 
@@ -28,6 +31,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        self.navigationController.delegate = self;
     }
     return self;
 }
@@ -76,25 +80,16 @@
     
 }
 
+
 -(void)keyboardWillHide:(NSNotification *)notification
 {
     NSDictionary *userInfo = [notification userInfo];
     NSNumber *animationDuration = userInfo[UIKeyboardAnimationDurationUserInfoKey];
-    CGRect keyboardFrame = [userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
     
-    CGRect frame1 = self.logoImageView.frame;
-    
-    frame1.origin.y += keyboardFrame.size.height/4;
-    CGRect frame2 = self.inputBackground.frame;
-    frame2.origin.y += keyboardFrame.size.height/2;
-    CGRect frame3 = self.loginButton.frame;
-    frame3.origin.y += keyboardFrame.size.height/2 + 10;
-
     [UIView animateWithDuration:[animationDuration doubleValue] animations:^{
-        self.logoImageView.frame = frame1;
-        self.inputBackground.frame = frame2;
-        self.loginButton.frame = frame3;
-        
+        self.logoImageView.transform = CGAffineTransformIdentity;
+        self.inputBackground.transform = CGAffineTransformIdentity;
+        self.loginButton.transform = CGAffineTransformIdentity;
     }];
 }
 
@@ -104,17 +99,16 @@
     NSNumber *animationDuration = userInfo[UIKeyboardAnimationDurationUserInfoKey];
     CGRect keyboardFrame = [userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
     
-    CGRect frame1 = self.logoImageView.frame;
+    CGAffineTransform t = CGAffineTransformMakeScale(0.8, 0.8);
+    t = CGAffineTransformTranslate(t, 0, -120);
     
-    frame1.origin.y -= keyboardFrame.size.height/4;
-    CGRect frame2 = self.inputBackground.frame;
-    frame2.origin.y -= keyboardFrame.size.height/2;
-    CGRect frame3 = self.loginButton.frame;
-    frame3.origin.y -= keyboardFrame.size.height/2 + 10;
+    CGAffineTransform t1 = CGAffineTransformMakeTranslation(0, -keyboardFrame.size.height + 60);
+    
     [UIView animateWithDuration:[animationDuration doubleValue] animations:^{
-        self.logoImageView.frame = frame1;
-        self.inputBackground.frame = frame2;
-        self.loginButton.frame = frame3;
+//        self.logoImageView.frame = frame1;
+        self.logoImageView.transform = t;
+        self.inputBackground.transform = t1;
+        self.loginButton.transform = t1;
 
     }];
 }
@@ -141,7 +135,12 @@
     [[NSUserDefaults standardUserDefaults] setObject:self.usernameField.text forKey:@"username"];
     [[NSUserDefaults standardUserDefaults] setObject:self.passwordField.text forKey:@"passoword"];
     SBUserAlgoTableViewController *avc = [[SBUserAlgoTableViewController alloc] initWithStyle:UITableViewStylePlain];
+    
+//    id <UIViewControllerTransitioningDelegate> t = [SBLoginAnimatedTransitioningDelegate new];
+//    avc.transitioningDelegate = t;
+    
     [self.navigationController setViewControllers:@[avc] animated:YES];
+
 }
 
 - (void)didReceiveMemoryWarning

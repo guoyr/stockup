@@ -24,7 +24,7 @@
 
 +(id)conditionWithDict:(NSDictionary *)dict
 {
-    SBMACDCondition *condition = [[SBMACDCondition alloc] init];
+    SBMACDCondition *condition = [SBMACDCondition new];
     condition.macdDirection = [(NSNumber *)dict[DIRECTION] integerValue];
     condition.macdTime = [(NSNumber *)dict[TIME] integerValue];
     return condition;

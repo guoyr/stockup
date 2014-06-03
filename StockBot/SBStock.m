@@ -18,7 +18,7 @@
         NSString *s = [[NSString alloc] initWithData:rawData encoding:encoding];
         NSArray *dataStringArray = [s componentsSeparatedByString:@","];
         
-        NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
+        NSNumberFormatter *numberFormatter = [NSNumberFormatter new];
         [numberFormatter setNumberStyle:NSNumberFormatterDecimalStyle];
 //        [numberFormatter setMaximumFractionDigits:2];
 //        [numberFormatter setPositiveFormat:@"###0.00"];
@@ -34,7 +34,7 @@
         self.sellPrice = [numberFormatter numberFromString:dataStringArray[7]];
         self.volume = [numberFormatter numberFromString:dataStringArray[8]];
         
-        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        NSDateFormatter *dateFormatter = [NSDateFormatter new];
         [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
         self.fetchDate = [dateFormatter dateFromString:[NSString stringWithFormat:@"%@ %@",dataStringArray[30],dataStringArray[31]]];
     }
