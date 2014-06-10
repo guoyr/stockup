@@ -1,5 +1,5 @@
 //
-//  SBLoginAnimatedTransitioningDelegate.h
+//  SBNavigationControllerDelegate.h
 //  StockBot
 //
 //  Created by Robert Guo on 6/3/14.
@@ -8,6 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
-@interface SBLoginAnimatedTransitioningDelegate : NSObject<UIViewControllerTransitioningDelegate>
+@interface SBNavigationControllerDelegate : NSObject <UINavigationControllerDelegate>
 
++ (id)sharedDelegate;
+
+    
 @end

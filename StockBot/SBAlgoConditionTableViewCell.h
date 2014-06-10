@@ -14,6 +14,8 @@
 @property (nonatomic, strong) UILabel *descriptionLabel;
 @property (nonatomic, strong) UISwitch *algoSwitch;
 @property (nonatomic, strong) UISegmentedControl *algoSegmentedControl;
+@property (nonatomic, strong) UITextField *numberTextField;
+@property (nonatomic, strong) UISegmentedControl *numberSegmentedControl;
 
 -(void)resetCell;
 

@@ -27,24 +27,29 @@
     
     BOOL loggedin = [[NSUserDefaults standardUserDefaults] boolForKey:@"loggedin"];
     
-    UIViewController *vc;
-    if (loggedin) {
-        vc = [[SBUserAlgoTableViewController alloc] initWithNibName:nil bundle:nil];
-    } else {
-        vc = [[UIStoryboard storyboardWithName:@"Login" bundle:nil] instantiateViewControllerWithIdentifier:@"LoginViewController"];
+    SBUserAlgoTableViewController *vc1 = [[SBUserAlgoTableViewController alloc] initWithNibName:nil bundle:nil];
+    SBLoginViewController *vc2 =[[UIStoryboard storyboardWithName:@"Login" bundle:nil] instantiateViewControllerWithIdentifier:@"LoginViewController"];
 
+    UIViewController *curvc;
+    if (loggedin) {
+        NSLog(@"logged in");
+        curvc = vc1;
+    } else {
+        curvc = vc2;
     }
     
     switch (debug_mode) {
         case DEBUG_MODE_ALGO:
-            vc = [[SBAlgosViewController alloc] initWithNibName:nil bundle:nil];
+            ;
             break;
             
         default:
             break;
     }
     
-    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
+    UINavigationController *nav = [[UINavigationController alloc] init];
+    [nav setViewControllers:@[vc2, vc1]];
+    [nav popToViewController:curvc animated:NO];
     [[nav navigationBar] setBarStyle:UIBarStyleBlackTranslucent];
     [self.window setRootViewController:nav];
     [self.window makeKeyAndVisible];

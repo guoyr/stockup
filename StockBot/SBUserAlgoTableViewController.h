@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SBInstructionsViewController.h"
 
-@interface SBUserAlgoTableViewController : UITableViewController <UIAlertViewDelegate>
+@interface SBUserAlgoTableViewController : UITableViewController <UIAlertViewDelegate, SBInstructionViewControllerDelegate>
 
 @end

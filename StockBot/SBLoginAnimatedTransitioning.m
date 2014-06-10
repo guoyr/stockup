@@ -10,22 +10,51 @@
 #import "SBLoginViewController.h"
 #import "SBUserAlgoTableViewController.h"
 
-static NSTimeInterval const SBAnimatedTransitionDuration = 0.5f;
+static NSTimeInterval const SBAnimatedTransitionDuration = 1.5f;
 
 @implementation SBLoginAnimatedTransitioning
 
 -(void)animateTransition:(id<UIViewControllerContextTransitioning>)transitionContext
 {
-    SBLoginViewController *fromViewController = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
-    SBUserAlgoTableViewController *toViewController = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
     UIView *container = [transitionContext containerView];
     
+    UIViewController *fromViewController = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
+    UIViewController *toViewController = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
+    
+    
     if (self.reverse) {
-        [container addSubview:fromViewController.view];
+        SBUserAlgoTableViewController *fromVC = (SBUserAlgoTableViewController *)fromViewController;
+        SBLoginViewController *toVC = (SBLoginViewController *)toViewController;
+        [container addSubview:toVC.view];
+        toVC.view.alpha = 0.0;
+        [UIView animateWithDuration:SBAnimatedTransitionDuration animations:^{
+            fromVC.view.alpha = 0.0f;
+            toVC.view.alpha = 1.0f;
+            toVC.inputBackground.transform = CGAffineTransformIdentity;
+            toVC.logoImageView.transform = CGAffineTransformIdentity;
+            toVC.loginButton.transform = CGAffineTransformIdentity;
+        }completion:^(BOOL finished) {
+            [transitionContext completeTransition:finished];
+            NSLog(@"reverse");
+        }];
     } else {
-        [container addSubview:toViewController.view];
+        SBLoginViewController *fromVC = (SBLoginViewController *)fromViewController;
+        SBUserAlgoTableViewController *toVC = (SBUserAlgoTableViewController *)toViewController;
+        [container addSubview:toVC.view];
+        toVC.view.alpha = 0.0;
+        [UIView animateWithDuration:SBAnimatedTransitionDuration  animations:^{
+            fromVC.view.alpha = 0.0f;
+            toVC.view.alpha = 1.0f;
+            CGAffineTransform t = CGAffineTransformTranslate(CGAffineTransformMakeScale(100.0f, 100.0f), 0, 500);
+            fromVC.logoImageView.transform = CGAffineTransformMakeScale(100.0f, 100.0f);
+            fromVC.loginButton.transform = CGAffineTransformTranslate(CGAffineTransformMakeScale(100.0f, 100.0f), 0, 500);
+            fromVC.inputBackground.transform = t;
+        }completion:^(BOOL finished) {
+            [transitionContext completeTransition:finished];
+            NSLog(@"forward");
+        }];
+
     }
-    [transitionContext completeTransition:YES];
 }
 
 -(void)animationEnded:(BOOL)transitionCompleted

@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SBLoginViewController : UIViewController <UITextFieldDelegate, UITableViewDelegate>
+@interface SBLoginViewController : UIViewController <UITextFieldDelegate, UITableViewDelegate, UINavigationControllerDelegate>
 
 @property (nonatomic, strong) IBOutlet UIView *inputBackground;
 @property (nonatomic, strong) IBOutlet UITextField *usernameField;

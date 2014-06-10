@@ -11,7 +11,7 @@
 #import "SBStocksViewController.h"
 #import "SBAlgorithm.h"
 #import "SBDataManager.h"
-#import "SBLoginAnimatedTransitioningDelegate.h"
+#import "SBNavigationControllerDelegate.h"
 
 @interface SBUserAlgoTableViewController ()
 
@@ -42,11 +42,10 @@ static NSString *UserCellIdentifier = @"UserCell";
     
     UIBarButtonItem *addAlgo = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addAlgorithm:)];
     self.navigationItem.rightBarButtonItem = addAlgo;
-    self.title = @"自动炒股软件";
+    self.title = @"用户股票列表";
     self.tableView.rowHeight = USER_ALGO_LIST_HEIGHT;
     
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:UserCellIdentifier];
-    
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -55,11 +54,33 @@ static NSString *UserCellIdentifier = @"UserCell";
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
--(void)viewWillAppear:(BOOL)animated
+-(void)viewDidAppear:(BOOL)animated
 {
     self.algoDict = [[SBDataManager sharedManager] getAllAlgorithmsForUser:nil];
     self.algoNames = [[SBDataManager sharedManager] allAlgoName];
     [self.tableView reloadData];
+
+    if (!self.algoNames.count) {
+        if (![[NSUserDefaults standardUserDefaults] boolForKey:@"presentedInstruction"]) {
+            SBInstructionsViewController *ivc = [[UIStoryboard storyboardWithName:@"Instructions" bundle:nil] instantiateViewControllerWithIdentifier:@"VC"];
+            ivc.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+            ivc.modalPresentationStyle = UIModalPresentationFormSheet;
+            
+            [ivc setDelegate:self];
+            [self.navigationController presentViewController:ivc animated:YES completion:^{
+                ;
+            }];
+            [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"presentedInstruction"];
+        }
+        
+    }
+}
+
+-(void)instructionViewControllerDidConfirm:(SBInstructionsViewController *)vc
+{
+    [self dismissViewControllerAnimated:YES completion:^{
+        [self addAlgorithm:vc];
+    }];
 }
 
 -(void)addAlgorithm:(id)sender
@@ -80,18 +101,14 @@ static NSString *UserCellIdentifier = @"UserCell";
 
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    SBLoginViewController *loginVC;
-
     switch (buttonIndex) {
-        case 0:
-            [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"loggedin"];
-            //    id<UIViewControllerTransitioningDelegate> d = [SBLoginAnimatedTransitioningDelegate new];
-            //    loginVC.transitioningDelegate = d;
-            loginVC = [[UIStoryboard storyboardWithName:@"Login" bundle:nil] instantiateViewControllerWithIdentifier:@"LoginViewController"];
-            [self.navigationController setViewControllers:@[loginVC, self] animated:NO];
-            [self.navigationController popToRootViewControllerAnimated:YES];
-            break;
         case 1:
+            [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"loggedin"];
+            self.navigationController.delegate = [SBNavigationControllerDelegate sharedDelegate];
+            [self.navigationController popViewControllerAnimated:YES];
+
+            break;
+        case 0:
             ;
             break;
         default:

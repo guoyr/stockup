@@ -23,7 +23,6 @@
 
         self.backgroundColor = BLACK;
         
-
         
         self.bgView = [[UIView alloc] initWithFrame:CGRectMake(10, 0, ALGO_LIST_WIDTH-20, ALGO_ROW_HEIGHT)];
         self.bgView.backgroundColor = GREEN_3;
@@ -40,6 +39,14 @@
         
         self.algoSegmentedControl = [[UISegmentedControl alloc] initWithFrame:CGRectMake(ALGO_LIST_WIDTH - 170, 30, 150, ALGO_ROW_HEIGHT - 60)];
         [self.contentView addSubview:self.algoSegmentedControl];
+        
+        self.numberSegmentedControl = [[UISegmentedControl alloc] initWithFrame:CGRectMake(ALGO_LIST_WIDTH - 170, 30, 100, ALGO_ROW_HEIGHT - 60)];
+        
+        [self.numberSegmentedControl insertSegmentWithTitle:@"—" atIndex:0 animated:NO];
+        [self.numberSegmentedControl insertSegmentWithTitle:@"+" atIndex:1 animated:NO];
+        
+        [self.contentView addSubview:self.numberSegmentedControl];
+        
         [self resetCell];
 
         

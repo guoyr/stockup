@@ -14,7 +14,7 @@
 #import "SBUserAlgoTableViewController.h"
 #import "SBBrokersTableViewController.h"
 #import "SBDataManager.h"
-#import "SBLoginAnimatedTransitioningDelegate.h"
+#import "SBNavigationControllerDelegate.h"
 
 @interface SBLoginViewController ()
 
@@ -31,13 +31,13 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-        self.navigationController.delegate = self;
     }
     return self;
 }
 
 - (void)viewDidLoad
 {
+    NSLog(@"login view did load");
     [super viewDidLoad];
     self.title = @"股红";
     self.view.backgroundColor = BLUE_4;
@@ -139,7 +139,11 @@
 //    id <UIViewControllerTransitioningDelegate> t = [SBLoginAnimatedTransitioningDelegate new];
 //    avc.transitioningDelegate = t;
     
-    [self.navigationController setViewControllers:@[avc] animated:YES];
+    SBNavigationControllerDelegate *d = [SBNavigationControllerDelegate sharedDelegate];
+    self.navigationController.delegate = d;
+
+    [self.navigationController pushViewController:avc animated:YES];
+    NSLog(@"stack size %ld", (unsigned long)self.navigationController.viewControllers.count);
 
 }
 
