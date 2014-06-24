@@ -8,6 +8,7 @@
 
 #import "SBNavigationControllerDelegate.h"
 #import "SBLoginAnimatedTransitioning.h"
+#import "SBLoginViewController.h"
 
 @implementation SBNavigationControllerDelegate
 
@@ -25,18 +26,22 @@
                                               fromViewController:(UIViewController *)fromVC
                                                 toViewController:(UIViewController *)toVC
 {
-    SBLoginAnimatedTransitioning *delegate = [SBLoginAnimatedTransitioning new];
-    switch (operation) {
-        case UINavigationControllerOperationPush:
-            delegate.reverse = NO;
-            return delegate;
-
-        case UINavigationControllerOperationPop:
-            delegate.reverse = YES;
-            return delegate;
-        default:
-            return nil;
+    if ([fromVC isKindOfClass:[SBLoginViewController class]]) {
+        SBLoginAnimatedTransitioning *delegate = [SBLoginAnimatedTransitioning new];
+        switch (operation) {
+            case UINavigationControllerOperationPush:
+                delegate.reverse = NO;
+                return delegate;
+                
+            case UINavigationControllerOperationPop:
+                delegate.reverse = YES;
+                return delegate;
+            default:
+                return nil;
+        }
     }
+    return nil;
+
 }
 
 @end

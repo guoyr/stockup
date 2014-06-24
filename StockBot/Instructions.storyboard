@@ -9,21 +9,14 @@
             <objects>
                 <viewController storyboardIdentifier="VC" id="GKw-kf-1uc" customClass="SBInstructionsViewController" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="1s5-VF-abW"/>
-                        <viewControllerLayoutGuide type="bottom" id="0Uw-rn-2ES"/>
+                        <viewControllerLayoutGuide type="top" id="c1O-Qy-P7w"/>
+                        <viewControllerLayoutGuide type="bottom" id="fj8-13-CYF"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="qxS-IK-yg3">
                         <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" showsHorizontalScrollIndicator="NO" text="欢迎来到股票交易软件。请点击下面按钮选择您的第一支股票算法。" translatesAutoresizingMaskIntoConstraints="NO" id="dCV-Iu-ZbG">
-                                <rect key="frame" x="233" y="216" width="302" height="64"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RB7-3a-PmC">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RB7-3a-PmC">
                                 <rect key="frame" x="354" y="356" width="60" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="添加算法">
@@ -33,11 +26,25 @@
                                     <action selector="goButtonClicked:" destination="GKw-kf-1uc" eventType="touchUpInside" id="LGM-fd-VXr"/>
                                 </connections>
                             </button>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" editable="NO" text="欢迎来到股票交易软件。请点击下面按钮选择您的第一支股票算法。" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JE9-rr-nDw">
+                                <rect key="frame" x="264" y="206" width="240" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="240" id="Ylu-Jq-5oH"/>
+                                    <constraint firstAttribute="height" constant="128" id="Ys6-07-CGC"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="centerX" secondItem="dCV-Iu-ZbG" secondAttribute="centerX" id="FWC-f3-vLZ"/>
-                            <constraint firstAttribute="centerX" secondItem="RB7-3a-PmC" secondAttribute="centerX" id="vLN-Hm-dOJ"/>
+                            <constraint firstAttribute="centerX" secondItem="JE9-rr-nDw" secondAttribute="centerX" id="0QP-jo-0YF"/>
+                            <constraint firstAttribute="centerX" secondItem="RB7-3a-PmC" secondAttribute="centerX" id="1IT-62-5Jy"/>
+                            <constraint firstItem="RB7-3a-PmC" firstAttribute="top" secondItem="JE9-rr-nDw" secondAttribute="bottom" constant="22" id="3zd-07-d1g"/>
+                            <constraint firstItem="RB7-3a-PmC" firstAttribute="centerX" secondItem="JE9-rr-nDw" secondAttribute="centerX" id="EDh-AR-6Oi"/>
+                            <constraint firstItem="JE9-rr-nDw" firstAttribute="top" secondItem="c1O-Qy-P7w" secondAttribute="bottom" constant="186" id="MT1-jJ-Ijh"/>
                         </constraints>
                     </view>
                     <size key="freeformSize" width="768" height="1024"/>

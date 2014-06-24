@@ -105,7 +105,6 @@
     CGAffineTransform t1 = CGAffineTransformMakeTranslation(0, -keyboardFrame.size.height + 60);
     
     [UIView animateWithDuration:[animationDuration doubleValue] animations:^{
-//        self.logoImageView.frame = frame1;
         self.logoImageView.transform = t;
         self.inputBackground.transform = t1;
         self.loginButton.transform = t1;

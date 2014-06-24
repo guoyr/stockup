@@ -62,6 +62,7 @@ static NSString *UserCellIdentifier = @"UserCell";
 
     if (!self.algoNames.count) {
         if (![[NSUserDefaults standardUserDefaults] boolForKey:@"presentedInstruction"]) {
+//        if (1) {
             SBInstructionsViewController *ivc = [[UIStoryboard storyboardWithName:@"Instructions" bundle:nil] instantiateViewControllerWithIdentifier:@"VC"];
             ivc.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
             ivc.modalPresentationStyle = UIModalPresentationFormSheet;
@@ -93,7 +94,7 @@ static NSString *UserCellIdentifier = @"UserCell";
 {
     
     UIAlertView *logoutConfirmation = [[UIAlertView alloc] initWithTitle:@"确认注销" message:nil delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确认", nil];
-    
+    [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"presentedInstruction"];
     [logoutConfirmation show];
     
     
