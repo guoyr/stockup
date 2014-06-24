@@ -26,7 +26,7 @@
                                               fromViewController:(UIViewController *)fromVC
                                                 toViewController:(UIViewController *)toVC
 {
-    if ([fromVC isKindOfClass:[SBLoginViewController class]]) {
+    if ([fromVC isKindOfClass:[SBLoginViewController class]] || [toVC isKindOfClass:[SBLoginViewController class]]) {
         SBLoginAnimatedTransitioning *delegate = [SBLoginAnimatedTransitioning new];
         switch (operation) {
             case UINavigationControllerOperationPush:

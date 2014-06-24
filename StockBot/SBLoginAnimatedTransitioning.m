@@ -45,10 +45,9 @@ static NSTimeInterval const SBAnimatedTransitionDuration = 1.5f;
         [UIView animateWithDuration:SBAnimatedTransitionDuration  animations:^{
             fromVC.view.alpha = 0.0f;
             toVC.view.alpha = 1.0f;
-            CGAffineTransform t = CGAffineTransformTranslate(CGAffineTransformMakeScale(100.0f, 100.0f), 0, 500);
-            fromVC.logoImageView.transform = CGAffineTransformMakeScale(100.0f, 100.0f);
+            fromVC.logoImageView.transform = CGAffineTransformTranslate(CGAffineTransformMakeScale(100.0f, 100.0f), 0, -100);
             fromVC.loginButton.transform = CGAffineTransformTranslate(CGAffineTransformMakeScale(100.0f, 100.0f), 0, 500);
-            fromVC.inputBackground.transform = t;
+            fromVC.inputBackground.transform = CGAffineTransformTranslate(CGAffineTransformMakeScale(100.0f, 100.0f), 0, 500);;
         }completion:^(BOOL finished) {
             [transitionContext completeTransition:finished];
             NSLog(@"forward");

@@ -23,6 +23,13 @@
     return self;
 }
 
+- (void)viewWillLayoutSubviews
+{
+    [super viewWillLayoutSubviews];
+    self.view.superview.layer.cornerRadius  = 10.0;
+    self.view.superview.layer.masksToBounds = YES;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
