@@ -13,4 +13,7 @@
 @property (nonatomic, strong) UILabel *stockNameLabel;
 @property (nonatomic, strong) UILabel *stockIDLabel;
 
+@property (nonatomic, strong) UIImageView *stockMiniTrendImageView;
+@property (nonatomic, strong) UILabel *stockTrendLabel;
+
 @end

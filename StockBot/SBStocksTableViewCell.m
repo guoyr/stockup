@@ -8,6 +8,7 @@
 
 #import "SBStocksTableViewCell.h"
 #import "SBConstants.h"
+#import "UIImage+SBAdditions.h"
 
 @interface SBStocksTableViewCell()
 
@@ -29,10 +30,24 @@
         [self.stockIDLabel setTextColor:WHITE];
         [self.stockNameLabel setTextColor:WHITE];
         
+        self.stockTrendLabel = [[UILabel alloc] initWithFrame:CGRectMake(200, 6, 96, 30)];
+        if (arc4random() % 2 > 0) {
+            self.stockTrendLabel.textColor = [UIColor greenColor];
+            self.stockTrendLabel.text = @"+￥1.45";
+        } else {
+            self.stockTrendLabel.textColor = [UIColor redColor];
+            self.stockTrendLabel.text = @"-￥2.98";
+        }
+        
+        self.stockMiniTrendImageView = [[UIImageView alloc] initWithFrame:CGRectMake(200, 36, 96, 36)];
+        [self.stockMiniTrendImageView setImage:[UIImage imageWithColor:BLUE_0]];
+        
+        [self addSubview:self.stockMiniTrendImageView];
+        [self addSubview:self.stockTrendLabel];
         [self addSubview:self.stockIDLabel];
         [self addSubview:self.stockNameLabel];
         
-        self.backgroundColor = BLUE_1;
+        self.backgroundColor = BLUE_4;
         self.textLabel.textColor = [UIColor whiteColor];
         
         self.selectedBackgroundView = [[UIView alloc] initWithFrame:self.bounds];

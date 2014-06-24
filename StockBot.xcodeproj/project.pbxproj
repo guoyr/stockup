@@ -12,6 +12,7 @@
 		BC60A9E319350C46007FDEE0 /* SBBrokersTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BC60A9E219350C46007FDEE0 /* SBBrokersTableViewController.m */; };
 		BC60A9E719352A11007FDEE0 /* NSString+SBAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = BC60A9E619352A11007FDEE0 /* NSString+SBAdditions.m */; };
 		BC60A9E91937B903007FDEE0 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BC60A9E81937B903007FDEE0 /* Login.storyboard */; };
+		BC64E7C8195A28B800ED81DC /* UIImage+SBAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = BC64E7C7195A28B800ED81DC /* UIImage+SBAdditions.m */; };
 		BC64F38F18FF305300641E14 /* SBLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BC64F38E18FF305300641E14 /* SBLoginViewController.m */; };
 		BC64F39219005D0D00641E14 /* SBUserAlgoTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BC64F39119005D0D00641E14 /* SBUserAlgoTableViewController.m */; };
 		BC7D247218D8051700CCF8A9 /* SBAlgoConditionTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BC7D247118D8051700CCF8A9 /* SBAlgoConditionTableViewCell.m */; };
@@ -76,6 +77,8 @@
 		BC60A9E5193529EF007FDEE0 /* NSString+SBAdditions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+SBAdditions.h"; sourceTree = "<group>"; };
 		BC60A9E619352A11007FDEE0 /* NSString+SBAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+SBAdditions.m"; sourceTree = "<group>"; };
 		BC60A9E81937B903007FDEE0 /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
+		BC64E7C6195A28B800ED81DC /* UIImage+SBAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+SBAdditions.h"; sourceTree = "<group>"; };
+		BC64E7C7195A28B800ED81DC /* UIImage+SBAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+SBAdditions.m"; sourceTree = "<group>"; };
 		BC64F38D18FF305300641E14 /* SBLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBLoginViewController.h; sourceTree = "<group>"; };
 		BC64F38E18FF305300641E14 /* SBLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBLoginViewController.m; sourceTree = "<group>"; };
 		BC64F39019005D0D00641E14 /* SBUserAlgoTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBUserAlgoTableViewController.h; sourceTree = "<group>"; };
@@ -176,6 +179,8 @@
 		BC60A9E4193529CB007FDEE0 /* Class Additions */ = {
 			isa = PBXGroup;
 			children = (
+				BC64E7C6195A28B800ED81DC /* UIImage+SBAdditions.h */,
+				BC64E7C7195A28B800ED81DC /* UIImage+SBAdditions.m */,
 				BC60A9E5193529EF007FDEE0 /* NSString+SBAdditions.h */,
 				BC60A9E619352A11007FDEE0 /* NSString+SBAdditions.m */,
 				BC9FBF80193E539D000B1942 /* UIView+SBAdditions.h */,
@@ -507,6 +512,7 @@
 				BC64F39219005D0D00641E14 /* SBUserAlgoTableViewController.m in Sources */,
 				BC809FE918BE96990014C48B /* SBAlgosViewController.m in Sources */,
 				BC4AFC8118DA777D00C888D9 /* SBStockGraphView.m in Sources */,
+				BC64E7C8195A28B800ED81DC /* UIImage+SBAdditions.m in Sources */,
 				BC9FBF85193E5F81000B1942 /* SBLoginAnimatedTransitioning.m in Sources */,
 				BC809FE818BE96990014C48B /* SBAlgosSelectionTableViewController.m in Sources */,
 				BC9A089B18BE54F9000E16C3 /* SBAppDelegate.m in Sources */,
