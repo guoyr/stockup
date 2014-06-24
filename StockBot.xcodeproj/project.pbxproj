@@ -23,6 +23,7 @@
 		BC809FEB18BE96990014C48B /* SBStocksListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BC809FE218BE96990014C48B /* SBStocksListTableViewController.m */; };
 		BC809FEC18BE96990014C48B /* SBStocksViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BC809FE418BE96990014C48B /* SBStocksViewController.m */; };
 		BC809FED18BE96990014C48B /* SBViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BC809FE618BE96990014C48B /* SBViewController.m */; };
+		BC9346CB195A14B700130ED8 /* SBTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BC9346CA195A14B700130ED8 /* SBTableViewController.m */; };
 		BC9A088B18BE54F9000E16C3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC9A088A18BE54F9000E16C3 /* Foundation.framework */; };
 		BC9A088D18BE54F9000E16C3 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC9A088C18BE54F9000E16C3 /* CoreGraphics.framework */; };
 		BC9A088F18BE54F9000E16C3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC9A088E18BE54F9000E16C3 /* UIKit.framework */; };
@@ -98,6 +99,8 @@
 		BC809FE418BE96990014C48B /* SBStocksViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBStocksViewController.m; sourceTree = "<group>"; };
 		BC809FE518BE96990014C48B /* SBViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBViewController.h; sourceTree = "<group>"; };
 		BC809FE618BE96990014C48B /* SBViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBViewController.m; sourceTree = "<group>"; };
+		BC9346C9195A14B700130ED8 /* SBTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBTableViewController.h; sourceTree = "<group>"; };
+		BC9346CA195A14B700130ED8 /* SBTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBTableViewController.m; sourceTree = "<group>"; };
 		BC9A088718BE54F9000E16C3 /* StockBot.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StockBot.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC9A088A18BE54F9000E16C3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		BC9A088C18BE54F9000E16C3 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -198,6 +201,8 @@
 				BC9FBF84193E5F81000B1942 /* SBLoginAnimatedTransitioning.m */,
 				BC60A9E81937B903007FDEE0 /* Login.storyboard */,
 				BCA2158D1946156100948D76 /* Instructions.storyboard */,
+				BC9346C9195A14B700130ED8 /* SBTableViewController.h */,
+				BC9346CA195A14B700130ED8 /* SBTableViewController.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -506,6 +511,7 @@
 				BC809FE818BE96990014C48B /* SBAlgosSelectionTableViewController.m in Sources */,
 				BC9A089B18BE54F9000E16C3 /* SBAppDelegate.m in Sources */,
 				BC1DD2F718BFA155006CA542 /* SBDataManager.m in Sources */,
+				BC9346CB195A14B700130ED8 /* SBTableViewController.m in Sources */,
 				BCF29658193E796E00E5892B /* SBNavigationControllerDelegate.m in Sources */,
 				BC7D247218D8051700CCF8A9 /* SBAlgoConditionTableViewCell.m in Sources */,
 				BCA6F0FD191166E900D4A34D /* SBKDJCondition.m in Sources */,

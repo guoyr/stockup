@@ -13,10 +13,13 @@
 #import "SBDataManager.h"
 #import "SBNavigationControllerDelegate.h"
 
+#define TABLEVIEW_SEGMENT_CONTROL_HEIGHT 64
+
 @interface SBUserAlgoTableViewController ()
 
 @property (nonatomic, strong) NSDictionary *algoDict;
 @property (nonatomic, strong) NSArray *algoNames;
+@property (nonatomic, strong) UISegmentedControl *tableViewStyleControl;
 
 @end
 
@@ -45,7 +48,16 @@ static NSString *UserCellIdentifier = @"UserCell";
     self.title = @"用户股票列表";
     self.tableView.rowHeight = USER_ALGO_LIST_HEIGHT;
     
+    CGRect newFrame = self.tableView.frame;
+    newFrame.size.height -= TABLEVIEW_SEGMENT_CONTROL_HEIGHT;
+    self.tableView.frame = newFrame;
+    
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:UserCellIdentifier];
+
+    self.tableViewStyleControl = [[UISegmentedControl alloc] initWithItems:@[@"所有算法", @"所有股票"]];
+    self.tableViewStyleControl.frame = CGRectMake(0, 960, 768, TABLEVIEW_SEGMENT_CONTROL_HEIGHT);
+    self.tableViewStyleControl.selectedSegmentIndex = 0;
+    [self.view addSubview:self.tableViewStyleControl];
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -59,7 +71,9 @@ static NSString *UserCellIdentifier = @"UserCell";
     self.algoDict = [[SBDataManager sharedManager] getAllAlgorithmsForUser:nil];
     self.algoNames = [[SBDataManager sharedManager] allAlgoName];
     [self.tableView reloadData];
-
+    
+    [self.view bringSubviewToFront:self.tableViewStyleControl];
+    
     if (!self.algoNames.count) {
         if (![[NSUserDefaults standardUserDefaults] boolForKey:@"presentedInstruction"]) {
 //        if (1) {
