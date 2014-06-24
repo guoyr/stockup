@@ -45,7 +45,7 @@
 #define ALGO_EXPANDED_ROW_HEIGHT 282
 
 #define STOCK_CELL_WIDTH 320
-#define CONFIRM_BUTTON_HEIGHT 96
+#define CONFIRM_BUTTON_HEIGHT 80 // same as stock cell height per #8
 
 #define ALGO_LIST_WIDTH 384
 #define USER_ALGO_LIST_HEIGHT 80

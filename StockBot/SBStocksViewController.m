@@ -57,7 +57,7 @@
     _leftFrame = CGRectMake(0, 0, STOCK_CELL_WIDTH, frameHeight);
     _rightFrame = CGRectMake(STOCK_CELL_WIDTH, 0, frameWidth - STOCK_CELL_WIDTH, frameHeight - CONFIRM_BUTTON_HEIGHT - navBarHeight);
     
-    [self setTitle:@"炒股机器人"];
+    [self setTitle:@"选择股票"];
     self.edgesForExtendedLayout = UIRectEdgeNone;
     self.extendedLayoutIncludesOpaqueBars = NO;
     

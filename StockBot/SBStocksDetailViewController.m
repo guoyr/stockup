@@ -124,14 +124,14 @@
     [manager GET:infoURL parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         [stock updateInfoFromSinaData:responseObject];
         [self.nameLabel setText:[NSString stringWithFormat:@"股票名称：%@",self.stock.name]];
-        [self.todayOpeningPriceLabel setText:[NSString stringWithFormat:@"今日开盘价：￥%@",[stock.todayOpeningPrice stringValue]]];
-        [self.yesterdayClosingPriceLabel setText:[NSString stringWithFormat:@"昨日开盘价：￥%@",[stock.yesterdayClosingPrice stringValue]]];
-        [self.todayHighLabel setText:[NSString stringWithFormat:@"今日最高价：￥%@",[stock.todayHigh stringValue]]];
-        [self.todayLowLabel setText:[NSString stringWithFormat:@"今日最低价：￥%@",[stock.todayLow stringValue]]];
-        [self.currentPriceLabel setText:[NSString stringWithFormat:@"当前价：￥%@",[stock.currentPrice stringValue]]];
-        [self.buyPriceLabel setText:[NSString stringWithFormat:@"买入价：￥%@",[stock.buyPrice stringValue]]];
-        [self.sellPriceLabel setText:[NSString stringWithFormat:@"卖出价：￥%@",[stock.sellPrice stringValue]]];
-        [self.volumeLabel setText:[NSString stringWithFormat:@"成交量：%@",[stock.volume stringValue]]];
+        [self.todayOpeningPriceLabel setText:[NSString stringWithFormat:@"今日开盘价：￥%.3f",[stock.todayOpeningPrice floatValue]]];
+        [self.yesterdayClosingPriceLabel setText:[NSString stringWithFormat:@"昨日开盘价：￥%.3f",[stock.yesterdayClosingPrice floatValue]]];
+        [self.todayHighLabel setText:[NSString stringWithFormat:@"今日最高价：￥%.3f",[stock.todayHigh floatValue]]];
+        [self.todayLowLabel setText:[NSString stringWithFormat:@"今日最低价：￥%.3f",[stock.todayLow floatValue]]];
+        [self.currentPriceLabel setText:[NSString stringWithFormat:@"当前价：￥%.3f",[stock.currentPrice floatValue]]];
+        [self.buyPriceLabel setText:[NSString stringWithFormat:@"买入价：￥%.3f",[stock.buyPrice floatValue]]];
+        [self.sellPriceLabel setText:[NSString stringWithFormat:@"卖出价：￥%.3f",[stock.sellPrice floatValue]]];
+        [self.volumeLabel setText:[NSString stringWithFormat:@"成交量：%d",[stock.volume intValue]]];
         [self.dateLabel setText:[NSString stringWithFormat:@"数据日期：%@",stock.fetchDate]];
 
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
