@@ -16,7 +16,7 @@
 
 @end
 
-@interface SBStocksListTableViewController : UITableViewController
+@interface SBStocksListTableViewController : UITableViewController <UISearchBarDelegate>
 
 @property (nonatomic, weak) NSObject<SBStocksListTableViewControllerDelegate> *delegate;
 

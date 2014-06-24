@@ -10,6 +10,12 @@
 
 @implementation SBStock
 
+-(void)setStockID:(NSNumber *)stockID
+{
+    _stockID = stockID;
+    self.stockIDString = [NSString stringWithFormat:@"%d",[stockID intValue]];
+}
+
 -(void)updateInfoFromSinaData:(id)rawData
 {
     

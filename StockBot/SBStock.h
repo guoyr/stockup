@@ -12,6 +12,7 @@
 
 @property (nonatomic, strong) NSString *name; //0
 @property (nonatomic, strong) NSNumber *stockID;
+@property (nonatomic, strong) NSString *stockIDString;
 @property (nonatomic, strong) NSDate *fetchDate;
 @property (nonatomic, strong) NSNumber *todayOpeningPrice; //1
 @property (nonatomic, strong) NSNumber *yesterdayClosingPrice; //2

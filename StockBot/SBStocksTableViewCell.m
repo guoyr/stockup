@@ -11,7 +11,6 @@
 
 @interface SBStocksTableViewCell()
 
-
 @end
 
 
@@ -22,8 +21,8 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
 
-        self.stockNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, 180, 44)];
-        self.stockIDLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 40, 180, 30)];
+        self.stockNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 36, 180, 44)];
+        self.stockIDLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 6, 180, 30)];
         
         [self.stockNameLabel setFont:[UIFont systemFontOfSize:20]];
         

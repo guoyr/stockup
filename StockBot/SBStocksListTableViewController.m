@@ -16,6 +16,9 @@
 
 @property (nonatomic, strong) SBDataManager *dataManager;
 
+@property (nonatomic, strong) UISearchBar *stockSearchBar;
+@property (nonatomic, strong) NSArray *searchedStockArray;
+
 @end
 
 @implementation SBStocksListTableViewController
@@ -44,6 +47,12 @@ static NSString *CellIdentifier = @"StockCell";
     if (self.dataManager.selectedStock) {
         [self.tableView selectRowAtIndexPath:self.dataManager.selectedStock.tableViewIndex animated:NO scrollPosition:UITableViewScrollPositionMiddle];
     }
+    
+    self.stockSearchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 0, self.tableView.frame.size.width, 0)];
+    self.stockSearchBar.delegate = self;
+    [self.stockSearchBar sizeToFit];
+    self.stockSearchBar.placeholder = @"股票号码";
+    self.tableView.tableHeaderView = self.stockSearchBar;
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -58,6 +67,34 @@ static NSString *CellIdentifier = @"StockCell";
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark - Search Bar delegate
+
+-(void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar
+{
+    self.stockSearchBar.showsCancelButton = YES;
+}
+
+-(void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
+{
+    if (searchText.length != 0) {
+        NSPredicate *resultPredicate = [NSPredicate predicateWithFormat:@"stockIDString contains[c] %@", searchText];
+        self.searchedStockArray = [[_dataManager stocks] filteredArrayUsingPredicate:resultPredicate];
+    } else {
+        self.searchedStockArray = nil;
+    }
+    [self.tableView reloadData];
+   
+}
+
+-(void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
+{
+    self.stockSearchBar.text = @"";
+    [self.stockSearchBar resignFirstResponder];
+    self.stockSearchBar.showsCancelButton = NO;
+    [self.tableView reloadData];
+}
+
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -69,7 +106,10 @@ static NSString *CellIdentifier = @"StockCell";
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return [_dataManager stocks].count;
+    if (self.searchedStockArray) {
+        return self.searchedStockArray.count;
+    }
+    return self.dataManager.stocks.count;
 }
 
 
@@ -77,7 +117,12 @@ static NSString *CellIdentifier = @"StockCell";
 {
     SBStocksTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
 
-    SBStock *stock = [self.dataManager.stocks objectAtIndex:indexPath.row];
+    SBStock *stock;
+    if (self.searchedStockArray) {
+        stock = [self.searchedStockArray objectAtIndex:indexPath.row];
+    } else {
+        stock = [self.dataManager.stocks objectAtIndex:indexPath.row];
+    }
     stock.tableViewIndex = indexPath;
     cell.stockIDLabel.text = [stock.stockID stringValue];
     cell.stockNameLabel.text = stock.name;
@@ -86,7 +131,16 @@ static NSString *CellIdentifier = @"StockCell";
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [self.delegate viewController:self didSelectStock:(SBStock *)[_dataManager stocks][indexPath.row]];
+    if ([self.stockSearchBar isFirstResponder]) {
+        [self.stockSearchBar resignFirstResponder];
+    }
+    SBStock *selectedStock;
+    if (self.searchedStockArray) {
+        selectedStock = self.searchedStockArray[indexPath.row];
+    } else {
+        selectedStock = self.dataManager.stocks[indexPath.row];
+    }
+    [self.delegate viewController:self didSelectStock:selectedStock];
 }
 
 
