@@ -22,8 +22,6 @@
     if (self) {
         // Custom initialization
         self.style = style;
-        self.tableView.delegate = self;
-        self.tableView.dataSource = self;
     }
     return self;
 }
@@ -32,6 +30,10 @@
 {
     [super viewDidLoad];
     self.tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:self.style];
+    self.tableView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    
     [self.view addSubview:self.tableView];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;

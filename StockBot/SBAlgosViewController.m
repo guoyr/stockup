@@ -68,9 +68,9 @@
 
     self.edgesForExtendedLayout = UIRectEdgeNone;
     self.extendedLayoutIncludesOpaqueBars = NO;
-    
-    [self addChildViewController:_lvc];
     [_lvc.view setFrame:_leftFrame];
+
+    [self addChildViewController:_lvc];
     [_lvc didMoveToParentViewController:self];
     [self.view addSubview:_lvc.view];
     

@@ -99,7 +99,7 @@
     NSNumber *animationDuration = userInfo[UIKeyboardAnimationDurationUserInfoKey];
     CGRect keyboardFrame = [userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
     
-    CGAffineTransform t = CGAffineTransformMakeScale(0.8, 0.8);
+    CGAffineTransform t = CGAffineTransformMakeScale(0.9, 0.9);
     t = CGAffineTransformTranslate(t, 0, -120);
     
     CGAffineTransform t1 = CGAffineTransformMakeTranslation(0, -keyboardFrame.size.height + 60);

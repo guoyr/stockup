@@ -35,6 +35,35 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.title = @"添加您的第一个算法";
+    
+}
+
+-(void)viewDidAppear:(BOOL)animated
+{
+    // doesn't work if placed in viewDidLoad
+    // https://stackoverflow.com/questions/2623417/iphone-sdk-dismissing-modal-viewcontrollers-on-ipad-by-clicking-outside-of-it
+    
+    UITapGestureRecognizer *gr = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapBehind:)];
+    gr.numberOfTapsRequired = 1;
+    gr.cancelsTouchesInView = NO;
+    [self.view.window addGestureRecognizer:gr];
+}
+
+-(void)handleTapBehind:(UITapGestureRecognizer *)sender
+{
+    if (sender.state == UIGestureRecognizerStateEnded)
+    {
+        CGPoint location = [sender locationInView:nil]; //Passing nil gives us coordinates in the window
+        
+        //Then we convert the tap's location into the local view's coordinate system, and test to see if it's in or outside. If outside, dismiss the view.
+        
+        if (![self.view pointInside:[self.view convertPoint:location fromView:self.view.window] withEvent:nil])
+        {
+            // Remove the recognizer first so its view.window is valid.
+            [self.view.window removeGestureRecognizer:sender];
+            [self.delegate instructionViewControllerDidDismiss:self];
+        }
+    }
 }
 
 -(IBAction)goButtonClicked:(id)sender

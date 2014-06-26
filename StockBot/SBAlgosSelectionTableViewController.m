@@ -19,6 +19,10 @@
 @property (nonatomic, strong) NSIndexPath *selectedIndexPath;
 @property (nonatomic, strong) NSMutableArray *selectedAlgorithmIndices;
 
+@property (nonatomic, strong) UIView *headerView;
+@property (nonatomic, strong) UISegmentedControl *buySellControl;
+@property (nonatomic, strong) UISegmentedControl *marketLimitedControl;
+
 @end
 
 @implementation SBAlgosSelectionTableViewController
@@ -34,14 +38,23 @@ static NSString *AlgoNameCellIdentifier = @"ACell";
     [self.tableView registerClass:[SBAlgoSelectTableViewCell class] forCellReuseIdentifier:AlgoNameCellIdentifier];
 
     self.tableView.separatorColor = GREEN_0;
-    [self.view setBackgroundColor:BLACK];
+    [self.tableView setBackgroundColor:BLACK];
     [self.tableView setRowHeight:ALGO_ROW_HEIGHT];
+    
+    CGRect newFrame = self.tableView.frame;
+    newFrame.origin.y += ALGO_ROW_HEIGHT;
+    newFrame.size.height -= ALGO_ROW_HEIGHT;
+    self.tableView.frame = newFrame;
     
     self.expandedIndexPaths = [NSMutableArray new];
     self.selectedAlgorithmIndices = [NSMutableArray new];
 
     // get this from the manager
     self.algorithm = [[SBDataManager sharedManager] selectedAlgorithm];
+    
+    self.headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ALGO_LIST_WIDTH, ALGO_ROW_HEIGHT)];
+    self.headerView.backgroundColor = YELLOW;
+    [self.view addSubview:self.headerView];
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -51,6 +64,7 @@ static NSString *AlgoNameCellIdentifier = @"ACell";
     
     //performSelector selectorfromstring
 }
+
 
 - (void)didReceiveMemoryWarning
 {

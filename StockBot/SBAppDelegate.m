@@ -20,7 +20,7 @@
 {
     
 //    int debug_mode = DEBUG_MODE_NONE;
-    int debug_mode = DEBUG_MODE_NONE;
+    int debug_mode = 0;
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.tintColor = GREEN_0;
     [[UINavigationBar appearance] setBarTintColor:BLUE_4];
@@ -38,19 +38,24 @@
         curvc = vc2;
     }
     
+    
+    
+    UINavigationController *nav = [[UINavigationController alloc] init];
+    [nav setViewControllers:@[vc2, vc1]];
+    [nav popToViewController:curvc animated:NO];
+    [[nav navigationBar] setBarStyle:UIBarStyleBlackTranslucent];
+    
+    UIViewController *vc;
     switch (debug_mode) {
         case DEBUG_MODE_ALGO:
-            ;
+            vc = [[SBAlgosViewController alloc] initWithNibName:nil bundle:nil];
+            [nav pushViewController:vc animated:YES];
             break;
             
         default:
             break;
     }
     
-    UINavigationController *nav = [[UINavigationController alloc] init];
-    [nav setViewControllers:@[vc2, vc1]];
-    [nav popToViewController:curvc animated:NO];
-    [[nav navigationBar] setBarStyle:UIBarStyleBlackTranslucent];
     [self.window setRootViewController:nav];
     [self.window makeKeyAndVisible];
     

@@ -14,4 +14,8 @@
 
 -initWithStyle:(UITableViewStyle)style;
 
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView;
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section;
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath;
+
 @end

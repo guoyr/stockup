@@ -66,8 +66,8 @@
     [self.confirmButton setBackgroundColor:BLUE_2];
     [self.confirmButton addTarget:self action:@selector(confirmButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
     
-    [self addChildViewController:_tvc];
     [_tvc.view setFrame:_leftFrame];
+    [self addChildViewController:_tvc];
     [_tvc didMoveToParentViewController:self];
     
     [self.view addSubview:_tvc.view];

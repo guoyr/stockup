@@ -13,6 +13,7 @@
 @protocol SBInstructionViewControllerDelegate <NSObject>
 
 -(void)instructionViewControllerDidConfirm:(SBInstructionsViewController*)vc;
+-(void)instructionViewControllerDidDismiss:(SBInstructionsViewController*)vc;
 
 @end
 

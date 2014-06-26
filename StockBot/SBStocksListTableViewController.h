@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SBTableViewController.h"
 @class SBStock;
 @class SBStocksListTableViewController;
 
@@ -16,7 +17,7 @@
 
 @end
 
-@interface SBStocksListTableViewController : UITableViewController <UISearchBarDelegate>
+@interface SBStocksListTableViewController : SBTableViewController <UISearchBarDelegate>
 
 @property (nonatomic, weak) NSObject<SBStocksListTableViewControllerDelegate> *delegate;
 

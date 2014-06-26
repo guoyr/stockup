@@ -75,8 +75,8 @@ static NSString *UserCellIdentifier = @"UserCell";
     [self.view bringSubviewToFront:self.tableViewStyleControl];
     
     if (!self.algoNames.count) {
-        if (![[NSUserDefaults standardUserDefaults] boolForKey:@"presentedInstruction"]) {
-//        if (1) {
+//        if (![[NSUserDefaults standardUserDefaults] boolForKey:@"presentedInstruction"]) {
+        if (1) {
             SBInstructionsViewController *ivc = [[UIStoryboard storyboardWithName:@"Instructions" bundle:nil] instantiateViewControllerWithIdentifier:@"VC"];
             ivc.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
             ivc.modalPresentationStyle = UIModalPresentationFormSheet;
@@ -96,6 +96,11 @@ static NSString *UserCellIdentifier = @"UserCell";
     [self dismissViewControllerAnimated:YES completion:^{
         [self addAlgorithm:vc];
     }];
+}
+
+-(void)instructionViewControllerDidDismiss:(SBInstructionsViewController *)vc
+{
+    [self dismissViewControllerAnimated:YES completion:NULL];
 }
 
 -(void)addAlgorithm:(id)sender

@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SBTableViewController.h"
 
 @class SBCondition;
 @class SBAlgosSelectionTableViewController;
@@ -18,7 +19,7 @@
 
 @end
 
-@interface SBAlgosSelectionTableViewController : UITableViewController
+@interface SBAlgosSelectionTableViewController : SBTableViewController
 
 @property (nonatomic, weak) NSObject<SBAlgosSelectionTableViewControllerDelegate> *delegate;
 
