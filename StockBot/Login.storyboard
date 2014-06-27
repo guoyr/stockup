@@ -12,7 +12,7 @@
                         <rect key="frame" x="0.0" y="64" width="768" height="960"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Login BG" id="RA8-GE-aD6">
+                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Login BG" id="RA8-GE-aD6">
                                 <rect key="frame" x="-38" y="0.0" width="845" height="1104"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
@@ -76,7 +76,7 @@
                         <outlet property="brokerSelectionButton" destination="d0v-pJ-kzE" id="0ll-ZX-NMB"/>
                         <outlet property="inputBackground" destination="7fA-hY-D2E" id="x8F-Mk-GUx"/>
                         <outlet property="loginButton" destination="Qgo-rF-7ye" id="iAi-wA-AH6"/>
-                        <outlet property="logoImageView" destination="RA8-GE-aD6" id="RSi-LP-cVw"/>
+                        <outlet property="logoImageView" destination="RA8-GE-aD6" id="HQy-hF-p2g"/>
                         <outlet property="passwordField" destination="sjQ-9x-sCy" id="Y2a-9Y-oL8"/>
                         <outlet property="usernameField" destination="DQk-9M-gCl" id="NgZ-24-1MB"/>
                     </connections>
