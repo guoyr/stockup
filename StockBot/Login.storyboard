@@ -16,7 +16,7 @@
                                 <rect key="frame" x="-38" y="0.0" width="845" height="1104"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <view contentMode="scaleToFill" id="7fA-hY-D2E">
+                            <view contentMode="scaleToFill" id="7fA-hY-D2E" customClass="FXBlurView">
                                 <rect key="frame" x="192" y="593" width="384" height="156"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
@@ -58,7 +58,6 @@
                                         </state>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Qgo-rF-7ye">
                                 <rect key="frame" x="319" y="774" width="130" height="40"/>

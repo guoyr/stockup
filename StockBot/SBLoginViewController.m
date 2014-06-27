@@ -48,7 +48,11 @@
     [cvc.tableView setDelegate:self];
     self.brokerListPopover = [[UIPopoverController alloc] initWithContentViewController:cvc];
     [self.brokerListPopover setPopoverContentSize:CGSizeMake(240, 240)];
+    
     self.inputBackground.layer.cornerRadius = 10;
+    [self.inputBackground setDynamic:NO];
+    [self.inputBackground setClipsToBounds:YES];
+
     
     [self.usernameField setDelegate:self];
     [self.passwordField setDelegate:self];
