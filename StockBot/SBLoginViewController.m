@@ -78,12 +78,32 @@
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(keyboardWillHide:)
                                                  name:UIKeyboardWillHideNotification object:nil];
+    
+    UITapGestureRecognizer *gr = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tappedBackground:)];
+    gr.numberOfTapsRequired = 1;
+    [self.logoImageView addGestureRecognizer:gr];
 
     
     
     
 }
 
+-(void)tappedBackground:(UITapGestureRecognizer *)sender
+{
+    if (sender.state == UIGestureRecognizerStateEnded) {
+        [self hideKeyboard];
+    }
+}
+
+-(void)hideKeyboard
+{
+    for (UIView *view in self.inputBackground.subviews) {
+        if ([view isFirstResponder]) {
+            [view resignFirstResponder];
+            break;
+        }
+    }
+}
 
 -(void)keyboardWillHide:(NSNotification *)notification
 {
@@ -137,6 +157,9 @@
     [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"loggedin"];
     [[NSUserDefaults standardUserDefaults] setObject:self.usernameField.text forKey:@"username"];
     [[NSUserDefaults standardUserDefaults] setObject:self.passwordField.text forKey:@"passoword"];
+
+    [self hideKeyboard];
+    
     SBUserAlgoTableViewController *avc = [[SBUserAlgoTableViewController alloc] initWithStyle:UITableViewStylePlain];
     
 //    id <UIViewControllerTransitioningDelegate> t = [SBLoginAnimatedTransitioningDelegate new];
