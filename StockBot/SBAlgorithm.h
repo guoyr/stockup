@@ -17,9 +17,16 @@
 @property (nonatomic, strong) NSNumber *stockID;
 @property (nonatomic, strong) SBMACDCondition *macdCondition;
 @property (nonatomic, strong) SBKDJCondition *kdjCondition;
-@property (nonatomic, strong) SBTransactionCondition *transactionCondition;
+//@property (nonatomic, strong) SBTransactionCondition *transactionCondition;
 @property (nonatomic, assign) NSInteger numConditions;
 @property (nonatomic, strong) NSString *uid;
+// TODO: change to SBCondition subclass in the future
+@property (nonatomic, assign) NSInteger buySellCondition;
+@property (nonatomic, assign) NSInteger priceCondition;
+
+// array of mandatory controls for the algorithms
+// show up as a list of segmentedIndices on the top
+@property (nonatomic, strong) NSArray *mandatoryControls;
 
 -(SBCondition *)conditionAtIndex:(NSInteger)index;
 

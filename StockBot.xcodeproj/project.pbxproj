@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		BC1DD2F718BFA155006CA542 /* SBDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BC1DD2F618BFA155006CA542 /* SBDataManager.m */; };
+		BC488CA2195CD6C400310801 /* SBSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = BC488CA1195CD6C400310801 /* SBSegmentedControl.m */; };
 		BC4AFC8118DA777D00C888D9 /* SBStockGraphView.m in Sources */ = {isa = PBXBuildFile; fileRef = BC4AFC8018DA777D00C888D9 /* SBStockGraphView.m */; };
 		BC60A9E319350C46007FDEE0 /* SBBrokersTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BC60A9E219350C46007FDEE0 /* SBBrokersTableViewController.m */; };
 		BC60A9E719352A11007FDEE0 /* NSString+SBAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = BC60A9E619352A11007FDEE0 /* NSString+SBAdditions.m */; };
@@ -70,6 +71,8 @@
 		BC1DD2F518BFA155006CA542 /* SBDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBDataManager.h; sourceTree = "<group>"; };
 		BC1DD2F618BFA155006CA542 /* SBDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBDataManager.m; sourceTree = "<group>"; };
 		BC33F3641914A1A500C80E6C /* SBConditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBConditions.h; sourceTree = "<group>"; };
+		BC488CA0195CD6C400310801 /* SBSegmentedControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBSegmentedControl.h; sourceTree = "<group>"; };
+		BC488CA1195CD6C400310801 /* SBSegmentedControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBSegmentedControl.m; sourceTree = "<group>"; };
 		BC4AFC7F18DA777D00C888D9 /* SBStockGraphView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBStockGraphView.h; sourceTree = "<group>"; };
 		BC4AFC8018DA777D00C888D9 /* SBStockGraphView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBStockGraphView.m; sourceTree = "<group>"; };
 		BC60A9E119350C46007FDEE0 /* SBBrokersTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBBrokersTableViewController.h; sourceTree = "<group>"; };
@@ -208,6 +211,8 @@
 				BCA2158D1946156100948D76 /* Instructions.storyboard */,
 				BC9346C9195A14B700130ED8 /* SBTableViewController.h */,
 				BC9346CA195A14B700130ED8 /* SBTableViewController.m */,
+				BC488CA0195CD6C400310801 /* SBSegmentedControl.h */,
+				BC488CA1195CD6C400310801 /* SBSegmentedControl.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -522,6 +527,7 @@
 				BC7D247218D8051700CCF8A9 /* SBAlgoConditionTableViewCell.m in Sources */,
 				BCA6F0FD191166E900D4A34D /* SBKDJCondition.m in Sources */,
 				BC9FBF82193E539D000B1942 /* UIView+SBAdditions.m in Sources */,
+				BC488CA2195CD6C400310801 /* SBSegmentedControl.m in Sources */,
 				BC809FEA18BE96990014C48B /* SBStocksDetailViewController.m in Sources */,
 				BCEB9C29192DD393001D042D /* SBAlgoSelectTableViewCell.m in Sources */,
 				BC809FEC18BE96990014C48B /* SBStocksViewController.m in Sources */,

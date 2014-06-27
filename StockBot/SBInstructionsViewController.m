@@ -10,6 +10,8 @@
 
 @interface SBInstructionsViewController ()
 
+@property (nonatomic, strong) UITapGestureRecognizer *gr;
+
 @end
 
 @implementation SBInstructionsViewController
@@ -43,10 +45,10 @@
     // doesn't work if placed in viewDidLoad
     // https://stackoverflow.com/questions/2623417/iphone-sdk-dismissing-modal-viewcontrollers-on-ipad-by-clicking-outside-of-it
     
-    UITapGestureRecognizer *gr = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapBehind:)];
-    gr.numberOfTapsRequired = 1;
-    gr.cancelsTouchesInView = NO;
-    [self.view.window addGestureRecognizer:gr];
+    self.gr = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapBehind:)];
+    self.gr.numberOfTapsRequired = 1;
+    self.gr.cancelsTouchesInView = NO;
+    [self.view.window addGestureRecognizer:self.gr];
 }
 
 -(void)handleTapBehind:(UITapGestureRecognizer *)sender
@@ -68,6 +70,7 @@
 
 -(IBAction)goButtonClicked:(id)sender
 {
+    [self.view.window removeGestureRecognizer:self.gr];
     [self.delegate instructionViewControllerDidConfirm:self];
 }
 

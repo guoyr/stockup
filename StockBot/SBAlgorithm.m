@@ -20,7 +20,7 @@
     if (self) {
         self.macdCondition = [SBMACDCondition new];
         self.kdjCondition = [SBKDJCondition new];
-        self.transactionCondition = [SBTransactionCondition new];
+//        self.transactionCondition = [SBTransactionCondition new];
         self.numConditions = 3;
     }
     
@@ -31,20 +31,20 @@
 {
     NSDictionary *macdDict = [self.macdCondition archiveToDict];
     NSDictionary *kdjDict = [self.kdjCondition archiveToDict];
-    NSDictionary *transactionDict = [self.transactionCondition archiveToDict];
+//    NSDictionary *transactionDict = [self.transactionCondition archiveToDict];
 
-    return @{MACD_KEY:macdDict, KDJ_KEY:kdjDict, TRANSACTION_KEY:transactionDict};
+    return @{MACD_KEY:macdDict, KDJ_KEY:kdjDict};
 }
 
 -(void)unarchiveFromDict:(NSDictionary *)dict
 {
     NSDictionary *macdDict = dict[MACD_KEY];
     NSDictionary *kdjDict = dict[KDJ_KEY];
-    NSDictionary *transactionDict = dict[TRANSACTION_KEY];
+//    NSDictionary *transactionDict = dict[TRANSACTION_KEY];
     
     self.macdCondition = [SBMACDCondition conditionWithDict:macdDict];
     self.kdjCondition = [SBKDJCondition conditionWithDict:kdjDict];
-    self.transactionCondition = [SBTransactionCondition conditionWithDict:transactionDict];
+//    self.transactionCondition = [SBTransactionCondition conditionWithDict:transactionDict];
 }
 
 -(SBCondition *)conditionAtIndex:(NSInteger)index
@@ -57,8 +57,8 @@
         case 1:
             condition = self.kdjCondition;
             break;
-        case 2:
-            condition = self.transactionCondition;
+//        case 2:
+//            condition = self.transactionCondition;
             break;
         default:
             break;

@@ -11,6 +11,10 @@
 #import "SBAlgorithm.h"
 #import "SBAlgoSelectTableViewCell.h"
 #import "SBDataManager.h"
+#import "SBSegmentedControl.h"
+
+#define HEADER_BORDER 12
+#define SEG_CONTROL_WIDTH 192-HEADER_BORDER*2
 
 @interface SBAlgosSelectionTableViewController ()
 
@@ -20,8 +24,8 @@
 @property (nonatomic, strong) NSMutableArray *selectedAlgorithmIndices;
 
 @property (nonatomic, strong) UIView *headerView;
-@property (nonatomic, strong) UISegmentedControl *buySellControl;
-@property (nonatomic, strong) UISegmentedControl *marketLimitedControl;
+@property (nonatomic, strong) SBSegmentedControl *buySellControl;
+@property (nonatomic, strong) SBSegmentedControl *priceControl;
 
 @end
 
@@ -33,6 +37,8 @@ static NSString *AlgoNameCellIdentifier = @"ACell";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    [self.view setClipsToBounds:YES];
     
     [self.tableView registerClass:[SBAlgoConditionTableViewCell class] forCellReuseIdentifier:CustomizeCellIdentifier];
     [self.tableView registerClass:[SBAlgoSelectTableViewCell class] forCellReuseIdentifier:AlgoNameCellIdentifier];
@@ -49,13 +55,7 @@ static NSString *AlgoNameCellIdentifier = @"ACell";
     self.expandedIndexPaths = [NSMutableArray new];
     self.selectedAlgorithmIndices = [NSMutableArray new];
 
-    // get this from the manager
-    self.algorithm = [[SBDataManager sharedManager] selectedAlgorithm];
-    
-    self.headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ALGO_LIST_WIDTH, ALGO_ROW_HEIGHT)];
-    self.headerView.backgroundColor = YELLOW;
-    [self.view addSubview:self.headerView];
-    
+    [self setupAlgorithm];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
 
@@ -63,6 +63,163 @@ static NSString *AlgoNameCellIdentifier = @"ACell";
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
     //performSelector selectorfromstring
+}
+
+// setup the selected controls for the algorithm depending on what is selected
+-(void)setupAlgorithm
+{
+    // get this from the manager
+    self.algorithm = [[SBDataManager sharedManager] selectedAlgorithm];
+    
+    self.headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ALGO_LIST_WIDTH, ALGO_ROW_HEIGHT)];
+    self.headerView.backgroundColor = BLACK;
+    [self.view addSubview:self.headerView];
+    
+    self.buySellControl = [[SBSegmentedControl alloc] initWithItems:@[@"买入", @"卖出"]];
+    self.buySellControl.frame = CGRectMake(HEADER_BORDER, HEADER_BORDER, ALGO_LIST_WIDTH - HEADER_BORDER*2, ALGO_ROW_HEIGHT - HEADER_BORDER*2);
+    self.buySellControl.alpha = 0.0f;
+    [self.buySellControl addTarget:self action:@selector(buySellControlValueChanged:) forControlEvents:UIControlEventValueChanged];
+    
+    self.priceControl = [[SBSegmentedControl alloc] initWithItems:@[@"市场价",@"限价单"]];
+    self.priceControl.frame = CGRectMake(HEADER_BORDER, HEADER_BORDER, ALGO_LIST_WIDTH - HEADER_BORDER*2, ALGO_ROW_HEIGHT - HEADER_BORDER*2);
+    self.priceControl.alpha = 0.0f;
+    [self.priceControl addTarget:self action:@selector(marketLimitedControlValueChanged:) forControlEvents:UIControlEventValueChanged];
+
+    self.algorithm.mandatoryControls = @[self.buySellControl, self.priceControl];
+    
+    [self.headerView addSubview:self.buySellControl];
+    [self.headerView addSubview:self.priceControl];
+    
+    self.buySellControl.alpha = 1.0f;
+    
+}
+
+#define BUY_INDEX 0
+#define SELL_INDEX 1
+#define MARKET_PRICE_INDEX 0
+#define LIMITED_PRICE_INDEX 1
+
+#pragma mark SegmentedControl helper methods
+
+-(void)showControlsSideBySide
+{
+    CGRect frame = CGRectMake(HEADER_BORDER, HEADER_BORDER, SEG_CONTROL_WIDTH, ALGO_ROW_HEIGHT - HEADER_BORDER*2);
+    for (SBSegmentedControl *control in self.algorithm.mandatoryControls) {
+        control.frame = frame;
+        frame.origin.x += SEG_CONTROL_WIDTH + HEADER_BORDER * 2;
+        control.userInteractionEnabled = YES;
+        control.alpha = 1.0f;
+        [control shrink];
+        [control layoutIfNeeded];
+
+    }
+}
+
+-(void)showControlFullScreen:(SBSegmentedControl *)control
+{
+    
+    for (SBSegmentedControl *curControl in self.algorithm.mandatoryControls) {
+        if (control == curControl) {
+            curControl.frame = CGRectMake(HEADER_BORDER, HEADER_BORDER, ALGO_LIST_WIDTH - HEADER_BORDER*2, ALGO_ROW_HEIGHT - HEADER_BORDER*2);
+            curControl.alpha = 1.0f;
+            curControl.userInteractionEnabled = YES;
+            [curControl expand];
+        } else {
+            curControl.alpha = 0.0f;
+            curControl.userInteractionEnabled = NO;
+            if (curControl.frame.origin.x < control.frame.origin.x) {
+                // move left
+                curControl.frame = CGRectMake(-ALGO_LIST_WIDTH, HEADER_BORDER, ALGO_LIST_WIDTH - HEADER_BORDER*2, ALGO_ROW_HEIGHT - HEADER_BORDER*2);
+
+            } else {
+                // move right
+                curControl.frame = CGRectMake(ALGO_LIST_WIDTH, HEADER_BORDER, ALGO_LIST_WIDTH - HEADER_BORDER*2, ALGO_ROW_HEIGHT - HEADER_BORDER*2);
+
+            }
+        }
+    }
+    
+
+}
+
+-(void)buySellControlValueChanged:(SBSegmentedControl *)control
+{
+    if (!control.isExpanded) {
+        // showing only the summary, expand
+        [UIView animateWithDuration:0.3 animations:^{
+//            [self showControlFullScreen:control];
+
+        } completion:^(BOOL finished) {
+
+        }];
+    } else {
+        switch (control.selectedSegmentIndex) {
+            case BUY_INDEX:
+                ;
+                break;
+            case SELL_INDEX:
+                ;
+                break;
+            default:
+                break;
+        }
+        
+        self.algorithm.buySellCondition = control.selectedSegmentIndex + 1;
+        if (!self.algorithm.priceCondition) {
+            // showing price information for the first time
+            
+            self.priceControl.frame = CGRectMake(ALGO_LIST_WIDTH, HEADER_BORDER, ALGO_LIST_WIDTH - HEADER_BORDER*2, ALGO_ROW_HEIGHT - HEADER_BORDER*2);
+            [UIView animateWithDuration:0.3 animations:^{
+                [self showControlFullScreen:self.priceControl];
+                self.buySellControl.frame = CGRectMake(-ALGO_LIST_WIDTH, HEADER_BORDER, ALGO_LIST_WIDTH - HEADER_BORDER*2, ALGO_ROW_HEIGHT - HEADER_BORDER*2);
+
+            }];
+        } else {
+            [UIView animateWithDuration:0.3 animations:^{
+                [self showControlsSideBySide];
+
+            }completion:^(BOOL finished) {
+                ;
+            }];
+        }
+    }
+    
+    
+}
+
+-(void)marketLimitedControlValueChanged:(SBSegmentedControl *)control
+{
+    if (!control.isExpanded) {
+        // showing only the summary, expand
+        [UIView animateWithDuration:0.3 animations:^{
+//            [self showControlFullScreen:control];
+            
+        } completion:^(BOOL finished) {
+
+        }];
+    } else {
+        switch (control.selectedSegmentIndex) {
+            case MARKET_PRICE_INDEX:
+                ;
+                break;
+            case LIMITED_PRICE_INDEX:
+                ;
+                break;
+            default:
+                break;
+        }
+        
+        
+        self.algorithm.priceCondition = control.selectedSegmentIndex + 1;
+        
+        [UIView animateWithDuration:0.3 animations:^{
+            [self showControlsSideBySide];
+            
+        } completion:^(BOOL finished) {
+
+        }];
+    }
+
 }
 
 
