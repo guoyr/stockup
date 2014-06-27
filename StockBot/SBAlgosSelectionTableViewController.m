@@ -186,7 +186,6 @@ static NSString *AlgoNameCellIdentifier = @"ACell";
         default:
             break;
     }
-    [self.tableView reloadData];
     
     self.algorithm.buySellCondition = control.selectedSegmentIndex + 1;
     
