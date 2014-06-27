@@ -26,6 +26,7 @@
 @property (nonatomic, strong) UIView *headerView;
 @property (nonatomic, strong) SBSegmentedControl *buySellControl;
 @property (nonatomic, strong) SBSegmentedControl *priceControl;
+@property (nonatomic, strong) UIColor *cellBackgroundColor;
 
 @end
 
@@ -54,6 +55,8 @@ static NSString *AlgoNameCellIdentifier = @"ACell";
     
     self.expandedIndexPaths = [NSMutableArray new];
     self.selectedAlgorithmIndices = [NSMutableArray new];
+
+    self.cellBackgroundColor = [UIColor redColor];
 
     [self setupAlgorithm];
     // Uncomment the following line to preserve selection between presentations.
@@ -153,18 +156,7 @@ static NSString *AlgoNameCellIdentifier = @"ACell";
 
         }];
     } else {
-        switch (control.selectedSegmentIndex) {
-            case BUY_INDEX:
-                ;
-                break;
-            case SELL_INDEX:
-                ;
-                break;
-            default:
-                break;
-        }
-        
-        self.algorithm.buySellCondition = control.selectedSegmentIndex + 1;
+
         if (!self.algorithm.priceCondition) {
             // showing price information for the first time
             
@@ -183,6 +175,20 @@ static NSString *AlgoNameCellIdentifier = @"ACell";
             }];
         }
     }
+    
+    switch (control.selectedSegmentIndex) {
+        case BUY_INDEX:
+            self.cellBackgroundColor = [UIColor redColor];
+            break;
+        case SELL_INDEX:
+            self.cellBackgroundColor = [UIColor greenColor];
+            break;
+        default:
+            break;
+    }
+    [self.tableView reloadData];
+    
+    self.algorithm.buySellCondition = control.selectedSegmentIndex + 1;
     
     
 }
@@ -252,7 +258,7 @@ static NSString *AlgoNameCellIdentifier = @"ACell";
     SBAlgoSelectTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:AlgoNameCellIdentifier];
     [cell.confirmButton addTarget:self action:@selector(confirmedCondition:) forControlEvents:UIControlEventTouchUpInside];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-
+    cell.backgroundColor = self.cellBackgroundColor;
 
     if (self.selectedIndexPath && indexPath.row > self.selectedIndexPath.row) {
         if (indexPath.row > self.selectedIndexPath.row + [self.expandedIndexPaths count]) {
