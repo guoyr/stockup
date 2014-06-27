@@ -18,6 +18,7 @@
 @property (nonatomic, strong) NSMutableArray *rowCache; //caching csv data as we transfer it to fmdb
 @property (nonatomic, strong) NSMutableDictionary *allAlgorithms;
 @property (nonatomic, strong) NSDateFormatter *dateFormatter;
+
 @end
 
 @implementation SBDataManager
@@ -81,6 +82,11 @@
     }
     
     return self;
+}
+
+-(NSString *)defaultAlgorithmName
+{
+    return [NSString stringWithFormat:@"算法%lu",self.allAlgorithms.count+1];
 }
 
 -(NSDictionary *)getAllAlgorithmsForUser:(SBUser *)user

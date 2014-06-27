@@ -33,4 +33,6 @@
 -(void)modifyAlgorithm:(SBAlgorithm *)algorithm forKey:(NSString *)key;
 -(void)removeAlgorithm:(NSString *)algorithmName;
 
+-(NSString *)defaultAlgorithmName;
+
 @end

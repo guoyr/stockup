@@ -258,7 +258,6 @@ static NSString *AlgoNameCellIdentifier = @"ACell";
     SBAlgoSelectTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:AlgoNameCellIdentifier];
     [cell.confirmButton addTarget:self action:@selector(confirmedCondition:) forControlEvents:UIControlEventTouchUpInside];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    cell.backgroundColor = self.cellBackgroundColor;
 
     if (self.selectedIndexPath && indexPath.row > self.selectedIndexPath.row) {
         if (indexPath.row > self.selectedIndexPath.row + [self.expandedIndexPaths count]) {

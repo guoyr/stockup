@@ -50,6 +50,7 @@
     [self.algoNameTextField becomeFirstResponder];
     [self.algoNameTextField setDelegate:self];
     [self.algoNameTextField addTarget:self action:@selector(textFieldChanged:) forControlEvents:UIControlEventEditingChanged];
+    self.algoNameTextField.text = [[SBDataManager sharedManager] defaultAlgorithmName];
     [self.view addSubview:self.algoNameTextField];
     
     self.descriptionLabel = [[UITextView alloc] initWithFrame:CGRectMake(192, 116, 384, 428)];
