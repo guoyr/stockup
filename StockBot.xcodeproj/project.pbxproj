@@ -110,7 +110,7 @@
 		BC809FE618BE96990014C48B /* SBViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBViewController.m; sourceTree = "<group>"; };
 		BC9346C9195A14B700130ED8 /* SBTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBTableViewController.h; sourceTree = "<group>"; };
 		BC9346CA195A14B700130ED8 /* SBTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBTableViewController.m; sourceTree = "<group>"; };
-		BC9A088718BE54F9000E16C3 /* StockBot.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StockBot.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		BC9A088718BE54F9000E16C3 /* 股红.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "股红.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC9A088A18BE54F9000E16C3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		BC9A088C18BE54F9000E16C3 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		BC9A088E18BE54F9000E16C3 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -234,7 +234,7 @@
 		BC9A088818BE54F9000E16C3 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				BC9A088718BE54F9000E16C3 /* StockBot.app */,
+				BC9A088718BE54F9000E16C3 /* 股红.app */,
 				BC9A08A218BE54F9000E16C3 /* StockBotTests.xctest */,
 			);
 			name = Products;
@@ -375,7 +375,7 @@
 			);
 			name = StockBot;
 			productName = StockBot;
-			productReference = BC9A088718BE54F9000E16C3 /* StockBot.app */;
+			productReference = BC9A088718BE54F9000E16C3 /* 股红.app */;
 			productType = "com.apple.product-type.application";
 		};
 		BC9A08A118BE54F9000E16C3 /* StockBotTests */ = {
@@ -664,7 +664,7 @@
 				GCC_PREFIX_HEADER = "StockBot/StockBot-Prefix.pch";
 				INFOPLIST_FILE = "StockBot/StockBot-Info.plist";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "股红";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -680,7 +680,7 @@
 				GCC_PREFIX_HEADER = "StockBot/StockBot-Prefix.pch";
 				INFOPLIST_FILE = "StockBot/StockBot-Info.plist";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "股红";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FXBlurView.h"
 
 @interface SBLoginViewController : UIViewController <UITextFieldDelegate, UITableViewDelegate, UINavigationControllerDelegate>
 
-@property (nonatomic, strong) IBOutlet UIView *inputBackground;
+@property (nonatomic, strong) IBOutlet FXBlurView *inputBackground;
 @property (nonatomic, strong) IBOutlet UITextField *usernameField;
 @property (nonatomic, strong) IBOutlet UITextField *passwordField;
 @property (nonatomic, strong) IBOutlet UIImageView *logoImageView;
