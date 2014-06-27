@@ -21,6 +21,7 @@
         self.macdCondition = [SBMACDCondition new];
         self.kdjCondition = [SBKDJCondition new];
 //        self.transactionCondition = [SBTransactionCondition new];
+        self.volumeCondtion = [SBVolumeCondition new];
         self.numConditions = 3;
     }
     
@@ -57,8 +58,8 @@
         case 1:
             condition = self.kdjCondition;
             break;
-//        case 2:
-//            condition = self.transactionCondition;
+        case 2:
+            condition = self.volumeCondtion;
             break;
         default:
             break;

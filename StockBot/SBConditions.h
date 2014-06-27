@@ -9,3 +9,4 @@
 #import "SBMACDCondition.h"
 #import "SBKDJCondition.h"
 #import "SBTransactionCondition.h"
+#import "SBVolumeCondition.h"

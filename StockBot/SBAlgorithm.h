@@ -17,6 +17,7 @@
 @property (nonatomic, strong) NSNumber *stockID;
 @property (nonatomic, strong) SBMACDCondition *macdCondition;
 @property (nonatomic, strong) SBKDJCondition *kdjCondition;
+@property (nonatomic, strong) SBVolumeCondition *volumeCondtion;
 //@property (nonatomic, strong) SBTransactionCondition *transactionCondition;
 @property (nonatomic, assign) NSInteger numConditions;
 @property (nonatomic, strong) NSString *uid;
