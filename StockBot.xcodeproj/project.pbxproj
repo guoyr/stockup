@@ -52,8 +52,9 @@
 		BCDB2BC218D2CB4500CBF07E /* stockList.csv in Resources */ = {isa = PBXBuildFile; fileRef = BCDB2BC118D2CB4500CBF07E /* stockList.csv */; };
 		BCDB2BC618D30AE300CBF07E /* SBStock.m in Sources */ = {isa = PBXBuildFile; fileRef = BCDB2BC518D30AE300CBF07E /* SBStock.m */; };
 		BCEB9C29192DD393001D042D /* SBAlgoSelectTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BCEB9C28192DD393001D042D /* SBAlgoSelectTableViewCell.m */; };
-		BCEB9C2C192E7699001D042D /* SBTransactionCondition.m in Sources */ = {isa = PBXBuildFile; fileRef = BCEB9C2B192E7699001D042D /* SBTransactionCondition.m */; };
 		BCF29658193E796E00E5892B /* SBNavigationControllerDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BCF29657193E796E00E5892B /* SBNavigationControllerDelegate.m */; };
+		BCF937E7195E26D00019C954 /* AlgoDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BCF937E6195E26D00019C954 /* AlgoDetail.storyboard */; };
+		BCF937EA195F3B6B0019C954 /* SBBOLLCondition.m in Sources */ = {isa = PBXBuildFile; fileRef = BCF937E9195F3B6B0019C954 /* SBBOLLCondition.m */; };
 		EC267C20C7EE4CB29CB2B68A /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 12C8621A9D524040AEBF887E /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -150,10 +151,11 @@
 		BCDB2BC518D30AE300CBF07E /* SBStock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBStock.m; sourceTree = "<group>"; };
 		BCEB9C27192DD393001D042D /* SBAlgoSelectTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBAlgoSelectTableViewCell.h; sourceTree = "<group>"; };
 		BCEB9C28192DD393001D042D /* SBAlgoSelectTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBAlgoSelectTableViewCell.m; sourceTree = "<group>"; };
-		BCEB9C2A192E7699001D042D /* SBTransactionCondition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBTransactionCondition.h; sourceTree = "<group>"; };
-		BCEB9C2B192E7699001D042D /* SBTransactionCondition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBTransactionCondition.m; sourceTree = "<group>"; };
 		BCF29656193E796E00E5892B /* SBNavigationControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBNavigationControllerDelegate.h; sourceTree = "<group>"; };
 		BCF29657193E796E00E5892B /* SBNavigationControllerDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBNavigationControllerDelegate.m; sourceTree = "<group>"; };
+		BCF937E6195E26D00019C954 /* AlgoDetail.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = AlgoDetail.storyboard; sourceTree = "<group>"; };
+		BCF937E8195F3B6B0019C954 /* SBBOLLCondition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBBOLLCondition.h; sourceTree = "<group>"; };
+		BCF937E9195F3B6B0019C954 /* SBBOLLCondition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBBOLLCondition.m; sourceTree = "<group>"; };
 		ECAC7AB669494C0488A17B74 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -212,6 +214,7 @@
 				BC9FBF84193E5F81000B1942 /* SBLoginAnimatedTransitioning.m */,
 				BC60A9E81937B903007FDEE0 /* Login.storyboard */,
 				BCA2158D1946156100948D76 /* Instructions.storyboard */,
+				BCF937E6195E26D00019C954 /* AlgoDetail.storyboard */,
 				BC9346C9195A14B700130ED8 /* SBTableViewController.h */,
 				BC9346CA195A14B700130ED8 /* SBTableViewController.m */,
 				BC488CA0195CD6C400310801 /* SBSegmentedControl.h */,
@@ -330,8 +333,8 @@
 				BCA6F0FC191166E900D4A34D /* SBKDJCondition.m */,
 				BC488CA3195DF2BA00310801 /* SBVolumeCondition.h */,
 				BC488CA4195DF2BA00310801 /* SBVolumeCondition.m */,
-				BCEB9C2A192E7699001D042D /* SBTransactionCondition.h */,
-				BCEB9C2B192E7699001D042D /* SBTransactionCondition.m */,
+				BCF937E8195F3B6B0019C954 /* SBBOLLCondition.h */,
+				BCF937E9195F3B6B0019C954 /* SBBOLLCondition.m */,
 				BCA6F0F81911659100D4A34D /* SBCondition.h */,
 				BCA6F0F91911659100D4A34D /* SBCondition.m */,
 				BC33F3641914A1A500C80E6C /* SBConditions.h */,
@@ -441,6 +444,7 @@
 				BC9A089518BE54F9000E16C3 /* InfoPlist.strings in Resources */,
 				BCDB2BC218D2CB4500CBF07E /* stockList.csv in Resources */,
 				BC9A089D18BE54F9000E16C3 /* Images.xcassets in Resources */,
+				BCF937E7195E26D00019C954 /* AlgoDetail.storyboard in Resources */,
 				BCA2158E1946156100948D76 /* Instructions.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -507,11 +511,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				BC9A089718BE54F9000E16C3 /* main.m in Sources */,
-				BCEB9C2C192E7699001D042D /* SBTransactionCondition.m in Sources */,
 				BCB4128F192EAA7F00A6706E /* SBUser.m in Sources */,
 				BCA6F0F719108AFE00D4A34D /* SBMACDCondition.m in Sources */,
 				BC60A9E719352A11007FDEE0 /* NSString+SBAdditions.m in Sources */,
 				BC60A9E319350C46007FDEE0 /* SBBrokersTableViewController.m in Sources */,
+				BCF937EA195F3B6B0019C954 /* SBBOLLCondition.m in Sources */,
 				BCBB200918E48FDE0085FFD3 /* SBAlgoConfirmationViewController.m in Sources */,
 				BCA6F0FA1911659100D4A34D /* SBCondition.m in Sources */,
 				BC809FE718BE96990014C48B /* SBAlgosDetailViewController.m in Sources */,
@@ -659,7 +663,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Yiran Guo (26NJPYDA9U)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "StockBot/StockBot-Prefix.pch";
 				INFOPLIST_FILE = "StockBot/StockBot-Info.plist";
@@ -675,7 +679,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Yiran Guo (7J555P3K78)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "StockBot/StockBot-Prefix.pch";
 				INFOPLIST_FILE = "StockBot/StockBot-Info.plist";

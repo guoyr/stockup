@@ -17,6 +17,7 @@
 
 @property (nonatomic, strong) SBStockGraphView *stockGraphView;
 @property (nonatomic, strong) UITextView *algoSummaryView;
+@property (nonatomic, strong) UITextView *conditionDescriptionView;
 @property (nonatomic, strong) NSMutableArray *currentConditions;
 @property (nonatomic, strong) UIView *conditionSummaryView;
 
@@ -41,25 +42,44 @@
 
     self.stockGraphView = [[SBStockGraphView alloc] initWithFrame:CGRectMake(20, 20, 320, 240)];
     [self.view addSubview:self.stockGraphView];
+    self.stockGraphView.hidden = YES;
     
-    SBStock *stock = [[SBDataManager sharedManager] selectedStock];
-    NSURL *imageURL = [[SBDataManager sharedManager] getKChartImageURLForStock:stock];
-    [self.stockGraphView setImageWithURL:imageURL placeholderImage:nil];
+//    SBStock *stock = [[SBDataManager sharedManager] selectedStock];
+//    NSURL *imageURL = [[SBDataManager sharedManager] getKChartImageURLForStock:stock];
+//    [self.stockGraphView setImageWithURL:imageURL placeholderImage:nil];
     
-    self.algoSummaryView = [[UITextView alloc] initWithFrame:CGRectMake(20, 320, 320, 480)];
-    [self.algoSummaryView setBackgroundColor:BLACK];
-    [self.algoSummaryView setFont:[UIFont systemFontOfSize:24]];
-    [self.algoSummaryView setTextColor:WHITE];
-    [self.algoSummaryView setScrollEnabled:NO];
-    [self.algoSummaryView setEditable:NO];
-    [self.algoSummaryView setSelectable:NO];
+    self.algoSummaryView = [[UITextView alloc] initWithFrame:CGRectMake(500, 320, 320, 480)];
+    [self setupTextView:self.algoSummaryView];
+    
+    self.conditionDescriptionView = [[UITextView alloc] initWithFrame:CGRectMake(20, 268, 320, 240)];
+    [self setupTextView:self.conditionDescriptionView];
+    
     [self.view addSubview:self.algoSummaryView];
+    [self.view addSubview:self.conditionDescriptionView];
+}
+
+-(void)setupTextView:(UITextView *)textView
+{
+    [textView setBackgroundColor:BLACK];
+//    [textView setFont:[UIFont systemFontOfSize:24]];
+    [textView setTextColor:WHITE];
+//    [textView setScrollEnabled:NO];
+    [textView setEditable:NO];
+    [textView setSelectable:NO];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void)viewCondition:(SBCondition *)condition
+{
+    NSLog(@"in view condition");
+    self.conditionDescriptionView.text = condition.expandedDescription;
+    self.stockGraphView.hidden = NO;
+    self.stockGraphView.backgroundColor = WHITE;
 }
 
 -(void)addCondition:(SBCondition *)condition

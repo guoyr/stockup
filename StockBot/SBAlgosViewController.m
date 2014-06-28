@@ -115,6 +115,8 @@
     } else {
         // dvc already shown
     }
+    
+    [_dvc viewCondition:condition];
 }
 
 -(void)viewController:(SBAlgosSelectionTableViewController *)vc didSelectCondition:(SBCondition *)condition

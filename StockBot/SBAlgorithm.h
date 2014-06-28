@@ -15,10 +15,12 @@
 @property (nonatomic, strong) NSString *name;
 @property (nonatomic, strong) NSString *stockName;
 @property (nonatomic, strong) NSNumber *stockID;
+
 @property (nonatomic, strong) SBMACDCondition *macdCondition;
 @property (nonatomic, strong) SBKDJCondition *kdjCondition;
 @property (nonatomic, strong) SBVolumeCondition *volumeCondtion;
-//@property (nonatomic, strong) SBTransactionCondition *transactionCondition;
+@property (nonatomic, strong) SBBOLLCondition *bollCondition;
+
 @property (nonatomic, assign) NSInteger numConditions;
 @property (nonatomic, strong) NSString *uid;
 // TODO: change to SBCondition subclass in the future

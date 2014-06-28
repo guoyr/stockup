@@ -20,9 +20,9 @@
     if (self) {
         self.macdCondition = [SBMACDCondition new];
         self.kdjCondition = [SBKDJCondition new];
-//        self.transactionCondition = [SBTransactionCondition new];
+        self.bollCondition = [SBBOLLCondition new];
         self.volumeCondtion = [SBVolumeCondition new];
-        self.numConditions = 3;
+        self.numConditions = 4;
     }
     
     return self;
@@ -60,6 +60,9 @@
             break;
         case 2:
             condition = self.volumeCondtion;
+            break;
+        case 3:
+            condition = self.bollCondition;
             break;
         default:
             break;

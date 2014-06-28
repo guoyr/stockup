@@ -35,18 +35,6 @@
     return @{DIRECTION:[NSNumber numberWithInteger:_macdDirection], TIME:[NSNumber numberWithInteger:_macdTime]};
 }
 
--(NSString *)expandedDescription
-{
-    NSString *macdDirectionString;
-    
-    if (self.macdDirection == MACD_DIRECTION_NEG) {
-        macdDirectionString = @"正交";
-    } else {
-        macdDirectionString = @"反交";
-    }
-    return [NSString stringWithFormat:@"MACD%@", macdDirectionString];
-}
-
 -(id)init
 {
     self = [super init];
@@ -54,6 +42,7 @@
         self.description = @"MACD";
         self.macdDirection = -1;
         self.macdTime = -1;
+        self.expandedDescription = @"MACD称为指数平滑异同平均线，是从双移动平均线发展而来的，由快的移动平均线减去慢的移动平均线，MACD的意义和双移动平均线基本相同，但阅读起来更方便。当MACD从负数转向正数，是买的信号。当MACD从正数转向负数，是卖的信号。当MACD以大角度变化，表示快的移动平均线和慢的移动平均线的差距非常迅速的拉开，代表了一个市场大趋势的转变。";
     }
     return self;
 }
@@ -61,6 +50,13 @@
 -(void)setupCell:(SBAlgoConditionTableViewCell *)cell AtIndex:(NSInteger)index
 {
     [super setupCell:cell AtIndex:index];
+    
+    if (self.previousCell) {
+        [self.previousCell.algoSegmentedControl removeTarget:self action:@selector(macdDirectionChanged:) forControlEvents:UIControlEventValueChanged];
+        [self.previousCell.algoSegmentedControl removeTarget:self action:@selector(macdTimeChanged:) forControlEvents:UIControlEventValueChanged];
+
+    }
+    
     switch (index) {
         case 1:
             // diff: bigger -> smaller, smaller -> bigger
@@ -84,6 +80,8 @@
         default:
             break;
     }
+    
+    self.previousCell = cell;
 }
 
 -(void)macdTimeChanged:(UISegmentedControl *)sender

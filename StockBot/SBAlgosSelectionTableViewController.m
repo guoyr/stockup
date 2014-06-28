@@ -315,6 +315,7 @@ static NSString *AlgoNameCellIdentifier = @"ACell";
         if (expandedIndexPaths.count) {
             [self.tableView insertRowsAtIndexPaths:expandedIndexPaths withRowAnimation:UITableViewRowAnimationAutomatic];
         }
+        [self.delegate viewController:self didViewCondition:curAlgo];
     } else if ([self.selectedIndexPath isEqual:indexPath]) {
         // deselect indexpath
         self.selectedIndexPath = nil;
@@ -332,6 +333,8 @@ static NSString *AlgoNameCellIdentifier = @"ACell";
             [self.tableView insertRowsAtIndexPaths:expandedIndexPaths withRowAnimation:UITableViewRowAnimationAutomatic];
         }
         [self.tableView endUpdates];
+        [self.delegate viewController:self didViewCondition:curAlgo];
+
     }
     
 }
