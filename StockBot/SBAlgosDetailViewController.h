@@ -12,5 +12,5 @@
 @interface SBAlgosDetailViewController : UIViewController
 
 -(void)addCondition:(SBCondition *)condition;
-
+-(void)viewCondition: (SBCondition *)condition;
 @end

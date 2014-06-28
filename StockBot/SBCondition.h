@@ -15,6 +15,8 @@
 @property (nonatomic, strong) NSString *description;
 @property (nonatomic, strong) NSString *expandedDescription;
 @property (nonatomic, assign) BOOL isSelected;
+// keep track of the previous cell and remove targets if necessary
+@property (nonatomic, strong) SBAlgoConditionTableViewCell *previousCell;
 
 -(void)setupCell:(SBAlgoConditionTableViewCell *)cell AtIndex:(NSInteger)index;
 -(int)numExpandedRows;

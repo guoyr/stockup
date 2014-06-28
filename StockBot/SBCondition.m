@@ -34,7 +34,6 @@
 
 -(void)setupCell:(SBAlgoConditionTableViewCell *)cell AtIndex:(NSInteger)index
 {
-//    cell.descriptionLabel.hidden = YES;
     cell.numberSegmentedControl.hidden = YES;
     cell.numberStepper.hidden = YES;
     cell.numberTextField.hidden = YES;
