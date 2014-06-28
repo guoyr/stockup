@@ -10,3 +10,4 @@
 #import "SBKDJCondition.h"
 #import "SBVolumeCondition.h"
 #import "SBBOLLCondition.h"
+#import "SBPriceCondition.h"

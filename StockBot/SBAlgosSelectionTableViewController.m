@@ -157,7 +157,7 @@ static NSString *AlgoNameCellIdentifier = @"ACell";
         }];
     } else {
 
-        if (!self.algorithm.priceCondition) {
+        if (!self.algorithm.orderCondition) {
             // showing price information for the first time
             
             self.priceControl.frame = CGRectMake(ALGO_LIST_WIDTH, HEADER_BORDER, ALGO_LIST_WIDTH - HEADER_BORDER*2, ALGO_ROW_HEIGHT - HEADER_BORDER*2);
@@ -216,7 +216,7 @@ static NSString *AlgoNameCellIdentifier = @"ACell";
         }
         
         
-        self.algorithm.priceCondition = control.selectedSegmentIndex + 1;
+        self.algorithm.orderCondition = control.selectedSegmentIndex + 1;
         
         [UIView animateWithDuration:0.3 animations:^{
             [self showControlsSideBySide];

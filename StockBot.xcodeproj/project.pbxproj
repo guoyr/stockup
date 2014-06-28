@@ -55,6 +55,7 @@
 		BCF29658193E796E00E5892B /* SBNavigationControllerDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BCF29657193E796E00E5892B /* SBNavigationControllerDelegate.m */; };
 		BCF937E7195E26D00019C954 /* AlgoDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BCF937E6195E26D00019C954 /* AlgoDetail.storyboard */; };
 		BCF937EA195F3B6B0019C954 /* SBBOLLCondition.m in Sources */ = {isa = PBXBuildFile; fileRef = BCF937E9195F3B6B0019C954 /* SBBOLLCondition.m */; };
+		BCF937ED195F74590019C954 /* SBPriceCondition.m in Sources */ = {isa = PBXBuildFile; fileRef = BCF937EC195F74590019C954 /* SBPriceCondition.m */; };
 		EC267C20C7EE4CB29CB2B68A /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 12C8621A9D524040AEBF887E /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -156,6 +157,8 @@
 		BCF937E6195E26D00019C954 /* AlgoDetail.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = AlgoDetail.storyboard; sourceTree = "<group>"; };
 		BCF937E8195F3B6B0019C954 /* SBBOLLCondition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBBOLLCondition.h; sourceTree = "<group>"; };
 		BCF937E9195F3B6B0019C954 /* SBBOLLCondition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBBOLLCondition.m; sourceTree = "<group>"; };
+		BCF937EB195F74590019C954 /* SBPriceCondition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBPriceCondition.h; sourceTree = "<group>"; };
+		BCF937EC195F74590019C954 /* SBPriceCondition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBPriceCondition.m; sourceTree = "<group>"; };
 		ECAC7AB669494C0488A17B74 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -334,6 +337,8 @@
 				BC488CA3195DF2BA00310801 /* SBVolumeCondition.h */,
 				BC488CA4195DF2BA00310801 /* SBVolumeCondition.m */,
 				BCF937E8195F3B6B0019C954 /* SBBOLLCondition.h */,
+				BCF937EB195F74590019C954 /* SBPriceCondition.h */,
+				BCF937EC195F74590019C954 /* SBPriceCondition.m */,
 				BCF937E9195F3B6B0019C954 /* SBBOLLCondition.m */,
 				BCA6F0F81911659100D4A34D /* SBCondition.h */,
 				BCA6F0F91911659100D4A34D /* SBCondition.m */,
@@ -527,6 +532,7 @@
 				BC809FE918BE96990014C48B /* SBAlgosViewController.m in Sources */,
 				BC4AFC8118DA777D00C888D9 /* SBStockGraphView.m in Sources */,
 				BC64E7C8195A28B800ED81DC /* UIImage+SBAdditions.m in Sources */,
+				BCF937ED195F74590019C954 /* SBPriceCondition.m in Sources */,
 				BC9FBF85193E5F81000B1942 /* SBLoginAnimatedTransitioning.m in Sources */,
 				BC809FE818BE96990014C48B /* SBAlgosSelectionTableViewController.m in Sources */,
 				BC9A089B18BE54F9000E16C3 /* SBAppDelegate.m in Sources */,

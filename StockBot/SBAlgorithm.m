@@ -22,7 +22,8 @@
         self.kdjCondition = [SBKDJCondition new];
         self.bollCondition = [SBBOLLCondition new];
         self.volumeCondtion = [SBVolumeCondition new];
-        self.numConditions = 4;
+        self.priceCondition = [SBPriceCondition new];
+        self.numConditions = 5;
     }
     
     return self;
@@ -63,6 +64,9 @@
             break;
         case 3:
             condition = self.bollCondition;
+            break;
+        case 4:
+            condition = self.priceCondition;
             break;
         default:
             break;
