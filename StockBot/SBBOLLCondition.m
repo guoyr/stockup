@@ -37,6 +37,7 @@
 
 -(void)setupCell:(SBAlgoConditionTableViewCell *)cell AtIndex:(NSInteger)index
 {
+    [super setupCell:cell AtIndex:index];
     switch (index) {
         case 1:
             cell.descriptionLabel.text = @"穿插";
