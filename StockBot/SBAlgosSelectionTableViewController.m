@@ -220,7 +220,6 @@ static NSString *AlgoNameCellIdentifier = @"ACell";
         
         [UIView animateWithDuration:0.3 animations:^{
             [self showControlsSideBySide];
-            
         } completion:^(BOOL finished) {
 
         }];
@@ -271,6 +270,7 @@ static NSString *AlgoNameCellIdentifier = @"ACell";
             SBCondition *curAlgo = [self.algorithm conditionAtIndex:self.selectedIndexPath.row];
             NSInteger curAlgoOptionsIndex = indexPath.row - self.selectedIndexPath.row;
             [curAlgo setupCell:customizeCell AtIndex:curAlgoOptionsIndex];
+            curAlgo.delegate = self;
             return customizeCell;
         }
     }
@@ -347,14 +347,22 @@ static NSString *AlgoNameCellIdentifier = @"ACell";
         [button setTitle:@"删除条件" forState:UIControlStateNormal];
         [self.selectedAlgorithmIndices addObject:[NSNumber numberWithLong:button.tag]];
         [self.algorithm conditionAtIndex:button.tag].isSelected = YES;
-        [self.delegate viewController:self didSelectCondition:[self.algorithm conditionAtIndex:button.tag]];
+        [self.delegate viewController:self didAddCondition:[self.algorithm conditionAtIndex:button.tag]];
 
     } else {
         [button setTitle:@"添加条件" forState:UIControlStateNormal];
         [self.algorithm conditionAtIndex:button.tag].isSelected = NO;
         [self.selectedAlgorithmIndices removeObject:[NSNumber numberWithLong:button.tag]];
+        [self.delegate viewController:self didRemoveCondition:[self.algorithm conditionAtIndex:button.tag]];
     }
     
+}
+
+#pragma mark SBCondition delegate
+
+-(void)conditionDidChange:(SBCondition *)condition
+{
+    [self.delegate viewController:self didModifyCondition:condition];
 }
 
 #pragma mark Private Helper Methods

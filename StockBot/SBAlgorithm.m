@@ -49,6 +49,7 @@
 //    self.transactionCondition = [SBTransactionCondition conditionWithDict:transactionDict];
 }
 
+// TODO: move this to the view controller
 -(SBCondition *)conditionAtIndex:(NSInteger)index
 {
     SBCondition *condition;

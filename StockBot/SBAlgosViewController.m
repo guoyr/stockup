@@ -28,6 +28,7 @@
 
 @property (nonatomic, strong) UITextView *instructionView;
 
+
 @end
 
 @implementation SBAlgosViewController
@@ -103,6 +104,11 @@
 
 #pragma mark SBAlgosListTableViewControllerDelegate
 
+-(void)viewController:(SBAlgosSelectionTableViewController *)vc didRemoveCondition:(SBCondition *)condition
+{
+    [self viewController:vc didViewCondition:condition];
+    [self.dvc removeCondition:condition];
+}
 
 -(void)viewController:(SBAlgosSelectionTableViewController *)vc didViewCondition:(SBCondition *)condition
 {
@@ -119,7 +125,7 @@
     [_dvc viewCondition:condition];
 }
 
--(void)viewController:(SBAlgosSelectionTableViewController *)vc didSelectCondition:(SBCondition *)condition
+-(void)viewController:(SBAlgosSelectionTableViewController *)vc didAddCondition:(SBCondition *)condition
 {
     // have to have viewed the algorithm before selecting it
     [self viewController:vc didViewCondition:condition];
@@ -127,6 +133,14 @@
     [_dvc addCondition:condition];
     
 }
+
+-(void)viewController:(SBAlgosSelectionTableViewController *)vc didModifyCondition:(SBCondition *)condition
+{
+    [self viewController:vc didViewCondition:condition];
+    [_dvc modifyCondition:condition];
+    
+}
+
 
 -(void)confirmButtonPressed:(UIButton *)sender
 {
