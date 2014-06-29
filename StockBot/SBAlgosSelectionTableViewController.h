@@ -8,18 +8,20 @@
 
 #import <UIKit/UIKit.h>
 #import "SBTableViewController.h"
+#import "SBCondition.h"
 
-@class SBCondition;
 @class SBAlgosSelectionTableViewController;
 
 @protocol SBAlgosSelectionTableViewControllerDelegate <NSObject>
 
--(void)viewController:(SBAlgosSelectionTableViewController *)vc didSelectCondition:(SBCondition *)condition;
+-(void)viewController:(SBAlgosSelectionTableViewController *)vc didAddCondition:(SBCondition *)condition;
 -(void)viewController:(SBAlgosSelectionTableViewController *)vc didViewCondition:(SBCondition *)condition;
+-(void)viewController:(SBAlgosSelectionTableViewController *)vc didRemoveCondition:(SBCondition *)condition;
+-(void)viewController:(SBAlgosSelectionTableViewController *)vc didModifyCondition:(SBCondition *)condition;
 
 @end
 
-@interface SBAlgosSelectionTableViewController : SBTableViewController
+@interface SBAlgosSelectionTableViewController : SBTableViewController <SBConditionDelegate>
 
 @property (nonatomic, weak) NSObject<SBAlgosSelectionTableViewControllerDelegate> *delegate;
 

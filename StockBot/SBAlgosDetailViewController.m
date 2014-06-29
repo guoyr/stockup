@@ -12,6 +12,7 @@
 #import "SBDataManager.h"
 #import "SBStock.h"
 #import "SBStockGraphView.h"
+#import "SBAlgorithm.h"
 
 @interface SBAlgosDetailViewController ()
 
@@ -20,6 +21,7 @@
 @property (nonatomic, strong) UITextView *conditionDescriptionView;
 @property (nonatomic, strong) NSMutableArray *currentConditions;
 @property (nonatomic, strong) UIView *conditionSummaryView;
+@property (nonatomic, strong) SBAlgorithm *curAlgorithm;
 
 @end
 
@@ -38,9 +40,10 @@
 {
     [super viewDidLoad];
     [self.view setBackgroundColor:BLACK];
-    // Do any additional setup after loading the view.
 
-    self.stockGraphView = [[SBStockGraphView alloc] initWithFrame:CGRectMake(20, 20, 320, 240)];
+
+    
+    self.stockGraphView = [[SBStockGraphView alloc] initWithFrame:CGRectMake(10, 20, 364, 240)];
     [self.view addSubview:self.stockGraphView];
     self.stockGraphView.hidden = YES;
     
@@ -48,20 +51,26 @@
 //    NSURL *imageURL = [[SBDataManager sharedManager] getKChartImageURLForStock:stock];
 //    [self.stockGraphView setImageWithURL:imageURL placeholderImage:nil];
     
-    self.algoSummaryView = [[UITextView alloc] initWithFrame:CGRectMake(500, 320, 320, 480)];
+    self.algoSummaryView = [[UITextView alloc] initWithFrame:CGRectMake(10, 432, 364, 420)];
     [self setupTextView:self.algoSummaryView];
+    self.algoSummaryView.text = @"test";
     
-    self.conditionDescriptionView = [[UITextView alloc] initWithFrame:CGRectMake(20, 268, 320, 240)];
+    self.conditionDescriptionView = [[UITextView alloc] initWithFrame:CGRectMake(10, 268, 364, 160)];
     [self setupTextView:self.conditionDescriptionView];
     
     [self.view addSubview:self.algoSummaryView];
     [self.view addSubview:self.conditionDescriptionView];
 }
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    self.curAlgorithm = [[SBDataManager sharedManager] selectedAlgorithm];
+}
+
 -(void)setupTextView:(UITextView *)textView
 {
     [textView setBackgroundColor:BLACK];
-//    [textView setFont:[UIFont systemFontOfSize:24]];
+    [textView setFont:[UIFont systemFontOfSize:16]];
     [textView setTextColor:WHITE];
 //    [textView setScrollEnabled:NO];
     [textView setEditable:NO];
@@ -76,37 +85,50 @@
 
 -(void)viewCondition:(SBCondition *)condition
 {
-    NSLog(@"in view condition");
-    self.conditionDescriptionView.text = condition.expandedDescription;
+    self.conditionDescriptionView.text = condition.conditionExplanation;
     self.stockGraphView.hidden = NO;
     self.stockGraphView.backgroundColor = WHITE;
 }
 
+-(void)removeCondition:(SBCondition *)condition
+{
+    [self.curAlgorithm.addedConditions removeObject:condition];
+    [self updateAlgorithmDescription];
+}
+
 -(void)addCondition:(SBCondition *)condition
 {
-    NSLog(@"condition: %@",condition);
-//    if ([condition isEqualToString:@"MACD"]) {
-//        if ([self.currentConditions containsObject:condition]) {
-//            //remove MACD
-//            [self.currentConditions removeObject:condition];
-//            self.algoSummaryView.text = @"";
-//        } else {
-//            //add MACD
-//            self.algoSummaryView.text = @"您选择在MACD相交时对该股票进行操作";
-//            [self.currentConditions addObject:condition];
-//        }
-//    } else {
-//        if ([self.currentConditions containsObject:@"MACD"]) {
-//            // add price with existing MACD
-//            if ([self.currentConditions containsObject:condition]) {
-//                self.algoSummaryView.text = @"您选择在MACD相交时对该股票进行操作";
-//                [self.currentConditions removeObject:condition];
-//            } else {
-//                self.algoSummaryView.text = @"您选择在MACD相交，并且股价大于20元时时对该股票进行交易";
-//                [self.currentConditions addObject:condition];
-//            }
-//        }
-//    }
+    [self.curAlgorithm.addedConditions addObject:condition];
+    [self updateAlgorithmDescription];
+
+}
+
+-(void)modifyCondition:(SBCondition *)condition
+{
+    
+    if ([self.curAlgorithm.addedConditions containsObject:condition]) {
+        [self updateAlgorithmDescription];
+    }
+}
+
+
+-(void)updateAlgorithmDescription
+{
+    // update the algorithm description when a condition has been added/removed/modified
+    NSMutableString *description = [NSMutableString stringWithString:@"您选择在满足以下所有条件时购买该股票\n\n"];
+    int counter = 1;
+    for (SBCondition *condition in self.curAlgorithm.addedConditions) {
+        NSString *ed = [condition extendedDescription];
+        if (ed) {
+            // user has selected criterias
+            NSString *d = [NSString stringWithFormat:@"%d. %@",counter, ed];
+            [description appendFormat:@"%@\n", d];
+        } else {
+            // user has not selected options for this condition
+        }
+        counter++;
+    }
+    self.algoSummaryView.text = [NSString stringWithString:description];
 }
 
 @end

@@ -23,14 +23,6 @@
 
 @implementation SBDataManager
 
--(SBAlgorithm *)selectedAlgorithm
-{
-    if (!_selectedAlgorithm) {
-        _selectedAlgorithm = [SBAlgorithm new];
-    }
-    return _selectedAlgorithm;
-}
-
 + (id)sharedManager {
     static SBDataManager *sharedMyManager = nil;
     static dispatch_once_t onceToken;
@@ -40,6 +32,13 @@
     return sharedMyManager;
 }
 
+-(SBAlgorithm *)selectedAlgorithm
+{
+    if (!_selectedAlgorithm) {
+        _selectedAlgorithm = [SBAlgorithm new];
+    }
+    return _selectedAlgorithm;
+}
 
 -(id)init
 {
@@ -94,8 +93,12 @@
     return [NSDictionary dictionaryWithDictionary:self.allAlgorithms];
 }
 
+// save algorithm, if nil, save selected algorithm
 -(void)saveAlgorithm:(SBAlgorithm *)algorithm
 {
+    if (!algorithm) {
+        algorithm = self.selectedAlgorithm;
+    }
     if (!algorithm.uid) {
         NSString *uid = [self.dateFormatter stringFromDate:[NSDate date]];
         algorithm.uid = [uid stringByAppendingString:[NSString randomStringOfLength:5]];
@@ -110,11 +113,7 @@
     self.allAlgoName = [NSArray arrayWithArray:names];
     NSLog(@"all algos %@",self.allAlgoName);
     NSDictionary *archiveDict = [algorithm archiveToDict];
-}
-
--(void)modifyAlgorithm:(SBAlgorithm *)algorithm forKey:(NSString *)key
-{
-    
+    //TODO: actually save the archived dict
 }
 
 -(void)removeAlgorithm:(NSString *)algorithmName

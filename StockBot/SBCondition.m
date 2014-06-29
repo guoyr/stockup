@@ -18,18 +18,9 @@
     return nil;
 }
 
--(id)initWithCoder:(NSCoder *)aDecoder
+-(NSString *)extendedDescription
 {
-    self = [super init];
-    if (self) {
-        //
-    }
-    return self;
-}
-
--(void)encodeWithCoder:(NSCoder *)aCoder
-{
-    
+    return @"草泥马";
 }
 
 -(void)setupCell:(SBAlgoConditionTableViewCell *)cell AtIndex:(NSInteger)index
@@ -48,5 +39,7 @@
 {
     return nil;
 }
+
+
 
 @end

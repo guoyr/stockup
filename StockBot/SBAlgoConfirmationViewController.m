@@ -35,22 +35,13 @@
 {
     [super viewDidLoad];
     
-    self.curAlgorithm = [[SBDataManager sharedManager] selectedAlgorithm];
-
-    
-    NSString *stockName = [[SBDataManager sharedManager] selectedStock].name;
-    
-    self.title = [NSString stringWithFormat:@"\"%@\"算法确认页面",stockName];
-    
     // Do any additional setup after loading the view.
     self.edgesForExtendedLayout = UIRectEdgeNone;
     
     self.algoNameTextField = [[UITextField alloc] initWithFrame:CGRectMake(324, 60, 120, 48)];
     self.algoNameTextField.textColor = WHITE;
-    [self.algoNameTextField becomeFirstResponder];
     [self.algoNameTextField setDelegate:self];
     [self.algoNameTextField addTarget:self action:@selector(textFieldChanged:) forControlEvents:UIControlEventEditingChanged];
-    self.algoNameTextField.text = [[SBDataManager sharedManager] defaultAlgorithmName];
     [self.view addSubview:self.algoNameTextField];
     
     self.descriptionLabel = [[UITextView alloc] initWithFrame:CGRectMake(192, 116, 384, 428)];
@@ -59,7 +50,7 @@
     [self.descriptionLabel setUserInteractionEnabled:NO];
     [self.descriptionLabel setFont:[UIFont systemFontOfSize:18]];
     [self.view addSubview:self.descriptionLabel];
-    self.descriptionLabel.text = @"算法简介";
+    self.descriptionLabel.text = @"这里显示算法简介";
     
     UILabel *namePrompt = [[UILabel alloc] initWithFrame:CGRectMake(324, 20, 120, 48)];
     namePrompt.textColor = WHITE;
@@ -69,6 +60,23 @@
     self.doneButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(done:)];
     self.navigationItem.rightBarButtonItem = self.doneButtonItem;
     
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    self.curAlgorithm = [[SBDataManager sharedManager] selectedAlgorithm];
+    NSString *stockName = [[SBDataManager sharedManager] selectedStock].name;
+
+    
+    self.title = [NSString stringWithFormat:@"保存\"%@\"的算法",stockName];
+    
+    if (!self.curAlgorithm.name) {
+        self.curAlgorithm.name = [[SBDataManager sharedManager] defaultAlgorithmName];
+    }
+    self.algoNameTextField.text = self.curAlgorithm.name;
+    [self.algoNameTextField becomeFirstResponder];
+    
+
 }
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField

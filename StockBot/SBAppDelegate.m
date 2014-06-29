@@ -41,8 +41,7 @@
     
     
     UINavigationController *nav = [[UINavigationController alloc] init];
-    [nav setViewControllers:@[vc2, vc1]];
-    [nav popToViewController:curvc animated:NO];
+    [nav setViewControllers:@[curvc]];
     [[nav navigationBar] setBarStyle:UIBarStyleBlackTranslucent];
     
     UIViewController *vc;

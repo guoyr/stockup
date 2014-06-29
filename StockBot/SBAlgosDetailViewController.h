@@ -13,4 +13,6 @@
 
 -(void)addCondition:(SBCondition *)condition;
 -(void)viewCondition: (SBCondition *)condition;
+-(void)removeCondition: (SBCondition *)condition;
+-(void)modifyCondition: (SBCondition *)condition;
 @end

@@ -169,6 +169,7 @@
     self.navigationController.delegate = d;
 
     [self.navigationController pushViewController:avc animated:YES];
+    [self.navigationController setViewControllers:@[avc]];
     NSLog(@"stack size %ld", (unsigned long)self.navigationController.viewControllers.count);
 
 }

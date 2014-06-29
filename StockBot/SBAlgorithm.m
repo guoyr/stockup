@@ -24,6 +24,9 @@
         self.volumeCondtion = [SBVolumeCondition new];
         self.priceCondition = [SBPriceCondition new];
         self.numConditions = 5;
+        
+        self.addedConditions = [NSMutableArray new];
+
     }
     
     return self;
@@ -49,6 +52,7 @@
 //    self.transactionCondition = [SBTransactionCondition conditionWithDict:transactionDict];
 }
 
+// TODO: move this to the view controller
 -(SBCondition *)conditionAtIndex:(NSInteger)index
 {
     SBCondition *condition;

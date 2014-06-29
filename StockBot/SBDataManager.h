@@ -28,9 +28,8 @@
 -(BOOL)algoNameExists:(NSString *)algoName;
 
 -(NSDictionary *)getAllAlgorithmsForUser:(SBUser *)user;
+
 -(void)saveAlgorithm:(SBAlgorithm *)algorithm;
-// modify an existing algorithm
--(void)modifyAlgorithm:(SBAlgorithm *)algorithm forKey:(NSString *)key;
 -(void)removeAlgorithm:(NSString *)algorithmName;
 
 -(NSString *)defaultAlgorithmName;

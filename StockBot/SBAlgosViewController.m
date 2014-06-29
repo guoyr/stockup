@@ -28,6 +28,7 @@
 
 @property (nonatomic, strong) UITextView *instructionView;
 
+
 @end
 
 @implementation SBAlgosViewController
@@ -91,7 +92,7 @@
     [self.confirmButton setBackgroundColor:BLUE_2];
     [self.confirmButton addTarget:self action:@selector(confirmButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.confirmButton];
-    self.confirmButton.hidden = YES;
+    self.confirmButton.enabled = NO;
     
 }
 
@@ -103,6 +104,12 @@
 
 #pragma mark SBAlgosListTableViewControllerDelegate
 
+-(void)viewController:(SBAlgosSelectionTableViewController *)vc didRemoveCondition:(SBCondition *)condition
+{
+    [self viewController:vc didViewCondition:condition];
+    [self.dvc removeCondition:condition];
+    //self.confirmButton.enabled = NO;
+}
 
 -(void)viewController:(SBAlgosSelectionTableViewController *)vc didViewCondition:(SBCondition *)condition
 {
@@ -119,20 +126,35 @@
     [_dvc viewCondition:condition];
 }
 
--(void)viewController:(SBAlgosSelectionTableViewController *)vc didSelectCondition:(SBCondition *)condition
+-(void)viewController:(SBAlgosSelectionTableViewController *)vc didAddCondition:(SBCondition *)condition
 {
     // have to have viewed the algorithm before selecting it
     [self viewController:vc didViewCondition:condition];
-    self.confirmButton.hidden = NO;
     [_dvc addCondition:condition];
+    self.confirmButton.enabled = YES;
     
 }
+
+-(void)viewController:(SBAlgosSelectionTableViewController *)vc didModifyCondition:(SBCondition *)condition
+{
+    [self viewController:vc didViewCondition:condition];
+    [_dvc modifyCondition:condition];
+    
+}
+
 
 -(void)confirmButtonPressed:(UIButton *)sender
 {
     NSLog(@"confirm button pressed");
-    SBAlgoConfirmationViewController *tvc = [[SBAlgoConfirmationViewController alloc] initWithNibName:nil bundle:nil];
-    [self.navigationController pushViewController:tvc animated:YES];
+    if ([[SBDataManager sharedManager] selectedAlgorithm].uid) {
+        // editing existing algorithm
+        [[SBDataManager sharedManager] saveAlgorithm:nil];
+        [self.navigationController popToRootViewControllerAnimated:YES];
+    } else {
+        SBAlgoConfirmationViewController *tvc = [[SBAlgoConfirmationViewController alloc] initWithNibName:nil bundle:nil];
+        [self.navigationController pushViewController:tvc animated:YES];
+    }
+
 }
 
 

@@ -28,7 +28,7 @@
         [numberFormatter setNumberStyle:NSNumberFormatterDecimalStyle];
 //        [numberFormatter setMaximumFractionDigits:2];
 //        [numberFormatter setPositiveFormat:@"###0.00"];
-        NSLog(@"Sina Stock INFO: %@", dataStringArray);
+//        NSLog(@"Sina Stock INFO: %@", dataStringArray);
         self.name = [dataStringArray[0] componentsSeparatedByString:@"=\""][1];
         
         self.todayOpeningPrice = [numberFormatter numberFromString:dataStringArray[1]];
