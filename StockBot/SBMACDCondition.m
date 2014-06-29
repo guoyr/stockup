@@ -49,11 +49,15 @@
 
 -(void)setupCell:(SBAlgoConditionTableViewCell *)cell AtIndex:(NSInteger)index
 {
+    NSLog(@"setup cell");
     [super setupCell:cell AtIndex:index];
     
     if (self.previousCell) {
-        [self.previousCell.algoSegmentedControl removeTarget:self action:@selector(macdDirectionChanged:) forControlEvents:UIControlEventValueChanged];
-        [self.previousCell.algoSegmentedControl removeTarget:self action:@selector(macdTimeChanged:) forControlEvents:UIControlEventValueChanged];
+        
+        // TODO: we need more than one previousCells and investigate into why we can't add target again once its been removed
+        
+//        [self.previousCell.algoSegmentedControl removeTarget:self action:@selector(macdDirectionChanged:) forControlEvents:UIControlEventValueChanged];
+//        [self.previousCell.algoSegmentedControl removeTarget:self action:@selector(macdTimeChanged:) forControlEvents:UIControlEventValueChanged];
 
     }
     
@@ -101,6 +105,8 @@
     return 2;
 }
 
+// describes what the user has selected
+
 -(NSString *)extendedDescription
 {
     NSString *direction;
@@ -118,7 +124,7 @@
     if (direction) {
         return [NSString stringWithFormat:@"MACD月线与5分线%@时",direction];
     }
-    return @"请设置MACD交易条件";
+    return nil;
 }
 
 @end

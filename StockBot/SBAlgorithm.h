@@ -31,6 +31,9 @@
 // show up as a list of segmentedIndices on the top
 @property (nonatomic, strong) NSArray *mandatoryControls;
 
+// conditions that have been added to this algorithm
+@property (nonatomic, strong) NSMutableArray *addedConditions;
+
 -(SBCondition *)conditionAtIndex:(NSInteger)index;
 
 -(NSDictionary *)archiveToDict;

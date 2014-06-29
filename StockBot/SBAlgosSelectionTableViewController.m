@@ -268,6 +268,7 @@ static NSString *AlgoNameCellIdentifier = @"ACell";
             SBAlgoConditionTableViewCell *customizeCell = [tableView dequeueReusableCellWithIdentifier:CustomizeCellIdentifier];
             [customizeCell resetCell];
             SBCondition *curAlgo = [self.algorithm conditionAtIndex:self.selectedIndexPath.row];
+            curAlgo.delegate = self;
             NSInteger curAlgoOptionsIndex = indexPath.row - self.selectedIndexPath.row;
             [curAlgo setupCell:customizeCell AtIndex:curAlgoOptionsIndex];
             curAlgo.delegate = self;
@@ -362,6 +363,7 @@ static NSString *AlgoNameCellIdentifier = @"ACell";
 
 -(void)conditionDidChange:(SBCondition *)condition
 {
+    NSLog(@"condition did change");
     [self.delegate viewController:self didModifyCondition:condition];
 }
 

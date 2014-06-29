@@ -12,6 +12,7 @@
 #import "SBDataManager.h"
 #import "SBStock.h"
 #import "SBStockGraphView.h"
+#import "SBAlgorithm.h"
 
 @interface SBAlgosDetailViewController ()
 
@@ -20,8 +21,7 @@
 @property (nonatomic, strong) UITextView *conditionDescriptionView;
 @property (nonatomic, strong) NSMutableArray *currentConditions;
 @property (nonatomic, strong) UIView *conditionSummaryView;
-
-@property (nonatomic, strong) NSMutableArray *addedConditions;
+@property (nonatomic, strong) SBAlgorithm *curAlgorithm;
 
 @end
 
@@ -41,7 +41,6 @@
     [super viewDidLoad];
     [self.view setBackgroundColor:BLACK];
 
-    self.addedConditions = [NSMutableArray new];
 
     
     self.stockGraphView = [[SBStockGraphView alloc] initWithFrame:CGRectMake(10, 20, 364, 240)];
@@ -63,10 +62,15 @@
     [self.view addSubview:self.conditionDescriptionView];
 }
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    self.curAlgorithm = [[SBDataManager sharedManager] selectedAlgorithm];
+}
+
 -(void)setupTextView:(UITextView *)textView
 {
     [textView setBackgroundColor:BLACK];
-//    [textView setFont:[UIFont systemFontOfSize:24]];
+    [textView setFont:[UIFont systemFontOfSize:16]];
     [textView setTextColor:WHITE];
 //    [textView setScrollEnabled:NO];
     [textView setEditable:NO];
@@ -88,13 +92,13 @@
 
 -(void)removeCondition:(SBCondition *)condition
 {
-    [self.addedConditions removeObject:condition];
+    [self.curAlgorithm.addedConditions removeObject:condition];
     [self updateAlgorithmDescription];
 }
 
 -(void)addCondition:(SBCondition *)condition
 {
-    [self.addedConditions addObject:condition];
+    [self.curAlgorithm.addedConditions addObject:condition];
     [self updateAlgorithmDescription];
 
 }
@@ -102,7 +106,7 @@
 -(void)modifyCondition:(SBCondition *)condition
 {
     
-    if ([self.addedConditions containsObject:condition]) {
+    if ([self.curAlgorithm.addedConditions containsObject:condition]) {
         [self updateAlgorithmDescription];
     }
 }
@@ -111,14 +115,20 @@
 -(void)updateAlgorithmDescription
 {
     // update the algorithm description when a condition has been added/removed/modified
-    NSString *description = @"您选择在满足以下所有条件时购买该股票\n\n";
+    NSMutableString *description = [NSMutableString stringWithString:@"您选择在满足以下所有条件时购买该股票\n\n"];
     int counter = 1;
-    for (SBCondition *condition in self.addedConditions) {
-        NSString *curDescription = [NSString stringWithFormat:@"%d. %@",counter,[condition extendedDescription]];
-        description = [NSString stringWithFormat:@"%@%@\n", description, curDescription];
+    for (SBCondition *condition in self.curAlgorithm.addedConditions) {
+        NSString *ed = [condition extendedDescription];
+        if (ed) {
+            // user has selected criterias
+            NSString *d = [NSString stringWithFormat:@"%d. %@",counter, ed];
+            [description appendFormat:@"%@\n", d];
+        } else {
+            // user has not selected options for this condition
+        }
         counter++;
     }
-    self.algoSummaryView.text = description;
+    self.algoSummaryView.text = [NSString stringWithString:description];
 }
 
 @end

@@ -71,9 +71,7 @@ static NSString *UserCellIdentifier = @"UserCell";
     self.algoDict = [[SBDataManager sharedManager] getAllAlgorithmsForUser:nil];
     self.algoNames = [[SBDataManager sharedManager] allAlgoName];
     [self.tableView reloadData];
-    
-    [self.view bringSubviewToFront:self.tableViewStyleControl];
-    
+        
     if (!self.algoNames.count) {
 //        if (![[NSUserDefaults standardUserDefaults] boolForKey:@"presentedInstruction"]) {
         if (1) {
@@ -121,10 +119,13 @@ static NSString *UserCellIdentifier = @"UserCell";
 
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
+    SBLoginViewController *vc;
     switch (buttonIndex) {
         case 1:
             [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"loggedin"];
             self.navigationController.delegate = [SBNavigationControllerDelegate sharedDelegate];
+            vc =[[UIStoryboard storyboardWithName:@"Login" bundle:nil] instantiateViewControllerWithIdentifier:@"LoginViewController"];
+            [self.navigationController setViewControllers:@[vc, self] animated:NO];
             [self.navigationController popViewControllerAnimated:YES];
 
             break;

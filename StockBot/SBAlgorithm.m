@@ -24,6 +24,9 @@
         self.volumeCondtion = [SBVolumeCondition new];
         self.priceCondition = [SBPriceCondition new];
         self.numConditions = 5;
+        
+        self.addedConditions = [NSMutableArray new];
+
     }
     
     return self;
