@@ -42,7 +42,7 @@
     switch (index) {
         case 1:
             // time period: hour, day, month
-            cell.descriptionLabel.text = @"交易量";
+            cell.descriptionLabel.text = @"放量";
             cell.numberStepper.hidden = NO;
             cell.numberTextField.hidden = NO;
             break;

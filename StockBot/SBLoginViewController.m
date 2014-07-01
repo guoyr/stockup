@@ -50,7 +50,7 @@
     [self.brokerListPopover setPopoverContentSize:CGSizeMake(240, 240)];
     
     self.inputBackground.layer.cornerRadius = 10;
-    [self.inputBackground setDynamic:NO];
+//    [self.inputBackground setDynamic:NO];
     [self.inputBackground setClipsToBounds:YES];
 
     

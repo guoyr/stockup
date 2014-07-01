@@ -40,7 +40,11 @@
     [super setupCell:cell AtIndex:index];
     switch (index) {
         case 1:
-            cell.descriptionLabel.text = @"穿插";
+            cell.descriptionLabel.text = @"轴线";
+            cell.algoSegmentedControl.hidden = NO;
+            [cell.algoSegmentedControl insertSegmentWithTitle:@"上轨" atIndex:0 animated:NO];
+            [cell.algoSegmentedControl insertSegmentWithTitle:@"中轨" atIndex:1 animated:NO];
+            [cell.algoSegmentedControl insertSegmentWithTitle:@"下轨" atIndex:2 animated:NO];
             break;
             
         default:
