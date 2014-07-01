@@ -14,7 +14,6 @@
 
 @interface SBDataManager : NSObject<CHCSVParserDelegate>
 
-@property (nonatomic, strong) NSArray *allAlgoName;
 @property (nonatomic, strong) NSMutableArray *stocks;
 @property (nonatomic, strong) SBStock *selectedStock;
 @property (nonatomic, strong) SBAlgorithm *selectedAlgorithm;
@@ -24,8 +23,6 @@
 -(NSURL *)getKChartImageURLForStock:(SBStock *)stock;
 -(NSURL *)getMACDImageURLForStock:(SBStock *)stock;
 -(NSString *)getStockInfoURLStringForStock:(SBStock *)stock;
-
--(BOOL)algoNameExists:(NSString *)algoName;
 
 -(NSDictionary *)getAllAlgorithmsForUser:(SBUser *)user;
 

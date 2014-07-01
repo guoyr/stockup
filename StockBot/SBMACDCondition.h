@@ -12,4 +12,7 @@
 
 @interface SBMACDCondition : SBCondition
 
+@property (nonatomic, assign,readonly) NSInteger macdDirection;
+@property (nonatomic, assign,readonly) NSInteger macdTime;
+
 @end

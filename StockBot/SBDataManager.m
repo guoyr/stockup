@@ -107,12 +107,8 @@
     [self.allAlgorithms setObject:algorithm forKey:algorithm.uid];
     algorithm.stockID = self.selectedStock.stockID;
     algorithm.stockName = self.selectedStock.name;
-    NSMutableArray *names = [[NSMutableArray alloc] initWithCapacity:self.allAlgorithms.count];
-    for (SBAlgorithm *a in [self.allAlgorithms allValues]) {
-        [names addObject:a.name];
-    }
-    self.allAlgoName = [NSArray arrayWithArray:names];
-    NSLog(@"all algos %@",self.allAlgoName);
+
+    NSLog(@"%d",self.selectedAlgorithm.macdCondition.macdDirection);
     NSDictionary *archiveDict = [algorithm archiveToDict];
 
     //TODO: actually save the archived dict
@@ -121,11 +117,6 @@
 -(void)removeAlgorithm:(NSString *)algorithmName
 {
     
-}
-
--(BOOL)algoNameExists:(NSString *)algoName
-{
-    return [self.allAlgoName containsObject:algoName];
 }
 
 #pragma mark Getters and Setters

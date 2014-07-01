@@ -73,7 +73,7 @@ static NSString *AlgoNameCellIdentifier = @"ACell";
 {
     // get this from the manager
     self.algorithm = [[SBDataManager sharedManager] selectedAlgorithm];
-
+    NSLog(@"%d",self.algorithm.macdCondition.macdDirection);
     self.headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ALGO_LIST_WIDTH, ALGO_ROW_HEIGHT)];
     self.headerView.backgroundColor = BLACK;
     [self.view addSubview:self.headerView];

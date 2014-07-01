@@ -66,10 +66,10 @@ static NSString *UserCellIdentifier = @"UserCell";
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
--(void)viewDidAppear:(BOOL)animated
+-(void)viewWillAppear:(BOOL)animated
 {
     self.algoDict = [[SBDataManager sharedManager] getAllAlgorithmsForUser:nil];
-    self.algoNames = [[SBDataManager sharedManager] allAlgoName];
+    self.algoNames = [self.algoDict allKeys];
     [self.tableView reloadData];
         
     if (!self.algoNames.count) {
@@ -80,7 +80,7 @@ static NSString *UserCellIdentifier = @"UserCell";
             ivc.modalPresentationStyle = UIModalPresentationFormSheet;
             
             [ivc setDelegate:self];
-            [self.navigationController presentViewController:ivc animated:YES completion:^{
+            [self.navigationController presentViewController:ivc animated:NO completion:^{
                 ;
             }];
             [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"presentedInstruction"];
@@ -147,7 +147,8 @@ static NSString *UserCellIdentifier = @"UserCell";
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:UserCellIdentifier];
-    cell.textLabel.text = self.algoNames[indexPath.row];
+    NSString *algoUID = self.algoNames[indexPath.row];
+    cell.textLabel.text = [(SBAlgorithm *)self.algoDict[algoUID] name];
     return cell;
 }
 

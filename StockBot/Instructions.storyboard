@@ -13,12 +13,15 @@
                         <viewControllerLayoutGuide type="bottom" id="fj8-13-CYF"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="qxS-IK-yg3">
-                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <rect key="frame" x="0.0" y="0.0" width="540" height="620"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RB7-3a-PmC">
-                                <rect key="frame" x="339" y="394" width="90" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RB7-3a-PmC">
+                                <rect key="frame" x="225" y="383" width="90" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="90" id="OWa-z5-IP5"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <state key="normal" title="添加算法">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -28,7 +31,7 @@
                                 </connections>
                             </button>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" editable="NO" text="欢迎来到股票交易软件。请点击下面按钮选择您的第一支股票算法。" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JE9-rr-nDw">
-                                <rect key="frame" x="264" y="206" width="240" height="128"/>
+                                <rect key="frame" x="150" y="206" width="240" height="128"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -43,12 +46,13 @@
                         <constraints>
                             <constraint firstAttribute="centerX" secondItem="JE9-rr-nDw" secondAttribute="centerX" id="0QP-jo-0YF"/>
                             <constraint firstAttribute="centerX" secondItem="RB7-3a-PmC" secondAttribute="centerX" id="1IT-62-5Jy"/>
-                            <constraint firstItem="RB7-3a-PmC" firstAttribute="top" secondItem="JE9-rr-nDw" secondAttribute="bottom" constant="22" id="3zd-07-d1g"/>
                             <constraint firstItem="RB7-3a-PmC" firstAttribute="centerX" secondItem="JE9-rr-nDw" secondAttribute="centerX" id="EDh-AR-6Oi"/>
                             <constraint firstItem="JE9-rr-nDw" firstAttribute="top" secondItem="c1O-Qy-P7w" secondAttribute="bottom" constant="186" id="MT1-jJ-Ijh"/>
+                            <constraint firstItem="RB7-3a-PmC" firstAttribute="top" secondItem="JE9-rr-nDw" secondAttribute="bottom" constant="49" id="RA6-R9-ZN4"/>
                         </constraints>
                     </view>
-                    <size key="freeformSize" width="768" height="1024"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="540" height="620"/>
                     <connections>
                         <outlet property="goButton" destination="RB7-3a-PmC" id="UsQ-Qc-Mdr"/>
                     </connections>
