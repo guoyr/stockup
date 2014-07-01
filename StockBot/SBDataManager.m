@@ -103,6 +103,7 @@
         NSString *uid = [self.dateFormatter stringFromDate:[NSDate date]];
         algorithm.uid = [uid stringByAppendingString:[NSString randomStringOfLength:5]];
     }
+    
     [self.allAlgorithms setObject:algorithm forKey:algorithm.uid];
     algorithm.stockID = self.selectedStock.stockID;
     algorithm.stockName = self.selectedStock.name;
@@ -113,6 +114,7 @@
     self.allAlgoName = [NSArray arrayWithArray:names];
     NSLog(@"all algos %@",self.allAlgoName);
     NSDictionary *archiveDict = [algorithm archiveToDict];
+
     //TODO: actually save the archived dict
 }
 

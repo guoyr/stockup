@@ -73,7 +73,7 @@ static NSString *AlgoNameCellIdentifier = @"ACell";
 {
     // get this from the manager
     self.algorithm = [[SBDataManager sharedManager] selectedAlgorithm];
-    
+
     self.headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ALGO_LIST_WIDTH, ALGO_ROW_HEIGHT)];
     self.headerView.backgroundColor = BLACK;
     [self.view addSubview:self.headerView];
@@ -126,8 +126,9 @@ static NSString *AlgoNameCellIdentifier = @"ACell";
             curControl.frame = CGRectMake(HEADER_BORDER, HEADER_BORDER, ALGO_LIST_WIDTH - HEADER_BORDER*2, ALGO_ROW_HEIGHT - HEADER_BORDER*2);
             curControl.alpha = 1.0f;
             curControl.userInteractionEnabled = YES;
+
             [curControl expand];
-        } else {
+        } else { 
             curControl.alpha = 0.0f;
             curControl.userInteractionEnabled = NO;
             if (curControl.frame.origin.x < control.frame.origin.x) {
