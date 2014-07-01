@@ -19,8 +19,8 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     
-    int debug_mode = DEBUG_MODE_ALGO;
-//    int debug_mode = 0;
+//    int debug_mode = DEBUG_MODE_ALGO;
+    int debug_mode = 0;
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.tintColor = GREEN_0;
     [[UINavigationBar appearance] setBarTintColor:BLUE_4];

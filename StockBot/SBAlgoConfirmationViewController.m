@@ -88,7 +88,19 @@
 -(void)done:(UIBarButtonItem *)sender
 {
     [[SBDataManager sharedManager] saveAlgorithm:self.curAlgorithm];
+    NSDate *date = [NSDate dateWithTimeIntervalSinceNow:5.0];
+    [self createLocalNotificationAtTime:date];
     [self.navigationController popToRootViewControllerAnimated:YES];
+}
+
+-(void)createLocalNotificationAtTime:(NSDate*)time
+{
+    UILocalNotification *note = [[UILocalNotification alloc] init];
+    note.fireDate = time;
+    note.alertBody = [NSString stringWithFormat:@"当前股票行情已满足您的算法：\"民生银行低买高卖\"的条件"];
+    note.alertAction = @"请进入股红进行交易。";
+    [[UIApplication sharedApplication] scheduleLocalNotification:note];
+    
 }
 
 -(void)textFieldChanged:(UITextField *)sender

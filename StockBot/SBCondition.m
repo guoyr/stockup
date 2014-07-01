@@ -20,7 +20,7 @@
 
 -(NSString *)extendedDescription
 {
-    return @"草泥马";
+    return @"条件概述";
 }
 
 -(void)setupCell:(SBAlgoConditionTableViewCell *)cell AtIndex:(NSInteger)index

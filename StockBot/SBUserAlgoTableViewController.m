@@ -104,6 +104,7 @@ static NSString *UserCellIdentifier = @"UserCell";
 -(void)addAlgorithm:(id)sender
 {
     SBStocksViewController *algoVC = [[SBStocksViewController alloc] initWithNibName:nil bundle:nil];
+    [[SBDataManager sharedManager] setSelectedAlgorithm:nil];
     [self.navigationController pushViewController:algoVC animated:YES];
 }
 
