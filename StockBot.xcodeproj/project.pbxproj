@@ -10,6 +10,9 @@
 		BC1DD2F718BFA155006CA542 /* SBDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BC1DD2F618BFA155006CA542 /* SBDataManager.m */; };
 		BC488CA2195CD6C400310801 /* SBSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = BC488CA1195CD6C400310801 /* SBSegmentedControl.m */; };
 		BC488CA5195DF2BA00310801 /* SBVolumeCondition.m in Sources */ = {isa = PBXBuildFile; fileRef = BC488CA4195DF2BA00310801 /* SBVolumeCondition.m */; };
+		BC4AE16C196871A1009B3B74 /* SBMandatoryCondition.m in Sources */ = {isa = PBXBuildFile; fileRef = BC4AE16B196871A1009B3B74 /* SBMandatoryCondition.m */; };
+		BC4AE16F1968785E009B3B74 /* SBBuySellCondition.m in Sources */ = {isa = PBXBuildFile; fileRef = BC4AE16E1968785E009B3B74 /* SBBuySellCondition.m */; };
+		BC4AE17219687879009B3B74 /* SBPriceTypeCondition.m in Sources */ = {isa = PBXBuildFile; fileRef = BC4AE17119687879009B3B74 /* SBPriceTypeCondition.m */; };
 		BC4AFC8118DA777D00C888D9 /* SBStockGraphView.m in Sources */ = {isa = PBXBuildFile; fileRef = BC4AFC8018DA777D00C888D9 /* SBStockGraphView.m */; };
 		BC60A9E319350C46007FDEE0 /* SBBrokersTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BC60A9E219350C46007FDEE0 /* SBBrokersTableViewController.m */; };
 		BC60A9E719352A11007FDEE0 /* NSString+SBAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = BC60A9E619352A11007FDEE0 /* NSString+SBAdditions.m */; };
@@ -48,7 +51,7 @@
 		BCA6F0FD191166E900D4A34D /* SBKDJCondition.m in Sources */ = {isa = PBXBuildFile; fileRef = BCA6F0FC191166E900D4A34D /* SBKDJCondition.m */; };
 		BCB4128F192EAA7F00A6706E /* SBUser.m in Sources */ = {isa = PBXBuildFile; fileRef = BCB4128E192EAA7F00A6706E /* SBUser.m */; };
 		BCBB200918E48FDE0085FFD3 /* SBAlgoConfirmationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BCBB200818E48FDE0085FFD3 /* SBAlgoConfirmationViewController.m */; };
-		BCBFA1FE192E8B5000A6D17E /* SBAlgorithm.m in Sources */ = {isa = PBXBuildFile; fileRef = BCBFA1FD192E8B5000A6D17E /* SBAlgorithm.m */; };
+		BCBFA1FE192E8B5000A6D17E /* SBAlgorithmManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BCBFA1FD192E8B5000A6D17E /* SBAlgorithmManager.m */; };
 		BCDB2BC218D2CB4500CBF07E /* stockList.csv in Resources */ = {isa = PBXBuildFile; fileRef = BCDB2BC118D2CB4500CBF07E /* stockList.csv */; };
 		BCDB2BC618D30AE300CBF07E /* SBStock.m in Sources */ = {isa = PBXBuildFile; fileRef = BCDB2BC518D30AE300CBF07E /* SBStock.m */; };
 		BCEB9C29192DD393001D042D /* SBAlgoSelectTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BCEB9C28192DD393001D042D /* SBAlgoSelectTableViewCell.m */; };
@@ -78,6 +81,12 @@
 		BC488CA1195CD6C400310801 /* SBSegmentedControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBSegmentedControl.m; sourceTree = "<group>"; };
 		BC488CA3195DF2BA00310801 /* SBVolumeCondition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBVolumeCondition.h; sourceTree = "<group>"; };
 		BC488CA4195DF2BA00310801 /* SBVolumeCondition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBVolumeCondition.m; sourceTree = "<group>"; };
+		BC4AE16A196871A1009B3B74 /* SBMandatoryCondition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBMandatoryCondition.h; sourceTree = "<group>"; };
+		BC4AE16B196871A1009B3B74 /* SBMandatoryCondition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBMandatoryCondition.m; sourceTree = "<group>"; };
+		BC4AE16D1968785E009B3B74 /* SBBuySellCondition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBBuySellCondition.h; sourceTree = "<group>"; };
+		BC4AE16E1968785E009B3B74 /* SBBuySellCondition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBBuySellCondition.m; sourceTree = "<group>"; };
+		BC4AE17019687879009B3B74 /* SBPriceTypeCondition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBPriceTypeCondition.h; sourceTree = "<group>"; };
+		BC4AE17119687879009B3B74 /* SBPriceTypeCondition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBPriceTypeCondition.m; sourceTree = "<group>"; };
 		BC4AFC7F18DA777D00C888D9 /* SBStockGraphView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBStockGraphView.h; sourceTree = "<group>"; };
 		BC4AFC8018DA777D00C888D9 /* SBStockGraphView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBStockGraphView.m; sourceTree = "<group>"; };
 		BC60A9E119350C46007FDEE0 /* SBBrokersTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBBrokersTableViewController.h; sourceTree = "<group>"; };
@@ -145,8 +154,8 @@
 		BCB4128E192EAA7F00A6706E /* SBUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBUser.m; sourceTree = "<group>"; };
 		BCBB200718E48FDE0085FFD3 /* SBAlgoConfirmationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBAlgoConfirmationViewController.h; sourceTree = "<group>"; };
 		BCBB200818E48FDE0085FFD3 /* SBAlgoConfirmationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBAlgoConfirmationViewController.m; sourceTree = "<group>"; };
-		BCBFA1FC192E8B5000A6D17E /* SBAlgorithm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBAlgorithm.h; sourceTree = "<group>"; };
-		BCBFA1FD192E8B5000A6D17E /* SBAlgorithm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBAlgorithm.m; sourceTree = "<group>"; };
+		BCBFA1FC192E8B5000A6D17E /* SBAlgorithmManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBAlgorithmManager.h; sourceTree = "<group>"; };
+		BCBFA1FD192E8B5000A6D17E /* SBAlgorithmManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBAlgorithmManager.m; sourceTree = "<group>"; };
 		BCDB2BC118D2CB4500CBF07E /* stockList.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = stockList.csv; sourceTree = "<group>"; };
 		BCDB2BC418D30AE300CBF07E /* SBStock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBStock.h; sourceTree = "<group>"; };
 		BCDB2BC518D30AE300CBF07E /* SBStock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBStock.m; sourceTree = "<group>"; };
@@ -330,6 +339,8 @@
 		BCA6F0F419102F9C00D4A34D /* Conditions */ = {
 			isa = PBXGroup;
 			children = (
+				BC4AE16A196871A1009B3B74 /* SBMandatoryCondition.h */,
+				BC4AE16B196871A1009B3B74 /* SBMandatoryCondition.m */,
 				BCA6F0F519108AFE00D4A34D /* SBMACDCondition.h */,
 				BCA6F0F619108AFE00D4A34D /* SBMACDCondition.m */,
 				BCA6F0FB191166E900D4A34D /* SBKDJCondition.h */,
@@ -343,8 +354,12 @@
 				BCA6F0F81911659100D4A34D /* SBCondition.h */,
 				BCA6F0F91911659100D4A34D /* SBCondition.m */,
 				BC33F3641914A1A500C80E6C /* SBConditions.h */,
-				BCBFA1FC192E8B5000A6D17E /* SBAlgorithm.h */,
-				BCBFA1FD192E8B5000A6D17E /* SBAlgorithm.m */,
+				BCBFA1FC192E8B5000A6D17E /* SBAlgorithmManager.h */,
+				BCBFA1FD192E8B5000A6D17E /* SBAlgorithmManager.m */,
+				BC4AE16D1968785E009B3B74 /* SBBuySellCondition.h */,
+				BC4AE16E1968785E009B3B74 /* SBBuySellCondition.m */,
+				BC4AE17019687879009B3B74 /* SBPriceTypeCondition.h */,
+				BC4AE17119687879009B3B74 /* SBPriceTypeCondition.m */,
 			);
 			name = Conditions;
 			sourceTree = "<group>";
@@ -525,12 +540,13 @@
 				BCA6F0FA1911659100D4A34D /* SBCondition.m in Sources */,
 				BC809FE718BE96990014C48B /* SBAlgosDetailViewController.m in Sources */,
 				BCDB2BC618D30AE300CBF07E /* SBStock.m in Sources */,
-				BCBFA1FE192E8B5000A6D17E /* SBAlgorithm.m in Sources */,
+				BCBFA1FE192E8B5000A6D17E /* SBAlgorithmManager.m in Sources */,
 				BC7D247618D805A400CCF8A9 /* SBStocksTableViewCell.m in Sources */,
 				BCA2158C1946154900948D76 /* SBInstructionsViewController.m in Sources */,
 				BC64F39219005D0D00641E14 /* SBUserAlgoTableViewController.m in Sources */,
 				BC809FE918BE96990014C48B /* SBAlgosViewController.m in Sources */,
 				BC4AFC8118DA777D00C888D9 /* SBStockGraphView.m in Sources */,
+				BC4AE16C196871A1009B3B74 /* SBMandatoryCondition.m in Sources */,
 				BC64E7C8195A28B800ED81DC /* UIImage+SBAdditions.m in Sources */,
 				BCF937ED195F74590019C954 /* SBPriceCondition.m in Sources */,
 				BC9FBF85193E5F81000B1942 /* SBLoginAnimatedTransitioning.m in Sources */,
@@ -544,12 +560,14 @@
 				BC9FBF82193E539D000B1942 /* UIView+SBAdditions.m in Sources */,
 				BC488CA2195CD6C400310801 /* SBSegmentedControl.m in Sources */,
 				BC809FEA18BE96990014C48B /* SBStocksDetailViewController.m in Sources */,
+				BC4AE17219687879009B3B74 /* SBPriceTypeCondition.m in Sources */,
 				BC488CA5195DF2BA00310801 /* SBVolumeCondition.m in Sources */,
 				BCEB9C29192DD393001D042D /* SBAlgoSelectTableViewCell.m in Sources */,
 				BC809FEC18BE96990014C48B /* SBStocksViewController.m in Sources */,
 				BC809FED18BE96990014C48B /* SBViewController.m in Sources */,
 				BC809FEB18BE96990014C48B /* SBStocksListTableViewController.m in Sources */,
 				BC64F38F18FF305300641E14 /* SBLoginViewController.m in Sources */,
+				BC4AE16F1968785E009B3B74 /* SBBuySellCondition.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -9,7 +9,7 @@
 #import "SBUserAlgoTableViewController.h"
 #import "SBLoginViewController.h"
 #import "SBStocksViewController.h"
-#import "SBAlgorithm.h"
+#import "SBAlgorithmManager.h"
 #import "SBDataManager.h"
 #import "SBNavigationControllerDelegate.h"
 
@@ -148,14 +148,14 @@ static NSString *UserCellIdentifier = @"UserCell";
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:UserCellIdentifier];
     NSString *algoUID = self.algoNames[indexPath.row];
-    cell.textLabel.text = [(SBAlgorithm *)self.algoDict[algoUID] name];
+    cell.textLabel.text = [(SBAlgorithmManager *)self.algoDict[algoUID] name];
     return cell;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSString *algoName = self.algoNames[indexPath.row];
-    SBAlgorithm *algo = self.algoDict[algoName];
+    SBAlgorithmManager *algo = self.algoDict[algoName];
     SBDataManager *manager = [SBDataManager sharedManager];
     [manager setSelectedAlgorithm:algo];
     SBStock *stock = [manager stocks][indexPath.row];

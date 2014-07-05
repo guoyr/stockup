@@ -8,25 +8,20 @@
 
 #import "SBAlgosSelectionTableViewController.h"
 #import "SBAlgoConditionTableViewCell.h"
-#import "SBAlgorithm.h"
+#import "SBAlgorithmManager.h"
 #import "SBAlgoSelectTableViewCell.h"
 #import "SBDataManager.h"
 #import "SBSegmentedControl.h"
 #import "SBConstants.h"
 
-#define HEADER_BORDER 12
-#define SEG_CONTROL_WIDTH ALGO_LIST_WIDTH/2-HEADER_BORDER*2
-
 @interface SBAlgosSelectionTableViewController ()
 
-@property (nonatomic, strong) SBAlgorithm *algorithm;
+@property (nonatomic, strong) SBAlgorithmManager *algorithm;
 @property (nonatomic, strong) NSMutableArray *expandedIndexPaths;
 @property (nonatomic, strong) NSIndexPath *selectedIndexPath;
 @property (nonatomic, strong) NSMutableArray *selectedAlgorithmIndices;
 
 @property (nonatomic, strong) UIView *headerView;
-@property (nonatomic, strong) SBSegmentedControl *buySellControl;
-@property (nonatomic, strong) SBSegmentedControl *priceControl;
 @property (nonatomic, strong) UIColor *stockTintColor;
 
 @end
@@ -78,39 +73,22 @@ static NSString *AlgoNameCellIdentifier = @"ACell";
     self.headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ALGO_LIST_WIDTH, ALGO_ROW_HEIGHT)];
     self.headerView.backgroundColor = BLACK_BG;
     [self.view addSubview:self.headerView];
-    
-    self.buySellControl = [[SBSegmentedControl alloc] initWithItems:@[@"买入", @"卖出"]];
-    self.buySellControl.frame = CGRectMake(HEADER_BORDER, HEADER_BORDER, ALGO_LIST_WIDTH - HEADER_BORDER*2, ALGO_ROW_HEIGHT - HEADER_BORDER*2);
-    self.buySellControl.alpha = 0.0f;
-    self.buySellControl.tintColor = self.stockTintColor;
-    [self.buySellControl addTarget:self action:@selector(buySellControlValueChanged:) forControlEvents:UIControlEventValueChanged];
-    
-    self.priceControl = [[SBSegmentedControl alloc] initWithItems:@[@"市场价",@"限价单"]];
-    self.priceControl.frame = CGRectMake(HEADER_BORDER, HEADER_BORDER, ALGO_LIST_WIDTH - HEADER_BORDER*2, ALGO_ROW_HEIGHT - HEADER_BORDER*2);
-    self.priceControl.alpha = 0.0f;
-    self.priceControl.tintColor = self.stockTintColor;
-    [self.priceControl addTarget:self action:@selector(marketLimitedControlValueChanged:) forControlEvents:UIControlEventValueChanged];
 
-    self.algorithm.mandatoryControls = @[self.buySellControl, self.priceControl];
-    
-    [self.headerView addSubview:self.buySellControl];
-    [self.headerView addSubview:self.priceControl];
-    
-    self.buySellControl.alpha = 1.0f;
+
+    for (SBMandatoryCondition *condition in self.algorithm.mandatoryConditions) {
+        // TODO: setup the segmented controls if necessary
+        [self.headerView addSubview:condition.segmentedControl];
+    }
     
 }
-
-#define BUY_INDEX 0
-#define SELL_INDEX 1
-#define MARKET_PRICE_INDEX 0
-#define LIMITED_PRICE_INDEX 1
 
 #pragma mark SegmentedControl helper methods
 
 -(void)showControlsSideBySide
 {
     CGRect frame = CGRectMake(HEADER_BORDER, HEADER_BORDER, SEG_CONTROL_WIDTH, ALGO_ROW_HEIGHT - HEADER_BORDER*2);
-    for (SBSegmentedControl *control in self.algorithm.mandatoryControls) {
+    for (SBMandatoryCondition *condition in self.algorithm.mandatoryConditions) {
+        SBSegmentedControl *control = condition.segmentedControl;
         control.frame = frame;
         frame.origin.x += SEG_CONTROL_WIDTH + HEADER_BORDER * 2;
         control.userInteractionEnabled = YES;
@@ -124,7 +102,8 @@ static NSString *AlgoNameCellIdentifier = @"ACell";
 -(void)showControlFullScreen:(SBSegmentedControl *)control
 {
     
-    for (SBSegmentedControl *curControl in self.algorithm.mandatoryControls) {
+    for (SBMandatoryCondition *condition in self.algorithm.mandatoryConditions) {
+        SBSegmentedControl *curControl = condition.segmentedControl;
         if (control == curControl) {
             curControl.frame = CGRectMake(HEADER_BORDER, HEADER_BORDER, ALGO_LIST_WIDTH - HEADER_BORDER*2, ALGO_ROW_HEIGHT - HEADER_BORDER*2);
             curControl.alpha = 1.0f;
@@ -146,90 +125,6 @@ static NSString *AlgoNameCellIdentifier = @"ACell";
         }
     }
     
-
-}
-
--(void)buySellControlValueChanged:(SBSegmentedControl *)control
-{
-    if (!control.isExpanded) {
-        // showing only the summary, expand
-        [UIView animateWithDuration:0.3 animations:^{
-//            [self showControlFullScreen:control];
-
-        } completion:^(BOOL finished) {
-
-        }];
-    } else {
-
-        if (!self.algorithm.orderCondition) {
-            // showing price information for the first time
-            
-            self.priceControl.frame = CGRectMake(ALGO_LIST_WIDTH, HEADER_BORDER, ALGO_LIST_WIDTH - HEADER_BORDER*2, ALGO_ROW_HEIGHT - HEADER_BORDER*2);
-            [UIView animateWithDuration:0.3 animations:^{
-                [self showControlFullScreen:self.priceControl];
-                self.buySellControl.frame = CGRectMake(-ALGO_LIST_WIDTH, HEADER_BORDER, ALGO_LIST_WIDTH - HEADER_BORDER*2, ALGO_ROW_HEIGHT - HEADER_BORDER*2);
-
-            }];
-        } else {
-            [UIView animateWithDuration:0.3 animations:^{
-                [self showControlsSideBySide];
-
-            }completion:^(BOOL finished) {
-                ;
-            }];
-        }
-    }
-    
-    switch (control.selectedSegmentIndex) {
-        case BUY_INDEX:
-            self.stockTintColor = BLUE;
-            break;
-        case SELL_INDEX:
-            self.stockTintColor = RED;
-            break;
-        default:
-            break;
-    }
-    self.priceControl.tintColor = self.stockTintColor;
-    self.buySellControl.tintColor = self.stockTintColor;
-    self.navigationController.navigationBar.barTintColor = self.stockTintColor;
-    [self.tableView reloadData];
-    self.algorithm.buySellCondition = control.selectedSegmentIndex + 1;
-    
-    
-}
-
--(void)marketLimitedControlValueChanged:(SBSegmentedControl *)control
-{
-    if (!control.isExpanded) {
-        // showing only the summary, expand
-        [UIView animateWithDuration:0.3 animations:^{
-//            [self showControlFullScreen:control];
-            
-        } completion:^(BOOL finished) {
-
-        }];
-    } else {
-        switch (control.selectedSegmentIndex) {
-            case MARKET_PRICE_INDEX:
-                ;
-                break;
-            case LIMITED_PRICE_INDEX:
-                ;
-                break;
-            default:
-                break;
-        }
-        
-        
-        self.algorithm.orderCondition = control.selectedSegmentIndex + 1;
-        
-        [UIView animateWithDuration:0.3 animations:^{
-            [self showControlsSideBySide];
-        } completion:^(BOOL finished) {
-
-        }];
-    }
 
 }
 
@@ -273,7 +168,7 @@ static NSString *AlgoNameCellIdentifier = @"ACell";
             SBAlgoConditionTableViewCell *customizeCell = [tableView dequeueReusableCellWithIdentifier:CustomizeCellIdentifier];
             [customizeCell resetCell];
             customizeCell.bgView.backgroundColor = self.stockTintColor;
-            SBCondition *curAlgo = [self.algorithm conditionAtIndex:self.selectedIndexPath.row];
+            SBCondition *curAlgo = [self conditionAtIndex:self.selectedIndexPath.row];
             curAlgo.delegate = self;
             NSInteger curAlgoOptionsIndex = indexPath.row - self.selectedIndexPath.row;
             [curAlgo setupCell:customizeCell AtIndex:curAlgoOptionsIndex];
@@ -282,7 +177,7 @@ static NSString *AlgoNameCellIdentifier = @"ACell";
         }
     }
     
-    SBCondition *curAlgo = [self.algorithm conditionAtIndex:curAlgoIndex];
+    SBCondition *curAlgo = [self conditionAtIndex:curAlgoIndex];
     
     // already selected the algorithm
     if ([self.selectedAlgorithmIndices containsObject:[NSNumber numberWithLong:curAlgoIndex]]) {
@@ -311,7 +206,7 @@ static NSString *AlgoNameCellIdentifier = @"ACell";
     if (self.selectedIndexPath && indexPath.row > self.selectedIndexPath.row) {
         curAlgoIndex -= [self.expandedIndexPaths count];
     }
-    SBCondition *curAlgo = [self.algorithm conditionAtIndex:curAlgoIndex];
+    SBCondition *curAlgo = [self conditionAtIndex:curAlgoIndex];
     NSMutableArray *expandedIndexPaths = [NSMutableArray new];
     for (int i = 1; i < [curAlgo numExpandedRows]+1 ; i++) {
         [expandedIndexPaths addObject:[NSIndexPath indexPathForRow:curAlgoIndex + i inSection:indexPath.section]];
@@ -347,6 +242,32 @@ static NSString *AlgoNameCellIdentifier = @"ACell";
     
 }
 
+-(SBCondition *)conditionAtIndex:(NSInteger)index
+{
+    SBCondition *condition;
+    SBAlgorithmManager *algorithm = self.algorithm;
+    switch (index) {
+        case 0:
+            condition = algorithm.macdCondition;
+            break;
+        case 1:
+            condition = algorithm.kdjCondition;
+            break;
+        case 2:
+            condition = algorithm.volumeCondtion;
+            break;
+        case 3:
+            condition = algorithm.bollCondition;
+            break;
+        case 4:
+            condition = algorithm.priceCondition;
+            break;
+        default:
+            break;
+    }
+    return condition;
+}
+
 -(void)confirmedCondition:(UIButton *)button
 {
     //TODO: eventually change to a checkmark
@@ -354,14 +275,14 @@ static NSString *AlgoNameCellIdentifier = @"ACell";
     if (![self.selectedAlgorithmIndices containsObject:index]) {
         [button setTitle:@"-" forState:UIControlStateNormal];
         [self.selectedAlgorithmIndices addObject:[NSNumber numberWithLong:button.tag]];
-        [self.algorithm conditionAtIndex:button.tag].isSelected = YES;
-        [self.delegate viewController:self didAddCondition:[self.algorithm conditionAtIndex:button.tag]];
+        [self conditionAtIndex:button.tag].isSelected = YES;
+        [self.delegate viewController:self didAddCondition:[self conditionAtIndex:button.tag]];
 
     } else {
         [button setTitle:@"+" forState:UIControlStateNormal];
-        [self.algorithm conditionAtIndex:button.tag].isSelected = NO;
+        [self conditionAtIndex:button.tag].isSelected = NO;
         [self.selectedAlgorithmIndices removeObject:[NSNumber numberWithLong:button.tag]];
-        [self.delegate viewController:self didRemoveCondition:[self.algorithm conditionAtIndex:button.tag]];
+        [self.delegate viewController:self didRemoveCondition:[self conditionAtIndex:button.tag]];
     }
     
 }

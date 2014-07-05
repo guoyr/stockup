@@ -10,7 +10,7 @@
 #import "SBDataManager.h"
 #import "SBConstants.h"
 #import "SBStock.h"
-#import "SBAlgorithm.h"
+#import "SBAlgorithmManager.h"
 #import "NSString+SBAdditions.h"
 @interface SBDataManager()
 
@@ -32,10 +32,10 @@
     return sharedMyManager;
 }
 
--(SBAlgorithm *)selectedAlgorithm
+-(SBAlgorithmManager *)selectedAlgorithm
 {
     if (!_selectedAlgorithm) {
-        _selectedAlgorithm = [SBAlgorithm new];
+        _selectedAlgorithm = [SBAlgorithmManager new];
     }
     return _selectedAlgorithm;
 }
@@ -94,7 +94,7 @@
 }
 
 // save algorithm, if nil, save selected algorithm
--(void)saveAlgorithm:(SBAlgorithm *)algorithm
+-(void)saveAlgorithm:(SBAlgorithmManager *)algorithm
 {
     if (!algorithm) {
         algorithm = self.selectedAlgorithm;

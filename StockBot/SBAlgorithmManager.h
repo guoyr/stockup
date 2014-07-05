@@ -10,7 +10,7 @@
 #import "SBConditions.h"
 
 
-@interface SBAlgorithm : NSObject
+@interface SBAlgorithmManager : NSObject
 
 @property (nonatomic, strong) NSString *name;
 @property (nonatomic, strong) NSString *stockName;
@@ -21,20 +21,19 @@
 @property (nonatomic, strong) SBVolumeCondition *volumeCondtion;
 @property (nonatomic, strong) SBBOLLCondition *bollCondition;
 @property (nonatomic, strong) SBPriceCondition *priceCondition;
+
+@property (nonatomic, strong) SBBuySellCondition *buySellCondition;
+@property (nonatomic, strong) SBPriceTypeCondition *priceTypeCondition;
+
 @property (nonatomic, assign) NSInteger numConditions;
 @property (nonatomic, strong) NSString *uid;
 // TODO: change to SBCondition subclass in the future
-@property (nonatomic, assign) NSInteger buySellCondition;
-@property (nonatomic, assign) NSInteger orderCondition;
 
 // array of mandatory controls for the algorithms
 // show up as a list of segmentedIndices on the top
-@property (nonatomic, strong) NSArray *mandatoryControls;
-
+@property (nonatomic, strong) NSArray *mandatoryConditions;
 // conditions that have been added to this algorithm
 @property (nonatomic, strong) NSMutableArray *addedConditions;
-
--(SBCondition *)conditionAtIndex:(NSInteger)index;
 
 -(NSDictionary *)archiveToDict;
 -(void)unarchiveFromDict:(NSDictionary *)dict;

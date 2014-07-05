@@ -9,11 +9,11 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "SBAlgorithm.h"
+#import "SBAlgorithmManager.h"
 
 
 @interface SBAlgoConfirmationViewController : UIViewController <UITextFieldDelegate>
 
-@property (nonatomic, strong) SBAlgorithm *curAlgorithm;
+@property (nonatomic, strong) SBAlgorithmManager *curAlgorithm;
 
 @end

@@ -12,7 +12,7 @@
 #import "SBDataManager.h"
 #import "SBStock.h"
 #import "SBStockGraphView.h"
-#import "SBAlgorithm.h"
+#import "SBAlgorithmManager.h"
 
 @interface SBAlgosDetailViewController ()
 
@@ -21,7 +21,7 @@
 @property (nonatomic, strong) UITextView *conditionDescriptionView;
 @property (nonatomic, strong) NSMutableArray *currentConditions;
 @property (nonatomic, strong) UIView *conditionSummaryView;
-@property (nonatomic, strong) SBAlgorithm *curAlgorithm;
+@property (nonatomic, strong) SBAlgorithmManager *curAlgorithm;
 
 @end
 
@@ -39,11 +39,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self.view setBackgroundColor:BLACK];
+    [self.view setBackgroundColor:BLACK_BG];
 
-
+    float detailViewWidth = 768 - ALGO_LIST_WIDTH;
     
-    self.stockGraphView = [[SBStockGraphView alloc] initWithFrame:CGRectMake(10, 20, 364, 240)];
+    self.stockGraphView = [[SBStockGraphView alloc] initWithFrame:CGRectMake(10, 20, detailViewWidth - 20, 240)];
     [self.view addSubview:self.stockGraphView];
     self.stockGraphView.hidden = YES;
     
@@ -51,11 +51,11 @@
 //    NSURL *imageURL = [[SBDataManager sharedManager] getKChartImageURLForStock:stock];
 //    [self.stockGraphView setImageWithURL:imageURL placeholderImage:nil];
     
-    self.algoSummaryView = [[UITextView alloc] initWithFrame:CGRectMake(10, 432, 364, 420)];
+    self.algoSummaryView = [[UITextView alloc] initWithFrame:CGRectMake(10, 432, detailViewWidth - 20, 420)];
     [self setupTextView:self.algoSummaryView];
     self.algoSummaryView.text = @"test";
     
-    self.conditionDescriptionView = [[UITextView alloc] initWithFrame:CGRectMake(10, 268, 364, 160)];
+    self.conditionDescriptionView = [[UITextView alloc] initWithFrame:CGRectMake(10, 268, detailViewWidth - 20, 160)];
     [self setupTextView:self.conditionDescriptionView];
     
     [self.view addSubview:self.algoSummaryView];

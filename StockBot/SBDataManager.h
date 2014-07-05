@@ -10,13 +10,13 @@
 #import <CHCSVParser.h>
 @class SBStock;
 @class SBUser;
-@class SBAlgorithm;
+@class SBAlgorithmManager;
 
 @interface SBDataManager : NSObject<CHCSVParserDelegate>
 
 @property (nonatomic, strong) NSMutableArray *stocks;
 @property (nonatomic, strong) SBStock *selectedStock;
-@property (nonatomic, strong) SBAlgorithm *selectedAlgorithm;
+@property (nonatomic, strong) SBAlgorithmManager *selectedAlgorithm;
 @property (nonatomic, strong) NSArray *brokerList;
 
 +(id)sharedManager;
@@ -26,7 +26,7 @@
 
 -(NSDictionary *)getAllAlgorithmsForUser:(SBUser *)user;
 
--(void)saveAlgorithm:(SBAlgorithm *)algorithm;
+-(void)saveAlgorithm:(SBAlgorithmManager *)algorithm;
 -(void)removeAlgorithm:(NSString *)algorithmName;
 
 -(NSString *)defaultAlgorithmName;

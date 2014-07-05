@@ -76,12 +76,13 @@
     [self.view addSubview:_lvc.view];
     
     
-    
-    self.instructionView = [[UITextView alloc] initWithFrame:CGRectMake(420, 200, 300, 500)];
-    [self.instructionView setBackgroundColor:[UIColor blackColor]];
+
+    self.instructionView = [[UITextView alloc] initWithFrame:CGRectMake(ALGO_LIST_WIDTH + 40, 120, 768-ALGO_LIST_WIDTH - 80, 480)];
+    [self.instructionView setBackgroundColor:BLACK_BG];
     [self.instructionView setFont:[UIFont systemFontOfSize:32]];
-    [self.instructionView setText:[NSString stringWithFormat:@"请再作则选择您购买“%@”的条件。但该股票满足这些条件时，我们会为您进行交易",stockName]];
-    [self.instructionView setTextColor:[UIColor whiteColor]];
+    [self.instructionView setTextAlignment:NSTextAlignmentJustified];
+    [self.instructionView setText:[NSString stringWithFormat:@"请在左侧选择您购买“%@”的条件。但该股票满足这些条件时，我们会为您进行交易",stockName]];
+    [self.instructionView setTextColor:GREY_LIGHT];
     [self.instructionView setScrollEnabled:NO];
     [self.instructionView setEditable:NO];
     [self.instructionView setSelectable:NO];
@@ -89,7 +90,7 @@
     
     self.confirmButton = [[UIButton alloc] initWithFrame:_bottomFrame];
     [self.confirmButton setTitle:@"确认算法" forState:UIControlStateNormal];
-    [self.confirmButton setBackgroundColor:BLUE_2];
+    [self.confirmButton setBackgroundColor:GREY_LIGHT   ];
     [self.confirmButton addTarget:self action:@selector(confirmButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.confirmButton];
     self.confirmButton.enabled = NO;
