@@ -46,7 +46,7 @@
     
     self.descriptionLabel = [[UITextView alloc] initWithFrame:CGRectMake(192, 116, 384, 428)];
     self.descriptionLabel.textColor = WHITE;
-    self.descriptionLabel.backgroundColor = BLACK;
+    self.descriptionLabel.backgroundColor = BLACK_BG;
     [self.descriptionLabel setUserInteractionEnabled:NO];
     [self.descriptionLabel setFont:[UIFont systemFontOfSize:18]];
     [self.view addSubview:self.descriptionLabel];

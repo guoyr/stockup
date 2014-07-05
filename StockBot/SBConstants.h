@@ -32,8 +32,7 @@
 #define GREEN_3 UIColorFromRGB(0x41A128)
 #define GREEN_4 UIColorFromRGB(0x1D8B00)
 
-#define BLACK UIColorFromRGB(0x000000)
-#define WHITE UIColorFromRGB(0xFFFFFF)
+#define WHITE UIColorFromRGB(0xb6bac4)
 #define YELLOW UIColorFromRGB(0xFFFF00)
 
 #define GREY_LIGHT UIColorFromRGB(0x8B8F99)
@@ -51,7 +50,6 @@
 
 #define STOCK_CELL_HEIGHT 80
 #define ALGO_ROW_HEIGHT 72
-#define ALGO_EXPANDED_ROW_HEIGHT 282
 
 #define STOCK_CELL_WIDTH 320
 #define CONFIRM_BUTTON_HEIGHT 80 // same as stock cell height per #8

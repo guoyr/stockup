@@ -47,7 +47,7 @@
 {
     [super viewDidLoad];
     
-    self.view.backgroundColor = BLACK;
+    self.view.backgroundColor = BLACK_BG;
     CGRect navBarFrame = self.navigationController.navigationBar.frame;
     int navBarHeight = navBarFrame.origin.y + navBarFrame.size.height;
     int frameHeight = self.view.frame.size.height;
@@ -63,7 +63,7 @@
     
     self.confirmButton = [[UIButton alloc] initWithFrame:_bottomFrame];
     [self.confirmButton setTitle:@"选择该股票" forState:UIControlStateNormal];
-    [self.confirmButton setBackgroundColor:BLUE_2];
+    [self.confirmButton setBackgroundColor:GREY_LIGHT];
     [self.confirmButton addTarget:self action:@selector(confirmButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
     
     [_tvc.view setFrame:_leftFrame];
@@ -73,7 +73,7 @@
     [self.view addSubview:_tvc.view];
     
     self.instructionView = [[UITextView alloc] initWithFrame:CGRectMake(400, 200, 300, 500)];
-    [self.instructionView setBackgroundColor:[UIColor blackColor]];
+    [self.instructionView setBackgroundColor:BLACK_BG];
     [self.instructionView setFont:[UIFont systemFontOfSize:32]];
     [self.instructionView setText:@"欢迎您使用股票买卖助手。请再左手栏里选择一只您想买卖的股票"];
     [self.instructionView setTextColor:WHITE];

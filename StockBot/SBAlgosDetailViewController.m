@@ -69,7 +69,7 @@
 
 -(void)setupTextView:(UITextView *)textView
 {
-    [textView setBackgroundColor:BLACK];
+    [textView setBackgroundColor:BLACK_BG];
     [textView setFont:[UIFont systemFontOfSize:16]];
     [textView setTextColor:WHITE];
 //    [textView setScrollEnabled:NO];

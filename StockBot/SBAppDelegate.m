@@ -19,10 +19,10 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     
-    int debug_mode = DEBUG_MODE_ALGO;
+    int debug_mode = DEBUG_MODE_STOCK;
 //    int debug_mode = 0;
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    self.window.tintColor = GREEN_0;
+    self.window.tintColor = GREY_LIGHT;
     [[UINavigationBar appearance] setBarTintColor:GREY_DARK];
     
     BOOL loggedin = [[NSUserDefaults standardUserDefaults] boolForKey:@"loggedin"];
@@ -38,8 +38,6 @@
         curvc = vc2;
     }
     
-    
-    
     UINavigationController *nav = [[UINavigationController alloc] init];
     [nav setViewControllers:@[curvc]];
     [[nav navigationBar] setBarStyle:UIBarStyleBlackTranslucent];
@@ -50,7 +48,9 @@
             vc = [[SBAlgosViewController alloc] initWithNibName:nil bundle:nil];
             [nav pushViewController:vc animated:YES];
             break;
-            
+        case DEBUG_MODE_STOCK:
+            vc = [[SBStocksViewController alloc] initWithNibName:nil bundle:nil];
+            [nav pushViewController:vc animated:YES];
         default:
             break;
     }

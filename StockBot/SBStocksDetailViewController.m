@@ -59,7 +59,7 @@
     self.scrollView.frame = self.view.bounds;
     [self.scrollView setScrollEnabled:YES];
     // Do any additional setup after loading the view.
-    [self.view setBackgroundColor:[UIColor blackColor]];
+    [self.view setBackgroundColor:BLACK_BG];
 //    [self.view.layer setBorderColor:[UIColor blueColor].CGColor];
 //    [self.view.layer setBorderWidth:5.0f];
     
@@ -149,8 +149,8 @@
     int labelWidth = 220;
     label = [[UILabel alloc] initWithFrame:CGRectMake(self.labelWidth, self.labelHeight, labelWidth, 40)];
     label.font = [UIFont systemFontOfSize:20];
-    label.backgroundColor = [UIColor blackColor];
-    label.textColor = [UIColor whiteColor];
+    label.backgroundColor = BLACK_BG;
+    label.textColor = WHITE;
     if (self.labelWidth > 20) {
         self.labelWidth = 20;
         self.labelHeight += 50;

@@ -42,16 +42,21 @@ static NSString *CellIdentifier = @"StockCell";
     [self setDataManager:[SBDataManager sharedManager]];
     [self.tableView registerClass:[SBStocksTableViewCell class] forCellReuseIdentifier:CellIdentifier];
     [self.tableView setRowHeight:STOCK_CELL_HEIGHT];
-    [self.tableView setBackgroundColor:BLACK];
+    [self.tableView setBackgroundColor:BLACK_BG];
+    self.tableView.separatorColor = BLACK_BG;
     
     if (self.dataManager.selectedStock) {
         [self.tableView selectRowAtIndexPath:self.dataManager.selectedStock.tableViewIndex animated:NO scrollPosition:UITableViewScrollPositionMiddle];
     }
     
     self.stockSearchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 0, self.tableView.frame.size.width, 0)];
+    self.stockSearchBar.translucent = YES;
+    self.stockSearchBar.searchBarStyle = UIBarStyleBlack;
     self.stockSearchBar.delegate = self;
     [self.stockSearchBar sizeToFit];
+    self.stockSearchBar.barTintColor = BLACK_BG;
     self.stockSearchBar.placeholder = @"股票号码";
+    
     self.tableView.tableHeaderView = self.stockSearchBar;
 
     // Uncomment the following line to preserve selection between presentations.
