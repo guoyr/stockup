@@ -65,7 +65,7 @@
         case 1:
             // diff: bigger -> smaller, smaller -> bigger
             // 正差离值，负差离值
-            cell.descriptionLabel.text = @"MACD方向设置";
+            cell.descriptionLabel.text = @"方向设置";
             [cell.algoSegmentedControl setHidden:NO];
             [cell.algoSegmentedControl insertSegmentWithTitle:@"正交" atIndex:MACD_DIRECTION_POS animated:NO];
             [cell.algoSegmentedControl insertSegmentWithTitle:@"负交" atIndex:MACD_DIRECTION_NEG animated:NO];
@@ -73,7 +73,7 @@
             [cell.algoSegmentedControl setSelectedSegmentIndex:self.macdDirection];
             break;
         case 2:
-            cell.descriptionLabel.text = @"MACD时间设置";
+            cell.descriptionLabel.text = @"时间设置";
             [cell.algoSegmentedControl setHidden:NO];
             [cell.algoSegmentedControl insertSegmentWithTitle:@"5分钟" atIndex:MACD_TIME_5MIN animated:NO];
             [cell.algoSegmentedControl insertSegmentWithTitle:@"1小时" atIndex:MACD_TIME_1HOUR animated:NO];

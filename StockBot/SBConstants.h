@@ -36,18 +36,27 @@
 #define WHITE UIColorFromRGB(0xFFFFFF)
 #define YELLOW UIColorFromRGB(0xFFFF00)
 
+#define GREY_LIGHT UIColorFromRGB(0x8B8F99)
+#define GREY_DARK UIColorFromRGB(0x252932)
+#define BLACK_BG UIColorFromRGB(0x16191E)
+
+#define BLUE UIColorFromRGB(0x317D85)
+#define RED UIColorFromRGB(0xF66D6A)
+
+#define TINT_COLOR_ANIMATION_DURATION 0.25
+
 #define IMAGE_DAILY_K_URL @"http://image.sinajs.cn/newchart/daily/n/"
 #define IMAGE_MACD_URL @"http://image.sinajs.cn/newchart/macd/n/"
 #define CURRENT_INFO_URL @"http://hq.sinajs.cn/"
 
 #define STOCK_CELL_HEIGHT 80
-#define ALGO_ROW_HEIGHT 92
+#define ALGO_ROW_HEIGHT 72
 #define ALGO_EXPANDED_ROW_HEIGHT 282
 
 #define STOCK_CELL_WIDTH 320
 #define CONFIRM_BUTTON_HEIGHT 80 // same as stock cell height per #8
 
-#define ALGO_LIST_WIDTH 384
+#define ALGO_LIST_WIDTH 320
 #define USER_ALGO_LIST_HEIGHT 80
 
 #define DEBUG_MODE_USER 3

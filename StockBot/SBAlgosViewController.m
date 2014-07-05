@@ -53,7 +53,7 @@
     if (!stockName) {
         stockName = @"股红测试";
     }
-    self.view.backgroundColor = BLACK;
+    self.view.backgroundColor = BLACK_BG;
     
     CGRect navBarFrame = self.navigationController.navigationBar.frame;
     int navBarHeight = navBarFrame.origin.y + navBarFrame.size.height;

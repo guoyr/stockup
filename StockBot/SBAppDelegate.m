@@ -23,7 +23,7 @@
 //    int debug_mode = 0;
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.tintColor = GREEN_0;
-    [[UINavigationBar appearance] setBarTintColor:BLUE_4];
+    [[UINavigationBar appearance] setBarTintColor:GREY_DARK];
     
     BOOL loggedin = [[NSUserDefaults standardUserDefaults] boolForKey:@"loggedin"];
     

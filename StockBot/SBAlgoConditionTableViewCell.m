@@ -21,40 +21,48 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
 
-        self.backgroundColor = BLACK;
+        self.backgroundColor = BLACK_BG;
         
         
         self.bgView = [[UIView alloc] initWithFrame:CGRectMake(10, 0, ALGO_LIST_WIDTH-20, ALGO_ROW_HEIGHT)];
-        self.bgView.backgroundColor = GREEN_3;
+        self.bgView.backgroundColor = GREY_LIGHT;
+        self.bgView.layer.borderWidth = 1;
+        self.bgView.layer.borderColor = BLACK_BG.CGColor;
         [self.contentView addSubview:self.bgView];
 
         self.descriptionLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 0, ALGO_LIST_WIDTH - 240, ALGO_ROW_HEIGHT)];
-        self.descriptionLabel.textColor = WHITE;
+        self.descriptionLabel.textColor = BLACK_BG;
         [self.contentView addSubview:self.descriptionLabel];
 
         // size is ignored
         self.algoSwitch = [[UISwitch alloc] initWithFrame:CGRectMake(ALGO_LIST_WIDTH - 100, 30, 0, 0)];
         [self.contentView addSubview:self.algoSwitch];
         
-        self.algoSegmentedControl = [[UISegmentedControl alloc] initWithFrame:CGRectMake(ALGO_LIST_WIDTH - 170, 30, 150, ALGO_ROW_HEIGHT - 60)];
+        self.algoSegmentedControl = [[UISegmentedControl alloc] initWithFrame:CGRectMake(ALGO_LIST_WIDTH - 170, 20, 150, ALGO_ROW_HEIGHT - 40)];
+        self.algoSegmentedControl.tintColor = GREY_DARK;
         [self.contentView addSubview:self.algoSegmentedControl];
         
-        self.numberSegmentedControl = [[UISegmentedControl alloc] initWithFrame:CGRectMake(ALGO_LIST_WIDTH - 170, 30, 100, ALGO_ROW_HEIGHT - 60)];
-        
+        self.numberSegmentedControl = [[UISegmentedControl alloc] initWithFrame:CGRectMake(ALGO_LIST_WIDTH - 170, 20, 100, ALGO_ROW_HEIGHT - 40)];
+        UIFont *font = [UIFont boldSystemFontOfSize:22.0f];
+        NSDictionary *attributes = [NSDictionary dictionaryWithObject:font
+                                                               forKey:NSFontAttributeName];
+        [self.numberSegmentedControl setTitleTextAttributes:attributes
+                                        forState:UIControlStateNormal];
         [self.numberSegmentedControl insertSegmentWithTitle:@"—" atIndex:0 animated:NO];
         [self.numberSegmentedControl insertSegmentWithTitle:@"+" atIndex:1 animated:NO];
-        
+        self.numberSegmentedControl.tintColor = GREY_DARK;
         [self.contentView addSubview:self.numberSegmentedControl];
-        
-        self.numberTextField = [[UITextField alloc] initWithFrame:CGRectMake(ALGO_LIST_WIDTH - 240, 30, 96, ALGO_ROW_HEIGHT - 60)];
-        self.numberTextField.backgroundColor = WHITE;
+
+        self.numberTextField = [[UITextField alloc] initWithFrame:CGRectMake(ALGO_LIST_WIDTH - 240, 20, 96, ALGO_ROW_HEIGHT - 40)];
+        self.numberTextField.backgroundColor = GREY_LIGHT;
         self.numberTextField.text = @"0";
         self.numberTextField.textAlignment = NSTextAlignmentCenter;
         self.numberTextField.layer.cornerRadius = 5.0f;
         self.numberTextField.delegate = self;
         [self.contentView addSubview:self.numberTextField];
         
-        self.numberStepper = [[UIStepper alloc] initWithFrame:CGRectMake(ALGO_LIST_WIDTH - 128, 30, 96, ALGO_ROW_HEIGHT - 60)];
+        self.numberStepper = [[UIStepper alloc] initWithFrame:CGRectMake(ALGO_LIST_WIDTH - 128, 20, 96, ALGO_ROW_HEIGHT - 40)];
+        self.numberStepper.tintColor = GREY_LIGHT;
         self.numberStepper.continuous = YES;
         self.numberStepper.minimumValue = 0;
         self.numberStepper.maximumValue = 10000000;

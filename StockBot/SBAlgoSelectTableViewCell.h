@@ -12,4 +12,6 @@
 
 @property (nonatomic, strong) UIButton *confirmButton;
 
+-(void)setStockTintColor:(UIColor *)color;
+
 @end
