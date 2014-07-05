@@ -10,8 +10,6 @@
 
 @interface SBSegmentedControl : UISegmentedControl
 
-@property (nonatomic, assign) BOOL isExpanded;
-
 -(void)shrink;
 -(void)expand;
 

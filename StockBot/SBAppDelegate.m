@@ -19,7 +19,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     
-    int debug_mode = DEBUG_MODE_STOCK;
+    int debug_mode = DEBUG_MODE_ALGO;
 //    int debug_mode = 0;
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.tintColor = GREY_LIGHT;

@@ -17,7 +17,6 @@
 -(void)setupSegmentedControl
 {
     self.segmentedControl = [[SBSegmentedControl alloc] initWithItems:@[@"买入", @"卖出"]];
-    self.segmentedControl.frame = CGRectMake(HEADER_BORDER, HEADER_BORDER, ALGO_LIST_WIDTH - HEADER_BORDER*2, ALGO_ROW_HEIGHT - HEADER_BORDER*2);
     self.segmentedControl.alpha = 0.0f;
     self.segmentedControl.tintColor = GREY_LIGHT;
     [self.segmentedControl addTarget:self action:@selector(buySellControlValueChanged:) forControlEvents:UIControlEventValueChanged];
@@ -25,34 +24,7 @@
 
 -(void)buySellControlValueChanged:(SBSegmentedControl *)sender
 {
-    if (!sender.isExpanded) {
-        // showing only the summary, expand
-        [UIView animateWithDuration:0.3 animations:^{
-            //            [self showControlFullScreen:control];
-            
-        } completion:^(BOOL finished) {
-            
-        }];
-    } else {
-        
-        if (1) {
-            // showing price information for the first time
-            
-            self.segmentedControl.frame = CGRectMake(ALGO_LIST_WIDTH, HEADER_BORDER, ALGO_LIST_WIDTH - HEADER_BORDER*2, ALGO_ROW_HEIGHT - HEADER_BORDER*2);
-            [UIView animateWithDuration:0.3 animations:^{
-                [self.delegate conditionDidChange:self];
-                self.segmentedControl.frame = CGRectMake(-ALGO_LIST_WIDTH, HEADER_BORDER, ALGO_LIST_WIDTH - HEADER_BORDER*2, ALGO_ROW_HEIGHT - HEADER_BORDER*2);
-                
-            }];
-        } else {
-            [UIView animateWithDuration:0.3 animations:^{
-                [self.delegate conditionDidChange:self];
-                
-            }completion:^(BOOL finished) {
-                ;
-            }];
-        }
-    }
+    [self.delegate conditionDidChange:self];
     
 //    switch (sender.selectedSegmentIndex) {
 //        case BUY_INDEX:

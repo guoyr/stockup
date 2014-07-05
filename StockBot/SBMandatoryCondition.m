@@ -10,6 +10,15 @@
 
 @implementation SBMandatoryCondition
 
+-(id)init
+{
+    self = [super init];
+    if (self) {
+        [self setupSegmentedControl];
+    }
+    return self;
+}
+
 -(void)setupSegmentedControl
 {
     

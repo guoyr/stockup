@@ -29,7 +29,7 @@
                                         forState:UIControlStateNormal];
         
         self.hiddenControls = [[NSMutableDictionary alloc] initWithCapacity:2];
-        self.isExpanded = YES;
+//        self.isExpanded = YES;
     }
     return self;
 }
@@ -49,7 +49,7 @@
     }
     
     [self.hiddenControls removeAllObjects];
-    self.isExpanded = YES;
+//    self.isExpanded = YES;
 }
 
 -(void)shrink;
@@ -69,7 +69,7 @@
     
 //    [self setSelectedSegmentIndex:-1];
     
-    self.isExpanded = NO;
+//    self.isExpanded = NO;
     
 }
 

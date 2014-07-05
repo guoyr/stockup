@@ -24,6 +24,8 @@
 @property (nonatomic, strong) UIView *headerView;
 @property (nonatomic, strong) UIColor *stockTintColor;
 
+@property (nonatomic, strong) SBSegmentedControl *curVisibleSegmentedControl;
+
 @end
 
 @implementation SBAlgosSelectionTableViewController
@@ -72,13 +74,17 @@ static NSString *AlgoNameCellIdentifier = @"ACell";
     self.algorithm = [[SBDataManager sharedManager] selectedAlgorithm];
     self.headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ALGO_LIST_WIDTH, ALGO_ROW_HEIGHT)];
     self.headerView.backgroundColor = BLACK_BG;
-    [self.view addSubview:self.headerView];
 
+    [self.view addSubview:self.headerView];
 
     for (SBMandatoryCondition *condition in self.algorithm.mandatoryConditions) {
         // TODO: setup the segmented controls if necessary
         [self.headerView addSubview:condition.segmentedControl];
+        condition.delegate = self;
     }
+    
+    SBSegmentedControl *firstControl = [self.algorithm.mandatoryConditions[0] segmentedControl];
+    [self showControlFullScreen:firstControl];
     
 }
 
@@ -86,44 +92,69 @@ static NSString *AlgoNameCellIdentifier = @"ACell";
 
 -(void)showControlsSideBySide
 {
-    CGRect frame = CGRectMake(HEADER_BORDER, HEADER_BORDER, SEG_CONTROL_WIDTH, ALGO_ROW_HEIGHT - HEADER_BORDER*2);
-    for (SBMandatoryCondition *condition in self.algorithm.mandatoryConditions) {
-        SBSegmentedControl *control = condition.segmentedControl;
-        control.frame = frame;
-        frame.origin.x += SEG_CONTROL_WIDTH + HEADER_BORDER * 2;
-        control.userInteractionEnabled = YES;
-        control.alpha = 1.0f;
-        [control shrink];
-        [control layoutIfNeeded];
+    
+    [UIView animateWithDuration:0.3 animations:^{
+        CGRect frame = CGRectMake(HEADER_BORDER, HEADER_BORDER, SEG_CONTROL_WIDTH, ALGO_ROW_HEIGHT - HEADER_BORDER*2);
 
-    }
+        for (SBMandatoryCondition *condition in self.algorithm.mandatoryConditions) {
+            SBSegmentedControl *control = condition.segmentedControl;
+            control.frame = frame;
+            frame.origin.x += SEG_CONTROL_WIDTH + HEADER_BORDER * 2;
+            control.alpha = 1.0f;
+            //        [control shrink];
+            [control layoutIfNeeded];
+            
+        }
+    }];
+    self.curVisibleSegmentedControl = nil;
+
 }
 
 -(void)showControlFullScreen:(SBSegmentedControl *)control
 {
-    
-    for (SBMandatoryCondition *condition in self.algorithm.mandatoryConditions) {
-        SBSegmentedControl *curControl = condition.segmentedControl;
-        if (control == curControl) {
-            curControl.frame = CGRectMake(HEADER_BORDER, HEADER_BORDER, ALGO_LIST_WIDTH - HEADER_BORDER*2, ALGO_ROW_HEIGHT - HEADER_BORDER*2);
-            curControl.alpha = 1.0f;
-            curControl.userInteractionEnabled = YES;
+    CGRect fullScreenFrame = CGRectMake(HEADER_BORDER, HEADER_BORDER, ALGO_LIST_WIDTH - HEADER_BORDER*2, ALGO_ROW_HEIGHT - HEADER_BORDER*2);
 
-            [curControl expand];
-        } else { 
-            curControl.alpha = 0.0f;
-            curControl.userInteractionEnabled = NO;
-            if (curControl.frame.origin.x < control.frame.origin.x) {
-                // move left
-                curControl.frame = CGRectMake(-ALGO_LIST_WIDTH, HEADER_BORDER, ALGO_LIST_WIDTH - HEADER_BORDER*2, ALGO_ROW_HEIGHT - HEADER_BORDER*2);
+    if (self.curVisibleSegmentedControl) {
+        // something is already visible, move it to the left
+        control.frame = CGRectMake(ALGO_LIST_WIDTH, HEADER_BORDER, ALGO_LIST_WIDTH - HEADER_BORDER*2, ALGO_ROW_HEIGHT - HEADER_BORDER*2);
+        control.alpha = 1.0f;
+        [UIView animateWithDuration:0.3 animations:^{
+            self.curVisibleSegmentedControl.frame = CGRectMake(-ALGO_LIST_WIDTH, HEADER_BORDER, ALGO_LIST_WIDTH - HEADER_BORDER*2, ALGO_ROW_HEIGHT - HEADER_BORDER*2);
+            control.frame = fullScreenFrame;
+        } completion:^(BOOL finished) {
+            self.curVisibleSegmentedControl.alpha = 0.0f;
+            self.curVisibleSegmentedControl = control;
 
-            } else {
-                // move right
-                curControl.frame = CGRectMake(ALGO_LIST_WIDTH, HEADER_BORDER, ALGO_LIST_WIDTH - HEADER_BORDER*2, ALGO_ROW_HEIGHT - HEADER_BORDER*2);
+        }];
+    } else {
+        control.frame = fullScreenFrame;
+        control.alpha = 1.0f;
+        self.curVisibleSegmentedControl = control;
 
-            }
-        }
     }
+    
+//    for (SBMandatoryCondition *condition in self.algorithm.mandatoryConditions) {
+//        SBSegmentedControl *curControl = condition.segmentedControl;
+//        if (control == curControl) {
+//            curControl.frame = CGRectMake(HEADER_BORDER, HEADER_BORDER, ALGO_LIST_WIDTH - HEADER_BORDER*2, ALGO_ROW_HEIGHT - HEADER_BORDER*2);
+//            curControl.alpha = 1.0f;
+//            curControl.userInteractionEnabled = YES;
+//
+//            [curControl expand];
+//        } else { 
+//            curControl.alpha = 0.0f;
+//            curControl.userInteractionEnabled = NO;
+//            if (curControl.frame.origin.x < control.frame.origin.x) {
+//                // move left
+//                curControl.frame = CGRectMake(-ALGO_LIST_WIDTH, HEADER_BORDER, ALGO_LIST_WIDTH - HEADER_BORDER*2, ALGO_ROW_HEIGHT - HEADER_BORDER*2);
+//
+//            } else {
+//                // move right
+//                curControl.frame = CGRectMake(ALGO_LIST_WIDTH, HEADER_BORDER, ALGO_LIST_WIDTH - HEADER_BORDER*2, ALGO_ROW_HEIGHT - HEADER_BORDER*2);
+//
+//            }
+//        }
+//    }
     
 
 }
@@ -292,6 +323,13 @@ static NSString *AlgoNameCellIdentifier = @"ACell";
 -(void)conditionDidChange:(SBCondition *)condition
 {
     NSLog(@"condition did change");
+    if ([self.algorithm.mandatoryConditions containsObject:condition] && self.curVisibleSegmentedControl) {
+        if ([condition class] == [SBBuySellCondition class]) {
+            [self showControlFullScreen:[self.algorithm.mandatoryConditions[1] segmentedControl]];
+        } else {
+            [self showControlsSideBySide];
+        }
+    }
     [self.delegate viewController:self didModifyCondition:condition];
 }
 
