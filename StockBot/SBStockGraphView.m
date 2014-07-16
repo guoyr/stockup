@@ -5,7 +5,7 @@
 //  Created by Robert Guo on 3/19/14.
 //  Copyright (c) 2014 Robert Guo. All rights reserved.
 //
-#import <UIImageView+WebCache.h>
+#import <UIImageView+AFNetworking.h>
 #import "SBStockGraphView.h"
 #import "SBConstants.h"
 
@@ -30,8 +30,10 @@
     __block typeof(self) weakSelf = self;
     self.backgroundColor = BLUE_4;
     [self.activityView startAnimating];
-    [self setImageWithURL:url placeholderImage:placeholder completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
-        
+    [self setImageWithURLRequest:[[NSURLRequest alloc] initWithURL:url] placeholderImage:placeholder success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
+        [weakSelf.activityView stopAnimating];
+        weakSelf.backgroundColor = WHITE;
+    } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
         [weakSelf.activityView stopAnimating];
         weakSelf.backgroundColor = WHITE;
     }];

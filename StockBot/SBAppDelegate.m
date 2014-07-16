@@ -6,7 +6,6 @@
 //  Copyright (c) 2014 Robert Guo. All rights reserved.
 //
 
-#import <SDImageCache.h>
 #import "SBAppDelegate.h"
 #import "SBStocksViewController.h"
 #import "SBConstants.h"
@@ -58,9 +57,6 @@
     [self.window setRootViewController:nav];
     [self.window makeKeyAndVisible];
     
-    [[SDImageCache sharedImageCache] clearMemory];
-    [[SDImageCache sharedImageCache] clearDisk];
-    [[SDImageCache sharedImageCache] setMaxCacheAge:60];
     
     return YES;
 }

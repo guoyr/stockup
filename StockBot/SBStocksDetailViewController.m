@@ -6,7 +6,6 @@
 //  Copyright (c) 2014 Robert Guo. All rights reserved.
 //
 
-#import <UIImageView+WebCache.h>
 #import <AFNetworking.h>
 #import "SBStocksDetailViewController.h"
 #import "SBConstants.h"
