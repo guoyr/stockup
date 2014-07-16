@@ -7,10 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "SBInstructionsViewController.h"
 #import "SBTableViewController.h"
 #import "UIScrollView+EmptyDataSet.h"
 
-@interface SBUserAlgoTableViewController : SBTableViewController <UIAlertViewDelegate, SBInstructionViewControllerDelegate, DZNEmptyDataSetDelegate, DZNEmptyDataSetSource>
+@interface SBUserAlgoTableViewController : SBTableViewController <UIAlertViewDelegate, DZNEmptyDataSetDelegate, DZNEmptyDataSetSource>
 
 @end

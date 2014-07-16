@@ -1,17 +1,13 @@
 {
   "images" : [
     {
-      "idiom" : "universal"
-    },
-    {
       "idiom" : "universal",
       "scale" : "1x",
-      "filename" : "login_bg.png"
+      "filename" : "stock_2048-2.png"
     },
     {
       "idiom" : "universal",
-      "scale" : "2x",
-      "filename" : "login_bg@2x.png"
+      "scale" : "2x"
     }
   ],
   "info" : {

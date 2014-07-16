@@ -59,6 +59,12 @@ static NSString *UserCellIdentifier = @"UserCell";
     self.tableViewStyleControl.selectedSegmentIndex = 0;
     [self.view addSubview:self.tableViewStyleControl];
     
+    self.tableView.emptyDataSetSource = self;
+    self.tableView.emptyDataSetDelegate = self;
+    
+    // A little trick for removing the cell separators
+    self.tableView.tableFooterView = [UIView new];
+    
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -71,34 +77,7 @@ static NSString *UserCellIdentifier = @"UserCell";
     self.algoDict = [[SBDataManager sharedManager] getAllAlgorithmsForUser:nil];
     self.algoNames = [self.algoDict allKeys];
     [self.tableView reloadData];
-        
-    if (!self.algoNames.count) {
-//        if (![[NSUserDefaults standardUserDefaults] boolForKey:@"presentedInstruction"]) {
-        if (1) {
-            SBInstructionsViewController *ivc = [[UIStoryboard storyboardWithName:@"Instructions" bundle:nil] instantiateViewControllerWithIdentifier:@"VC"];
-            ivc.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-            ivc.modalPresentationStyle = UIModalPresentationFormSheet;
-            
-            [ivc setDelegate:self];
-            [self.navigationController presentViewController:ivc animated:NO completion:^{
-                ;
-            }];
-            [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"presentedInstruction"];
-        }
-        
-    }
-}
 
--(void)instructionViewControllerDidConfirm:(SBInstructionsViewController *)vc
-{
-    [self dismissViewControllerAnimated:YES completion:^{
-        [self addAlgorithm:vc];
-    }];
-}
-
--(void)instructionViewControllerDidDismiss:(SBInstructionsViewController *)vc
-{
-    [self dismissViewControllerAnimated:YES completion:NULL];
 }
 
 -(void)addAlgorithm:(id)sender
@@ -175,7 +154,13 @@ static NSString *UserCellIdentifier = @"UserCell";
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return [self.algoDict allKeys].count;
+    int count = [self.algoDict allKeys].count;
+    if (!count) {
+        self.tableViewStyleControl.enabled = NO;
+    } else {
+        self.tableViewStyleControl.enabled = YES;
+    }
+    return count;
 }
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
@@ -196,6 +181,57 @@ static NSString *UserCellIdentifier = @"UserCell";
     } else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
     }   
+}
+
+#pragma mark DZN Data Source
+
+-(NSAttributedString *)titleForEmptyDataSet:(UIScrollView *)scrollView
+{
+    NSString *text = @"请添加您的第一支算法";
+    
+    NSDictionary *attributes = @{NSFontAttributeName: [UIFont boldSystemFontOfSize:24.0],
+                                 NSForegroundColorAttributeName: WHITE};
+    
+    return [[NSAttributedString alloc] initWithString:text attributes:attributes];
+}
+
+-(NSAttributedString *)descriptionForEmptyDataSet:(UIScrollView *)scrollView
+{
+    NSString *text = @"您可以使用算法来表达一系列交易条件，满足这些条件是，我们便会提醒您交易";
+    
+    NSMutableParagraphStyle *paragraph = [NSMutableParagraphStyle new];
+    paragraph.lineBreakMode = NSLineBreakByWordWrapping;
+    paragraph.alignment = NSTextAlignmentCenter;
+    
+    NSDictionary *attributes = @{NSFontAttributeName: [UIFont systemFontOfSize:14.0],
+                                 NSForegroundColorAttributeName: WHITE,
+                                 NSParagraphStyleAttributeName: paragraph};
+    
+    return [[NSAttributedString alloc] initWithString:text attributes:attributes];
+}
+
+- (NSAttributedString *)buttonTitleForEmptyDataSet:(UIScrollView *)scrollView forState:(UIControlState)state {
+    
+    NSDictionary *attributes = @{NSFontAttributeName: [UIFont boldSystemFontOfSize:17.0], NSForegroundColorAttributeName:BLUE};
+    
+    return [[NSAttributedString alloc] initWithString:@"继续" attributes:attributes];
+}
+
+- (UIColor *)backgroundColorForEmptyDataSet:(UIScrollView *)scrollView {
+    
+    return BLACK_BG;
+}
+
+- (UIImage *)imageForEmptyDataSet:(UIScrollView *)scrollView {
+    
+    return [UIImage imageNamed:@"UserEmptyImage"];
+}
+
+#pragma mark DZN Delegate
+
+-(void)emptyDataSetDidTapButton:(UIScrollView *)scrollView
+{
+    [self addAlgorithm:nil];
 }
 
 /*
