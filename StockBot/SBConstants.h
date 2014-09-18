@@ -47,6 +47,7 @@
 #define IMAGE_DAILY_K_URL @"http://image.sinajs.cn/newchart/daily/n/"
 #define IMAGE_MACD_URL @"http://image.sinajs.cn/newchart/macd/n/"
 #define CURRENT_INFO_URL @"http://hq.sinajs.cn/"
+#define SERVER_URL @"http://stockup-dev.cloudapp.net:9990/"
 
 #define STOCK_CELL_HEIGHT 80
 #define ALGO_ROW_HEIGHT 72

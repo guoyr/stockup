@@ -10,7 +10,7 @@
 #import "SBConditions.h"
 
 
-@interface SBAlgorithmManager : NSObject
+@interface SBAlgorithm : NSObject
 
 @property (nonatomic, strong) NSString *name;
 @property (nonatomic, strong) NSString *stockName;

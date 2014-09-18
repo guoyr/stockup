@@ -21,7 +21,7 @@
 
 @property (nonatomic, weak) id<SBConditionDelegate> delegate;
 
-@property (nonatomic, strong) NSString *description;
+@property (nonatomic, strong) NSString *conditionDescription;
 @property (nonatomic, strong) NSString *conditionExplanation;
 @property (nonatomic, assign) BOOL isSelected;
 // keep track of the previous cell and remove targets if necessary

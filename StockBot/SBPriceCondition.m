@@ -20,7 +20,7 @@
 {
     self = [super init];
     if (self) {
-        self.description = @"交易价格";
+        self.conditionDescription = @"交易价格";
         self.conditionExplanation = @"选择您在购买该股票时的价格";
     }
     return self;

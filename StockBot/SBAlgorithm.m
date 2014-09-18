@@ -6,13 +6,13 @@
 //  Copyright (c) 2014 Robert Guo. All rights reserved.
 //
 
-#import "SBAlgorithmManager.h"
+#import "SBAlgorithm.h"
 
 #define MACD_KEY @"macd_key"
 #define KDJ_KEY @"kdj_key"
 #define TRANSACTION_KEY @"transacion_key"
 
-@implementation SBAlgorithmManager
+@implementation SBAlgorithm
 
 -(id)init
 {

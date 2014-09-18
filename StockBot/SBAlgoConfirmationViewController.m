@@ -8,7 +8,7 @@
 // shows details of the recently completed transaction
 
 #import "SBAlgoConfirmationViewController.h"
-#import "SBAlgorithmManager.h"
+#import "SBAlgorithm.h"
 #import "SBDataManager.h"
 #import "SBStock.h"
 

@@ -1,5 +1,8 @@
 # OS X
 .DS_Store
+.idea/*
+
+*~
 
 # Xcode
 build/
@@ -21,3 +24,4 @@ DerivedData
 
 # CocoaPods
 Pods
+PodFile*

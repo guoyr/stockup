@@ -101,12 +101,12 @@
 -(void)showStock:(SBStock *)stock
 {
     self.stock = stock;
-    NSURL *kChartImageURL = [[SBDataManager sharedManager] getKChartImageURLForStock:stock];
-    NSURL *macdImageURL = [[SBDataManager sharedManager] getMACDImageURLForStock:stock];
-    NSString *infoURL = [[SBDataManager sharedManager] getStockInfoURLStringForStock:stock];
+    NSURL *kChartImageURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@sh%ld.gif",IMAGE_DAILY_K_URL,[stock.stockID longValue]]];
+    NSURL *macdImageURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@sh%ld.gif",IMAGE_MACD_URL,[stock.stockID longValue]]];
+    NSString *infoURL = [NSString stringWithFormat:@"%@list=sh%ld",CURRENT_INFO_URL,[stock.stockID longValue]];
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    // default serializer doesn't suppor this content type
+    // default serializer doesn't support this content type
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
     
     [self.nameLabel setText:@"股票名称"];
@@ -129,12 +129,21 @@
         [self.todayLowLabel setText:[NSString stringWithFormat:@"今日最低价：￥%.3f",[stock.todayLow floatValue]]];
         [self.currentPriceLabel setText:[NSString stringWithFormat:@"当前价：￥%.3f",[stock.currentPrice floatValue]]];
         [self.buyPriceLabel setText:[NSString stringWithFormat:@"买入价：￥%.3f",[stock.buyPrice floatValue]]];
-        [self.sellPriceLabel setText:[NSString stringWithFormat:@"卖出价：￥%.3f",[stock.sellPrice floatValue]]];
+[self.sellPriceLabel setText:[NSString stringWithFormat:@"卖出价：￥%.3f",[stock.sellPrice floatValue]]];
         [self.volumeLabel setText:[NSString stringWithFormat:@"成交量：%d",[stock.volume intValue]]];
         [self.dateLabel setText:[NSString stringWithFormat:@"数据日期：%@",stock.fetchDate]];
 
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"fetching stock information failed %@", error);
+    }];
+    
+    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+
+    [manager GET:@"http://stockup-dev.cloudapp.net:9990/price?start_time=2014-09-05T15:00:00Z&end_time=2014-09-05T16:00:00Z&stock_ids=600028" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        NSLog(@"%@", responseObject[0][@"doc"][@"d"][0]);
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"%@",error);
     }];
 
     [self.kChartView setImageWithURL:kChartImageURL placeholderImage:nil];

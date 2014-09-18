@@ -5,16 +5,12 @@
 //  Created by Robert Guo on 4/16/14.
 //  Copyright (c) 2014 Robert Guo. All rights reserved.
 //
-
-#import <QuartzCore/QuartzCore.h>
-#import "UIView+SBAdditions.h"
-
 #import "SBLoginViewController.h"
-#import "SBConstants.h"
 #import "SBUserAlgoTableViewController.h"
 #import "SBBrokersTableViewController.h"
 #import "SBDataManager.h"
 #import "SBNavigationControllerDelegate.h"
+#import "AFHTTPRequestOperationManager.h"
 
 @interface SBLoginViewController ()
 
@@ -40,7 +36,7 @@
     NSLog(@"login view did load");
     [super viewDidLoad];
     self.title = @"股红";
-    self.view.backgroundColor = BLUE_4;
+    self.view.backgroundColor = GREY_DARK;
     // Do any additional setup after loading the view.
     
     
@@ -81,7 +77,7 @@
     
     UITapGestureRecognizer *gr = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tappedBackground:)];
     gr.numberOfTapsRequired = 1;
-    [self.logoImageView addGestureRecognizer:gr];
+    [self.view addGestureRecognizer:gr];
 
     
     
@@ -139,7 +135,7 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [self.brokerListPopover dismissPopoverAnimated:YES];
-    self.selectedBroker = [[SBDataManager sharedManager] brokerList][indexPath.row];
+    self.selectedBroker = [[SBDataManager sharedManager] brokerList][(NSUInteger) indexPath.row];
     self.brokerSelectionButton.titleLabel.text = self.selectedBroker;
 }
 
@@ -154,23 +150,45 @@
 
 -(void)loginButtonClicked:(id)sender
 {
-    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"loggedin"];
+//    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"loggedin"];
     [[NSUserDefaults standardUserDefaults] setObject:self.usernameField.text forKey:@"username"];
-    [[NSUserDefaults standardUserDefaults] setObject:self.passwordField.text forKey:@"passoword"];
+    [[NSUserDefaults standardUserDefaults] setObject:self.passwordField.text forKey:@"password"];
 
     [self hideKeyboard];
-    
-    SBUserAlgoTableViewController *avc = [[SBUserAlgoTableViewController alloc] initWithStyle:UITableViewStylePlain];
-    
-//    id <UIViewControllerTransitioningDelegate> t = [SBLoginAnimatedTransitioningDelegate new];
-//    avc.transitioningDelegate = t;
-    
-    SBNavigationControllerDelegate *d = [SBNavigationControllerDelegate sharedDelegate];
-    self.navigationController.delegate = d;
 
-    [self.navigationController pushViewController:avc animated:YES];
-    [self.navigationController setViewControllers:@[avc]];
-    NSLog(@"stack size %ld", (unsigned long)self.navigationController.viewControllers.count);
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    NSDictionary *params = @{@"username": self.usernameField.text, @"password": self.passwordField.text};
+    NSString *urlString = [NSString stringWithFormat: @"%@auth/login", SERVER_URL];
+    [manager POST:urlString parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        if (![(NSDictionary *)responseObject objectForKey:@"error"]) {
+            
+            NSString *cookie = operation.response.allHeaderFields[@"Set-Cookie"];
+            [[SBDataManager sharedManager] setAuthCookie:cookie];
+            
+            SBUserAlgoTableViewController *avc = [[SBUserAlgoTableViewController alloc] initWithStyle:UITableViewStylePlain];
+            
+            //    id <UIViewControllerTransitioningDelegate> t = [SBLoginAnimatedTransitioningDelegate new];
+            //    avc.transitioningDelegate = t;
+            
+            SBNavigationControllerDelegate *d = [SBNavigationControllerDelegate sharedDelegate];
+            self.navigationController.delegate = d;
+            
+            [self.navigationController pushViewController:avc animated:YES];
+            [self.navigationController setViewControllers:@[avc]];
+        } else {
+            UIAlertView *errorAlertView = [[UIAlertView alloc] initWithTitle:@"用户名或密码错误" message:nil delegate:nil cancelButtonTitle:@"确认" otherButtonTitles:nil];
+            [errorAlertView show];
+        }
+
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"%@", error);
+    }];
+    
+    return;
+
+
+
 
 }
 

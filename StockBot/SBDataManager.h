@@ -10,23 +10,21 @@
 #import <CHCSVParser.h>
 @class SBStock;
 @class SBUser;
-@class SBAlgorithmManager;
+@class SBAlgorithm;
 
 @interface SBDataManager : NSObject<CHCSVParserDelegate>
 
 @property (nonatomic, strong) NSMutableArray *stocks;
 @property (nonatomic, strong) SBStock *selectedStock;
-@property (nonatomic, strong) SBAlgorithmManager *selectedAlgorithm;
+@property (nonatomic, strong) SBAlgorithm *selectedAlgorithm;
 @property (nonatomic, strong) NSArray *brokerList;
+@property (nonatomic, strong) NSString *authCookie;
 
 +(id)sharedManager;
--(NSURL *)getKChartImageURLForStock:(SBStock *)stock;
--(NSURL *)getMACDImageURLForStock:(SBStock *)stock;
--(NSString *)getStockInfoURLStringForStock:(SBStock *)stock;
 
 -(NSDictionary *)getAllAlgorithmsForUser:(SBUser *)user;
 
--(void)saveAlgorithm:(SBAlgorithmManager *)algorithm;
+-(void)saveAlgorithm:(SBAlgorithm *)algorithm;
 -(void)removeAlgorithm:(NSString *)algorithmName;
 
 -(NSString *)defaultAlgorithmName;

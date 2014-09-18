@@ -12,25 +12,24 @@
 #import "SBLoginViewController.h"
 #import "SBUserAlgoTableViewController.h"
 #import "SBAlgosViewController.h"
+#import "SBDataManager.h"
 
 @implementation SBAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     
-    int debug_mode = DEBUG_MODE_ALGO;
-//    int debug_mode = 0;
+//    int debug_mode = DEBUG_MODE_ALGO;
+    int debug_mode = 0;
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.tintColor = GREY_LIGHT;
     [[UINavigationBar appearance] setBarTintColor:GREY_DARK];
-    
-    BOOL loggedin = [[NSUserDefaults standardUserDefaults] boolForKey:@"loggedin"];
     
     SBUserAlgoTableViewController *vc1 = [[SBUserAlgoTableViewController alloc] initWithNibName:nil bundle:nil];
     SBLoginViewController *vc2 =[[UIStoryboard storyboardWithName:@"Login" bundle:nil] instantiateViewControllerWithIdentifier:@"LoginViewController"];
 
     UIViewController *curvc;
-    if (loggedin) {
+    if ([[SBDataManager sharedManager] authCookie]) {
         NSLog(@"logged in");
         curvc = vc1;
     } else {
@@ -54,6 +53,11 @@
             break;
     }
     
+    // find out enabled notification types
+    // UIRemoteNotificationType enabledTypes = [[UIApplication sharedApplication] enabledRemoteNotificationTypes];
+    [[UIApplication sharedApplication] registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:(UIUserNotificationTypeAlert | UIUserNotificationTypeBadge | UIUserNotificationTypeSound) categories:nil]];
+    
+    
     [self.window setRootViewController:nav];
     [self.window makeKeyAndVisible];
     
@@ -65,13 +69,14 @@
 {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
     // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
+    [[NSUserDefaults standardUserDefaults] synchronize];
+
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application
 {
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
-    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
@@ -87,6 +92,17 @@
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+- (void)application:(UIApplication*)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
+{
+    NSLog(@"My token is: %@", deviceToken);
+}
+
+- (void)application:(UIApplication*)application didFailToRegisterForRemoteNotificationsWithError:(NSError*)error
+{
+    NSLog(@"Failed to get token, error: %@", error);
 }
 
 @end

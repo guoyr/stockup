@@ -19,7 +19,7 @@
 {
     self = [super init];
     if (self) {
-        self.description = @"交易量";
+        self.conditionDescription = @"交易量";
         self.conditionExplanation = @"此次交易的股票数量，必须为100的倍数";
     }
     return self;

@@ -1,4 +1,4 @@
-//
+                        //
 //  SBMACDAlgorithm.m
 //  StockBot
 //
@@ -39,7 +39,7 @@
 {
     self = [super init];
     if (self) {
-        self.description = @"MACD";
+        self.conditionDescription = @"MACD";
         self.macdDirection = -1;
         self.macdTime = -1;
         self.conditionExplanation = @"MACD称为指数平滑异同平均线，是从双移动平均线发展而来的，由快的移动平均线减去慢的移动平均线，MACD的意义和双移动平均线基本相同，但阅读起来更方便。当MACD从负数转向正数，是买的信号。当MACD从正数转向负数，是卖的信号。当MACD以大角度变化，表示快的移动平均线和慢的移动平均线的差距非常迅速的拉开，代表了一个市场大趋势的转变。";

@@ -51,7 +51,7 @@
 		BCA6F0FD191166E900D4A34D /* SBKDJCondition.m in Sources */ = {isa = PBXBuildFile; fileRef = BCA6F0FC191166E900D4A34D /* SBKDJCondition.m */; };
 		BCB4128F192EAA7F00A6706E /* SBUser.m in Sources */ = {isa = PBXBuildFile; fileRef = BCB4128E192EAA7F00A6706E /* SBUser.m */; };
 		BCBB200918E48FDE0085FFD3 /* SBAlgoConfirmationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BCBB200818E48FDE0085FFD3 /* SBAlgoConfirmationViewController.m */; };
-		BCBFA1FE192E8B5000A6D17E /* SBAlgorithmManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BCBFA1FD192E8B5000A6D17E /* SBAlgorithmManager.m */; };
+		BCBFA1FE192E8B5000A6D17E /* SBAlgorithm.m in Sources */ = {isa = PBXBuildFile; fileRef = BCBFA1FD192E8B5000A6D17E /* SBAlgorithm.m */; };
 		BCDB2BC218D2CB4500CBF07E /* stockList.csv in Resources */ = {isa = PBXBuildFile; fileRef = BCDB2BC118D2CB4500CBF07E /* stockList.csv */; };
 		BCDB2BC618D30AE300CBF07E /* SBStock.m in Sources */ = {isa = PBXBuildFile; fileRef = BCDB2BC518D30AE300CBF07E /* SBStock.m */; };
 		BCEB9C29192DD393001D042D /* SBAlgoSelectTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BCEB9C28192DD393001D042D /* SBAlgoSelectTableViewCell.m */; };
@@ -121,7 +121,7 @@
 		BC809FE618BE96990014C48B /* SBViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBViewController.m; sourceTree = "<group>"; };
 		BC9346C9195A14B700130ED8 /* SBTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBTableViewController.h; sourceTree = "<group>"; };
 		BC9346CA195A14B700130ED8 /* SBTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBTableViewController.m; sourceTree = "<group>"; };
-		BC9A088718BE54F9000E16C3 /* 股红.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "股红.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		BC9A088718BE54F9000E16C3 /* stockup.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = stockup.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC9A088A18BE54F9000E16C3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		BC9A088C18BE54F9000E16C3 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		BC9A088E18BE54F9000E16C3 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -154,8 +154,8 @@
 		BCB4128E192EAA7F00A6706E /* SBUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBUser.m; sourceTree = "<group>"; };
 		BCBB200718E48FDE0085FFD3 /* SBAlgoConfirmationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBAlgoConfirmationViewController.h; sourceTree = "<group>"; };
 		BCBB200818E48FDE0085FFD3 /* SBAlgoConfirmationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBAlgoConfirmationViewController.m; sourceTree = "<group>"; };
-		BCBFA1FC192E8B5000A6D17E /* SBAlgorithmManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBAlgorithmManager.h; sourceTree = "<group>"; };
-		BCBFA1FD192E8B5000A6D17E /* SBAlgorithmManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBAlgorithmManager.m; sourceTree = "<group>"; };
+		BCBFA1FC192E8B5000A6D17E /* SBAlgorithm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBAlgorithm.h; sourceTree = "<group>"; };
+		BCBFA1FD192E8B5000A6D17E /* SBAlgorithm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBAlgorithm.m; sourceTree = "<group>"; };
 		BCDB2BC118D2CB4500CBF07E /* stockList.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = stockList.csv; sourceTree = "<group>"; };
 		BCDB2BC418D30AE300CBF07E /* SBStock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBStock.h; sourceTree = "<group>"; };
 		BCDB2BC518D30AE300CBF07E /* SBStock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBStock.m; sourceTree = "<group>"; };
@@ -249,7 +249,7 @@
 		BC9A088818BE54F9000E16C3 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				BC9A088718BE54F9000E16C3 /* 股红.app */,
+				BC9A088718BE54F9000E16C3 /* stockup.app */,
 				BC9A08A218BE54F9000E16C3 /* StockBotTests.xctest */,
 			);
 			name = Products;
@@ -354,8 +354,8 @@
 				BCA6F0F81911659100D4A34D /* SBCondition.h */,
 				BCA6F0F91911659100D4A34D /* SBCondition.m */,
 				BC33F3641914A1A500C80E6C /* SBConditions.h */,
-				BCBFA1FC192E8B5000A6D17E /* SBAlgorithmManager.h */,
-				BCBFA1FD192E8B5000A6D17E /* SBAlgorithmManager.m */,
+				BCBFA1FC192E8B5000A6D17E /* SBAlgorithm.h */,
+				BCBFA1FD192E8B5000A6D17E /* SBAlgorithm.m */,
 				BC4AE16D1968785E009B3B74 /* SBBuySellCondition.h */,
 				BC4AE16E1968785E009B3B74 /* SBBuySellCondition.m */,
 				BC4AE17019687879009B3B74 /* SBPriceTypeCondition.h */,
@@ -398,7 +398,7 @@
 			);
 			name = StockBot;
 			productName = StockBot;
-			productReference = BC9A088718BE54F9000E16C3 /* 股红.app */;
+			productReference = BC9A088718BE54F9000E16C3 /* stockup.app */;
 			productType = "com.apple.product-type.application";
 		};
 		BC9A08A118BE54F9000E16C3 /* StockBotTests */ = {
@@ -431,6 +431,11 @@
 				TargetAttributes = {
 					BC9A088618BE54F9000E16C3 = {
 						DevelopmentTeam = 7J555P3K78;
+						SystemCapabilities = {
+							com.apple.iCloud = {
+								enabled = 0;
+							};
+						};
 					};
 					BC9A08A118BE54F9000E16C3 = {
 						TestTargetID = BC9A088618BE54F9000E16C3;
@@ -540,7 +545,7 @@
 				BCA6F0FA1911659100D4A34D /* SBCondition.m in Sources */,
 				BC809FE718BE96990014C48B /* SBAlgosDetailViewController.m in Sources */,
 				BCDB2BC618D30AE300CBF07E /* SBStock.m in Sources */,
-				BCBFA1FE192E8B5000A6D17E /* SBAlgorithmManager.m in Sources */,
+				BCBFA1FE192E8B5000A6D17E /* SBAlgorithm.m in Sources */,
 				BC7D247618D805A400CCF8A9 /* SBStocksTableViewCell.m in Sources */,
 				BCA2158C1946154900948D76 /* SBInstructionsViewController.m in Sources */,
 				BC64F39219005D0D00641E14 /* SBUserAlgoTableViewController.m in Sources */,
@@ -694,9 +699,11 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "StockBot/StockBot-Prefix.pch";
 				INFOPLIST_FILE = "StockBot/StockBot-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				PRODUCT_NAME = "股红";
-				PROVISIONING_PROFILE = "F4E5042E-DDC1-47E8-A024-EAE100091F67";
+				PRODUCT_NAME = stockup;
+				PROVISIONING_PROFILE = "dca6cd84-3574-47f4-b43f-298d341fa069";
+				USER_HEADER_SEARCH_PATHS = "\"${PROJECT_DIR}/Pods\"/**";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -707,14 +714,17 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_ENTITLEMENTS = "";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "StockBot/StockBot-Prefix.pch";
 				INFOPLIST_FILE = "StockBot/StockBot-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				PRODUCT_NAME = "股红";
-				PROVISIONING_PROFILE = "F4E5042E-DDC1-47E8-A024-EAE100091F67";
+				PRODUCT_NAME = stockup;
+				PROVISIONING_PROFILE = "f6ea8868-ce07-4168-afc2-9f8835338016";
+				USER_HEADER_SEARCH_PATHS = "\"${PROJECT_DIR}/Pods\"/**";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

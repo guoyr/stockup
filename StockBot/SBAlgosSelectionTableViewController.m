@@ -8,7 +8,7 @@
 
 #import "SBAlgosSelectionTableViewController.h"
 #import "SBAlgoConditionTableViewCell.h"
-#import "SBAlgorithmManager.h"
+#import "SBAlgorithm.h"
 #import "SBAlgoSelectTableViewCell.h"
 #import "SBDataManager.h"
 #import "SBSegmentedControl.h"
@@ -16,7 +16,7 @@
 
 @interface SBAlgosSelectionTableViewController ()
 
-@property (nonatomic, strong) SBAlgorithmManager *algorithm;
+@property (nonatomic, strong) SBAlgorithm *algorithm;
 @property (nonatomic, strong) NSMutableArray *expandedIndexPaths;
 @property (nonatomic, strong) NSIndexPath *selectedIndexPath;
 @property (nonatomic, strong) NSMutableArray *selectedAlgorithmIndices;
@@ -216,7 +216,7 @@ static NSString *AlgoNameCellIdentifier = @"ACell";
     }
     [cell setStockTintColor:self.stockTintColor];
     cell.confirmButton.tag = curAlgoIndex;
-    cell.textLabel.text = curAlgo.description;
+    cell.textLabel.text = curAlgo.conditionDescription;
     
     return cell;
 }
@@ -276,7 +276,7 @@ static NSString *AlgoNameCellIdentifier = @"ACell";
 -(SBCondition *)conditionAtIndex:(NSInteger)index
 {
     SBCondition *condition;
-    SBAlgorithmManager *algorithm = self.algorithm;
+    SBAlgorithm *algorithm = self.algorithm;
     switch (index) {
         case 0:
             condition = algorithm.macdCondition;

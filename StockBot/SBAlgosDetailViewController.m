@@ -11,7 +11,7 @@
 #import "SBDataManager.h"
 #import "SBStock.h"
 #import "SBStockGraphView.h"
-#import "SBAlgorithmManager.h"
+#import "SBAlgorithm.h"
 
 @interface SBAlgosDetailViewController ()
 
@@ -20,7 +20,7 @@
 @property (nonatomic, strong) UITextView *conditionDescriptionView;
 @property (nonatomic, strong) NSMutableArray *currentConditions;
 @property (nonatomic, strong) UIView *conditionSummaryView;
-@property (nonatomic, strong) SBAlgorithmManager *curAlgorithm;
+@property (nonatomic, strong) SBAlgorithm *curAlgorithm;
 
 @end
 

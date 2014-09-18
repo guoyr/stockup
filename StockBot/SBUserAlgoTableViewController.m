@@ -9,7 +9,7 @@
 #import "SBUserAlgoTableViewController.h"
 #import "SBLoginViewController.h"
 #import "SBStocksViewController.h"
-#import "SBAlgorithmManager.h"
+#import "SBAlgorithm.h"
 #import "SBDataManager.h"
 #import "SBNavigationControllerDelegate.h"
 
@@ -91,7 +91,6 @@ static NSString *UserCellIdentifier = @"UserCell";
 {
     
     UIAlertView *logoutConfirmation = [[UIAlertView alloc] initWithTitle:@"确认注销" message:nil delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确认", nil];
-    [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"presentedInstruction"];
     [logoutConfirmation show];
     
     
@@ -102,7 +101,8 @@ static NSString *UserCellIdentifier = @"UserCell";
     SBLoginViewController *vc;
     switch (buttonIndex) {
         case 1:
-            [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"loggedin"];
+            [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"presentedInstruction"];
+            [[SBDataManager sharedManager] setAuthCookie:nil];
             self.navigationController.delegate = [SBNavigationControllerDelegate sharedDelegate];
             vc =[[UIStoryboard storyboardWithName:@"Login" bundle:nil] instantiateViewControllerWithIdentifier:@"LoginViewController"];
             [self.navigationController setViewControllers:@[vc, self] animated:NO];
@@ -127,14 +127,14 @@ static NSString *UserCellIdentifier = @"UserCell";
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:UserCellIdentifier];
     NSString *algoUID = self.algoNames[indexPath.row];
-    cell.textLabel.text = [(SBAlgorithmManager *)self.algoDict[algoUID] name];
+    cell.textLabel.text = [(SBAlgorithm *)self.algoDict[algoUID] name];
     return cell;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSString *algoName = self.algoNames[indexPath.row];
-    SBAlgorithmManager *algo = self.algoDict[algoName];
+    SBAlgorithm *algo = self.algoDict[algoName];
     SBDataManager *manager = [SBDataManager sharedManager];
     [manager setSelectedAlgorithm:algo];
     SBStock *stock = [manager stocks][indexPath.row];
@@ -154,7 +154,7 @@ static NSString *UserCellIdentifier = @"UserCell";
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    int count = [self.algoDict allKeys].count;
+        int count = [self.algoDict allKeys].count;
     if (!count) {
         self.tableViewStyleControl.enabled = NO;
     } else {
@@ -224,7 +224,7 @@ static NSString *UserCellIdentifier = @"UserCell";
 
 - (UIImage *)imageForEmptyDataSet:(UIScrollView *)scrollView {
     
-    return [UIImage imageNamed:@"UserEmptyImage"];
+    return [UIImage imageNamed:@"logo"];
 }
 
 #pragma mark DZN Delegate
