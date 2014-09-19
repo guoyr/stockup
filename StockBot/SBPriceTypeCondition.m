@@ -21,6 +21,11 @@
     [self.segmentedControl addTarget:self action:@selector(marketLimitedControlValueChanged:) forControlEvents:UIControlEventValueChanged];
 }
 
+-(NSString *)archiveToString
+{
+    return self.priceType;
+}
+
 -(void)marketLimitedControlValueChanged:(SBSegmentedControl *)control
 {
     [self.delegate conditionDidChange:self];
@@ -30,22 +35,22 @@
 //    } else {
         switch (control.selectedSegmentIndex) {
             case MARKET_PRICE_INDEX:
-                ;
+                self.priceType = @"market";
                 break;
             case LIMITED_PRICE_INDEX:
-                ;
+                self.priceType = @"limited";
                 break;
             default:
                 break;
-//        }
+        }
+    
         
-        
-        [UIView animateWithDuration:0.3 animations:^{
+//        [UIView animateWithDuration:0.3 animations:^{
 //            [self.delegate conditionDidChange:self];
-        } completion:^(BOOL finished) {
-            
-        }];
-    }
+//        } completion:^(BOOL finished) {
+//            
+//        }];
+//    }
     
 }
 

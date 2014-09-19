@@ -25,7 +25,7 @@
 
 @property (nonatomic, strong) UITextView *instructionView;
 @property (nonatomic, strong) UIButton *confirmButton;
-
+@property (nonatomic, strong) SBStock *stock;
 @end
 
 @implementation SBStocksViewController
@@ -86,6 +86,7 @@
 -(void)confirmButtonPressed:(id)sender
 {
     SBAlgosViewController* algoVC = [[SBAlgosViewController alloc] initWithNibName:nil bundle:nil];
+    algoVC.stock = self.stock;
     [self.navigationController pushViewController:algoVC animated:YES];
 //    [self willMoveToParentViewController:nil];
 //    [self.navigationController addChildViewController:self.algoVC];
@@ -118,7 +119,7 @@
         //dvc already shown
     }
     [_dvc showStock:stock];
-    [[SBDataManager sharedManager] setSelectedStock:stock];
+    self.stock = stock;
     
 }
 

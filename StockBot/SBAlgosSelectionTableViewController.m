@@ -19,7 +19,7 @@
 @property (nonatomic, strong) SBAlgorithm *algorithm;
 @property (nonatomic, strong) NSMutableArray *expandedIndexPaths;
 @property (nonatomic, strong) NSIndexPath *selectedIndexPath;
-@property (nonatomic, strong) NSMutableArray *selectedAlgorithmIndices;
+@property (nonatomic, strong) NSMutableArray *selectedConditionIndices;
 
 @property (nonatomic, strong) UIView *headerView;
 @property (nonatomic, strong) UIColor *stockTintColor;
@@ -52,12 +52,11 @@ static NSString *AlgoNameCellIdentifier = @"ACell";
     self.tableView.frame = newFrame;
     
     self.expandedIndexPaths = [NSMutableArray new];
-    self.selectedAlgorithmIndices = [NSMutableArray new];
+    self.selectedConditionIndices = [NSMutableArray new];
 
     self.stockTintColor = GREY_LIGHT;
     
     self.navigationController.navigationBar.tintColor = self.stockTintColor;
-    [self setupAlgorithm];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
 
@@ -65,6 +64,10 @@ static NSString *AlgoNameCellIdentifier = @"ACell";
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
     //performSelector selectorfromstring
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [self setupAlgorithm];
 }
 
 // setup the selected controls for the algorithm depending on what is selected
@@ -199,19 +202,19 @@ static NSString *AlgoNameCellIdentifier = @"ACell";
             SBAlgoConditionTableViewCell *customizeCell = [tableView dequeueReusableCellWithIdentifier:CustomizeCellIdentifier];
             [customizeCell resetCell];
             customizeCell.bgView.backgroundColor = self.stockTintColor;
-            SBCondition *curAlgo = [self conditionAtIndex:self.selectedIndexPath.row];
-            curAlgo.delegate = self;
+            SBCondition *curCondition = [self conditionAtIndex:self.selectedIndexPath.row];
+            curCondition.delegate = self;
             NSInteger curAlgoOptionsIndex = indexPath.row - self.selectedIndexPath.row;
-            [curAlgo setupCell:customizeCell AtIndex:curAlgoOptionsIndex];
-            curAlgo.delegate = self;
+            [curCondition setupCell:customizeCell AtIndex:curAlgoOptionsIndex];
+            curCondition.delegate = self;
             return customizeCell;
         }
     }
     
     SBCondition *curAlgo = [self conditionAtIndex:curAlgoIndex];
     
-    // already selected the algorithm
-    if ([self.selectedAlgorithmIndices containsObject:[NSNumber numberWithLong:curAlgoIndex]]) {
+    // already selected the condition
+    if ([self.selectedConditionIndices containsObject:[NSNumber numberWithLong:curAlgoIndex]]) {
         [cell.confirmButton setTitle:@"-" forState:UIControlStateNormal];
     }
     [cell setStockTintColor:self.stockTintColor];
@@ -303,16 +306,16 @@ static NSString *AlgoNameCellIdentifier = @"ACell";
 {
     //TODO: eventually change to a checkmark
     NSNumber *index = [NSNumber numberWithLong:button.tag];
-    if (![self.selectedAlgorithmIndices containsObject:index]) {
+    if (![self.selectedConditionIndices containsObject:index]) {
         [button setTitle:@"-" forState:UIControlStateNormal];
-        [self.selectedAlgorithmIndices addObject:[NSNumber numberWithLong:button.tag]];
+        [self.selectedConditionIndices addObject:[NSNumber numberWithLong:button.tag]];
         [self conditionAtIndex:button.tag].isSelected = YES;
         [self.delegate viewController:self didAddCondition:[self conditionAtIndex:button.tag]];
 
     } else {
         [button setTitle:@"+" forState:UIControlStateNormal];
         [self conditionAtIndex:button.tag].isSelected = NO;
-        [self.selectedAlgorithmIndices removeObject:[NSNumber numberWithLong:button.tag]];
+        [self.selectedConditionIndices removeObject:[NSNumber numberWithLong:button.tag]];
         [self.delegate viewController:self didRemoveCondition:[self conditionAtIndex:button.tag]];
     }
     
@@ -324,7 +327,7 @@ static NSString *AlgoNameCellIdentifier = @"ACell";
 {
     NSLog(@"condition did change");
     if ([self.algorithm.mandatoryConditions containsObject:condition] && self.curVisibleSegmentedControl) {
-        if ([condition class] == [SBBuySellCondition class]) {
+        if ([condition class] == [TradeMethodCondition class]) {
             [self showControlFullScreen:[self.algorithm.mandatoryConditions[1] segmentedControl]];
         } else {
             [self showControlsSideBySide];

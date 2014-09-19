@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+@class SBStock;
 
 @interface SBAlgosViewController : UIViewController
+
+@property (nonatomic, strong) SBStock *stock;
 
 @end

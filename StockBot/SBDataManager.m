@@ -97,10 +97,8 @@
 }
 
 // save algorithm, if nil, save selected algorithm
-- (void)saveAlgorithm:(SBAlgorithm *)algorithm {
-    if (!algorithm) {
-        algorithm = self.selectedAlgorithm;
-    }
+- (void)saveAlgorithm {
+    SBAlgorithm *algorithm = self.selectedAlgorithm;
     if (!algorithm.uid) {
         NSString *uid = [self.dateFormatter stringFromDate:[NSDate date]];
         algorithm.uid = [uid stringByAppendingString:[NSString randomStringOfLength:5]];
@@ -112,6 +110,8 @@
 
     NSLog(@"%d", self.selectedAlgorithm.macdCondition.macdDirection);
     NSDictionary *archiveDict = [algorithm archiveToDict];
+
+    NSLog(@"%@", archiveDict);
 
     //TODO: actually save the archived dict
 }

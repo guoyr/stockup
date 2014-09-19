@@ -15,6 +15,7 @@
 @property (nonatomic, strong) NSString *name;
 @property (nonatomic, strong) NSString *stockName;
 @property (nonatomic, strong) NSNumber *stockID;
+@property (nonatomic, assign) int versionNumber;
 
 @property (nonatomic, strong) SBMACDCondition *macdCondition;
 @property (nonatomic, strong) SBKDJCondition *kdjCondition;
@@ -22,7 +23,7 @@
 @property (nonatomic, strong) SBBOLLCondition *bollCondition;
 @property (nonatomic, strong) SBPriceCondition *priceCondition;
 
-@property (nonatomic, strong) SBBuySellCondition *buySellCondition;
+@property (nonatomic, strong) TradeMethodCondition *tradeMethodCondition;
 @property (nonatomic, strong) SBPriceTypeCondition *priceTypeCondition;
 
 @property (nonatomic, assign) NSInteger numConditions;

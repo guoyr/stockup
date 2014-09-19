@@ -11,7 +11,7 @@
 		BC488CA2195CD6C400310801 /* SBSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = BC488CA1195CD6C400310801 /* SBSegmentedControl.m */; };
 		BC488CA5195DF2BA00310801 /* SBVolumeCondition.m in Sources */ = {isa = PBXBuildFile; fileRef = BC488CA4195DF2BA00310801 /* SBVolumeCondition.m */; };
 		BC4AE16C196871A1009B3B74 /* SBMandatoryCondition.m in Sources */ = {isa = PBXBuildFile; fileRef = BC4AE16B196871A1009B3B74 /* SBMandatoryCondition.m */; };
-		BC4AE16F1968785E009B3B74 /* SBBuySellCondition.m in Sources */ = {isa = PBXBuildFile; fileRef = BC4AE16E1968785E009B3B74 /* SBBuySellCondition.m */; };
+		BC4AE16F1968785E009B3B74 /* TradeMethodCondition.m in Sources */ = {isa = PBXBuildFile; fileRef = BC4AE16E1968785E009B3B74 /* TradeMethodCondition.m */; };
 		BC4AE17219687879009B3B74 /* SBPriceTypeCondition.m in Sources */ = {isa = PBXBuildFile; fileRef = BC4AE17119687879009B3B74 /* SBPriceTypeCondition.m */; };
 		BC4AFC8118DA777D00C888D9 /* SBStockGraphView.m in Sources */ = {isa = PBXBuildFile; fileRef = BC4AFC8018DA777D00C888D9 /* SBStockGraphView.m */; };
 		BC60A9E319350C46007FDEE0 /* SBBrokersTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BC60A9E219350C46007FDEE0 /* SBBrokersTableViewController.m */; };
@@ -83,8 +83,8 @@
 		BC488CA4195DF2BA00310801 /* SBVolumeCondition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBVolumeCondition.m; sourceTree = "<group>"; };
 		BC4AE16A196871A1009B3B74 /* SBMandatoryCondition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBMandatoryCondition.h; sourceTree = "<group>"; };
 		BC4AE16B196871A1009B3B74 /* SBMandatoryCondition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBMandatoryCondition.m; sourceTree = "<group>"; };
-		BC4AE16D1968785E009B3B74 /* SBBuySellCondition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBBuySellCondition.h; sourceTree = "<group>"; };
-		BC4AE16E1968785E009B3B74 /* SBBuySellCondition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBBuySellCondition.m; sourceTree = "<group>"; };
+		BC4AE16D1968785E009B3B74 /* TradeMethodCondition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TradeMethodCondition.h; sourceTree = "<group>"; };
+		BC4AE16E1968785E009B3B74 /* TradeMethodCondition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TradeMethodCondition.m; sourceTree = "<group>"; };
 		BC4AE17019687879009B3B74 /* SBPriceTypeCondition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBPriceTypeCondition.h; sourceTree = "<group>"; };
 		BC4AE17119687879009B3B74 /* SBPriceTypeCondition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBPriceTypeCondition.m; sourceTree = "<group>"; };
 		BC4AFC7F18DA777D00C888D9 /* SBStockGraphView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBStockGraphView.h; sourceTree = "<group>"; };
@@ -356,8 +356,8 @@
 				BC33F3641914A1A500C80E6C /* SBConditions.h */,
 				BCBFA1FC192E8B5000A6D17E /* SBAlgorithm.h */,
 				BCBFA1FD192E8B5000A6D17E /* SBAlgorithm.m */,
-				BC4AE16D1968785E009B3B74 /* SBBuySellCondition.h */,
-				BC4AE16E1968785E009B3B74 /* SBBuySellCondition.m */,
+				BC4AE16D1968785E009B3B74 /* TradeMethodCondition.h */,
+				BC4AE16E1968785E009B3B74 /* TradeMethodCondition.m */,
 				BC4AE17019687879009B3B74 /* SBPriceTypeCondition.h */,
 				BC4AE17119687879009B3B74 /* SBPriceTypeCondition.m */,
 			);
@@ -572,7 +572,7 @@
 				BC809FED18BE96990014C48B /* SBViewController.m in Sources */,
 				BC809FEB18BE96990014C48B /* SBStocksListTableViewController.m in Sources */,
 				BC64F38F18FF305300641E14 /* SBLoginViewController.m in Sources */,
-				BC4AE16F1968785E009B3B74 /* SBBuySellCondition.m in Sources */,
+				BC4AE16F1968785E009B3B74 /* TradeMethodCondition.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

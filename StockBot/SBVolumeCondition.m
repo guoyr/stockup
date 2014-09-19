@@ -45,10 +45,16 @@
             cell.descriptionLabel.text = @"放量";
             cell.numberStepper.hidden = NO;
             cell.numberTextField.hidden = NO;
+            [cell.numberStepper addTarget:self action:@selector(numberStepperValueChanged:) forControlEvents:UIControlEventValueChanged];
             break;
         default:
             break;
     }
+}
+
+-(void)numberStepperValueChanged:(UIStepper *)sender
+{
+    self.volume = sender.value;
 }
 
 -(int)numExpandedRows

@@ -32,7 +32,11 @@
 
 -(NSDictionary *)archiveToDict
 {
-    return @{DIRECTION:[NSNumber numberWithInteger:_macdDirection], TIME:[NSNumber numberWithInteger:_macdTime]};
+    if (self.macdDirection && self.macdTime) {
+        return @{DIRECTION: @(_macdDirection), TIME: @(_macdTime)};
+    }
+    return @{};
+    
 }
 
 -(id)init

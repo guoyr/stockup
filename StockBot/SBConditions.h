@@ -11,6 +11,6 @@
 #import "SBVolumeCondition.h"
 #import "SBBOLLCondition.h"
 #import "SBPriceCondition.h"
-#import "SBBuySellCondition.h"
+#import "TradeMethodCondition.h"
 #import "SBPriceTypeCondition.h"
 #import "SBMandatoryCondition.h"

@@ -10,4 +10,6 @@
 
 @interface SBPriceTypeCondition : SBMandatoryCondition
 
+@property (nonatomic, strong) NSString *priceType;
+
 @end

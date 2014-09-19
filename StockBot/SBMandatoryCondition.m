@@ -24,4 +24,14 @@
     
 }
 
+-(NSDictionary *)archiveToDict
+{
+    return nil;
+}
+
+-(NSString *)archiveToString
+{
+    return nil;
+}
+
 @end

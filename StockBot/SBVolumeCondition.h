@@ -10,4 +10,6 @@
 
 @interface SBVolumeCondition : SBCondition
 
+@property (nonatomic, strong) int volume;
+
 @end

@@ -64,16 +64,16 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
-    self.curAlgorithm = [[SBDataManager sharedManager] selectedAlgorithm];
+    SBAlgorithm * curAlgorithm = [[SBDataManager sharedManager] selectedAlgorithm];
     NSString *stockName = [[SBDataManager sharedManager] selectedStock].name;
 
     
     self.title = [NSString stringWithFormat:@"保存\"%@\"的算法",stockName];
     
-    if (!self.curAlgorithm.name) {
-        self.curAlgorithm.name = [[SBDataManager sharedManager] defaultAlgorithmName];
+    if (!curAlgorithm.name) {
+        curAlgorithm.name = [[SBDataManager sharedManager] defaultAlgorithmName];
     }
-    self.algoNameTextField.text = self.curAlgorithm.name;
+    self.algoNameTextField.text = curAlgorithm.name;
     [self.algoNameTextField becomeFirstResponder];
     
 
@@ -87,18 +87,15 @@
 
 -(void)done:(UIBarButtonItem *)sender
 {
-    [[SBDataManager sharedManager] saveAlgorithm:self.curAlgorithm];
+    [[SBDataManager sharedManager] saveAlgorithm];
     [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 -(void)textFieldChanged:(UITextField *)sender
 {
-    self.curAlgorithm.name = sender.text;
-    if ([sender.text length]) {
-        self.doneButtonItem.enabled = YES;
-    } else {
-        self.doneButtonItem.enabled = NO;
-    }
+    SBAlgorithm * curAlgorithm = [[SBDataManager sharedManager] selectedAlgorithm];
+    curAlgorithm.name = sender.text;
+    self.doneButtonItem.enabled = [sender.text length] != 0;
 }
 
 - (void)didReceiveMemoryWarning

@@ -8,8 +8,9 @@
 
 #import "SBAlgorithm.h"
 
-#define MACD_KEY @"macd_key"
-#define KDJ_KEY @"kdj_key"
+#define MACD_KEY @"macd_condition"
+#define KDJ_KEY @"kdj_condition"
+#define PRICE_KEY @"price_condition"
 #define TRANSACTION_KEY @"transacion_key"
 
 @implementation SBAlgorithm
@@ -23,14 +24,15 @@
         self.bollCondition = [SBBOLLCondition new];
         self.volumeCondtion = [SBVolumeCondition new];
         self.priceCondition = [SBPriceCondition new];
+        self.versionNumber = 0;
         
         self.numConditions = 5;
         self.addedConditions = [NSMutableArray new];
 
-        self.buySellCondition = [SBBuySellCondition new];
+        self.tradeMethodCondition = [TradeMethodCondition new];
         self.priceTypeCondition = [SBPriceTypeCondition new];
         
-        self.mandatoryConditions = @[self.buySellCondition, self.priceTypeCondition];
+        self.mandatoryConditions = @[self.tradeMethodCondition, self.priceTypeCondition];
     }
     
     return self;
@@ -38,11 +40,22 @@
 
 -(NSDictionary *)archiveToDict
 {
-    NSDictionary *macdDict = [self.macdCondition archiveToDict];
-    NSDictionary *kdjDict = [self.kdjCondition archiveToDict];
 //    NSDictionary *transactionDict = [self.transactionCondition archiveToDict];
 
-    return @{MACD_KEY:macdDict, KDJ_KEY:kdjDict};
+    return @{@"algo_id":self.uid,
+             @"algo_v":@(self.versionNumber++),
+             @"user_id": @"admin",
+             @"stock_id": self.stockID,
+             @"algo_name": self.name,
+             @"price_type": [self.priceTypeCondition archiveToString],
+             @"trade_method": [self.tradeMethodCondition archiveToString],
+             @"volume": @(self.volumeCondtion.volume),
+             @"conditions": @{
+                        MACD_KEY:[self.macdCondition archiveToDict],
+                        KDJ_KEY:[self.kdjCondition archiveToDict],
+                        PRICE_KEY:[self.priceCondition archiveToDict]
+                     }
+             };
 }
 
 -(void)unarchiveFromDict:(NSDictionary *)dict

@@ -98,6 +98,43 @@
     // Dispose of any resources that can be recreated.
 }
 
+-(void)updateInfoForStock:(SBStock *)stock FromSinaData:(id)rawData
+{
+    
+    @try {
+        unsigned long encoding = CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingGB_18030_2000);
+        NSString *s = [[NSString alloc] initWithData:rawData encoding:encoding];
+        NSArray *dataStringArray = [s componentsSeparatedByString:@","];
+        
+        NSNumberFormatter *numberFormatter = [NSNumberFormatter new];
+        [numberFormatter setNumberStyle:NSNumberFormatterDecimalStyle];
+        //        [numberFormatter setMaximumFractionDigits:2];
+        //        [numberFormatter setPositiveFormat:@"###0.00"];
+        //        NSLog(@"Sina Stock INFO: %@", dataStringArray);
+        stock.name = [dataStringArray[0] componentsSeparatedByString:@"=\""][1];
+        
+        stock.todayOpeningPrice = [numberFormatter numberFromString:dataStringArray[1]];
+        stock.yesterdayClosingPrice = [numberFormatter numberFromString:dataStringArray[2]];
+        stock.currentPrice = [numberFormatter numberFromString:dataStringArray[3]];
+        stock.todayHigh = [numberFormatter numberFromString:dataStringArray[4]];
+        stock.todayLow = [numberFormatter numberFromString:dataStringArray[5]];
+        stock.buyPrice = [numberFormatter numberFromString:dataStringArray[6]];
+        stock.sellPrice = [numberFormatter numberFromString:dataStringArray[7]];
+        stock.volume = [numberFormatter numberFromString:dataStringArray[8]];
+        
+        NSDateFormatter *dateFormatter = [NSDateFormatter new];
+        [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+        stock.fetchDate = [dateFormatter dateFromString:[NSString stringWithFormat:@"%@ %@",dataStringArray[30],dataStringArray[31]]];
+    }
+    @catch (NSException *exception) {
+        NSLog(@"%@",exception);
+    }
+    @finally {
+        ;
+    }
+    
+}
+
 -(void)showStock:(SBStock *)stock
 {
     self.stock = stock;
@@ -121,7 +158,7 @@
     [self.dateLabel setText:@"数据日期"];
     
     [manager GET:infoURL parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        [stock updateInfoFromSinaData:responseObject];
+        [self updateInfoForStock:stock FromSinaData:responseObject];
         [self.nameLabel setText:[NSString stringWithFormat:@"股票名称：%@",self.stock.name]];
         [self.todayOpeningPriceLabel setText:[NSString stringWithFormat:@"今日开盘价：￥%.3f",[stock.todayOpeningPrice floatValue]]];
         [self.yesterdayClosingPriceLabel setText:[NSString stringWithFormat:@"昨日开盘价：￥%.3f",[stock.yesterdayClosingPrice floatValue]]];

@@ -24,7 +24,7 @@
 
 -(NSDictionary *)getAllAlgorithmsForUser:(SBUser *)user;
 
--(void)saveAlgorithm:(SBAlgorithm *)algorithm;
+-(void)saveAlgorithm;
 -(void)removeAlgorithm:(NSString *)algorithmName;
 
 -(NSString *)defaultAlgorithmName;

@@ -38,8 +38,8 @@ static NSString *CellIdentifier = @"StockCell";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
-    [self setDataManager:[SBDataManager sharedManager]];
+    
+    self.dataManager = [SBDataManager sharedManager];
     [self.tableView registerClass:[SBStocksTableViewCell class] forCellReuseIdentifier:CellIdentifier];
     [self.tableView setRowHeight:STOCK_CELL_HEIGHT];
     [self.tableView setBackgroundColor:BLACK_BG];
@@ -51,7 +51,7 @@ static NSString *CellIdentifier = @"StockCell";
     
     self.stockSearchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 0, self.tableView.frame.size.width, 0)];
     self.stockSearchBar.translucent = YES;
-    self.stockSearchBar.searchBarStyle = UIBarStyleBlack;
+    self.stockSearchBar.searchBarStyle = UISearchBarStyleMinimal;
     self.stockSearchBar.delegate = self;
     [self.stockSearchBar sizeToFit];
     self.stockSearchBar.barTintColor = BLACK_BG;
@@ -124,9 +124,9 @@ static NSString *CellIdentifier = @"StockCell";
 
     SBStock *stock;
     if (self.searchedStockArray) {
-        stock = [self.searchedStockArray objectAtIndex:indexPath.row];
+        stock = (self.searchedStockArray)[(NSUInteger) indexPath.row];
     } else {
-        stock = [self.dataManager.stocks objectAtIndex:indexPath.row];
+        stock = (self.dataManager.stocks)[(NSUInteger) indexPath.row];
     }
     stock.tableViewIndex = indexPath;
     cell.stockIDLabel.text = [stock.stockID stringValue];
@@ -141,10 +141,11 @@ static NSString *CellIdentifier = @"StockCell";
     }
     SBStock *selectedStock;
     if (self.searchedStockArray) {
-        selectedStock = self.searchedStockArray[indexPath.row];
+        selectedStock = self.searchedStockArray[(NSUInteger) indexPath.row];
     } else {
-        selectedStock = self.dataManager.stocks[indexPath.row];
+        selectedStock = self.dataManager.stocks[(NSUInteger) indexPath.row];
     }
+    self.dataManager.selectedStock = selectedStock;
     [self.delegate viewController:self didSelectStock:selectedStock];
 }
 

@@ -17,5 +17,6 @@
 @property (nonatomic, strong) SBSegmentedControl *segmentedControl;
 
 -(void)setupSegmentedControl;
+-(NSString *)archiveToString;
 
 @end

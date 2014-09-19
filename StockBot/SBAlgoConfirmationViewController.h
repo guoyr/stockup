@@ -11,9 +11,11 @@
 #import <UIKit/UIKit.h>
 #import "SBAlgorithm.h"
 
+@class SBStock;
+
 
 @interface SBAlgoConfirmationViewController : UIViewController <UITextFieldDelegate>
 
-@property (nonatomic, strong) SBAlgorithm *curAlgorithm;
+@property (nonatomic, strong) SBStock *stock;
 
 @end

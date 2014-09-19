@@ -28,7 +28,7 @@
 
 -(NSDictionary *)archiveToDict
 {
-    return @{};
+    return nil;
 }
 
 -(int)numExpandedRows
@@ -42,11 +42,19 @@
     switch (index) {
         case 1:
             cell.descriptionLabel.text = @"交易价格";
+            cell.numberStepper.hidden = NO;
+            cell.numberTextField.hidden = NO;
+            [cell.numberStepper addTarget:self action:@selector(numberStepperValueChanged:) forControlEvents:UIControlEventValueChanged];
             break;
             
         default:
             break;
     }
+}
+
+-(void)numberStepperValueChanged:(UIStepper *)sender
+{
+    self.price = [NSString stringWithFormat:@"%.2f", sender.value];
 }
 
 @end

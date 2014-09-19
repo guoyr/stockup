@@ -6,13 +6,13 @@
 //  Copyright (c) 2014 Robert Guo. All rights reserved.
 //
 
-#import "SBBuySellCondition.h"
+#import "TradeMethodCondition.h"
 #import "SBConstants.h"
 
 #define BUY_INDEX 0
 #define SELL_INDEX 1
 
-@implementation SBBuySellCondition
+@implementation TradeMethodCondition
 
 -(void)setupSegmentedControl
 {
@@ -22,20 +22,25 @@
     [self.segmentedControl addTarget:self action:@selector(buySellControlValueChanged:) forControlEvents:UIControlEventValueChanged];
 }
 
+-(NSString *)archiveToString
+{
+    return self.tradeMethod;
+}
+
 -(void)buySellControlValueChanged:(SBSegmentedControl *)sender
 {
     [self.delegate conditionDidChange:self];
     
-//    switch (sender.selectedSegmentIndex) {
-//        case BUY_INDEX:
-//            self.stockTintColor = BLUE;
-//            break;
-//        case SELL_INDEX:
-//            self.stockTintColor = RED;
-//            break;
-//        default:
-//            break;
-//    }
+    switch (sender.selectedSegmentIndex) {
+        case BUY_INDEX:
+            self.tradeMethod = @"buy";
+            break;
+        case SELL_INDEX:
+            self.tradeMethod = @"sell";
+            break;
+        default:
+            break;
+    }
 //    self.priceControl.tintColor = self.stockTintColor;
 //    self.buySellControl.tintColor = self.stockTintColor;
 //    self.navigationController.navigationBar.barTintColor = self.stockTintColor;

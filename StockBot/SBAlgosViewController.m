@@ -48,17 +48,16 @@
 {
     [super viewDidLoad];
     
-    NSString *stockName = [[SBDataManager sharedManager] selectedStock].name;
-
+    NSString *stockName = self.stock.name;
     if (!stockName) {
         stockName = @"股红测试";
     }
     self.view.backgroundColor = BLACK_BG;
     
     CGRect navBarFrame = self.navigationController.navigationBar.frame;
-    int navBarHeight = navBarFrame.origin.y + navBarFrame.size.height;
-    int frameHeight = self.view.frame.size.height;
-    int frameWidth = self.view.frame.size.width;
+    int navBarHeight = (int) (navBarFrame.origin.y + navBarFrame.size.height);
+    int frameHeight = (int) self.view.frame.size.height;
+    int frameWidth = (int) self.view.frame.size.width;
     
     _bottomFrame = CGRectMake(ALGO_LIST_WIDTH, frameHeight - CONFIRM_BUTTON_HEIGHT - navBarHeight, frameWidth - ALGO_LIST_WIDTH, CONFIRM_BUTTON_HEIGHT);
     _leftFrame = CGRectMake(0, 0, ALGO_LIST_WIDTH, frameHeight);
@@ -147,14 +146,10 @@
 -(void)confirmButtonPressed:(UIButton *)sender
 {
     NSLog(@"confirm button pressed");
-    if ([[SBDataManager sharedManager] selectedAlgorithm].uid) {
-        // editing existing algorithm
-        [[SBDataManager sharedManager] saveAlgorithm:nil];
-        [self.navigationController popToRootViewControllerAnimated:YES];
-    } else {
-        SBAlgoConfirmationViewController *tvc = [[SBAlgoConfirmationViewController alloc] initWithNibName:nil bundle:nil];
-        [self.navigationController pushViewController:tvc animated:YES];
-    }
+
+    SBAlgoConfirmationViewController *tvc = [[SBAlgoConfirmationViewController alloc] initWithNibName:nil bundle:nil];
+    tvc.stock = self.stock;
+    [self.navigationController pushViewController:tvc animated:YES];
 
 }
 
