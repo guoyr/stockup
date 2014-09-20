@@ -44,8 +44,7 @@
         
         self.numberSegmentedControl = [[UISegmentedControl alloc] initWithFrame:CGRectMake(ALGO_LIST_WIDTH - 170, 20, 100, ALGO_ROW_HEIGHT - 40)];
         UIFont *font = [UIFont boldSystemFontOfSize:22.0f];
-        NSDictionary *attributes = [NSDictionary dictionaryWithObject:font
-                                                               forKey:NSFontAttributeName];
+        NSDictionary *attributes = @{NSFontAttributeName : font};
         [self.numberSegmentedControl setTitleTextAttributes:attributes
                                         forState:UIControlStateNormal];
         [self.numberSegmentedControl insertSegmentWithTitle:@"—" atIndex:0 animated:NO];
@@ -54,7 +53,7 @@
         [self.contentView addSubview:self.numberSegmentedControl];
 
         self.numberTextField = [[UITextField alloc] initWithFrame:CGRectMake(ALGO_LIST_WIDTH - 240, 20, 96, ALGO_ROW_HEIGHT - 40)];
-        self.numberTextField.backgroundColor = GREY_LIGHT;
+//        self.numberTextField.backgroundColor = BLACK_BG;
         self.numberTextField.text = @"0";
         self.numberTextField.textAlignment = NSTextAlignmentCenter;
         self.numberTextField.layer.cornerRadius = 5.0f;
@@ -62,7 +61,7 @@
         [self.contentView addSubview:self.numberTextField];
         
         self.numberStepper = [[UIStepper alloc] initWithFrame:CGRectMake(ALGO_LIST_WIDTH - 128, 20, 96, ALGO_ROW_HEIGHT - 40)];
-        self.numberStepper.tintColor = GREY_LIGHT;
+        self.numberStepper.tintColor = BLACK_BG;
         self.numberStepper.continuous = YES;
         self.numberStepper.minimumValue = 0;
         self.numberStepper.maximumValue = 10000000;

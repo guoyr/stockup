@@ -23,6 +23,8 @@
 @property (nonatomic, strong) SBBOLLCondition *bollCondition;
 @property (nonatomic, strong) SBPriceCondition *priceCondition;
 
+@property (nonatomic, strong) SBCondition *primaryCondition;
+
 @property (nonatomic, strong) TradeMethodCondition *tradeMethodCondition;
 @property (nonatomic, strong) SBPriceTypeCondition *priceTypeCondition;
 
@@ -34,7 +36,7 @@
 // show up as a list of segmentedIndices on the top
 @property (nonatomic, strong) NSArray *mandatoryConditions;
 // conditions that have been added to this algorithm
-@property (nonatomic, strong) NSMutableArray *addedConditions;
+@property (nonatomic, strong) NSArray *allConditions;
 
 -(NSDictionary *)archiveToDict;
 -(void)unarchiveFromDict:(NSDictionary *)dict;

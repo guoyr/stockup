@@ -10,7 +10,7 @@
 
 @interface SBPriceCondition : SBCondition
 
-@property (nonatomic, assign) NSString *price;
+@property (nonatomic, strong) NSString *price;
 
 @end
 

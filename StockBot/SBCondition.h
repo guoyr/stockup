@@ -23,6 +23,7 @@
 
 @property (nonatomic, strong) NSString *conditionDescription;
 @property (nonatomic, strong) NSString *conditionExplanation;
+@property (nonatomic, strong) NSString *conditionTypeId; // used to identify the condition type
 @property (nonatomic, assign) BOOL isSelected;
 // keep track of the previous cell and remove targets if necessary
 @property (nonatomic, strong) SBAlgoConditionTableViewCell *previousCell;

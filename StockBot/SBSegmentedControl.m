@@ -41,12 +41,12 @@
         return;
     }
     
-    if (self.hiddenControls.count > 0) {
-        for (NSNumber *index in self.hiddenControls.allKeys) {
-            NSInteger intIndex = [index intValue];
+//    if (self.hiddenControls.count > 0) {
+//        for (NSNumber *index in self.hiddenControls.allKeys) {
+//            NSInteger intIndex = [index intValue];
 //            [self insertSegmentWithTitle:self.hiddenControls[index] atIndex:intIndex animated:NO];
-        }
-    }
+//        }
+//    }
     
     [self.hiddenControls removeAllObjects];
 //    self.isExpanded = YES;

@@ -26,8 +26,10 @@
         self.priceCondition = [SBPriceCondition new];
         self.versionNumber = 0;
         
+        self.allConditions = @[self.macdCondition, self.kdjCondition, self.bollCondition, self.priceCondition];
+        
         self.numConditions = 5;
-        self.addedConditions = [NSMutableArray new];
+        
 
         self.tradeMethodCondition = [TradeMethodCondition new];
         self.priceTypeCondition = [SBPriceTypeCondition new];
@@ -41,7 +43,12 @@
 -(NSDictionary *)archiveToDict
 {
 //    NSDictionary *transactionDict = [self.transactionCondition archiveToDict];
-
+    
+    NSMutableDictionary *conditions = [NSMutableDictionary new];
+    for (SBCondition *condition in self.allConditions) {
+        if ([condition isSelected]) [conditions setObject:[condition archiveToDict] forKey:condition.conditionTypeId];
+    }
+    
     return @{@"algo_id":self.uid,
              @"algo_v":@(self.versionNumber++),
              @"user_id": @"admin",
@@ -50,11 +57,8 @@
              @"price_type": [self.priceTypeCondition archiveToString],
              @"trade_method": [self.tradeMethodCondition archiveToString],
              @"volume": @(self.volumeCondtion.volume),
-             @"conditions": @{
-                        MACD_KEY:[self.macdCondition archiveToDict],
-                        KDJ_KEY:[self.kdjCondition archiveToDict],
-                        PRICE_KEY:[self.priceCondition archiveToDict]
-                     }
+             @"primary_condition": self.primaryCondition.conditionTypeId,
+             @"conditions": conditions
              };
 }
 

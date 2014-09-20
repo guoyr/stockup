@@ -214,7 +214,7 @@ static NSString *AlgoNameCellIdentifier = @"ACell";
     SBCondition *curAlgo = [self conditionAtIndex:curAlgoIndex];
     
     // already selected the condition
-    if ([self.selectedConditionIndices containsObject:[NSNumber numberWithLong:curAlgoIndex]]) {
+    if ([self.selectedConditionIndices containsObject:@(curAlgoIndex)]) {
         [cell.confirmButton setTitle:@"-" forState:UIControlStateNormal];
     }
     [cell setStockTintColor:self.stockTintColor];
@@ -226,12 +226,8 @@ static NSString *AlgoNameCellIdentifier = @"ACell";
 
 -(BOOL)tableView:(UITableView *)tableView shouldHighlightRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if ([self.expandedIndexPaths containsObject:indexPath]) {
-        // algorithm customization cells are not selectable
-        return NO;
-    }
-    
-    return YES;
+    return ![self.expandedIndexPaths containsObject:indexPath];
+
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -305,20 +301,23 @@ static NSString *AlgoNameCellIdentifier = @"ACell";
 -(void)confirmedCondition:(UIButton *)button
 {
     //TODO: eventually change to a checkmark
-    NSNumber *index = [NSNumber numberWithLong:button.tag];
+    NSNumber *index = @(button.tag);
     if (![self.selectedConditionIndices containsObject:index]) {
         [button setTitle:@"-" forState:UIControlStateNormal];
-        [self.selectedConditionIndices addObject:[NSNumber numberWithLong:button.tag]];
+        [self.selectedConditionIndices addObject:@(button.tag)];
         [self conditionAtIndex:button.tag].isSelected = YES;
         [self.delegate viewController:self didAddCondition:[self conditionAtIndex:button.tag]];
 
     } else {
         [button setTitle:@"+" forState:UIControlStateNormal];
         [self conditionAtIndex:button.tag].isSelected = NO;
-        [self.selectedConditionIndices removeObject:[NSNumber numberWithLong:button.tag]];
+        [self.selectedConditionIndices removeObject:@(button.tag)];
         [self.delegate viewController:self didRemoveCondition:[self conditionAtIndex:button.tag]];
     }
-    
+    if ([self.selectedConditionIndices count] > 0)
+        self.algorithm.primaryCondition = [self conditionAtIndex:[self.selectedConditionIndices[0] integerValue]];
+    else self.algorithm.primaryCondition = nil;
+
 }
 
 #pragma mark SBCondition delegate

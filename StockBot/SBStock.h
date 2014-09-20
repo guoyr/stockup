@@ -28,6 +28,4 @@
 
 @property (nonatomic, strong) NSIndexPath *tableViewIndex;
 
--(void)updateInfoFromSinaData:(NSString *)rawData;
-
 @end

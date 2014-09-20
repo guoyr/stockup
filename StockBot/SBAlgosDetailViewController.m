@@ -91,23 +91,18 @@
 
 -(void)removeCondition:(SBCondition *)condition
 {
-    [self.curAlgorithm.addedConditions removeObject:condition];
     [self updateAlgorithmDescription];
 }
 
 -(void)addCondition:(SBCondition *)condition
 {
-    [self.curAlgorithm.addedConditions addObject:condition];
     [self updateAlgorithmDescription];
 
 }
 
 -(void)modifyCondition:(SBCondition *)condition
 {
-    
-    if ([self.curAlgorithm.addedConditions containsObject:condition]) {
-        [self updateAlgorithmDescription];
-    }
+    [self updateAlgorithmDescription];
 }
 
 
@@ -116,7 +111,10 @@
     // update the algorithm description when a condition has been added/removed/modified
     NSMutableString *description = [NSMutableString stringWithString:@"您选择在满足以下所有条件时购买该股票\n\n"];
     int counter = 1;
-    for (SBCondition *condition in self.curAlgorithm.addedConditions) {
+    for (SBCondition *condition in self.curAlgorithm.allConditions) {
+        if (!condition.isSelected) {
+            continue;
+        }
         NSString *ed = [condition extendedDescription];
         if (ed) {
             // user has selected criterias
