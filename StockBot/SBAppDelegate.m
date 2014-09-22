@@ -13,6 +13,7 @@
 #import "SBUserAlgoTableViewController.h"
 #import "SBAlgosViewController.h"
 #import "SBDataManager.h"
+#import "AFHTTPRequestOperationManager.h"
 
 @implementation SBAppDelegate
 
@@ -97,6 +98,25 @@
 
 - (void)application:(UIApplication*)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
 {
+    NSString *authCookie = [[SBDataManager sharedManager] authCookie];
+
+    NSString *token = [[deviceToken description] stringByTrimmingCharactersInSet: [NSCharacterSet characterSetWithCharactersInString:@"<>"]];
+    token = [token stringByReplacingOccurrencesOfString:@" " withString:@""];
+
+    if (authCookie) {
+        AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+        NSDictionary *params = @{@"Cookie": authCookie, @"apns_token": token, @"user_id": @"admin"};
+        NSString *urlString = [NSString stringWithFormat: @"%@add-token", SERVER_URL];
+        [manager POST:urlString parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            if (!((NSDictionary *) responseObject)[@"error"]) {
+                NSLog(@"added token");
+            } else {
+                //TODO: deal with error (most likely not logged in)
+            }
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            NSLog(@"error");
+        }];
+    }
     NSLog(@"My token is: %@", deviceToken);
 }
 

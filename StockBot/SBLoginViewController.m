@@ -20,7 +20,7 @@
 
 @end
 
-@implementation SBLoginViewController
+    @implementation SBLoginViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -161,7 +161,7 @@
     NSString *urlString = [NSString stringWithFormat: @"%@auth/login", SERVER_URL];
     [manager POST:urlString parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
-        if (![(NSDictionary *)responseObject objectForKey:@"error"]) {
+        if (!((NSDictionary *) responseObject)[@"error"]) {
             
             NSString *cookie = operation.response.allHeaderFields[@"Set-Cookie"];
             [[SBDataManager sharedManager] setAuthCookie:cookie];
