@@ -9,6 +9,9 @@
 #import "SBPriceCondition.h"
 #import "SBAlgoConditionTableViewCell.h"
 
+#define MORE_THAN 0
+#define LESS_THAN 1
+
 @interface SBPriceCondition()
 
 @property (nonatomic, assign) NSInteger priceTrend;
@@ -21,6 +24,9 @@
 +(id)conditionWithDict:(NSDictionary *)dict
 {
     SBPriceCondition *condition = [SBPriceCondition new];
+    condition.priceTrend = [SBPriceCondition trendFromString:dict[@"type"]];
+    condition.price = dict[@"price"];
+    condition.window = dict[@"window"];
     return condition;
 }
 
@@ -40,9 +46,10 @@
 
 -(NSDictionary *)archiveToDict
 {
-    if (self.priceTrend != -1 && self.price != nil)
-    return @{@"type": [self priceTrendString], @"price": self.price, @"window": @(self.window)};
-    
+    if (self.priceTrend != -1 && self.price != nil) {
+        return @{@"type": [self priceTrendString], @"price": self.price, @"window": @(self.window)};
+    }
+
     return @{};
 }
 
@@ -53,9 +60,17 @@
 
 -(NSString *)priceTrendString
 {
-    if (self.priceTrend == 0)
+    if (self.priceTrend == MORE_THAN)
         return @"more_than";
     return @"less_than";
+}
+
++(NSInteger)trendFromString:(NSString *) pstring
+{
+    if ([@"more_than" isEqualToString:pstring]) {
+        return MORE_THAN;
+    }
+    return LESS_THAN;
 }
 
 -(void)setupCell:(SBAlgoConditionTableViewCell *)cell AtIndex:(NSInteger)index
@@ -71,8 +86,8 @@
         case 2:
             cell.descriptionLabel.text = @"价格走势设置";
             [cell.algoSegmentedControl setHidden:NO];
-            [cell.algoSegmentedControl insertSegmentWithTitle:@"大于" atIndex:0 animated:NO];
-            [cell.algoSegmentedControl insertSegmentWithTitle:@"小于" atIndex:1 animated:NO];
+            [cell.algoSegmentedControl insertSegmentWithTitle:@"大于" atIndex:MORE_THAN animated:NO];
+            [cell.algoSegmentedControl insertSegmentWithTitle:@"小于" atIndex:LESS_THAN animated:NO];
             [cell.algoSegmentedControl addTarget:self action:@selector(priceTrendChanged:) forControlEvents:UIControlEventValueChanged];
             [cell.algoSegmentedControl setSelectedSegmentIndex:self.priceTrend];
             break;

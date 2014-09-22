@@ -11,7 +11,9 @@
 
 @interface SBKDJCondition()
 
-
+@property (nonatomic, assign) NSInteger n;
+@property (nonatomic, assign) NSInteger m;
+@property (nonatomic, assign) NSInteger m1;
 
 @end
 
@@ -31,25 +33,59 @@
 +(id)conditionWithDict:(NSDictionary *)dict
 {
     SBKDJCondition *condition = [SBKDJCondition new];
+    condition.n = [dict[@"n"] integerValue];
+    condition.m = [dict[@"m"] integerValue];
+    condition.m1 = [dict[@"m1"] integerValue];
     return condition;
 }
 
 -(NSDictionary *)archiveToDict
 {
-    return @{};
+    return @{@"n":@(self.n), @"m": @(self.m), @"m1": @(self.m1)};
 }
 
 -(void)setupCell:(SBAlgoConditionTableViewCell *)cell AtIndex:(NSInteger)index
 {
     [super setupCell:cell AtIndex:index];
+    cell.numberStepper.stepValue = 5;
+    cell.numberStepper.minimumValue = 1;
+    cell.numberStepper.hidden = NO;
+    cell.numberTextField.hidden = NO;
+    
     switch (index) {
         case 1:
             // time period: hour, day, month
-            cell.descriptionLabel.text = @"KDJ时间设置";
+            cell.descriptionLabel.text = @"n（秒）";
+            cell.numberStepper.tag = 0; // use the tag to identify which cell it is
             break;
         case 2:
             // direction
-            cell.descriptionLabel.text = @"KDJ方向设置";
+            cell.descriptionLabel.text = @"m （秒）";
+            cell.numberStepper.tag = 1;
+            break;
+        case 3:
+            // direction
+            cell.descriptionLabel.text = @"m1 （秒）";
+            cell.numberStepper.tag = 2;
+            break;
+        default:
+            break;
+    }
+    [cell.numberStepper addTarget:self action:@selector(numberStepperValueChanged:) forControlEvents:UIControlEventValueChanged];
+
+}
+
+-(void)numberStepperValueChanged:(UIStepper *)sender
+{
+    switch (sender.tag) {
+        case 0:
+            self.n = (int)sender.stepValue;
+            break;
+        case 1:
+            self.m = (int)sender.stepValue;
+            break;
+        case 2:
+            self.m1 = (int)sender.stepValue;
             break;
         default:
             break;
@@ -58,7 +94,7 @@
 
 -(int)numExpandedRows
 {
-    return 2;
+    return 3;
 }
 
 

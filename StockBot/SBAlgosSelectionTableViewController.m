@@ -30,8 +30,9 @@
 
 @implementation SBAlgosSelectionTableViewController
 
-static NSString *CustomizeCellIdentifier = @"CCell";
-static NSString *AlgoNameCellIdentifier = @"ACell";
+// Don't reuse cells
+//static NSString *CustomizeCellIdentifier = @"CCell";
+//static NSString *AlgoNameCellIdentifier = @"ACell";
 
 - (void)viewDidLoad
 {
@@ -189,7 +190,7 @@ static NSString *AlgoNameCellIdentifier = @"ACell";
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSInteger curAlgoIndex = indexPath.row;
-    SBAlgoSelectTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:AlgoNameCellIdentifier];
+    SBAlgoSelectTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:nil];
     [cell.confirmButton addTarget:self action:@selector(confirmedCondition:) forControlEvents:UIControlEventTouchUpInside];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
@@ -199,7 +200,7 @@ static NSString *AlgoNameCellIdentifier = @"ACell";
             curAlgoIndex -= [self.expandedIndexPaths count];
         } else {
             // options for the current algorithm
-            SBAlgoConditionTableViewCell *customizeCell = [tableView dequeueReusableCellWithIdentifier:CustomizeCellIdentifier];
+            SBAlgoConditionTableViewCell *customizeCell = [tableView dequeueReusableCellWithIdentifier:nil];
             [customizeCell resetCell];
             customizeCell.bgView.backgroundColor = self.stockTintColor;
             SBCondition *curCondition = [self conditionAtIndex:self.selectedIndexPath.row];

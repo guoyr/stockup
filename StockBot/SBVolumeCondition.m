@@ -25,9 +25,10 @@
     return self;
 }
 
-+(id)conditinWithDict:(NSDictionary *)dict
++(id)conditionWithDict:(NSDictionary *)dict
 {
     SBVolumeCondition *condition = [SBVolumeCondition new];
+
     return condition;
 }
 
