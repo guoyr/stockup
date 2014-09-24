@@ -57,6 +57,7 @@
     // find out enabled notification types
     // UIRemoteNotificationType enabledTypes = [[UIApplication sharedApplication] enabledRemoteNotificationTypes];
     [[UIApplication sharedApplication] registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:(UIUserNotificationTypeAlert | UIUserNotificationTypeBadge | UIUserNotificationTypeSound) categories:nil]];
+    [[UIApplication sharedApplication] registerForRemoteNotifications];
     
     
     [self.window setRootViewController:nav];
@@ -111,6 +112,7 @@
             if (!((NSDictionary *) responseObject)[@"error"]) {
                 NSLog(@"added token");
             } else {
+                NSLog(@"not logged in or st");
                 //TODO: deal with error (most likely not logged in)
             }
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {

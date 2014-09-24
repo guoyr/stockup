@@ -89,7 +89,7 @@
 }
 
 - (NSString *)defaultAlgorithmName {
-    return [NSString stringWithFormat:@"算法%u", self.allAlgorithms.count + 1];
+    return [NSString stringWithFormat:@"算法%lu", self.allAlgorithms.count + 1];
 }
 
 - (NSDictionary *)getAllAlgorithmsForUser:(SBUser *)user {
@@ -108,7 +108,7 @@
     algorithm.stockID = self.selectedStock.stockID;
     algorithm.stockName = self.selectedStock.name;
 
-    NSLog(@"%d", self.selectedAlgorithm.macdCondition.macdDirection);
+    NSLog(@"%ld", (long)self.selectedAlgorithm.macdCondition.macdDirection);
     NSDictionary *archiveDict = [algorithm archiveToDict];
 
     NSLog(@"%@", archiveDict);

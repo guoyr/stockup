@@ -71,6 +71,10 @@
         
         [self.numberStepper addTarget:self action:@selector(numberStepperValueChanged:) forControlEvents:UIControlEventValueChanged];
         
+        self.algoSwitch.hidden = YES;
+        self.algoSegmentedControl.hidden = YES;
+        [self.algoSegmentedControl removeAllSegments];
+        
 
     }
     

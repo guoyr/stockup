@@ -176,12 +176,12 @@
     
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
 
-    [manager GET:@"http://stockup-dev.cloudapp.net:9990/price?start_time=2014-09-05T15:00:00Z&end_time=2014-09-05T16:00:00Z&stock_ids=600028" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        
-        NSLog(@"%@", responseObject[0][@"doc"][@"d"][0]);
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"%@",error);
-    }];
+//    [manager GET:@"http://stockup-dev.cloudapp.net:9990/price?start_time=2014-09-05T15:00:00&end_time=2014-09-05T16:00:00&stock_ids=600028" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+//        
+//        NSLog(@"%@", responseObject[0][@"doc"][@"d"][0]);
+//    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+//        NSLog(@"%@",error);
+//    }];
 
     [self.kChartView setImageWithURL:kChartImageURL placeholderImage:nil];
     [self.macdView setImageWithURL:macdImageURL placeholderImage:nil];

@@ -40,8 +40,8 @@
     
     [self.view setClipsToBounds:YES];
     
-    [self.tableView registerClass:[SBAlgoConditionTableViewCell class] forCellReuseIdentifier:CustomizeCellIdentifier];
-    [self.tableView registerClass:[SBAlgoSelectTableViewCell class] forCellReuseIdentifier:AlgoNameCellIdentifier];
+//    [self.tableView registerClass:[SBAlgoConditionTableViewCell class] forCellReuseIdentifier:nil];
+//    [self.tableView registerClass:[SBAlgoSelectTableViewCell class] forCellReuseIdentifier:nil];
 
     self.tableView.separatorColor = BLACK_BG;
     [self.tableView setBackgroundColor:BLACK_BG];
@@ -190,7 +190,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSInteger curAlgoIndex = indexPath.row;
-    SBAlgoSelectTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:nil];
+    SBAlgoSelectTableViewCell *cell = [[SBAlgoSelectTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
     [cell.confirmButton addTarget:self action:@selector(confirmedCondition:) forControlEvents:UIControlEventTouchUpInside];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
@@ -200,8 +200,8 @@
             curAlgoIndex -= [self.expandedIndexPaths count];
         } else {
             // options for the current algorithm
-            SBAlgoConditionTableViewCell *customizeCell = [tableView dequeueReusableCellWithIdentifier:nil];
-            [customizeCell resetCell];
+            SBAlgoConditionTableViewCell *customizeCell = [[SBAlgoConditionTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
+//            [customizeCell resetCell];
             customizeCell.bgView.backgroundColor = self.stockTintColor;
             SBCondition *curCondition = [self conditionAtIndex:self.selectedIndexPath.row];
             curCondition.delegate = self;
