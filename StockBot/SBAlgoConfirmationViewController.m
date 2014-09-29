@@ -56,6 +56,8 @@
     namePrompt.textColor = WHITE;
     namePrompt.text = @"请输入算法名字";
     [self.view addSubview:namePrompt];
+
+    self.view.backgroundColor = BLACK_BG;
     
     self.doneButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(done:)];
     self.navigationItem.rightBarButtonItem = self.doneButtonItem;
@@ -66,7 +68,6 @@
 {
     SBAlgorithm * curAlgorithm = [[SBDataManager sharedManager] selectedAlgorithm];
     NSString *stockName = [[SBDataManager sharedManager] selectedStock].name;
-
     
     self.title = [NSString stringWithFormat:@"保存\"%@\"的算法",stockName];
     
@@ -75,7 +76,6 @@
     }
     self.algoNameTextField.text = curAlgorithm.name;
     [self.algoNameTextField becomeFirstResponder];
-    
 
 }
 
