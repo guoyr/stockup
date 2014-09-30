@@ -111,6 +111,7 @@
         [manager POST:urlString parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
             if (!((NSDictionary *) responseObject)[@"error"]) {
                 NSLog(@"added token");
+                \
             } else {
                 NSLog(@"not logged in or st");
                 //TODO: deal with error (most likely not logged in)

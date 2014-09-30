@@ -11,6 +11,7 @@
 #import "SBStock.h"
 #import "SBAlgorithm.h"
 #import "NSString+SBAdditions.h"
+#import "AFNetworking.h"
 
 @interface SBDataManager ()
 
@@ -64,7 +65,6 @@
         self.db = [[FMDatabase alloc] initWithPath:dbPath];
         [self.db open];
         BOOL success = [self.db executeUpdate:@"create table if not exists sse_stocks(name nvarchar(256), stock_id integer)"];
-        [self showErrorIfFailed:success];
         FMResultSet *result = [self.db executeQuery:@"select count(*) from sse_stocks"];
         while ([result next]) {
             int stockCount = [result intForColumnIndex:0];
@@ -114,6 +114,16 @@
     NSLog(@"%@", archiveDict);
 
     //TODO: actually save the archived dict
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    
+    NSDictionary *params = @{@"Cookie": self.authCookie, @"algo":archiveDict, @"user_id": @"admin"};
+    NSString *urlString = [NSString stringWithFormat: @"%@algo/upload/", SERVER_URL];
+    [manager POST:urlString parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"%@",responseObject);
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"%@",error.description);
+    }];
 }
 
 - (void)removeAlgorithm:(NSString *)algorithmName {
