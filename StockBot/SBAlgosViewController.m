@@ -33,22 +33,34 @@
 
 @implementation SBAlgosViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+
+-(SBAlgosSelectionTableViewController *)lvc
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        self.dvc = [[SBAlgosDetailViewController alloc] initWithNibName:nil bundle:nil];
-        self.lvc = [[SBAlgosSelectionTableViewController alloc] initWithNibName:nil bundle:nil];
-        [_lvc setDelegate:self];
+    if (!_lvc) {
+        _lvc = [[SBAlgosSelectionTableViewController alloc] initWithStyle:UITableViewStylePlain];
     }
-    return self;
+    return _lvc;
+}
+
+-(SBAlgosDetailViewController *)dvc
+{
+    if (!_dvc) {
+        _dvc = [[SBAlgosDetailViewController alloc] initWithNibName:nil bundle:nil];
+    }
+    return _dvc;
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
-    NSString *stockName = self.stock.name;
+    NSString *stockName = self.curStock.name;
     if (!stockName) {
         stockName = @"股红测试";
     }
@@ -68,11 +80,11 @@
 
     self.edgesForExtendedLayout = UIRectEdgeNone;
     self.extendedLayoutIncludesOpaqueBars = NO;
-    [_lvc.view setFrame:_leftFrame];
+    [self.lvc.view setFrame:_leftFrame];
 
-    [self addChildViewController:_lvc];
-    [_lvc didMoveToParentViewController:self];
-    [self.view addSubview:_lvc.view];
+    [self addChildViewController:self.lvc];
+    [self.lvc didMoveToParentViewController:self];
+    [self.view addSubview:self.lvc.view];
     
     
 
@@ -148,7 +160,7 @@
     NSLog(@"confirm button pressed");
 
     SBAlgoConfirmationViewController *tvc = [[SBAlgoConfirmationViewController alloc] initWithNibName:nil bundle:nil];
-    tvc.stock = self.stock;
+    tvc.stock = self.curStock;
     [self.navigationController pushViewController:tvc animated:YES];
 
 }

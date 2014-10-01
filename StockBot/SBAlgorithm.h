@@ -8,12 +8,11 @@
 
 #import <Foundation/Foundation.h>
 #import "SBConditions.h"
-
+@class SBStock;
 
 @interface SBAlgorithm : NSObject
 
 @property (nonatomic, strong) NSString *name;
-@property (nonatomic, strong) NSString *stockName;
 @property (nonatomic, strong) NSNumber *stockID;
 @property (nonatomic, assign) int versionNumber;
 

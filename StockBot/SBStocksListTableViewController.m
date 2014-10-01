@@ -11,6 +11,7 @@
 #import "SBStock.h"
 #import "SBConstants.h"
 #import "SBStocksTableViewCell.h"
+#import "SBAlgorithm.h"
 
 @interface SBStocksListTableViewController ()
 
@@ -33,6 +34,12 @@ static NSString *CellIdentifier = @"StockCell";
         // Custom initialization
     }
     return self;
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self.tableView reloadData];
 }
 
 - (void)viewDidLoad
@@ -127,6 +134,11 @@ static NSString *CellIdentifier = @"StockCell";
         stock = (self.searchedStockArray)[(NSUInteger) indexPath.row];
     } else {
         stock = (self.dataManager.stocks)[(NSUInteger) indexPath.row];
+        if ([stock.stockID isEqual:self.curAlgo.stockID]) {
+            [tableView selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionMiddle];
+            [self.delegate viewController:self didSelectStock:stock];
+        }
+        
     }
     stock.tableViewIndex = indexPath;
     cell.stockIDLabel.text = [stock.stockID stringValue];
@@ -145,7 +157,6 @@ static NSString *CellIdentifier = @"StockCell";
     } else {
         selectedStock = self.dataManager.stocks[(NSUInteger) indexPath.row];
     }
-    self.dataManager.selectedStock = selectedStock;
     [self.delegate viewController:self didSelectStock:selectedStock];
 }
 

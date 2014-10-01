@@ -16,7 +16,6 @@
 
 @interface SBAlgosSelectionTableViewController ()
 
-@property (nonatomic, strong) SBAlgorithm *algorithm;
 @property (nonatomic, strong) NSMutableArray *expandedIndexPaths;
 @property (nonatomic, strong) NSIndexPath *selectedIndexPath;
 @property (nonatomic, strong) NSMutableArray *selectedConditionIndices;
@@ -30,9 +29,6 @@
 
 @implementation SBAlgosSelectionTableViewController
 
-// Don't reuse cells
-//static NSString *CustomizeCellIdentifier = @"CCell";
-//static NSString *AlgoNameCellIdentifier = @"ACell";
 
 - (void)viewDidLoad
 {
@@ -40,9 +36,6 @@
     
     [self.view setClipsToBounds:YES];
     
-//    [self.tableView registerClass:[SBAlgoConditionTableViewCell class] forCellReuseIdentifier:nil];
-//    [self.tableView registerClass:[SBAlgoSelectTableViewCell class] forCellReuseIdentifier:nil];
-
     self.tableView.separatorColor = BLACK_BG;
     [self.tableView setBackgroundColor:BLACK_BG];
     [self.tableView setRowHeight:ALGO_ROW_HEIGHT];
@@ -100,7 +93,7 @@
     [UIView animateWithDuration:0.3 animations:^{
         CGRect frame = CGRectMake(HEADER_BORDER, HEADER_BORDER, SEG_CONTROL_WIDTH, ALGO_ROW_HEIGHT - HEADER_BORDER*2);
 
-        for (SBMandatoryCondition *condition in self.algorithm.mandatoryConditions) {
+        for (SBMandatoryCondition *condition in self.curAlgo.mandatoryConditions) {
             SBSegmentedControl *control = condition.segmentedControl;
             control.frame = frame;
             frame.origin.x += SEG_CONTROL_WIDTH + HEADER_BORDER * 2;

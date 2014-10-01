@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+@class SBAlgorithm;
 
 @interface SBStocksViewController : UIViewController
+
+@property (nonatomic, strong) SBAlgorithm *curAlgo;
+
 
 @end

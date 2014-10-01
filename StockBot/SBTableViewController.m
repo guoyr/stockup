@@ -22,8 +22,16 @@
     if (self) {
         // Custom initialization
         self.style = style;
+        self.clearSelectionOnViewWillAppear = YES;
     }
     return self;
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    if (self.clearSelectionOnViewWillAppear) {
+        [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:animated];
+    }
 }
 
 - (void)viewDidLoad

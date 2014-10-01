@@ -11,6 +11,7 @@
 #import "SBCondition.h"
 
 @class SBAlgosSelectionTableViewController;
+@class SBAlgorithm;
 
 @protocol SBAlgosSelectionTableViewControllerDelegate <NSObject>
 
@@ -24,6 +25,6 @@
 @interface SBAlgosSelectionTableViewController : SBTableViewController <SBConditionDelegate>
 
 @property (nonatomic, weak) NSObject<SBAlgosSelectionTableViewControllerDelegate> *delegate;
-
+@property (nonatomic, strong) SBAlgorithm *curAlgo;
 
 @end

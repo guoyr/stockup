@@ -14,6 +14,7 @@
 #import "SBAlgosViewController.h"
 #import "SBStock.h"
 #import "SBDataManager.h"
+#import "SBAlgorithm.h"
 
 @interface SBStocksViewController () <SBStocksListTableViewControllerDelegate>
 
@@ -26,6 +27,8 @@
 @property (nonatomic, strong) UITextView *instructionView;
 @property (nonatomic, strong) UIButton *confirmButton;
 @property (nonatomic, strong) SBStock *stock;
+@property (nonatomic, strong) SBAlgosViewController *algosVC;
+
 @end
 
 @implementation SBStocksViewController
@@ -36,11 +39,33 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        [self setDvc:[[SBStocksDetailViewController alloc] initWithNibName:nil bundle:nil]];
-        [self setTvc:[[SBStocksListTableViewController alloc] initWithStyle:UITableViewStylePlain]];
-        [_tvc setDelegate:self];
     }
     return self;
+}
+
+-(SBStocksDetailViewController *)dvc
+{
+    if (!_dvc) {
+        _dvc = [[SBStocksDetailViewController alloc] initWithNibName:nil bundle:nil];
+    }
+    return _dvc;
+}
+
+-(SBStocksListTableViewController *)tvc
+{
+    if (!_tvc) {
+        _tvc = [[SBStocksListTableViewController alloc] initWithStyle:UITableViewStylePlain];
+        [_tvc setDelegate:self];
+    }
+    return _tvc;
+}
+
+-(SBAlgosViewController *)algosVC
+{
+    if (!_algosVC) {
+        _algosVC = [[SBAlgosViewController alloc] initWithNibName:nil bundle:nil];
+    }
+    return _algosVC;
 }
 
 - (void)viewDidLoad
@@ -66,11 +91,11 @@
     [self.confirmButton setBackgroundColor:GREY_LIGHT];
     [self.confirmButton addTarget:self action:@selector(confirmButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
     
-    [_tvc.view setFrame:_leftFrame];
-    [self addChildViewController:_tvc];
-    [_tvc didMoveToParentViewController:self];
+    [self.tvc.view setFrame:_leftFrame];
+    [self addChildViewController:self.tvc];
+    [self.tvc didMoveToParentViewController:self];
     
-    [self.view addSubview:_tvc.view];
+    [self.view addSubview:self.tvc.view];
     
     self.instructionView = [[UITextView alloc] initWithFrame:CGRectMake(400, 200, 300, 500)];
     [self.instructionView setBackgroundColor:BLACK_BG];
@@ -83,11 +108,19 @@
     [self.view addSubview:self.instructionView];
 }
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    self.tvc.curAlgo = self.curAlgo;
+}
+
 -(void)confirmButtonPressed:(id)sender
 {
-    SBAlgosViewController* algoVC = [[SBAlgosViewController alloc] initWithNibName:nil bundle:nil];
-    algoVC.stock = self.stock;
-    [self.navigationController pushViewController:algoVC animated:YES];
+
+    self.curAlgo.stockID = self.stock.stockID;
+    self.algosVC.curAlgo = self.curAlgo;
+    self.algosVC.curStock = self.stock;
+    [self.navigationController pushViewController:self.algosVC animated:YES];
 //    [self willMoveToParentViewController:nil];
 //    [self.navigationController addChildViewController:self.algoVC];
 //    [self.algoVC.view setFrame:self.bottomFrame];
@@ -108,18 +141,19 @@
 
 -(void)viewController:(SBStocksListTableViewController *)vc didSelectStock:(SBStock *)stock
 {
-    if (!_dvc.view.superview) {
+    if (!self.dvc.view.superview) {
         [self.instructionView removeFromSuperview];
-        [self addChildViewController:_dvc];
-        [_dvc.view setFrame:_rightFrame];
-        [_dvc didMoveToParentViewController:self];
-        [self.view addSubview:_dvc.view];
+        [self addChildViewController:self.dvc];
+        [self.dvc.view setFrame:_rightFrame];
+        [self.dvc didMoveToParentViewController:self];
+        [self.view addSubview:self.dvc.view];
         [self.view addSubview:self.confirmButton];
     } else {
         //dvc already shown
     }
-    [_dvc showStock:stock];
+    
     self.stock = stock;
+    [self.dvc showStock:stock];
     
 }
 

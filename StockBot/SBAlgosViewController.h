@@ -8,9 +8,11 @@
 
 #import <UIKit/UIKit.h>
 @class SBStock;
+@class SBAlgorithm;
 
 @interface SBAlgosViewController : UIViewController
 
-@property (nonatomic, strong) SBStock *stock;
+@property (nonatomic, strong) SBAlgorithm *curAlgo;
+@property (nonatomic, strong) SBStock *curStock;
 
 @end

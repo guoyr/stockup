@@ -64,7 +64,7 @@
 
         self.db = [[FMDatabase alloc] initWithPath:dbPath];
         [self.db open];
-        BOOL success = [self.db executeUpdate:@"create table if not exists sse_stocks(name nvarchar(256), stock_id integer)"];
+        [self.db executeUpdate:@"create table if not exists sse_stocks(name nvarchar(256), stock_id integer)"];
         FMResultSet *result = [self.db executeQuery:@"select count(*) from sse_stocks"];
         while ([result next]) {
             int stockCount = [result intForColumnIndex:0];
@@ -106,7 +106,6 @@
 
     (self.allAlgorithms)[algorithm.uid] = algorithm;
     algorithm.stockID = self.selectedStock.stockID;
-    algorithm.stockName = self.selectedStock.name;
 
     NSLog(@"%ld", (long)self.selectedAlgorithm.macdCondition.macdDirection);
     NSDictionary *archiveDict = [algorithm archiveToDict];

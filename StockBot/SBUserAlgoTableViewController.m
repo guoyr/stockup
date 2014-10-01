@@ -18,8 +18,8 @@
 @interface SBUserAlgoTableViewController ()
 
 @property (nonatomic, strong) NSDictionary *algoDict;
-@property (nonatomic, strong) NSArray *algoNames;
 @property (nonatomic, strong) UISegmentedControl *tableViewStyleControl;
+@property (nonatomic, strong) SBStocksViewController *stockVC;
 
 @end
 
@@ -62,29 +62,36 @@ static NSString *UserCellIdentifier = @"UserCell";
     self.tableView.emptyDataSetSource = self;
     self.tableView.emptyDataSetDelegate = self;
     
+    self.algoDict = [[NSMutableDictionary alloc] init];
+    
     // A little trick for removing the cell separators
     self.tableView.tableFooterView = [UIView new];
-    
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
+-(SBStocksViewController *)stockVC
+{
+    if (!_stockVC) {
+        _stockVC = [[SBStocksViewController alloc] initWithNibName:nil bundle:nil];
+    }
+    return _stockVC;
+}
+
 -(void)viewWillAppear:(BOOL)animated
 {
-    self.algoDict = [[SBDataManager sharedManager] getAllAlgorithmsForUser:nil];
-    self.algoNames = [self.algoDict allKeys];
+    [super viewWillAppear:animated];
     [self.tableView reloadData];
-
 }
 
 -(void)addAlgorithm:(id)sender
 {
-    SBStocksViewController *algoVC = [[SBStocksViewController alloc] initWithNibName:nil bundle:nil];
-    [[SBDataManager sharedManager] setSelectedAlgorithm:nil];
-    [self.navigationController pushViewController:algoVC animated:YES];
+    if (!self.curAlgo) {
+        self.curAlgo = [SBAlgorithm new];
+    }
+    self.stockVC.curAlgo = self.curAlgo;
+    [self.navigationController pushViewController:self.stockVC animated:YES];
 }
 
 -(void)logout:(id)sender
@@ -125,22 +132,18 @@ static NSString *UserCellIdentifier = @"UserCell";
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    NSArray *algoNames = self.algoDict.allKeys;
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:UserCellIdentifier];
-    NSString *algoUID = self.algoNames[indexPath.row];
+    NSString *algoUID = algoNames[indexPath.row];
     cell.textLabel.text = [(SBAlgorithm *)self.algoDict[algoUID] name];
     return cell;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString *algoName = self.algoNames[indexPath.row];
-    SBAlgorithm *algo = self.algoDict[algoName];
-    SBDataManager *manager = [SBDataManager sharedManager];
-    [manager setSelectedAlgorithm:algo];
-    SBStock *stock = [manager stocks][indexPath.row];
-    [manager setSelectedStock:stock];
-    SBStocksViewController *svc = [[SBStocksViewController alloc] initWithNibName:nil bundle:nil];
-    [self.navigationController pushViewController:svc animated:YES];
+    NSArray *algoNames = self.algoDict.allKeys;
+    self.curAlgo = self.algoDict[algoNames[indexPath.row]];
+    [self addAlgorithm:nil];
 }
 
 #pragma mark - Table view data source
@@ -154,7 +157,9 @@ static NSString *UserCellIdentifier = @"UserCell";
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-        int count = [self.algoDict allKeys].count;
+    NSArray *algoNames = self.algoDict.allKeys;
+
+    NSUInteger count = [algoNames count];
     if (!count) {
         self.tableViewStyleControl.enabled = NO;
     } else {
@@ -175,8 +180,9 @@ static NSString *UserCellIdentifier = @"UserCell";
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         // Delete the row from the data source
-        
-        [[SBDataManager sharedManager] removeAlgorithm:self.algoNames[indexPath.row]];
+        NSArray *algoNames = self.algoDict.allKeys;
+
+        [[SBDataManager sharedManager] removeAlgorithm:algoNames[indexPath.row]];
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     } else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view

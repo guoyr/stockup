@@ -10,6 +10,7 @@
 #import "SBTableViewController.h"
 @class SBStock;
 @class SBStocksListTableViewController;
+@class SBAlgorithm;
 
 @protocol SBStocksListTableViewControllerDelegate <NSObject>
 
@@ -20,6 +21,7 @@
 @interface SBStocksListTableViewController : SBTableViewController <UISearchBarDelegate>
 
 @property (nonatomic, weak) NSObject<SBStocksListTableViewControllerDelegate> *delegate;
+@property (nonatomic, strong) SBAlgorithm *curAlgo;
 
 @end
 

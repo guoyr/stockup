@@ -92,6 +92,20 @@
     [self.view addSubview:self.scrollView];
 }
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    [self.nameLabel setText:@"股票名称"];
+    [self.todayOpeningPriceLabel setText:@"今日开盘价"];
+    [self.yesterdayClosingPriceLabel setText:@"昨日开盘价"];
+    [self.todayHighLabel setText:@"今日最高价"];
+    [self.todayLowLabel setText:@"今日最低价"];
+    [self.currentPriceLabel setText:@"当前价"];
+    [self.buyPriceLabel setText:@"买入价"];
+    [self.sellPriceLabel setText:@"卖出价"];
+    [self.volumeLabel setText:@"成交量"];
+    [self.dateLabel setText:@"数据日期"];
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -145,17 +159,6 @@
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     // default serializer doesn't support this content type
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
-    
-    [self.nameLabel setText:@"股票名称"];
-    [self.todayOpeningPriceLabel setText:@"今日开盘价"];
-    [self.yesterdayClosingPriceLabel setText:@"昨日开盘价"];
-    [self.todayHighLabel setText:@"今日最高价"];
-    [self.todayLowLabel setText:@"今日最低价"];
-    [self.currentPriceLabel setText:@"当前价"];
-    [self.buyPriceLabel setText:@"买入价"];
-    [self.sellPriceLabel setText:@"卖出价"];
-    [self.volumeLabel setText:@"成交量"];
-    [self.dateLabel setText:@"数据日期"];
     
     [manager GET:infoURL parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         [self updateInfoForStock:stock FromSinaData:responseObject];

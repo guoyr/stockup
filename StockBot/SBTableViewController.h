@@ -11,6 +11,7 @@
 @interface SBTableViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
 @property (nonatomic, strong) UITableView *tableView;
+@property (nonatomic, assign) BOOL clearSelectionOnViewWillAppear;
 
 -initWithStyle:(UITableViewStyle)style;
 

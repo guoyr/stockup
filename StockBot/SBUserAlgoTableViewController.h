@@ -10,6 +10,10 @@
 #import "SBTableViewController.h"
 #import "UIScrollView+EmptyDataSet.h"
 
+@class SBAlgorithm;
+
 @interface SBUserAlgoTableViewController : SBTableViewController <UIAlertViewDelegate, DZNEmptyDataSetDelegate, DZNEmptyDataSetSource>
+
+@property (nonatomic, strong) SBAlgorithm *curAlgo;
 
 @end
