@@ -68,19 +68,18 @@
 -(void)setupAlgorithm
 {
     // get this from the manager
-    self.algorithm = [[SBDataManager sharedManager] selectedAlgorithm];
     self.headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ALGO_LIST_WIDTH, ALGO_ROW_HEIGHT)];
     self.headerView.backgroundColor = BLACK_BG;
 
     [self.view addSubview:self.headerView];
 
-    for (SBMandatoryCondition *condition in self.algorithm.mandatoryConditions) {
+    for (SBMandatoryCondition *condition in self.curAlgo.mandatoryConditions) {
         // TODO: setup the segmented controls if necessary
         [self.headerView addSubview:condition.segmentedControl];
         condition.delegate = self;
     }
     
-    SBSegmentedControl *firstControl = [self.algorithm.mandatoryConditions[0] segmentedControl];
+    SBSegmentedControl *firstControl = [self.curAlgo.mandatoryConditions[0] segmentedControl];
     [self showControlFullScreen:firstControl];
     
 }
@@ -175,9 +174,9 @@
 {
     // Return the number of rows in the section.
     if (self.selectedIndexPath) {
-        return self.algorithm.numConditions + [self.expandedIndexPaths count];
+        return self.curAlgo.numConditions + [self.expandedIndexPaths count];
     }
-    return self.algorithm.numConditions;
+    return self.curAlgo.numConditions;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -269,7 +268,7 @@
 -(SBCondition *)conditionAtIndex:(NSInteger)index
 {
     SBCondition *condition;
-    SBAlgorithm *algorithm = self.algorithm;
+    SBAlgorithm *algorithm = self.curAlgo;
     switch (index) {
         case 0:
             condition = algorithm.macdCondition;
@@ -309,8 +308,8 @@
         [self.delegate viewController:self didRemoveCondition:[self conditionAtIndex:button.tag]];
     }
     if ([self.selectedConditionIndices count] > 0)
-        self.algorithm.primaryCondition = [self conditionAtIndex:[self.selectedConditionIndices[0] integerValue]];
-    else self.algorithm.primaryCondition = nil;
+        self.curAlgo.primaryCondition = [self conditionAtIndex:[self.selectedConditionIndices[0] integerValue]];
+    else self.curAlgo.primaryCondition = nil;
 
 }
 
@@ -319,9 +318,9 @@
 -(void)conditionDidChange:(SBCondition *)condition
 {
     NSLog(@"condition did change");
-    if ([self.algorithm.mandatoryConditions containsObject:condition] && self.curVisibleSegmentedControl) {
+    if ([self.curAlgo.mandatoryConditions containsObject:condition] && self.curVisibleSegmentedControl) {
         if ([condition class] == [TradeMethodCondition class]) {
-            [self showControlFullScreen:[self.algorithm.mandatoryConditions[1] segmentedControl]];
+            [self showControlFullScreen:[self.curAlgo.mandatoryConditions[1] segmentedControl]];
         } else {
             [self showControlsSideBySide];
         }
