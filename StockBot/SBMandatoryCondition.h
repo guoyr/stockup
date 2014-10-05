@@ -14,9 +14,7 @@
 
 @interface SBMandatoryCondition : SBCondition
 
-@property (nonatomic, strong) SBSegmentedControl *segmentedControl;
-
--(void)setupSegmentedControl;
+-(void)setupSegmentedControl:(SBSegmentedControl *)segmentedControl;
 -(NSString *)archiveToString;
 +(SBCondition *)conditionFromString:(NSString *)conditionString;
 

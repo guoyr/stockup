@@ -24,6 +24,7 @@
 @property (nonatomic, strong) UIColor *stockTintColor;
 
 @property (nonatomic, strong) SBSegmentedControl *curVisibleSegmentedControl;
+@property (nonatomic, strong) NSMutableArray *segmentedControls;
 
 @end
 
@@ -44,12 +45,15 @@
     newFrame.origin.y += ALGO_ROW_HEIGHT;
     newFrame.size.height -= ALGO_ROW_HEIGHT;
     self.tableView.frame = newFrame;
-    
+    self.headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ALGO_LIST_WIDTH, ALGO_ROW_HEIGHT)];
+    self.headerView.backgroundColor = BLACK_BG;
+    [self.view addSubview:self.headerView];
+
     self.expandedIndexPaths = [NSMutableArray new];
     self.selectedConditionIndices = [NSMutableArray new];
 
     self.stockTintColor = GREY_LIGHT;
-    
+
     self.navigationController.navigationBar.tintColor = self.stockTintColor;
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -67,20 +71,21 @@
 // setup the selected controls for the algorithm depending on what is selected
 -(void)setupAlgorithm
 {
-    // get this from the manager
-    self.headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ALGO_LIST_WIDTH, ALGO_ROW_HEIGHT)];
-    self.headerView.backgroundColor = BLACK_BG;
+    for (SBSegmentedControl *view in self.headerView.subviews) {
+        [view removeTarget:nil action:NULL forControlEvents:UIControlEventAllEvents];
+        [view removeFromSuperview];
+    }
 
-    [self.view addSubview:self.headerView];
-
+    
     for (SBMandatoryCondition *condition in self.curAlgo.mandatoryConditions) {
         // TODO: setup the segmented controls if necessary
-        [self.headerView addSubview:condition.segmentedControl];
+        SBSegmentedControl *control = [SBSegmentedControl new];
+        [condition setupSegmentedControl:control];
+        [self.headerView addSubview:control];
         condition.delegate = self;
     }
     
-    SBSegmentedControl *firstControl = [self.curAlgo.mandatoryConditions[0] segmentedControl];
-    [self showControlFullScreen:firstControl];
+    [self showControlFullScreen:self.headerView.subviews[0]];
     
 }
 
@@ -92,8 +97,7 @@
     [UIView animateWithDuration:0.3 animations:^{
         CGRect frame = CGRectMake(HEADER_BORDER, HEADER_BORDER, SEG_CONTROL_WIDTH, ALGO_ROW_HEIGHT - HEADER_BORDER*2);
 
-        for (SBMandatoryCondition *condition in self.curAlgo.mandatoryConditions) {
-            SBSegmentedControl *control = condition.segmentedControl;
+        for (SBSegmentedControl *control in self.headerView.subviews) {
             control.frame = frame;
             frame.origin.x += SEG_CONTROL_WIDTH + HEADER_BORDER * 2;
             control.alpha = 1.0f;
@@ -320,7 +324,7 @@
     NSLog(@"condition did change");
     if ([self.curAlgo.mandatoryConditions containsObject:condition] && self.curVisibleSegmentedControl) {
         if ([condition class] == [SBTradeMethodCondition class]) {
-            [self showControlFullScreen:[self.curAlgo.mandatoryConditions[1] segmentedControl]];
+            [self showControlFullScreen:self.headerView.subviews[1]];
         } else {
             [self showControlsSideBySide];
         }

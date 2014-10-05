@@ -18,12 +18,11 @@
 {
     self = [super init];
     if (self) {
-        [self setupSegmentedControl];
     }
     return self;
 }
 
--(void)setupSegmentedControl
+-(void)setupSegmentedControl:(SBSegmentedControl *)segmentedControl
 {
     
 }

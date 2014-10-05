@@ -14,12 +14,13 @@
 
 @implementation SBTradeMethodCondition
 
--(void)setupSegmentedControl
+-(void)setupSegmentedControl:(SBSegmentedControl *)segmentedControl
 {
-    self.segmentedControl = [[SBSegmentedControl alloc] initWithItems:@[@"买入", @"卖出"]];
-    self.segmentedControl.alpha = 0.0f;
-    self.segmentedControl.tintColor = GREY_LIGHT;
-    [self.segmentedControl addTarget:self action:@selector(buySellControlValueChanged:) forControlEvents:UIControlEventValueChanged];
+    [segmentedControl insertSegmentWithTitle:@"卖出" atIndex:0 animated:NO];
+    [segmentedControl insertSegmentWithTitle:@"买入" atIndex:0 animated:NO];
+    segmentedControl.alpha = 0.0f;
+    segmentedControl.tintColor = GREY_LIGHT;
+    [segmentedControl addTarget:self action:@selector(buySellControlValueChanged:) forControlEvents:UIControlEventValueChanged];
 }
 
 -(NSString *)archiveToString

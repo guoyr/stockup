@@ -13,12 +13,13 @@
 
 @implementation SBPriceTypeCondition
 
--(void)setupSegmentedControl
+-(void)setupSegmentedControl:(SBSegmentedControl *)segmentedControl
 {
-    self.segmentedControl = [[SBSegmentedControl alloc] initWithItems:@[@"市场价",@"限价单"]];
-    self.segmentedControl.alpha = 0;
-    self.segmentedControl.tintColor = GREY_LIGHT;
-    [self.segmentedControl addTarget:self action:@selector(marketLimitedControlValueChanged:) forControlEvents:UIControlEventValueChanged];
+    [segmentedControl insertSegmentWithTitle:@"市场价" atIndex:0 animated:NO];
+    [segmentedControl insertSegmentWithTitle:@"限单价" atIndex:0 animated:NO];
+    segmentedControl.alpha = 0;
+    segmentedControl.tintColor = GREY_LIGHT;
+    [segmentedControl addTarget:self action:@selector(marketLimitedControlValueChanged:) forControlEvents:UIControlEventValueChanged];
 }
 
 +(SBCondition *)conditionFromString:(NSString *)conditionString
