@@ -18,6 +18,7 @@
 @property(nonatomic, strong) FMDatabase *db;
 @property(nonatomic, strong) NSMutableArray *rowCache; //caching csv data as we transfer it to fmdb
 @property(nonatomic, strong) NSMutableDictionary *allAlgorithms;
+@property (nonatomic, strong) NSMutableDictionary *allAlgorithmPaths;
 @property(nonatomic, strong) NSDateFormatter *dateFormatter;
 
 @end
@@ -36,13 +37,6 @@
         sharedMyManager = [self new];
     });
     return sharedMyManager;
-}
-
-- (SBAlgorithm *)selectedAlgorithm {
-    if (!_selectedAlgorithm) {
-        _selectedAlgorithm = [SBAlgorithm new];
-    }
-    return _selectedAlgorithm;
 }
 
 - (id)init {
@@ -81,15 +75,30 @@
                 NSLog(@"DB already exists");
             }
         }
-
+        
         self.allAlgorithms = [NSMutableDictionary new];
+        NSDictionary *allAlgoPaths = [[NSUserDefaults standardUserDefaults] objectForKey:@"allAlgorithmPaths"];
+        
+        // populate the algorithms
+        if (allAlgoPaths) {
+            self.allAlgorithmPaths = [allAlgoPaths mutableCopy];
+            for (NSString *filePath in [self.allAlgorithms allValues]) {
+                NSDictionary *algoDict = [NSDictionary dictionaryWithContentsOfFile:filePath];
+                SBAlgorithm *algo = [SBAlgorithm algorithmFromDict:algoDict];
+                self.allAlgorithms[algo.uid] = algo;
+            }
+        } else {
+            self.allAlgorithmPaths = [NSMutableDictionary new];
+        }
+        
+        
     }
 
     return self;
 }
 
 - (NSString *)defaultAlgorithmName {
-    return [NSString stringWithFormat:@"算法%lu", self.allAlgorithms.count + 1];
+    return [NSString stringWithFormat:@"算法%ld", (long)self.allAlgorithms.count + 1];
 }
 
 - (NSDictionary *)getAllAlgorithmsForUser:(SBUser *)user {
@@ -97,22 +106,28 @@
 }
 
 // save algorithm, if nil, save selected algorithm
-- (void)saveAlgorithm {
-    SBAlgorithm *algorithm = self.selectedAlgorithm;
+- (void)saveAlgorithm:(SBAlgorithm *)algorithm {
+
     if (!algorithm.uid) {
         NSString *uid = [self.dateFormatter stringFromDate:[NSDate date]];
         algorithm.uid = [uid stringByAppendingString:[NSString randomStringOfLength:5]];
     }
 
     (self.allAlgorithms)[algorithm.uid] = algorithm;
-    algorithm.stockID = self.selectedStock.stockID;
 
-    NSLog(@"%ld", (long)self.selectedAlgorithm.macdCondition.macdDirection);
     NSDictionary *archiveDict = [algorithm archiveToDict];
 
     NSLog(@"%@", archiveDict);
-
-    //TODO: actually save the archived dict
+    
+    
+    //actually save the archived dict
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *filePath = [paths[0] stringByAppendingString:algorithm.uid];
+    [archiveDict writeToFile:filePath atomically:YES];
+    self.allAlgorithmPaths[algorithm.uid] = filePath;
+    [[NSUserDefaults standardUserDefaults] setObject:self.allAlgorithmPaths forKey:@"allAlgorithmPaths"];
+    
+    // upload to server
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
     
@@ -120,6 +135,7 @@
     NSString *urlString = [NSString stringWithFormat: @"%@algo/upload/", SERVER_URL];
     [manager POST:urlString parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"%@",responseObject);
+
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"%@",error.description);
     }];

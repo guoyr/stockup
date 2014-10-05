@@ -38,6 +38,7 @@
 {
     if (!_lvc) {
         _lvc = [[SBAlgosSelectionTableViewController alloc] initWithStyle:UITableViewStylePlain];
+        _lvc.delegate = self;
     }
     return _lvc;
 }
@@ -53,6 +54,8 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    self.lvc.curAlgo = self.curAlgo;
+    self.dvc.curAlgo = self.curAlgo;
     
 }
 
@@ -125,24 +128,24 @@
 
 -(void)viewController:(SBAlgosSelectionTableViewController *)vc didViewCondition:(SBCondition *)condition
 {
-    if (!_dvc.view.superview) {
+    if (!self.dvc.view.superview) {
         [self.instructionView removeFromSuperview];
-        [self addChildViewController:_dvc];
-        [_dvc.view setFrame:_rightFrame];
-        [_dvc didMoveToParentViewController:self];
-        [self.view addSubview:_dvc.view];
+        [self addChildViewController:self.dvc];
+        [self.dvc.view setFrame:_rightFrame];
+        [self.dvc didMoveToParentViewController:self];
+        [self.view addSubview:self.dvc.view];
     } else {
         // dvc already shown
     }
     
-    [_dvc viewCondition:condition];
+    [self.dvc viewCondition:condition];
 }
 
 -(void)viewController:(SBAlgosSelectionTableViewController *)vc didAddCondition:(SBCondition *)condition
 {
     // have to have viewed the algorithm before selecting it
     [self viewController:vc didViewCondition:condition];
-    [_dvc addCondition:condition];
+    [self.dvc addCondition:condition];
     self.confirmButton.enabled = YES;
     
 }
@@ -150,7 +153,7 @@
 -(void)viewController:(SBAlgosSelectionTableViewController *)vc didModifyCondition:(SBCondition *)condition
 {
     [self viewController:vc didViewCondition:condition];
-    [_dvc modifyCondition:condition];
+    [self.dvc modifyCondition:condition];
     
 }
 
@@ -160,7 +163,7 @@
     NSLog(@"confirm button pressed");
 
     SBAlgoConfirmationViewController *tvc = [[SBAlgoConfirmationViewController alloc] initWithNibName:nil bundle:nil];
-    tvc.stock = self.curStock;
+    tvc.curAlgo = self.curAlgo;
     [self.navigationController pushViewController:tvc animated:YES];
 
 }

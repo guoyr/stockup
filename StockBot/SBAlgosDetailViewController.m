@@ -12,6 +12,7 @@
 #import "SBStock.h"
 #import "SBStockGraphView.h"
 #import "SBAlgorithm.h"
+#import "SBCondition.h"
 
 @interface SBAlgosDetailViewController ()
 
@@ -20,7 +21,6 @@
 @property (nonatomic, strong) UITextView *conditionDescriptionView;
 @property (nonatomic, strong) NSMutableArray *currentConditions;
 @property (nonatomic, strong) UIView *conditionSummaryView;
-@property (nonatomic, strong) SBAlgorithm *curAlgorithm;
 
 @end
 
@@ -61,10 +61,6 @@
     [self.view addSubview:self.conditionDescriptionView];
 }
 
--(void)viewWillAppear:(BOOL)animated
-{
-    self.curAlgorithm = [[SBDataManager sharedManager] selectedAlgorithm];
-}
 
 -(void)setupTextView:(UITextView *)textView
 {
@@ -111,7 +107,7 @@
     // update the algorithm description when a condition has been added/removed/modified
     NSMutableString *description = [NSMutableString stringWithString:@"您选择在满足以下所有条件时购买该股票\n\n"];
     int counter = 1;
-    for (SBCondition *condition in self.curAlgorithm.allConditions) {
+    for (SBCondition *condition in self.curAlgo.allConditions) {
         if (!condition.isSelected) {
             continue;
         }

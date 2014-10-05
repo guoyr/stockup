@@ -6,13 +6,13 @@
 //  Copyright (c) 2014 Robert Guo. All rights reserved.
 //
 
-#import "TradeMethodCondition.h"
+#import "SBTradeMethodCondition.h"
 #import "SBConstants.h"
 
 #define BUY_INDEX 0
 #define SELL_INDEX 1
 
-@implementation TradeMethodCondition
+@implementation SBTradeMethodCondition
 
 -(void)setupSegmentedControl
 {
@@ -25,6 +25,13 @@
 -(NSString *)archiveToString
 {
     return self.tradeMethod;
+}
+
++(SBCondition *)conditionFromString:(NSString *)conditionString
+{
+    SBTradeMethodCondition *condition = [SBTradeMethodCondition new];
+    condition.tradeMethod = conditionString;
+    return condition;
 }
 
 -(void)buySellControlValueChanged:(SBSegmentedControl *)sender

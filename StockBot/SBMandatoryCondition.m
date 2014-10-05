@@ -10,6 +10,10 @@
 
 @implementation SBMandatoryCondition
 
++(SBCondition *)conditionFromString:(NSString *) conditionString {
+    return nil;
+}
+
 -(id)init
 {
     self = [super init];
@@ -33,5 +37,6 @@
 {
     return nil;
 }
+
 
 @end

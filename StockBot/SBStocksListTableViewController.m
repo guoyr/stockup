@@ -52,10 +52,7 @@ static NSString *CellIdentifier = @"StockCell";
     [self.tableView setBackgroundColor:BLACK_BG];
     self.tableView.separatorColor = BLACK_BG;
     
-    if (self.dataManager.selectedStock) {
-        [self.tableView selectRowAtIndexPath:self.dataManager.selectedStock.tableViewIndex animated:NO scrollPosition:UITableViewScrollPositionMiddle];
-    }
-    
+
     self.stockSearchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 0, self.tableView.frame.size.width, 0)];
     self.stockSearchBar.translucent = YES;
     self.stockSearchBar.searchBarStyle = UISearchBarStyleMinimal;

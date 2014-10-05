@@ -24,7 +24,7 @@
 
 @property (nonatomic, strong) SBCondition *primaryCondition;
 
-@property (nonatomic, strong) TradeMethodCondition *tradeMethodCondition;
+@property (nonatomic, strong) SBTradeMethodCondition *tradeMethodCondition;
 @property (nonatomic, strong) SBPriceTypeCondition *priceTypeCondition;
 
 @property (nonatomic, assign) NSInteger numConditions;
@@ -37,7 +37,8 @@
 // conditions that have been added to this algorithm
 @property (nonatomic, strong) NSArray *allConditions;
 
++(SBAlgorithm *)algorithmFromDict:(NSDictionary *)dict;
+
 -(NSDictionary *)archiveToDict;
--(void)unarchiveFromDict:(NSDictionary *)dict;
 
 @end

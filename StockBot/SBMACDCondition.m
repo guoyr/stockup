@@ -126,7 +126,8 @@
             break;
     }
     if (direction) {
-        return [NSString stringWithFormat:@"MACD月线与5分线%@时",direction];
+        NSDictionary *timeDict = @{@(MACD_TIME_5MIN):@"5分", @(MACD_TIME_1HOUR):@"1小时", @(MACD_TIME_1DAY):@"1天"};
+        return [NSString stringWithFormat:@"MACD月线与%@线%@时",timeDict[@(self.macdTime)],direction];
     }
     return nil;
 }

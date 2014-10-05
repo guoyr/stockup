@@ -66,15 +66,13 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
-    SBAlgorithm * curAlgorithm = [[SBDataManager sharedManager] selectedAlgorithm];
-    NSString *stockName = [[SBDataManager sharedManager] selectedStock].name;
     
-    self.title = [NSString stringWithFormat:@"保存\"%@\"的算法",stockName];
+    self.title = @"保存算法";
     
-    if (!curAlgorithm.name) {
-        curAlgorithm.name = [[SBDataManager sharedManager] defaultAlgorithmName];
+    if (!self.curAlgo.name) {
+        self.curAlgo.name = [[SBDataManager sharedManager] defaultAlgorithmName];
     }
-    self.algoNameTextField.text = curAlgorithm.name;
+    self.algoNameTextField.text = self.curAlgo.name;
     [self.algoNameTextField becomeFirstResponder];
 
 }
@@ -87,14 +85,13 @@
 
 -(void)done:(UIBarButtonItem *)sender
 {
-    [[SBDataManager sharedManager] saveAlgorithm];
+    [[SBDataManager sharedManager] saveAlgorithm:self.curAlgo];
     [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 -(void)textFieldChanged:(UITextField *)sender
 {
-    SBAlgorithm * curAlgorithm = [[SBDataManager sharedManager] selectedAlgorithm];
-    curAlgorithm.name = sender.text;
+    self.curAlgo.name = sender.text;
     self.doneButtonItem.enabled = [sender.text length] != 0;
 }
 

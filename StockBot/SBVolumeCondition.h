@@ -6,9 +6,9 @@
 //  Copyright (c) 2014 Robert Guo. All rights reserved.
 //
 
-#import "SBCondition.h"
+#import "SBMandatoryCondition.h"
 
-@interface SBVolumeCondition : SBCondition
+@interface SBVolumeCondition : SBMandatoryCondition
 
 @property (nonatomic, assign) int volume;
 

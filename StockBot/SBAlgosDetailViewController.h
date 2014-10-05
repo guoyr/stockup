@@ -7,9 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "SBCondition.h"
+@class SBCondition;
+@class SBAlgorithm;
 
 @interface SBAlgosDetailViewController : UIViewController
+
+@property (nonatomic, strong) SBAlgorithm *curAlgo;
+
 
 -(void)addCondition:(SBCondition *)condition;
 -(void)viewCondition: (SBCondition *)condition;

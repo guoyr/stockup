@@ -319,7 +319,7 @@
 {
     NSLog(@"condition did change");
     if ([self.curAlgo.mandatoryConditions containsObject:condition] && self.curVisibleSegmentedControl) {
-        if ([condition class] == [TradeMethodCondition class]) {
+        if ([condition class] == [SBTradeMethodCondition class]) {
             [self showControlFullScreen:[self.curAlgo.mandatoryConditions[1] segmentedControl]];
         } else {
             [self showControlsSideBySide];

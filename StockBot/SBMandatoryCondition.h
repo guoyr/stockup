@@ -18,5 +18,6 @@
 
 -(void)setupSegmentedControl;
 -(NSString *)archiveToString;
++(SBCondition *)conditionFromString:(NSString *)conditionString;
 
 @end

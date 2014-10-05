@@ -21,6 +21,13 @@
     [self.segmentedControl addTarget:self action:@selector(marketLimitedControlValueChanged:) forControlEvents:UIControlEventValueChanged];
 }
 
++(SBCondition *)conditionFromString:(NSString *)conditionString
+{
+    SBPriceTypeCondition *condition = [SBPriceTypeCondition new];
+    condition.priceType = conditionString;
+    return condition;
+}
+
 -(NSString *)archiveToString
 {
     return self.priceType;

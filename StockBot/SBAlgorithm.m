@@ -26,15 +26,16 @@
         self.priceCondition = [SBPriceCondition new];
         self.versionNumber = 0;
         
-        self.allConditions = @[self.macdCondition, self.kdjCondition, self.bollCondition, self.priceCondition];
+        self.allConditions = @[self.macdCondition, self.kdjCondition, self.bollCondition, self.priceCondition, self.volumeCondtion];
         
         self.numConditions = 5;
         
 
-        self.tradeMethodCondition = [TradeMethodCondition new];
+        self.tradeMethodCondition = [SBTradeMethodCondition new];
         self.priceTypeCondition = [SBPriceTypeCondition new];
         
         self.mandatoryConditions = @[self.tradeMethodCondition, self.priceTypeCondition];
+        
     }
     
     return self;
@@ -47,6 +48,7 @@
     NSMutableDictionary *conditions = [NSMutableDictionary new];
     for (SBCondition *condition in self.allConditions) {
         if ([condition isSelected]) [conditions setObject:[condition archiveToDict] forKey:condition.conditionTypeId];
+        NSLog(@"%@",[condition archiveToDict]);
     }
     
     return @{@"algo_id":self.uid,
@@ -62,15 +64,26 @@
              };
 }
 
--(void)unarchiveFromDict:(NSDictionary *)dict
++(SBAlgorithm *)algorithmFromDict:(NSDictionary *)dict
 {
-    NSDictionary *macdDict = dict[MACD_KEY];
-    NSDictionary *kdjDict = dict[KDJ_KEY];
-//    NSDictionary *transactionDict = dict[TRANSACTION_KEY];
+    SBAlgorithm *algorithm = [SBAlgorithm new];
     
-    self.macdCondition = [SBMACDCondition conditionWithDict:macdDict];
-    self.kdjCondition = [SBKDJCondition conditionWithDict:kdjDict];
-//    self.transactionCondition = [SBTransactionCondition conditionWithDict:transactionDict];
+    algorithm.uid = dict[@"algo_id"];
+    algorithm.versionNumber = [dict[@"algo_v"] intValue];
+    algorithm.stockID = dict[@"stock_id"];
+    algorithm.name = dict[@"name"];
+    algorithm.priceCondition = (SBPriceCondition *)[SBPriceTypeCondition conditionFromString:dict[@"price_type"]];
+    algorithm.tradeMethodCondition = (SBTradeMethodCondition *)[SBTradeMethodCondition conditionFromString:dict[@"trade_method"]];
+    algorithm.volumeCondtion = (SBVolumeCondition *)[SBVolumeCondition conditionFromString:dict[@"volume"]];
+    algorithm.priceCondition = algorithm.priceCondition;
+    
+    algorithm.macdCondition = [SBMACDCondition conditionWithDict:dict[@"macd_condition"]];
+    algorithm.kdjCondition = [SBKDJCondition conditionWithDict:dict[@"kdj_condition"]];
+    algorithm.bollCondition = [SBBOLLCondition conditionWithDict:dict[@"boll_condition"]];
+    algorithm.volumeCondtion = [SBVolumeCondition conditionWithDict:dict[@"volume_condition"]];
+    algorithm.priceCondition = [SBPriceCondition conditionWithDict:dict[@"price_condition"]];
+    
+    return algorithm;
 }
 
 

@@ -30,6 +30,12 @@
     return self;
 }
 
+
+-(NSString *)extendedDescription
+{
+    return [NSString stringWithFormat:@"KDJ其中n=%ld秒,m=%ld秒,m1=%ld秒",(long)self.n, (long)self.m, (long)self.m1];
+}
+
 +(id)conditionWithDict:(NSDictionary *)dict
 {
     SBKDJCondition *condition = [SBKDJCondition new];
@@ -38,6 +44,7 @@
     condition.m1 = [dict[@"m1"] integerValue];
     return condition;
 }
+
 
 -(NSDictionary *)archiveToDict
 {
@@ -48,7 +55,7 @@
 {
     [super setupCell:cell AtIndex:index];
     cell.numberStepper.stepValue = 5;
-    cell.numberStepper.minimumValue = 1;
+    cell.numberStepper.minimumValue = 0;
     cell.numberStepper.hidden = NO;
     cell.numberTextField.hidden = NO;
     
@@ -60,12 +67,12 @@
             break;
         case 2:
             // direction
-            cell.descriptionLabel.text = @"m （秒）";
+            cell.descriptionLabel.text = @"m（秒）";
             cell.numberStepper.tag = 1;
             break;
         case 3:
             // direction
-            cell.descriptionLabel.text = @"m1 （秒）";
+            cell.descriptionLabel.text = @"m1（秒）";
             cell.numberStepper.tag = 2;
             break;
         default:
@@ -79,17 +86,18 @@
 {
     switch (sender.tag) {
         case 0:
-            self.n = (int)sender.stepValue;
+            self.n = (int)sender.value;
             break;
         case 1:
-            self.m = (int)sender.stepValue;
+            self.m = (int)sender.value;
             break;
         case 2:
-            self.m1 = (int)sender.stepValue;
+            self.m1 = (int)sender.value;
             break;
         default:
             break;
     }
+    [self.delegate conditionDidChange:self];
 }
 
 -(int)numExpandedRows

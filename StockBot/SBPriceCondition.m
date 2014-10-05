@@ -26,7 +26,7 @@
     SBPriceCondition *condition = [SBPriceCondition new];
     condition.priceTrend = [SBPriceCondition trendFromString:dict[@"type"]];
     condition.price = dict[@"price"];
-    condition.window = dict[@"window"];
+    condition.window = [dict[@"window"] integerValue];
     return condition;
 }
 
@@ -51,6 +51,11 @@
     }
 
     return @{};
+}
+
+-(NSString *)extendedDescription
+{
+    return [NSString stringWithFormat:@"价格%@ %@元", [self priceTrendString], self.price];
 }
 
 -(int)numExpandedRows
@@ -102,11 +107,13 @@
 -(void)priceTrendChanged:(UISegmentedControl *)sender
 {
     self.priceTrend = sender.selectedSegmentIndex;
+    [self.delegate conditionDidChange:self];
 }
 
 -(void)numberStepperValueChanged:(UIStepper *)sender
 {
     self.price = [NSString stringWithFormat:@"%.2f", sender.value];
+    [self.delegate conditionDidChange:self];
 }
 
 @end

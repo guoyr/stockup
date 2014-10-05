@@ -8,7 +8,7 @@
 
 #import "SBMandatoryCondition.h"
 
-@interface TradeMethodCondition : SBMandatoryCondition
+@interface SBTradeMethodCondition : SBMandatoryCondition
 
 @property (nonatomic, strong) NSString *tradeMethod;
 
