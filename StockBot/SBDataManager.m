@@ -18,7 +18,7 @@
 @property(nonatomic, strong) FMDatabase *db;
 @property(nonatomic, strong) NSMutableArray *rowCache; //caching csv data as we transfer it to fmdb
 @property(nonatomic, strong) NSMutableDictionary *allAlgorithms;
-@property (nonatomic, strong) NSMutableDictionary *allAlgorithmPaths;
+@property (nonatomic, strong) NSMutableSet *allAlgorithmPaths;
 @property(nonatomic, strong) NSDateFormatter *dateFormatter;
 
 @end
@@ -77,18 +77,20 @@
         }
         
         self.allAlgorithms = [NSMutableDictionary new];
-        NSDictionary *allAlgoPaths = [[NSUserDefaults standardUserDefaults] objectForKey:@"allAlgorithmPaths"];
+        NSArray *allAlgoPaths = [[NSUserDefaults standardUserDefaults] objectForKey:@"allAlgorithmPaths"];
         
         // populate the algorithms
         if (allAlgoPaths) {
-            self.allAlgorithmPaths = [allAlgoPaths mutableCopy];
-            for (NSString *filePath in [self.allAlgorithms allValues]) {
+            self.allAlgorithmPaths = [NSMutableSet setWithArray:allAlgoPaths];
+            for (NSString *uid in self.allAlgorithmPaths) {
+                NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+                NSString *filePath = [paths[0] stringByAppendingPathComponent:uid];
                 NSDictionary *algoDict = [NSDictionary dictionaryWithContentsOfFile:filePath];
                 SBAlgorithm *algo = [SBAlgorithm algorithmFromDict:algoDict];
                 self.allAlgorithms[algo.uid] = algo;
             }
         } else {
-            self.allAlgorithmPaths = [NSMutableDictionary new];
+            self.allAlgorithmPaths = [NSMutableSet new];
         }
         
         
@@ -122,11 +124,11 @@
     
     //actually save the archived dict
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *filePath = [paths[0] stringByAppendingString:algorithm.uid];
+    NSString *filePath = [paths[0] stringByAppendingPathComponent:algorithm.uid];
     [archiveDict writeToFile:filePath atomically:YES];
-    self.allAlgorithmPaths[algorithm.uid] = filePath;
-    [[NSUserDefaults standardUserDefaults] setObject:self.allAlgorithmPaths forKey:@"allAlgorithmPaths"];
-    
+    [self.allAlgorithmPaths addObject:algorithm.uid];
+    [[NSUserDefaults standardUserDefaults] setObject:[self.allAlgorithmPaths allObjects] forKey:@"allAlgorithmPaths"];
+
     // upload to server
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];

@@ -71,7 +71,7 @@
     algorithm.uid = dict[@"algo_id"];
     algorithm.versionNumber = [dict[@"algo_v"] intValue];
     algorithm.stockID = dict[@"stock_id"];
-    algorithm.name = dict[@"name"];
+    algorithm.name = dict[@"algo_name"];
     algorithm.priceCondition = (SBPriceCondition *)[SBPriceTypeCondition conditionFromString:dict[@"price_type"]];
     algorithm.tradeMethodCondition = (SBTradeMethodCondition *)[SBTradeMethodCondition conditionFromString:dict[@"trade_method"]];
     algorithm.volumeCondtion = (SBVolumeCondition *)[SBVolumeCondition conditionFromString:dict[@"volume"]];

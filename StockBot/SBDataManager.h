@@ -17,6 +17,7 @@
 @property (nonatomic, strong) NSMutableArray *stocks;
 @property (nonatomic, strong) NSArray *brokerList;
 @property (nonatomic, strong) NSString *authCookie;
+@property(nonatomic, readonly) NSMutableDictionary *allAlgorithms;
 
 +(id)sharedManager;
 

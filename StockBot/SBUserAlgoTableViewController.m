@@ -63,7 +63,6 @@ static NSString *UserCellIdentifier = @"UserCell";
     self.tableView.emptyDataSetDelegate = self;
     
     self.algoDict = [[NSMutableDictionary alloc] init];
-    
     // A little trick for removing the cell separators
     self.tableView.tableFooterView = [UIView new];
     
@@ -82,6 +81,7 @@ static NSString *UserCellIdentifier = @"UserCell";
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    self.algoDict = [[SBDataManager sharedManager] allAlgorithms];
     [self.tableView reloadData];
 }
 
