@@ -8,6 +8,7 @@
 // shows details of the recently completed transaction
 
 #import "SBAlgoConfirmationViewController.h"
+#import "SBBacktestViewController.h"
 #import "SBAlgorithm.h"
 #import "SBDataManager.h"
 #import "SBStock.h"
@@ -30,6 +31,29 @@
         // Custom initialization
     }
     return self;
+}
+
+-(NSString *)algoDescription
+{
+    NSMutableString *description = [NSMutableString new];
+    
+    [description appendString:@"算法简介：\n\n"];
+    int counter = 1;
+    for (SBCondition *condition in self.curAlgo.allConditions) {
+        if (!condition.isSelected) {
+            continue;
+        }
+        NSString *ed = [condition extendedDescription];
+        if (ed) {
+            // user has selected criterias
+            NSString *d = [NSString stringWithFormat:@"%d. %@",counter, ed];
+            [description appendFormat:@"%@\n", d];
+        } else {
+            // user has not selected options for this condition
+        }
+        counter++;
+    }
+    return description;
 }
 
 - (void)viewDidLoad
@@ -61,6 +85,7 @@
     self.view.backgroundColor = BLACK_BG;
     
     self.doneButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(done:)];
+    self.doneButtonItem.title = @"回测";
     self.navigationItem.rightBarButtonItem = self.doneButtonItem;
     
 }
@@ -75,6 +100,8 @@
     }
     self.algoNameTextField.text = self.curAlgo.name;
     [self.algoNameTextField becomeFirstResponder];
+    
+    self.descriptionLabel.text = [self algoDescription];
 
 }
 
@@ -87,7 +114,8 @@
 -(void)done:(UIBarButtonItem *)sender
 {
     [[SBDataManager sharedManager] saveAlgorithm:self.curAlgo];
-    [self.navigationController popToRootViewControllerAnimated:YES];
+    SBBacktestViewController *vc = [[UIStoryboard storyboardWithName:@"Backtest" bundle:nil] instantiateInitialViewController];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 -(void)textFieldChanged:(UITextField *)sender

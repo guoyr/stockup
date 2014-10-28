@@ -52,11 +52,12 @@
     
     self.algoSummaryView = [[UITextView alloc] initWithFrame:CGRectMake(10, 432, detailViewWidth - 20, 420)];
     [self setupTextView:self.algoSummaryView];
-    self.algoSummaryView.text = @"test";
+    self.algoSummaryView.font = [UIFont systemFontOfSize:20];
     
     self.conditionDescriptionView = [[UITextView alloc] initWithFrame:CGRectMake(10, 268, detailViewWidth - 20, 160)];
     [self setupTextView:self.conditionDescriptionView];
-    
+    [self.conditionDescriptionView setFont:[UIFont systemFontOfSize:16]];
+
     [self.view addSubview:self.algoSummaryView];
     [self.view addSubview:self.conditionDescriptionView];
 }
@@ -65,7 +66,6 @@
 -(void)setupTextView:(UITextView *)textView
 {
     [textView setBackgroundColor:BLACK_BG];
-    [textView setFont:[UIFont systemFontOfSize:16]];
     [textView setTextColor:WHITE];
 //    [textView setScrollEnabled:NO];
     [textView setEditable:NO];

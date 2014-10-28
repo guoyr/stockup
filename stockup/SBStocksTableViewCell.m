@@ -38,12 +38,13 @@
         self.stockIDLabel.backgroundColor = [UIColor clearColor];
         self.stockNameLabel.backgroundColor = [UIColor clearColor];
         self.stockTrendLabel = [[UILabel alloc] initWithFrame:CGRectMake(200, 6, 96, 30)];
+        double randNum = (double)(arc4random() % 100) / 100;
         if (arc4random() % 2 > 0) {
             self.stockTrendLabel.textColor = [UIColor greenColor];
-            self.stockTrendLabel.text = @"+￥1.45";
+            self.stockTrendLabel.text = [NSString stringWithFormat:@"+￥%.2f",randNum];
         } else {
             self.stockTrendLabel.textColor = [UIColor redColor];
-            self.stockTrendLabel.text = @"-￥2.98";
+            self.stockTrendLabel.text = [NSString stringWithFormat:@"-￥%.2f",randNum];
         }
         
         self.stockMiniTrendImageView = [[UIImageView alloc] initWithFrame:CGRectMake(200, 36, 96, 36)];

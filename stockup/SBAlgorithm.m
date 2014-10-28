@@ -75,6 +75,7 @@
     algorithm.priceCondition = (SBPriceCondition *)[SBPriceTypeCondition conditionFromString:dict[@"price_type"]];
     algorithm.tradeMethodCondition = (SBTradeMethodCondition *)[SBTradeMethodCondition conditionFromString:dict[@"trade_method"]];
     algorithm.volumeCondtion = (SBVolumeCondition *)[SBVolumeCondition conditionFromString:dict[@"volume"]];
+    algorithm.primaryCondition = algorithm.primaryCondition;
     algorithm.priceCondition = algorithm.priceCondition;
     
     algorithm.macdCondition = [SBMACDCondition conditionWithDict:dict[@"macd_condition"]];

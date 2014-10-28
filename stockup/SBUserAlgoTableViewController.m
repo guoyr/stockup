@@ -136,7 +136,11 @@ static NSString *UserCellIdentifier = @"UserCell";
     NSArray *algoNames = self.algoDict.allKeys;
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:UserCellIdentifier];
     NSString *algoUID = algoNames[indexPath.row];
-    cell.textLabel.text = [(SBAlgorithm *)self.algoDict[algoUID] name];
+    SBAlgorithm *algo = (SBAlgorithm *)self.algoDict[algoUID];
+    UILabel *stockNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(140, 20, 60, 40)];
+    stockNameLabel.text = [algo.stockID stringValue];
+    [cell addSubview:stockNameLabel];
+    cell.textLabel.text = [algo name];
     return cell;
 }
 

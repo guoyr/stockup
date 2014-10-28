@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BC0D08F819FF659E003A0A03 /* Backtest.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BC0D08F719FF659E003A0A03 /* Backtest.storyboard */; };
+		BC0D08FB19FF65D3003A0A03 /* SBBacktestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BC0D08FA19FF65D3003A0A03 /* SBBacktestViewController.m */; };
 		BC4C222319FF425B00E3CE5A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BC4C222219FF425B00E3CE5A /* Images.xcassets */; };
 		BC4C222719FF426900E3CE5A /* AlgoDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BC4C222419FF426900E3CE5A /* AlgoDetail.storyboard */; };
 		BC4C222819FF426900E3CE5A /* Instructions.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BC4C222519FF426900E3CE5A /* Instructions.storyboard */; };
@@ -66,6 +68,9 @@
 
 /* Begin PBXFileReference section */
 		274435E7AC4324FE46E325BD /* Pods-stockup.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-stockup.debug.xcconfig"; path = "Pods/Target Support Files/Pods-stockup/Pods-stockup.debug.xcconfig"; sourceTree = "<group>"; };
+		BC0D08F719FF659E003A0A03 /* Backtest.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Backtest.storyboard; sourceTree = "<group>"; };
+		BC0D08F919FF65D3003A0A03 /* SBBacktestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBBacktestViewController.h; sourceTree = "<group>"; };
+		BC0D08FA19FF65D3003A0A03 /* SBBacktestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBBacktestViewController.m; sourceTree = "<group>"; };
 		BC4C222219FF425B00E3CE5A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		BC4C222419FF426900E3CE5A /* AlgoDetail.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = AlgoDetail.storyboard; sourceTree = "<group>"; };
 		BC4C222519FF426900E3CE5A /* Instructions.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Instructions.storyboard; sourceTree = "<group>"; };
@@ -218,6 +223,9 @@
 				BC4C222D19FF42D800E3CE5A /* SBAlgoConditionTableViewCell.m */,
 				BC4C222E19FF42D800E3CE5A /* SBAlgoConfirmationViewController.h */,
 				BC4C222F19FF42D800E3CE5A /* SBAlgoConfirmationViewController.m */,
+				BC0D08F719FF659E003A0A03 /* Backtest.storyboard */,
+				BC0D08F919FF65D3003A0A03 /* SBBacktestViewController.h */,
+				BC0D08FA19FF65D3003A0A03 /* SBBacktestViewController.m */,
 				BC4C223019FF42D800E3CE5A /* SBAlgorithm.h */,
 				BC4C223119FF42D800E3CE5A /* SBAlgorithm.m */,
 				BC4C223219FF42D800E3CE5A /* SBAlgosDetailViewController.h */,
@@ -414,6 +422,7 @@
 				BC4C222719FF426900E3CE5A /* AlgoDetail.storyboard in Resources */,
 				BC4C229C19FF448C00E3CE5A /* stockList.csv in Resources */,
 				BC4C222319FF425B00E3CE5A /* Images.xcassets in Resources */,
+				BC0D08F819FF659E003A0A03 /* Backtest.storyboard in Resources */,
 				BC4C222919FF426900E3CE5A /* Login.storyboard in Resources */,
 				BC4C222819FF426900E3CE5A /* Instructions.storyboard in Resources */,
 			);
@@ -483,6 +492,7 @@
 				BC4C228A19FF42D900E3CE5A /* SBStockGraphView.m in Sources */,
 				BC4C228419FF42D900E3CE5A /* SBMandatoryCondition.m in Sources */,
 				BC4C227F19FF42D900E3CE5A /* SBInstructionsViewController.m in Sources */,
+				BC0D08FB19FF65D3003A0A03 /* SBBacktestViewController.m in Sources */,
 				BC4C228F19FF42D900E3CE5A /* SBTableViewController.m in Sources */,
 				BC4C228219FF42D900E3CE5A /* SBLoginViewController.m in Sources */,
 				BCB0457719FF3E75008ED609 /* main.m in Sources */,
