@@ -1,5 +1,11 @@
+# Uncomment this line to define a global platform for your project
+# platform :ios, "6.0"
+
 source 'https://github.com/CocoaPods/Specs.git'
-platform :ios, '7.0'
+
+target "stockup" do
+
+platform :ios, '8.1'
 	 pod 'FMDB'
 	 pod 'CHCSVParser'
 	 pod 'AFNetworking'
@@ -7,3 +13,10 @@ platform :ios, '7.0'
 	 pod 'FXBlurView'
 	 pod 'DZNEmptyDataSet'
 	 pod 'CorePlot'
+
+end
+
+target "stockupTests" do
+
+end
+

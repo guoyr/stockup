@@ -12,6 +12,7 @@
 #import "SBAlgorithm.h"
 #import "NSString+SBAdditions.h"
 #import "AFNetworking.h"
+#import "SBConstants.h"
 
 @interface SBDataManager ()
 

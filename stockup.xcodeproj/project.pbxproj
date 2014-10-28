@@ -1,0 +1,702 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		BC4C222319FF425B00E3CE5A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BC4C222219FF425B00E3CE5A /* Images.xcassets */; };
+		BC4C222719FF426900E3CE5A /* AlgoDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BC4C222419FF426900E3CE5A /* AlgoDetail.storyboard */; };
+		BC4C222819FF426900E3CE5A /* Instructions.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BC4C222519FF426900E3CE5A /* Instructions.storyboard */; };
+		BC4C222919FF426900E3CE5A /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BC4C222619FF426900E3CE5A /* Login.storyboard */; };
+		BC4C227219FF42D900E3CE5A /* NSString+SBAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = BC4C222B19FF42D800E3CE5A /* NSString+SBAdditions.m */; };
+		BC4C227319FF42D900E3CE5A /* SBAlgoConditionTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BC4C222D19FF42D800E3CE5A /* SBAlgoConditionTableViewCell.m */; };
+		BC4C227419FF42D900E3CE5A /* SBAlgoConfirmationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BC4C222F19FF42D800E3CE5A /* SBAlgoConfirmationViewController.m */; };
+		BC4C227519FF42D900E3CE5A /* SBAlgorithm.m in Sources */ = {isa = PBXBuildFile; fileRef = BC4C223119FF42D800E3CE5A /* SBAlgorithm.m */; };
+		BC4C227619FF42D900E3CE5A /* SBAlgosDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BC4C223319FF42D800E3CE5A /* SBAlgosDetailViewController.m */; };
+		BC4C227719FF42D900E3CE5A /* SBAlgoSelectTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BC4C223519FF42D800E3CE5A /* SBAlgoSelectTableViewCell.m */; };
+		BC4C227819FF42D900E3CE5A /* SBAlgosSelectionTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BC4C223719FF42D800E3CE5A /* SBAlgosSelectionTableViewController.m */; };
+		BC4C227919FF42D900E3CE5A /* SBAlgosViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BC4C223919FF42D800E3CE5A /* SBAlgosViewController.m */; };
+		BC4C227A19FF42D900E3CE5A /* SBAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BC4C223B19FF42D800E3CE5A /* SBAppDelegate.m */; };
+		BC4C227B19FF42D900E3CE5A /* SBBOLLCondition.m in Sources */ = {isa = PBXBuildFile; fileRef = BC4C223D19FF42D800E3CE5A /* SBBOLLCondition.m */; };
+		BC4C227C19FF42D900E3CE5A /* SBBrokersTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BC4C223F19FF42D800E3CE5A /* SBBrokersTableViewController.m */; };
+		BC4C227D19FF42D900E3CE5A /* SBCondition.m in Sources */ = {isa = PBXBuildFile; fileRef = BC4C224119FF42D800E3CE5A /* SBCondition.m */; };
+		BC4C227E19FF42D900E3CE5A /* SBDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BC4C224519FF42D800E3CE5A /* SBDataManager.m */; };
+		BC4C227F19FF42D900E3CE5A /* SBInstructionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BC4C224719FF42D800E3CE5A /* SBInstructionsViewController.m */; };
+		BC4C228019FF42D900E3CE5A /* SBKDJCondition.m in Sources */ = {isa = PBXBuildFile; fileRef = BC4C224919FF42D800E3CE5A /* SBKDJCondition.m */; };
+		BC4C228119FF42D900E3CE5A /* SBLoginAnimatedTransitioning.m in Sources */ = {isa = PBXBuildFile; fileRef = BC4C224B19FF42D800E3CE5A /* SBLoginAnimatedTransitioning.m */; };
+		BC4C228219FF42D900E3CE5A /* SBLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BC4C224D19FF42D800E3CE5A /* SBLoginViewController.m */; };
+		BC4C228319FF42D900E3CE5A /* SBMACDCondition.m in Sources */ = {isa = PBXBuildFile; fileRef = BC4C224F19FF42D800E3CE5A /* SBMACDCondition.m */; };
+		BC4C228419FF42D900E3CE5A /* SBMandatoryCondition.m in Sources */ = {isa = PBXBuildFile; fileRef = BC4C225119FF42D800E3CE5A /* SBMandatoryCondition.m */; };
+		BC4C228519FF42D900E3CE5A /* SBNavigationControllerDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BC4C225319FF42D800E3CE5A /* SBNavigationControllerDelegate.m */; };
+		BC4C228619FF42D900E3CE5A /* SBPriceCondition.m in Sources */ = {isa = PBXBuildFile; fileRef = BC4C225519FF42D800E3CE5A /* SBPriceCondition.m */; };
+		BC4C228719FF42D900E3CE5A /* SBPriceTypeCondition.m in Sources */ = {isa = PBXBuildFile; fileRef = BC4C225719FF42D800E3CE5A /* SBPriceTypeCondition.m */; };
+		BC4C228819FF42D900E3CE5A /* SBSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = BC4C225919FF42D800E3CE5A /* SBSegmentedControl.m */; };
+		BC4C228919FF42D900E3CE5A /* SBStock.m in Sources */ = {isa = PBXBuildFile; fileRef = BC4C225B19FF42D800E3CE5A /* SBStock.m */; };
+		BC4C228A19FF42D900E3CE5A /* SBStockGraphView.m in Sources */ = {isa = PBXBuildFile; fileRef = BC4C225D19FF42D800E3CE5A /* SBStockGraphView.m */; };
+		BC4C228B19FF42D900E3CE5A /* SBStocksDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BC4C225F19FF42D800E3CE5A /* SBStocksDetailViewController.m */; };
+		BC4C228C19FF42D900E3CE5A /* SBStocksListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BC4C226119FF42D800E3CE5A /* SBStocksListTableViewController.m */; };
+		BC4C228D19FF42D900E3CE5A /* SBStocksTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BC4C226319FF42D800E3CE5A /* SBStocksTableViewCell.m */; };
+		BC4C228E19FF42D900E3CE5A /* SBStocksViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BC4C226519FF42D900E3CE5A /* SBStocksViewController.m */; };
+		BC4C228F19FF42D900E3CE5A /* SBTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BC4C226719FF42D900E3CE5A /* SBTableViewController.m */; };
+		BC4C229019FF42D900E3CE5A /* SBTradeMethodCondition.m in Sources */ = {isa = PBXBuildFile; fileRef = BC4C226919FF42D900E3CE5A /* SBTradeMethodCondition.m */; };
+		BC4C229119FF42D900E3CE5A /* SBUser.m in Sources */ = {isa = PBXBuildFile; fileRef = BC4C226B19FF42D900E3CE5A /* SBUser.m */; };
+		BC4C229219FF42D900E3CE5A /* SBUserAlgoTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BC4C226D19FF42D900E3CE5A /* SBUserAlgoTableViewController.m */; };
+		BC4C229319FF42D900E3CE5A /* SBViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BC4C226F19FF42D900E3CE5A /* SBViewController.m */; };
+		BC4C229419FF42D900E3CE5A /* SBVolumeCondition.m in Sources */ = {isa = PBXBuildFile; fileRef = BC4C227119FF42D900E3CE5A /* SBVolumeCondition.m */; };
+		BC4C229919FF42DE00E3CE5A /* UIImage+SBAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = BC4C229619FF42DE00E3CE5A /* UIImage+SBAdditions.m */; };
+		BC4C229A19FF42DE00E3CE5A /* UIView+SBAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = BC4C229819FF42DE00E3CE5A /* UIView+SBAdditions.m */; };
+		BC4C229C19FF448C00E3CE5A /* stockList.csv in Resources */ = {isa = PBXBuildFile; fileRef = BC4C229B19FF448C00E3CE5A /* stockList.csv */; };
+		BCB0457719FF3E75008ED609 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BCB0457619FF3E75008ED609 /* main.m */; };
+		BCB0459419FF3E75008ED609 /* stockupTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BCB0459319FF3E75008ED609 /* stockupTests.m */; };
+		F5FCCF8E702C7ABF83282747 /* libPods-stockup.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FB56850579F0C1F9B68D0EEA /* libPods-stockup.a */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		BCB0458E19FF3E75008ED609 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BCB0456919FF3E75008ED609 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BCB0457019FF3E75008ED609;
+			remoteInfo = stockup;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		274435E7AC4324FE46E325BD /* Pods-stockup.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-stockup.debug.xcconfig"; path = "Pods/Target Support Files/Pods-stockup/Pods-stockup.debug.xcconfig"; sourceTree = "<group>"; };
+		BC4C222219FF425B00E3CE5A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		BC4C222419FF426900E3CE5A /* AlgoDetail.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = AlgoDetail.storyboard; sourceTree = "<group>"; };
+		BC4C222519FF426900E3CE5A /* Instructions.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Instructions.storyboard; sourceTree = "<group>"; };
+		BC4C222619FF426900E3CE5A /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
+		BC4C222A19FF42D800E3CE5A /* NSString+SBAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+SBAdditions.h"; sourceTree = "<group>"; };
+		BC4C222B19FF42D800E3CE5A /* NSString+SBAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+SBAdditions.m"; sourceTree = "<group>"; };
+		BC4C222C19FF42D800E3CE5A /* SBAlgoConditionTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBAlgoConditionTableViewCell.h; sourceTree = "<group>"; };
+		BC4C222D19FF42D800E3CE5A /* SBAlgoConditionTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBAlgoConditionTableViewCell.m; sourceTree = "<group>"; };
+		BC4C222E19FF42D800E3CE5A /* SBAlgoConfirmationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBAlgoConfirmationViewController.h; sourceTree = "<group>"; };
+		BC4C222F19FF42D800E3CE5A /* SBAlgoConfirmationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBAlgoConfirmationViewController.m; sourceTree = "<group>"; };
+		BC4C223019FF42D800E3CE5A /* SBAlgorithm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBAlgorithm.h; sourceTree = "<group>"; };
+		BC4C223119FF42D800E3CE5A /* SBAlgorithm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBAlgorithm.m; sourceTree = "<group>"; };
+		BC4C223219FF42D800E3CE5A /* SBAlgosDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBAlgosDetailViewController.h; sourceTree = "<group>"; };
+		BC4C223319FF42D800E3CE5A /* SBAlgosDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBAlgosDetailViewController.m; sourceTree = "<group>"; };
+		BC4C223419FF42D800E3CE5A /* SBAlgoSelectTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBAlgoSelectTableViewCell.h; sourceTree = "<group>"; };
+		BC4C223519FF42D800E3CE5A /* SBAlgoSelectTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBAlgoSelectTableViewCell.m; sourceTree = "<group>"; };
+		BC4C223619FF42D800E3CE5A /* SBAlgosSelectionTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBAlgosSelectionTableViewController.h; sourceTree = "<group>"; };
+		BC4C223719FF42D800E3CE5A /* SBAlgosSelectionTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBAlgosSelectionTableViewController.m; sourceTree = "<group>"; };
+		BC4C223819FF42D800E3CE5A /* SBAlgosViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBAlgosViewController.h; sourceTree = "<group>"; };
+		BC4C223919FF42D800E3CE5A /* SBAlgosViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBAlgosViewController.m; sourceTree = "<group>"; };
+		BC4C223A19FF42D800E3CE5A /* SBAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBAppDelegate.h; sourceTree = "<group>"; };
+		BC4C223B19FF42D800E3CE5A /* SBAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBAppDelegate.m; sourceTree = "<group>"; };
+		BC4C223C19FF42D800E3CE5A /* SBBOLLCondition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBBOLLCondition.h; sourceTree = "<group>"; };
+		BC4C223D19FF42D800E3CE5A /* SBBOLLCondition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBBOLLCondition.m; sourceTree = "<group>"; };
+		BC4C223E19FF42D800E3CE5A /* SBBrokersTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBBrokersTableViewController.h; sourceTree = "<group>"; };
+		BC4C223F19FF42D800E3CE5A /* SBBrokersTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBBrokersTableViewController.m; sourceTree = "<group>"; };
+		BC4C224019FF42D800E3CE5A /* SBCondition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBCondition.h; sourceTree = "<group>"; };
+		BC4C224119FF42D800E3CE5A /* SBCondition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBCondition.m; sourceTree = "<group>"; };
+		BC4C224219FF42D800E3CE5A /* SBConditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBConditions.h; sourceTree = "<group>"; };
+		BC4C224319FF42D800E3CE5A /* SBConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBConstants.h; sourceTree = "<group>"; };
+		BC4C224419FF42D800E3CE5A /* SBDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBDataManager.h; sourceTree = "<group>"; };
+		BC4C224519FF42D800E3CE5A /* SBDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBDataManager.m; sourceTree = "<group>"; };
+		BC4C224619FF42D800E3CE5A /* SBInstructionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBInstructionsViewController.h; sourceTree = "<group>"; };
+		BC4C224719FF42D800E3CE5A /* SBInstructionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBInstructionsViewController.m; sourceTree = "<group>"; };
+		BC4C224819FF42D800E3CE5A /* SBKDJCondition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBKDJCondition.h; sourceTree = "<group>"; };
+		BC4C224919FF42D800E3CE5A /* SBKDJCondition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBKDJCondition.m; sourceTree = "<group>"; };
+		BC4C224A19FF42D800E3CE5A /* SBLoginAnimatedTransitioning.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBLoginAnimatedTransitioning.h; sourceTree = "<group>"; };
+		BC4C224B19FF42D800E3CE5A /* SBLoginAnimatedTransitioning.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBLoginAnimatedTransitioning.m; sourceTree = "<group>"; };
+		BC4C224C19FF42D800E3CE5A /* SBLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBLoginViewController.h; sourceTree = "<group>"; };
+		BC4C224D19FF42D800E3CE5A /* SBLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBLoginViewController.m; sourceTree = "<group>"; };
+		BC4C224E19FF42D800E3CE5A /* SBMACDCondition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBMACDCondition.h; sourceTree = "<group>"; };
+		BC4C224F19FF42D800E3CE5A /* SBMACDCondition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBMACDCondition.m; sourceTree = "<group>"; };
+		BC4C225019FF42D800E3CE5A /* SBMandatoryCondition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBMandatoryCondition.h; sourceTree = "<group>"; };
+		BC4C225119FF42D800E3CE5A /* SBMandatoryCondition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBMandatoryCondition.m; sourceTree = "<group>"; };
+		BC4C225219FF42D800E3CE5A /* SBNavigationControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBNavigationControllerDelegate.h; sourceTree = "<group>"; };
+		BC4C225319FF42D800E3CE5A /* SBNavigationControllerDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBNavigationControllerDelegate.m; sourceTree = "<group>"; };
+		BC4C225419FF42D800E3CE5A /* SBPriceCondition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBPriceCondition.h; sourceTree = "<group>"; };
+		BC4C225519FF42D800E3CE5A /* SBPriceCondition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBPriceCondition.m; sourceTree = "<group>"; };
+		BC4C225619FF42D800E3CE5A /* SBPriceTypeCondition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBPriceTypeCondition.h; sourceTree = "<group>"; };
+		BC4C225719FF42D800E3CE5A /* SBPriceTypeCondition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBPriceTypeCondition.m; sourceTree = "<group>"; };
+		BC4C225819FF42D800E3CE5A /* SBSegmentedControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBSegmentedControl.h; sourceTree = "<group>"; };
+		BC4C225919FF42D800E3CE5A /* SBSegmentedControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBSegmentedControl.m; sourceTree = "<group>"; };
+		BC4C225A19FF42D800E3CE5A /* SBStock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBStock.h; sourceTree = "<group>"; };
+		BC4C225B19FF42D800E3CE5A /* SBStock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBStock.m; sourceTree = "<group>"; };
+		BC4C225C19FF42D800E3CE5A /* SBStockGraphView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBStockGraphView.h; sourceTree = "<group>"; };
+		BC4C225D19FF42D800E3CE5A /* SBStockGraphView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBStockGraphView.m; sourceTree = "<group>"; };
+		BC4C225E19FF42D800E3CE5A /* SBStocksDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBStocksDetailViewController.h; sourceTree = "<group>"; };
+		BC4C225F19FF42D800E3CE5A /* SBStocksDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBStocksDetailViewController.m; sourceTree = "<group>"; };
+		BC4C226019FF42D800E3CE5A /* SBStocksListTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBStocksListTableViewController.h; sourceTree = "<group>"; };
+		BC4C226119FF42D800E3CE5A /* SBStocksListTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBStocksListTableViewController.m; sourceTree = "<group>"; };
+		BC4C226219FF42D800E3CE5A /* SBStocksTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBStocksTableViewCell.h; sourceTree = "<group>"; };
+		BC4C226319FF42D800E3CE5A /* SBStocksTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBStocksTableViewCell.m; sourceTree = "<group>"; };
+		BC4C226419FF42D800E3CE5A /* SBStocksViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBStocksViewController.h; sourceTree = "<group>"; };
+		BC4C226519FF42D900E3CE5A /* SBStocksViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBStocksViewController.m; sourceTree = "<group>"; };
+		BC4C226619FF42D900E3CE5A /* SBTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBTableViewController.h; sourceTree = "<group>"; };
+		BC4C226719FF42D900E3CE5A /* SBTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBTableViewController.m; sourceTree = "<group>"; };
+		BC4C226819FF42D900E3CE5A /* SBTradeMethodCondition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBTradeMethodCondition.h; sourceTree = "<group>"; };
+		BC4C226919FF42D900E3CE5A /* SBTradeMethodCondition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBTradeMethodCondition.m; sourceTree = "<group>"; };
+		BC4C226A19FF42D900E3CE5A /* SBUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBUser.h; sourceTree = "<group>"; };
+		BC4C226B19FF42D900E3CE5A /* SBUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBUser.m; sourceTree = "<group>"; };
+		BC4C226C19FF42D900E3CE5A /* SBUserAlgoTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBUserAlgoTableViewController.h; sourceTree = "<group>"; };
+		BC4C226D19FF42D900E3CE5A /* SBUserAlgoTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBUserAlgoTableViewController.m; sourceTree = "<group>"; };
+		BC4C226E19FF42D900E3CE5A /* SBViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBViewController.h; sourceTree = "<group>"; };
+		BC4C226F19FF42D900E3CE5A /* SBViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBViewController.m; sourceTree = "<group>"; };
+		BC4C227019FF42D900E3CE5A /* SBVolumeCondition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBVolumeCondition.h; sourceTree = "<group>"; };
+		BC4C227119FF42D900E3CE5A /* SBVolumeCondition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBVolumeCondition.m; sourceTree = "<group>"; };
+		BC4C229519FF42DE00E3CE5A /* UIImage+SBAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+SBAdditions.h"; sourceTree = "<group>"; };
+		BC4C229619FF42DE00E3CE5A /* UIImage+SBAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+SBAdditions.m"; sourceTree = "<group>"; };
+		BC4C229719FF42DE00E3CE5A /* UIView+SBAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+SBAdditions.h"; sourceTree = "<group>"; };
+		BC4C229819FF42DE00E3CE5A /* UIView+SBAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+SBAdditions.m"; sourceTree = "<group>"; };
+		BC4C229B19FF448C00E3CE5A /* stockList.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = stockList.csv; sourceTree = "<group>"; };
+		BCB0457119FF3E75008ED609 /* stockup.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = stockup.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		BCB0457519FF3E75008ED609 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BCB0457619FF3E75008ED609 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		BCB0458D19FF3E75008ED609 /* stockupTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = stockupTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		BCB0459219FF3E75008ED609 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BCB0459319FF3E75008ED609 /* stockupTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = stockupTests.m; sourceTree = "<group>"; };
+		C5F30705C1BDD8372F8A9FEE /* Pods-stockup.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-stockup.release.xcconfig"; path = "Pods/Target Support Files/Pods-stockup/Pods-stockup.release.xcconfig"; sourceTree = "<group>"; };
+		FB56850579F0C1F9B68D0EEA /* libPods-stockup.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-stockup.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		BCB0456E19FF3E75008ED609 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F5FCCF8E702C7ABF83282747 /* libPods-stockup.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BCB0458A19FF3E75008ED609 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		2227C8C088EA0285FF6CA76C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				FB56850579F0C1F9B68D0EEA /* libPods-stockup.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		BCB0456819FF3E75008ED609 = {
+			isa = PBXGroup;
+			children = (
+				BCB0457319FF3E75008ED609 /* stockup */,
+				BCB0459019FF3E75008ED609 /* stockupTests */,
+				BCB0457219FF3E75008ED609 /* Products */,
+				CB16BA0B2D25406801C03D01 /* Pods */,
+				2227C8C088EA0285FF6CA76C /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		BCB0457219FF3E75008ED609 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				BCB0457119FF3E75008ED609 /* stockup.app */,
+				BCB0458D19FF3E75008ED609 /* stockupTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		BCB0457319FF3E75008ED609 /* stockup */ = {
+			isa = PBXGroup;
+			children = (
+				BC4C229B19FF448C00E3CE5A /* stockList.csv */,
+				BC4C229519FF42DE00E3CE5A /* UIImage+SBAdditions.h */,
+				BC4C229619FF42DE00E3CE5A /* UIImage+SBAdditions.m */,
+				BC4C229719FF42DE00E3CE5A /* UIView+SBAdditions.h */,
+				BC4C229819FF42DE00E3CE5A /* UIView+SBAdditions.m */,
+				BC4C222A19FF42D800E3CE5A /* NSString+SBAdditions.h */,
+				BC4C222B19FF42D800E3CE5A /* NSString+SBAdditions.m */,
+				BC4C222C19FF42D800E3CE5A /* SBAlgoConditionTableViewCell.h */,
+				BC4C222D19FF42D800E3CE5A /* SBAlgoConditionTableViewCell.m */,
+				BC4C222E19FF42D800E3CE5A /* SBAlgoConfirmationViewController.h */,
+				BC4C222F19FF42D800E3CE5A /* SBAlgoConfirmationViewController.m */,
+				BC4C223019FF42D800E3CE5A /* SBAlgorithm.h */,
+				BC4C223119FF42D800E3CE5A /* SBAlgorithm.m */,
+				BC4C223219FF42D800E3CE5A /* SBAlgosDetailViewController.h */,
+				BC4C223319FF42D800E3CE5A /* SBAlgosDetailViewController.m */,
+				BC4C223419FF42D800E3CE5A /* SBAlgoSelectTableViewCell.h */,
+				BC4C223519FF42D800E3CE5A /* SBAlgoSelectTableViewCell.m */,
+				BC4C223619FF42D800E3CE5A /* SBAlgosSelectionTableViewController.h */,
+				BC4C223719FF42D800E3CE5A /* SBAlgosSelectionTableViewController.m */,
+				BC4C223819FF42D800E3CE5A /* SBAlgosViewController.h */,
+				BC4C223919FF42D800E3CE5A /* SBAlgosViewController.m */,
+				BC4C223A19FF42D800E3CE5A /* SBAppDelegate.h */,
+				BC4C223B19FF42D800E3CE5A /* SBAppDelegate.m */,
+				BC4C223C19FF42D800E3CE5A /* SBBOLLCondition.h */,
+				BC4C223D19FF42D800E3CE5A /* SBBOLLCondition.m */,
+				BC4C223E19FF42D800E3CE5A /* SBBrokersTableViewController.h */,
+				BC4C223F19FF42D800E3CE5A /* SBBrokersTableViewController.m */,
+				BC4C224019FF42D800E3CE5A /* SBCondition.h */,
+				BC4C224119FF42D800E3CE5A /* SBCondition.m */,
+				BC4C224219FF42D800E3CE5A /* SBConditions.h */,
+				BC4C224319FF42D800E3CE5A /* SBConstants.h */,
+				BC4C224419FF42D800E3CE5A /* SBDataManager.h */,
+				BC4C224519FF42D800E3CE5A /* SBDataManager.m */,
+				BC4C224619FF42D800E3CE5A /* SBInstructionsViewController.h */,
+				BC4C224719FF42D800E3CE5A /* SBInstructionsViewController.m */,
+				BC4C224819FF42D800E3CE5A /* SBKDJCondition.h */,
+				BC4C224919FF42D800E3CE5A /* SBKDJCondition.m */,
+				BC4C224A19FF42D800E3CE5A /* SBLoginAnimatedTransitioning.h */,
+				BC4C224B19FF42D800E3CE5A /* SBLoginAnimatedTransitioning.m */,
+				BC4C224C19FF42D800E3CE5A /* SBLoginViewController.h */,
+				BC4C224D19FF42D800E3CE5A /* SBLoginViewController.m */,
+				BC4C224E19FF42D800E3CE5A /* SBMACDCondition.h */,
+				BC4C224F19FF42D800E3CE5A /* SBMACDCondition.m */,
+				BC4C225019FF42D800E3CE5A /* SBMandatoryCondition.h */,
+				BC4C225119FF42D800E3CE5A /* SBMandatoryCondition.m */,
+				BC4C225219FF42D800E3CE5A /* SBNavigationControllerDelegate.h */,
+				BC4C225319FF42D800E3CE5A /* SBNavigationControllerDelegate.m */,
+				BC4C225419FF42D800E3CE5A /* SBPriceCondition.h */,
+				BC4C225519FF42D800E3CE5A /* SBPriceCondition.m */,
+				BC4C225619FF42D800E3CE5A /* SBPriceTypeCondition.h */,
+				BC4C225719FF42D800E3CE5A /* SBPriceTypeCondition.m */,
+				BC4C225819FF42D800E3CE5A /* SBSegmentedControl.h */,
+				BC4C225919FF42D800E3CE5A /* SBSegmentedControl.m */,
+				BC4C225A19FF42D800E3CE5A /* SBStock.h */,
+				BC4C225B19FF42D800E3CE5A /* SBStock.m */,
+				BC4C225C19FF42D800E3CE5A /* SBStockGraphView.h */,
+				BC4C225D19FF42D800E3CE5A /* SBStockGraphView.m */,
+				BC4C225E19FF42D800E3CE5A /* SBStocksDetailViewController.h */,
+				BC4C225F19FF42D800E3CE5A /* SBStocksDetailViewController.m */,
+				BC4C226019FF42D800E3CE5A /* SBStocksListTableViewController.h */,
+				BC4C226119FF42D800E3CE5A /* SBStocksListTableViewController.m */,
+				BC4C226219FF42D800E3CE5A /* SBStocksTableViewCell.h */,
+				BC4C226319FF42D800E3CE5A /* SBStocksTableViewCell.m */,
+				BC4C226419FF42D800E3CE5A /* SBStocksViewController.h */,
+				BC4C226519FF42D900E3CE5A /* SBStocksViewController.m */,
+				BC4C226619FF42D900E3CE5A /* SBTableViewController.h */,
+				BC4C226719FF42D900E3CE5A /* SBTableViewController.m */,
+				BC4C226819FF42D900E3CE5A /* SBTradeMethodCondition.h */,
+				BC4C226919FF42D900E3CE5A /* SBTradeMethodCondition.m */,
+				BC4C226A19FF42D900E3CE5A /* SBUser.h */,
+				BC4C226B19FF42D900E3CE5A /* SBUser.m */,
+				BC4C226C19FF42D900E3CE5A /* SBUserAlgoTableViewController.h */,
+				BC4C226D19FF42D900E3CE5A /* SBUserAlgoTableViewController.m */,
+				BC4C226E19FF42D900E3CE5A /* SBViewController.h */,
+				BC4C226F19FF42D900E3CE5A /* SBViewController.m */,
+				BC4C227019FF42D900E3CE5A /* SBVolumeCondition.h */,
+				BC4C227119FF42D900E3CE5A /* SBVolumeCondition.m */,
+				BC4C222219FF425B00E3CE5A /* Images.xcassets */,
+				BC4C222419FF426900E3CE5A /* AlgoDetail.storyboard */,
+				BC4C222519FF426900E3CE5A /* Instructions.storyboard */,
+				BC4C222619FF426900E3CE5A /* Login.storyboard */,
+				BCB0457419FF3E75008ED609 /* Supporting Files */,
+			);
+			path = stockup;
+			sourceTree = "<group>";
+		};
+		BCB0457419FF3E75008ED609 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				BCB0457519FF3E75008ED609 /* Info.plist */,
+				BCB0457619FF3E75008ED609 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		BCB0459019FF3E75008ED609 /* stockupTests */ = {
+			isa = PBXGroup;
+			children = (
+				BCB0459319FF3E75008ED609 /* stockupTests.m */,
+				BCB0459119FF3E75008ED609 /* Supporting Files */,
+			);
+			path = stockupTests;
+			sourceTree = "<group>";
+		};
+		BCB0459119FF3E75008ED609 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				BCB0459219FF3E75008ED609 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		CB16BA0B2D25406801C03D01 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				274435E7AC4324FE46E325BD /* Pods-stockup.debug.xcconfig */,
+				C5F30705C1BDD8372F8A9FEE /* Pods-stockup.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		BCB0457019FF3E75008ED609 /* stockup */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BCB0459719FF3E75008ED609 /* Build configuration list for PBXNativeTarget "stockup" */;
+			buildPhases = (
+				9A5069D303A1DC456B0C684E /* Check Pods Manifest.lock */,
+				BCB0456D19FF3E75008ED609 /* Sources */,
+				BCB0456E19FF3E75008ED609 /* Frameworks */,
+				BCB0456F19FF3E75008ED609 /* Resources */,
+				D8709260116817DF254D15BE /* Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = stockup;
+			productName = stockup;
+			productReference = BCB0457119FF3E75008ED609 /* stockup.app */;
+			productType = "com.apple.product-type.application";
+		};
+		BCB0458C19FF3E75008ED609 /* stockupTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BCB0459A19FF3E75008ED609 /* Build configuration list for PBXNativeTarget "stockupTests" */;
+			buildPhases = (
+				BCB0458919FF3E75008ED609 /* Sources */,
+				BCB0458A19FF3E75008ED609 /* Frameworks */,
+				BCB0458B19FF3E75008ED609 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				BCB0458F19FF3E75008ED609 /* PBXTargetDependency */,
+			);
+			name = stockupTests;
+			productName = stockupTests;
+			productReference = BCB0458D19FF3E75008ED609 /* stockupTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		BCB0456919FF3E75008ED609 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0610;
+				ORGANIZATIONNAME = "Robert Guo";
+				TargetAttributes = {
+					BCB0457019FF3E75008ED609 = {
+						CreatedOnToolsVersion = 6.1;
+						DevelopmentTeam = 7J555P3K78;
+					};
+					BCB0458C19FF3E75008ED609 = {
+						CreatedOnToolsVersion = 6.1;
+						TestTargetID = BCB0457019FF3E75008ED609;
+					};
+				};
+			};
+			buildConfigurationList = BCB0456C19FF3E75008ED609 /* Build configuration list for PBXProject "stockup" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = BCB0456819FF3E75008ED609;
+			productRefGroup = BCB0457219FF3E75008ED609 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				BCB0457019FF3E75008ED609 /* stockup */,
+				BCB0458C19FF3E75008ED609 /* stockupTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		BCB0456F19FF3E75008ED609 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BC4C222719FF426900E3CE5A /* AlgoDetail.storyboard in Resources */,
+				BC4C229C19FF448C00E3CE5A /* stockList.csv in Resources */,
+				BC4C222319FF425B00E3CE5A /* Images.xcassets in Resources */,
+				BC4C222919FF426900E3CE5A /* Login.storyboard in Resources */,
+				BC4C222819FF426900E3CE5A /* Instructions.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BCB0458B19FF3E75008ED609 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		9A5069D303A1DC456B0C684E /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		D8709260116817DF254D15BE /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-stockup/Pods-stockup-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		BCB0456D19FF3E75008ED609 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BC4C229919FF42DE00E3CE5A /* UIImage+SBAdditions.m in Sources */,
+				BC4C227419FF42D900E3CE5A /* SBAlgoConfirmationViewController.m in Sources */,
+				BC4C228D19FF42D900E3CE5A /* SBStocksTableViewCell.m in Sources */,
+				BC4C229419FF42D900E3CE5A /* SBVolumeCondition.m in Sources */,
+				BC4C228919FF42D900E3CE5A /* SBStock.m in Sources */,
+				BC4C227719FF42D900E3CE5A /* SBAlgoSelectTableViewCell.m in Sources */,
+				BC4C228619FF42D900E3CE5A /* SBPriceCondition.m in Sources */,
+				BC4C228E19FF42D900E3CE5A /* SBStocksViewController.m in Sources */,
+				BC4C227619FF42D900E3CE5A /* SBAlgosDetailViewController.m in Sources */,
+				BC4C229119FF42D900E3CE5A /* SBUser.m in Sources */,
+				BC4C228319FF42D900E3CE5A /* SBMACDCondition.m in Sources */,
+				BC4C227D19FF42D900E3CE5A /* SBCondition.m in Sources */,
+				BC4C229319FF42D900E3CE5A /* SBViewController.m in Sources */,
+				BC4C227819FF42D900E3CE5A /* SBAlgosSelectionTableViewController.m in Sources */,
+				BC4C228A19FF42D900E3CE5A /* SBStockGraphView.m in Sources */,
+				BC4C228419FF42D900E3CE5A /* SBMandatoryCondition.m in Sources */,
+				BC4C227F19FF42D900E3CE5A /* SBInstructionsViewController.m in Sources */,
+				BC4C228F19FF42D900E3CE5A /* SBTableViewController.m in Sources */,
+				BC4C228219FF42D900E3CE5A /* SBLoginViewController.m in Sources */,
+				BCB0457719FF3E75008ED609 /* main.m in Sources */,
+				BC4C227E19FF42D900E3CE5A /* SBDataManager.m in Sources */,
+				BC4C228819FF42D900E3CE5A /* SBSegmentedControl.m in Sources */,
+				BC4C228B19FF42D900E3CE5A /* SBStocksDetailViewController.m in Sources */,
+				BC4C227519FF42D900E3CE5A /* SBAlgorithm.m in Sources */,
+				BC4C229219FF42D900E3CE5A /* SBUserAlgoTableViewController.m in Sources */,
+				BC4C228519FF42D900E3CE5A /* SBNavigationControllerDelegate.m in Sources */,
+				BC4C229A19FF42DE00E3CE5A /* UIView+SBAdditions.m in Sources */,
+				BC4C227919FF42D900E3CE5A /* SBAlgosViewController.m in Sources */,
+				BC4C227A19FF42D900E3CE5A /* SBAppDelegate.m in Sources */,
+				BC4C229019FF42D900E3CE5A /* SBTradeMethodCondition.m in Sources */,
+				BC4C227219FF42D900E3CE5A /* NSString+SBAdditions.m in Sources */,
+				BC4C228119FF42D900E3CE5A /* SBLoginAnimatedTransitioning.m in Sources */,
+				BC4C228C19FF42D900E3CE5A /* SBStocksListTableViewController.m in Sources */,
+				BC4C228019FF42D900E3CE5A /* SBKDJCondition.m in Sources */,
+				BC4C228719FF42D900E3CE5A /* SBPriceTypeCondition.m in Sources */,
+				BC4C227319FF42D900E3CE5A /* SBAlgoConditionTableViewCell.m in Sources */,
+				BC4C227B19FF42D900E3CE5A /* SBBOLLCondition.m in Sources */,
+				BC4C227C19FF42D900E3CE5A /* SBBrokersTableViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BCB0458919FF3E75008ED609 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BCB0459419FF3E75008ED609 /* stockupTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		BCB0458F19FF3E75008ED609 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BCB0457019FF3E75008ED609 /* stockup */;
+			targetProxy = BCB0458E19FF3E75008ED609 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		BCB0459519FF3E75008ED609 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 2;
+			};
+			name = Debug;
+		};
+		BCB0459619FF3E75008ED609 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 2;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		BCB0459819FF3E75008ED609 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 274435E7AC4324FE46E325BD /* Pods-stockup.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				INFOPLIST_FILE = stockup/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+			};
+			name = Debug;
+		};
+		BCB0459919FF3E75008ED609 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C5F30705C1BDD8372F8A9FEE /* Pods-stockup.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				INFOPLIST_FILE = stockup/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+			};
+			name = Release;
+		};
+		BCB0459B19FF3E75008ED609 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = stockupTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/stockup.app/stockup";
+			};
+			name = Debug;
+		};
+		BCB0459C19FF3E75008ED609 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = stockupTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/stockup.app/stockup";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		BCB0456C19FF3E75008ED609 /* Build configuration list for PBXProject "stockup" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BCB0459519FF3E75008ED609 /* Debug */,
+				BCB0459619FF3E75008ED609 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BCB0459719FF3E75008ED609 /* Build configuration list for PBXNativeTarget "stockup" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BCB0459819FF3E75008ED609 /* Debug */,
+				BCB0459919FF3E75008ED609 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BCB0459A19FF3E75008ED609 /* Build configuration list for PBXNativeTarget "stockupTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BCB0459B19FF3E75008ED609 /* Debug */,
+				BCB0459C19FF3E75008ED609 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = BCB0456919FF3E75008ED609 /* Project object */;
+}

@@ -7,6 +7,7 @@
 //
 
 #import "SBPriceTypeCondition.h"
+#import "SBConstants.h"
 
 #define MARKET_PRICE_INDEX 0
 #define LIMITED_PRICE_INDEX 1

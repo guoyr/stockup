@@ -11,6 +11,7 @@
 #import "SBAlgorithm.h"
 #import "SBDataManager.h"
 #import "SBStock.h"
+#import "SBConstants.h"
 
 @interface SBAlgoConfirmationViewController ()
 
