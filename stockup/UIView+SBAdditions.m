@@ -12,6 +12,7 @@
 
 -(void)scaleFrame:(double)scale
 {
+    //mmmmm
     CGPoint center = self.center;
     CGRect frame = self.frame;
     frame.size.width *= scale;
