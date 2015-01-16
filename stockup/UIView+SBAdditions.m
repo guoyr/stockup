@@ -12,7 +12,7 @@
 
 -(void)scaleFrame:(double)scale
 {
-    //mmmmm
+    //更改
     CGPoint center = self.center;
     CGRect frame = self.frame;
     frame.size.width *= scale;
@@ -23,6 +23,7 @@
 
 -(void)moveFrameX:(NSInteger)distance
 {
+    //改变
     CGPoint center = self.center;
     center.x += distance;
     self.center = center;
