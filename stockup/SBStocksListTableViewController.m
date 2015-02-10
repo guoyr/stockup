@@ -12,6 +12,7 @@
 #import "SBConstants.h"
 #import "SBStocksTableViewCell.h"
 #import "SBAlgorithm.h"
+#import "SBStocksDetailViewController.h"
 
 @interface SBStocksListTableViewController ()
 
@@ -140,6 +141,8 @@ static NSString *CellIdentifier = @"StockCell";
     stock.tableViewIndex = indexPath;
     cell.stockIDLabel.text = [stock.stockID stringValue];
     cell.stockNameLabel.text = stock.name;
+   
+    
     return cell;
 }
 
@@ -155,6 +158,7 @@ static NSString *CellIdentifier = @"StockCell";
         selectedStock = self.dataManager.stocks[(NSUInteger) indexPath.row];
     }
     [self.delegate viewController:self didSelectStock:selectedStock];
+     
 }
 
 

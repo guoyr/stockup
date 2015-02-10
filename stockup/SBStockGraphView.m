@@ -20,7 +20,9 @@
         self.activityView.hidesWhenStopped = YES;
         NSLog(@"%@",NSStringFromCGPoint(self.center));
         [self.activityView setCenter:CGPointMake(self.bounds.size.width/2, self.bounds.size.height/2)];
-        self.layer.cornerRadius = 10.f;
+        self.layer.cornerRadius = 0.f;
+        
+        
     }
     return self;
 }

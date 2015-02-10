@@ -36,6 +36,7 @@
 {
     [super viewDidLoad];
     
+    
     // Do any additional setup after loading the view.
     self.edgesForExtendedLayout = UIRectEdgeNone;
     
@@ -59,6 +60,8 @@
     [self.view addSubview:namePrompt];
 
     self.view.backgroundColor = BLACK_BG;
+    
+    //self.view.backgroundColor = [UIColor redColor];
     
     self.doneButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(done:)];
     self.navigationItem.rightBarButtonItem = self.doneButtonItem;
@@ -87,6 +90,7 @@
 -(void)done:(UIBarButtonItem *)sender
 {
     [[SBDataManager sharedManager] saveAlgorithm:self.curAlgo];
+    
     [self.navigationController popToRootViewControllerAnimated:YES];
 }
 

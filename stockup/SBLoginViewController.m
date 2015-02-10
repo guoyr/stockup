@@ -157,7 +157,7 @@
 
     [self hideKeyboard];
 
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+  /* AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     NSDictionary *params = @{@"username": self.usernameField.text, @"password": self.passwordField.text};
     NSString *urlString = [NSString stringWithFormat: @"%@auth/login", SERVER_URL];
     [manager POST:urlString parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
@@ -186,10 +186,11 @@
         NSLog(@"%@", error);
     }];
     
-    return;
+    return;*/
 
-
-
+    SBUserAlgoTableViewController *avc = [[SBUserAlgoTableViewController alloc] initWithStyle:UITableViewStylePlain];
+    
+    [self.navigationController pushViewController:avc animated:YES];
 
 }
 

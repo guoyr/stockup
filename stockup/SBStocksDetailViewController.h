@@ -9,6 +9,10 @@
 #import <UIKit/UIKit.h>
 
 @class SBStock;
+@class CPTGraphHostingView;
+@class APYahooDataPuller;
+@class CPTXYGraph;
+
 @interface SBStocksDetailViewController : UIViewController
 
 -(void)showStock:(SBStock *)stock;

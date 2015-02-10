@@ -114,13 +114,14 @@
     if (!algorithm.uid) {
         NSString *uid = [self.dateFormatter stringFromDate:[NSDate date]];
         algorithm.uid = [uid stringByAppendingString:[NSString randomStringOfLength:5]];
+        NSLog(@"%@",algorithm.uid);
     }
 
     (self.allAlgorithms)[algorithm.uid] = algorithm;
 
     NSDictionary *archiveDict = [algorithm archiveToDict];
 
-    NSLog(@"%@", archiveDict);
+    NSLog(@"++++++++++++++++++++++++++++++%@", archiveDict);
     
     
     //actually save the archived dict
@@ -141,7 +142,7 @@
 
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"%@",error.description);
-    }];
+    }];  
 }
 
 - (void)removeAlgorithm:(NSString *)algorithmName {
@@ -158,6 +159,7 @@
             SBStock *s = [SBStock new];
             s.name = [result resultDictionary][@"name"];
             s.stockID = [result resultDictionary][@"stock_id"];
+           // NSLog(@"字典里面的值=========%@",[result resultDictionary]);
             [_stocks addObject:s];
         }
     }

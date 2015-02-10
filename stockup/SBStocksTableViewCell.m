@@ -9,6 +9,7 @@
 #import "SBStocksTableViewCell.h"
 #import "SBConstants.h"
 #import "UIImage+SBAdditions.h"
+#import "SBStock.h"
 
 @interface SBStocksTableViewCell()
 
@@ -29,8 +30,8 @@
         self.bgView.layer.borderColor = BLACK_BG.CGColor;
         self.bgView.layer.borderWidth = 2;
 
-        self.stockNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 36, 180, 44)];
-        self.stockIDLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, 180, 30)];
+        self.stockNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(100, 16, 180, 44)];
+        self.stockIDLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 23, 180, 30)];
         [self.stockNameLabel setFont:[UIFont systemFontOfSize:20]];
         self.stockIDLabel.font = [UIFont boldSystemFontOfSize:24];
         [self.stockIDLabel setTextColor:WHITE];
@@ -45,6 +46,7 @@
             self.stockTrendLabel.textColor = [UIColor redColor];
             self.stockTrendLabel.text = @"-￥2.98";
         }
+        
         
         self.stockMiniTrendImageView = [[UIImageView alloc] initWithFrame:CGRectMake(200, 36, 96, 36)];
         [self.stockMiniTrendImageView setImage:[UIImage imageNamed:@"stock_trend_mini_dummy"]];
